@@ -33,7 +33,7 @@ public class HomePage extends BasePage {
                 break;
             }
         }
-        if (found) {
+        if (!found) {
             Assert.fail("Unable to find practice: " +practiceName);
         }
     }

@@ -45,12 +45,14 @@ public class DriverManager {
                 setDriver(new SafariDriver());
                 break;
             default:
-                if (ConfigManager.getInstance().getProperty("Docker").toUpperCase() == "TRUE") {
+                if (ConfigManager.getInstance().getProperty("Docker").toUpperCase().equals("TRUE")) {
+                    System.out.println("##############running on docker################");
                     DesiredCapabilities capabilities = new DesiredCapabilities();
                     capabilities.setBrowserName("chrome");
                     setDriver(new RemoteWebDriver(new URL(ConfigManager.getInstance().getProperty("DOCKERHUB")), capabilities));
                 }
                 else {
+                    System.out.println("###############running locally#################");
                     setDriver(new ChromeDriver());
                 }
                 break;
