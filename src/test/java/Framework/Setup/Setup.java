@@ -10,6 +10,7 @@ import io.cucumber.java.Scenario;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 
+import java.net.MalformedURLException;
 import java.sql.Time;
 import java.time.LocalTime;
 
@@ -30,7 +31,13 @@ public class Setup {
         this.scenario = scenario;
         System.out.println("########starting thread: " + Thread.currentThread().getName() + " at " + Time.valueOf(LocalTime.now()));
         System.out.println("###############Running test############# "+scenario.getName());
-        DriverManager.getInstance().loadDriver(ConfigManager.getInstance().getProperty("browser"));
+        try {
+            DriverManager.getInstance().loadDriver(ConfigManager.getInstance().getProperty("browser"));
+        }
+        catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
         DriverManager.getInstance().navigateToURL(ConfigManager.getInstance().getProperty("URL"));
     }
 

@@ -15,10 +15,11 @@ public class HomeStepDefinition {
 
     @When("I click on practice name")
     public void iClickOnPracticeName() {
-        PbNUIApp.homePage().clickOnPracticeInPracticeInfoTable("Roman, Burke nand Wagne");
+        PbNUIApp.homePage().clickOnPracticeInPracticeInfoTable("Romans, Burke nand Wagner");
     }
 
     @Then("I will see activity for practice")
     public void iWillSeeActivityForPractice() {
+        PbNUIApp.homePage().verifyWelcomeTextDisplayed();
     }
 }

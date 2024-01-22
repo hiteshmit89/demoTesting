@@ -7,10 +7,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.time.Duration;
 
 public class DriverManager {
@@ -29,7 +33,7 @@ public class DriverManager {
         return manager.get();
     }
 
-    public void loadDriver(String browser) {
+    public void loadDriver(String browser) throws MalformedURLException {
         switch (browser) {
             case "edge":
                 setDriver(new EdgeDriver());
@@ -41,7 +45,14 @@ public class DriverManager {
                 setDriver(new SafariDriver());
                 break;
             default:
-                setDriver(new ChromeDriver());
+                if (ConfigManager.getInstance().getProperty("Docker").toUpperCase() == "TRUE") {
+                    DesiredCapabilities capabilities = new DesiredCapabilities();
+                    capabilities.setBrowserName("chrome");
+                    setDriver(new RemoteWebDriver(new URL(ConfigManager.getInstance().getProperty("DOCKERHUB")), capabilities));
+                }
+                else {
+                    setDriver(new ChromeDriver());
+                }
                 break;
         }
         webDriver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(

@@ -3,6 +3,7 @@ package Pages;
 import Framework.Browser;
 import Framework.Constants.Constants.PageTitle;
 import Framework.Util.DriverManager;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -14,7 +15,7 @@ public class HomePage extends BasePage {
     }
 
     private WebElement userHeader = DriverManager.getInstance().Driver.findElement(By.xpath("//div//li[@class='user-header-info']"));
-    private WebElement practiceInfoTable = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@aria-describedby='practice_table_info']"));
+    private List<WebElement> practiceInfoTableRows = DriverManager.getInstance().Driver.findElements(By.xpath("//*[@aria-describedby='practice_table_info']/tbody/tr"));
 
 
     public void verifyUserHeaderIsDisplayed() {
@@ -22,13 +23,23 @@ public class HomePage extends BasePage {
     }
 
     public void clickOnPracticeInPracticeInfoTable(String practiceName) {
-        List<WebElement> rows = practiceInfoTable.findElements(By.xpath(".//tr"));
-        for (WebElement row: rows) {
-            WebElement practice =  row.findElements(By.xpath("//td")).getFirst();
-            if (Browser.getTextFromElement(practice).equals(practiceName)) {
-                Browser.clickOnElement(practice);
+        boolean found = false;
+        for (WebElement row: practiceInfoTableRows) {
+            List<WebElement> practice =  row.findElements(By.xpath(".//td/a"));
+            String currPracticeName = Browser.getTextFromElement(practice.get(0));
+            if (currPracticeName.equals(practiceName)) {
+                Browser.clickOnElement(practice.get(0));
+                found = true;
                 break;
             }
         }
+        if (found) {
+            Assert.fail("Unable to find practice: " +practiceName);
+        }
+    }
+
+    public void verifyWelcomeTextDisplayed() {
+        WebElement welcomeText = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='HomePageRoot']//h1[contains(text(),'Welcome')]"));
+        Assert.assertTrue("Welcome text not displayed on practice home page.", welcomeText.isDisplayed());
     }
 }
