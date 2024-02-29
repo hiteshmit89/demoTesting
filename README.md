@@ -1,32 +1,28 @@
+## Pre Requisites:
+1. Install Java and maven:
+Download and install java in C:\Dev\Apps\Java folder on your machine from: https://www.oracle.com/in/java/technologies/downloads/#jdk21-windows
+Download and export maven in C:\Dev\Apps\Maven from: https://maven.apache.org/download.cgi
 
-## Edit a file
+2. Set environment variables:
+Add Java home and maven home in environment variables:
+JAVA_HOME: C:\Dev\Apps\Java
+M2_HOME: C:\Dev\Apps\Maven\apache-maven-3.9.6
 
-You’ll start by editing this README file to learn how to edit a file in Bitbucket.
+Add below in path variable:
+%M2_HOME%\bin
+%JAVA_HOME%\bin
 
-1. Click **Source** on the left side.
-2. Click the README.md link from the list of files.
-3. Click the **Edit** button.
-4. Delete the following text: *Delete this line to make a change to the README from Bitbucket.*
-5. After making your change, click **Commit** and then **Commit** again in the dialog. The commit page will open and you’ll see the change you just made.
-6. Go back to the **Source** page.
+3. Install intelliJ idea community addition.
+4. Install git (Follow below links to use chocolatey for installing git)
+https://chocolatey.org/install
+https://community.chocolatey.org/packages/git.install#individual
+5. Install docker desktop
+https://docs.docker.com/get-docker/
 
----
-
-## Create a file
-
-Next, you’ll add a new file to this repository.
-
-1. Click the **New file** button at the top of the **Source** page.
-2. Give the file a filename of **contributors.txt**.
-3. Enter your name in the empty file space.
-4. Click **Commit** and then **Commit** again in the dialog.
-5. Go back to the **Source** page.
-
-Before you move on, go ahead and explore the repository. You've already seen the **Source** page, but check out the **Commits**, **Branches**, and **Settings** pages.
-
----
-
-## Clone a repository
+## Setup local work repo
+1. Create folder structure below and clone this project:
+C:\Dev\Projects
+2. Install cucumber plugin for intelliJ idea from marketplace.
 
 Use these steps to clone from SourceTree, our client for using the repository command-line free. Cloning allows you to work on your files locally. If you don't yet have SourceTree, [download and install first](https://www.sourcetreeapp.com/). If you prefer to clone from the command line, see [Clone a repository](https://confluence.atlassian.com/x/4whODQ).
 
