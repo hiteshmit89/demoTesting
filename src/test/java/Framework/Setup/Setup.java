@@ -13,9 +13,11 @@ import org.openqa.selenium.TakesScreenshot;
 import java.net.MalformedURLException;
 import java.sql.Time;
 import java.time.LocalTime;
+import java.util.logging.Logger;
 
 public class Setup {
     private Scenario scenario;
+    private static final Logger logger = Logger.getLogger("PBN");
 
     @BeforeAll
     public static void resolvePropertiesFile(){
@@ -29,8 +31,8 @@ public class Setup {
     @Before
     public void scenarioSetup(Scenario scenario){
         this.scenario = scenario;
-        System.out.println("########starting thread: " + Thread.currentThread().getName() + " at " + Time.valueOf(LocalTime.now()));
-        System.out.println("###############Running test############# "+scenario.getName());
+        logger.info("\u001B[32m" + "########starting thread: " + Thread.currentThread().getName() + " at " + Time.valueOf(LocalTime.now()) + "\u001B[0m");
+        logger.info("\u001B[32m" + "###############Running test############# "+ scenario.getName() + "\u001B[0m");
         try {
             DriverManager.getInstance().loadDriver(ConfigManager.getInstance().getProperty("browser"));
         }
