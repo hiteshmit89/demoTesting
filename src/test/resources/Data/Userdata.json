@@ -1,12 +1,24 @@
-[{
-  "id_1":[
+{
+  "Practices":[
     {
+      "practice_id": 1,
       "email": "chris.lau@practicenumbers.com",
       "user_id": 1,
-      "practice_id": 1,
       "practice_name": "Romans, Burke nand Wagner",
       "address": 123,
       "role": "super_admin",
       "password": "ppp###2025",
       "user_name": "Chris Lau"
-    }]}]
+    },
+    {
+      "practice_id": 2,
+      "email": "rakesh.chauhan@practicenumbers.com",
+      "user_id": 1,
+      "practice_name": "Romans, Burke nand Wagner",
+      "address": 123,
+      "role": "super_admin",
+      "password": "ppp###2025",
+      "user_name": "Chris Lau"
+    }
+    ]
+}
