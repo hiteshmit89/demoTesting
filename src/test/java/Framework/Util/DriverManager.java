@@ -77,17 +77,17 @@ public class DriverManager {
         webDriver.get(url);
     }
 
-    public void closeDriver() {
-        if (webDriver != null) {
-            webDriver.close();
-        }
-    }
-
-    public void quitDriver() {
-        if (webDriver != null) {
-            webDriver.quit();
-        }
-    }
+//    public void closeDriver() {
+//        if (webDriver != null) {
+//            webDriver.close();
+//        }
+//    }
+//
+//    public void quitDriver() {
+//        if (webDriver != null) {
+//            webDriver.quit();
+//        }
+//    }
 
     private void setDriver(WebDriver driver) {
         if (this.webDriver == null) {

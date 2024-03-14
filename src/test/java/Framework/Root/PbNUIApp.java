@@ -3,13 +3,12 @@ package Framework.Root;
 import DataModels.UserData;
 import Pages.HomePage;
 import Pages.LoginPage;
-import Framework.Constants.Constants;
+import Pages.SettingsPage;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
 
-import static Framework.Constants.Constants.PageTitle.HomeTitle;
-import static Framework.Constants.Constants.PageTitle.LoginTitle;
+import static Framework.Constants.Constants.PageTitle.*;
 
 public class PbNUIApp {
     private static UserData userdata = new UserData();
@@ -28,5 +27,9 @@ public class PbNUIApp {
 
     public static HomePage homePage() {
         return new HomePage(HomeTitle);
+    }
+    public static SettingsPage settingsPage() {
+
+        return new SettingsPage(SettingsTitle);
     }
 }
