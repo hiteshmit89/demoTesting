@@ -4,9 +4,7 @@ public class Constants {
     public static enum PageTitle {
         LoginTitle("Log In"),
         HomeTitle("Practice by Numbers: Home"),
-        SettingsTitle("Practice by Numbers: Settings");
-
-
+        CampaignsTitle("Practice by Numbers: communication");
 
         public final String label;
 

@@ -1,7 +1,7 @@
 package StepDefinitions.Payments.Adyen;
 import Framework.Root.PbNUIApp;
 import Pages.HeaderNavigation;
-import Pages.HomePage;
+import Pages.AppHomePage;
 import Pages.SettingsPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -19,13 +19,13 @@ public class AdyenOnboardingStepDefinition {
 
     @And("The user is able to select practice")
     public void theUserIsAbleToSelectPractice() {
-        PbNUIApp.homePage().clickOnPracticeInPracticeInfoTable("Romans, Burke and Wagner");
+        PbNUIApp.AppHomePage.clickOnPracticeInPracticeInfoTable("Romans, Burke and Wagner");
 
     }
 
     @And("The user in on HomePage")
     public void theUserInOnHomePage() {
-        HomePage.verifyWelcomeTextDisplayed();
+        AppHomePage.verifyWelcomeTextDisplayed();
     }
 
 
