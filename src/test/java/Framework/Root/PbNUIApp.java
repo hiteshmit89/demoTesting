@@ -25,14 +25,12 @@ public class PbNUIApp {
     public static LoginPage loginPage() {
         return new LoginPage(LoginTitle);
     }
-
     public static AppHomePage appHomePage() {
         return new AppHomePage(HomeTitle);
     }
     public static PracticeHomePage practiceHomePage() {
         return new PracticeHomePage(HomeTitle);
     }
-
     public static CampaignsPage campaignsPage() {
         return new CampaignsPage(CampaignsTitle);
     }
