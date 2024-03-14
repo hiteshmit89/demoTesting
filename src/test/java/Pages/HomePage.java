@@ -38,6 +38,11 @@ public class HomePage extends BasePage {
         }
     }
 
+    public void clickOnAppointmentsTab() {
+        WebElement appoinmentsNav = DriverManager.getInstance().Driver.findElement(By.xpath("//*[contains(@href,'/online_booking/1')]"));
+        Browser.clickOnElement(appoinmentsNav);
+    }
+
     public void verifyWelcomeTextDisplayed() {
         WebElement welcomeText = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='HomePageRoot']//h1[contains(text(),'Welcome')]"));
         Assert.assertTrue("Welcome text not displayed on practice home page.", welcomeText.isDisplayed());

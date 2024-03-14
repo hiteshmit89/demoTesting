@@ -15,7 +15,7 @@ public class HomeStepDefinition {
 
     @When("I click on practice name")
     public void iClickOnPracticeName() {
-        PbNUIApp.homePage().clickOnPracticeInPracticeInfoTable("Romans, Burke nand Wagner");
+        PbNUIApp.homePage().clickOnPracticeInPracticeInfoTable("Romans, Burke and Wagner");
     }
 
     @Then("I will see activity for practice")

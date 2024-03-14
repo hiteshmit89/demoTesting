@@ -1,0 +1,8 @@
+@AppointmentsFeature
+Feature: Appointments
+
+  @appointments
+  Scenario: Verify I can Book the appointments for new patient
+    Given I login to PbN app and select the practice
+    When I click on appointments tab and try to book appointments for new patient
+    Then I will be able to book appointments
