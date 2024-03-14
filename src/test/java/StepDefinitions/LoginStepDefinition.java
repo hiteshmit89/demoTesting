@@ -18,6 +18,6 @@ public class LoginStepDefinition {
 
     @Then("I am navigated to home page")
     public void i_am_navigated_to_home_page() {
-        PbNUIApp.homePage().verifyUserHeaderIsDisplayed();
+        PbNUIApp.appHomePage().verifyUserHeaderIsDisplayed();
     }
 }

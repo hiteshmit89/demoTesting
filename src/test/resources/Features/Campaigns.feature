@@ -1,8 +1,10 @@
-@LoginFeature
+@CampaignsFeature
 Feature: Campaigns
 
-  @login
-  Scenario: Verify I can redirect to Campaigns page
-    Given I click on profile dropdown
+  @Campaigns
+  Scenario: Verify I can redirect to campaigns page
+    Given I login to PbN app
+    And I click on practice name
+    And I click on profile dropdown
     When I click on Campaigns
     Then I am redirected to the campaigns page
