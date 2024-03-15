@@ -26,7 +26,7 @@ public class AppointmentsNewPatientStepDefinition {
         PbNUIApp.homePage().clickOnAppointmentsTab();
         PbNUIApp.appointmentsPage().clickOnWidgets();
         PbNUIApp.appointmentsPage().clickOnCopyUrl();
-
+        PbNUIApp.appointmentsPage().clickOnPickLocation();
 
 
 
