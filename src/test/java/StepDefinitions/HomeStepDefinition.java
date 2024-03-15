@@ -1,6 +1,8 @@
 package StepDefinitions;
 
+import Framework.Constants.Constants.Destination;
 import Framework.Root.PbNUIApp;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -22,4 +24,5 @@ public class HomeStepDefinition {
     public void iWillSeeActivityForPractice() {
         PbNUIApp.appHomePage().verifyWelcomeTextDisplayed();
     }
+
 }

@@ -10,4 +10,23 @@ public class Constants {
 
         PageTitle(String label) { this.label = label; }
     }
+
+    public static enum Destination {
+        PracticeIQ("Practice IQ"),
+        ReveneueIQ("Revenue IQ"),
+        Tasks("Tasks "),
+        PhoneIQ("Phone IQ"),
+        MarketingIQ("Marketing IQ"),
+        Insurance("Insurance"),
+        Huddle("Huddle"),
+        Reputation("Reputation"),
+        Appointments("Appointments"),
+        Forms("Forms"),
+        Payments("Payments");
+        public final String label;
+
+        Destination(String label) {
+            this.label = label;
+        }
+    }
 }
