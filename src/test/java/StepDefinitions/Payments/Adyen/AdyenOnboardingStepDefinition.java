@@ -1,8 +1,7 @@
 package StepDefinitions.Payments.Adyen;
+
 import Framework.Root.PbNUIApp;
-import Pages.HeaderNavigation;
 import Pages.AppHomePage;
-import Pages.SettingsPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -12,14 +11,14 @@ public class AdyenOnboardingStepDefinition {
 
     @Given("The User is able to login")
     public void the_user_is_able_to_login() {
-        PbNUIApp.loginPage().enterEmail("chris.lau@practicenumbers.com");
-        PbNUIApp.loginPage().enterPassword("ppp###2025");
+        PbNUIApp.loginPage().enterEmail(PbNUIApp.userdata().getPractices().getFirst().getEmail());
+        PbNUIApp.loginPage().enterPassword(PbNUIApp.userdata().getPractices().getFirst().getPassword());
         PbNUIApp.loginPage().clickOnLoginButton();
     }
 
     @And("The user is able to select practice")
     public void theUserIsAbleToSelectPractice() {
-        PbNUIApp.AppHomePage.clickOnPracticeInPracticeInfoTable("Romans, Burke and Wagner");
+        PbNUIApp.appHomePage().clickOnPracticeInPracticeInfoTable(PbNUIApp.userdata().getPractices().getFirst().getPractice_name());
 
     }
 
@@ -31,18 +30,17 @@ public class AdyenOnboardingStepDefinition {
 
     @When("The user is able to click on Profile icon")
     public void theUserIsAbleToClickOnProfileIcon() {
-        HeaderNavigation.clickOnProfileIcon();
+        PbNUIApp.practiceHomePage().clickOnUserProfileDropdown();
     }
 
     @Then("The user is able to click on settings")
     public void theUserIsAbleToClickOnSettings() {
-        HeaderNavigation.clickSettingIcon();
+        PbNUIApp.practiceHomePage().clickOnSettingsMenuItem();
     }
 
-    @Then("The user is able to enable checkbox for adyen")
-    public void theUserIsAbleToEnableCheckboxForAdyen() {
-        SettingsPage.toggleButton();
-
+    @Then("The user is able to enable toggle for adyen feature")
+    public void theUserIsAbleToEnableToggleForAdyenFeature() {
+        PbNUIApp.settingsPage().clicktoggleButton();
     }
 }
 

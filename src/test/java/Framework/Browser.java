@@ -4,6 +4,8 @@ import Framework.Constants.Constants;
 import Framework.Constants.Constants.PageTitle;
 import Framework.Util.ConfigManager;
 import Framework.Util.DriverManager;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.util.function.BooleanSupplier;
@@ -72,4 +74,10 @@ public class Browser {
         System.out.println(exceptionMessage = "Retry Timed Out while trying to execute - " + new Throwable().getStackTrace()[1].getMethodName());
         throw new RuntimeException(exceptionMessage + exception);
     }
+
+    public static void scrollToView(WebElement element) {
+        waitForElementToDisplay(element);
+        DriverManager.getInstance().scrollDown(element);
+    }
+
 }

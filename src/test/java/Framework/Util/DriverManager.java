@@ -1,10 +1,8 @@
 package Framework.Util;
 
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.SearchContext;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -38,10 +36,10 @@ public class DriverManager {
             case "edge":
                 setDriver(new EdgeDriver());
                 break;
-            case "firefox" :
+            case "firefox":
                 setDriver(new FirefoxDriver());
                 break;
-            case "safari" :
+            case "safari":
                 setDriver(new SafariDriver());
                 break;
             default:
@@ -49,8 +47,7 @@ public class DriverManager {
                     DesiredCapabilities capabilities = new DesiredCapabilities();
                     capabilities.setBrowserName("chrome");
                     setDriver(new RemoteWebDriver(new URL(ConfigManager.getInstance().getProperty("DOCKERHUB")), capabilities));
-                }
-                else {
+                } else {
                     setDriver(new ChromeDriver());
                 }
                 break;
@@ -60,14 +57,14 @@ public class DriverManager {
         webDriver.manage().window().maximize();
     }
 
-    public Wait<WebDriver> fluentwait(){
+    public Wait<WebDriver> fluentwait() {
         return new FluentWait<WebDriver>(webDriver)
                 .withTimeout(Duration.ofSeconds(Integer.parseInt(ConfigManager.getInstance().getProperty("Timeout"))))
                 .pollingEvery(Duration.ofMillis(Integer.parseInt(ConfigManager.getInstance().getProperty("Polling"))))
                 .ignoring(NoSuchElementException.class);
     }
 
-    public void pageReady(){
+    public void pageReady() {
         Wait<WebDriver> wait = fluentwait();
         wait.until(webDriver -> ((JavascriptExecutor) webDriver)
                 .executeScript("return document.readyState").equals("complete"));
@@ -108,12 +105,18 @@ public class DriverManager {
         return webDriver.getWindowHandle();
     }
 
-    public void killSession(){
+    public void killSession() {
         webDriver = null;
         Driver = null;
     }
 
-    public void remove(){
+    public void scrollDown(WebElement element) {
+        JavascriptExecutor js = (JavascriptExecutor) webDriver;
+        js.executeScript("arguments[0].scrollIntoView();", element);
+    }
+
+
+    public void remove() {
         manager.remove();
     }
 

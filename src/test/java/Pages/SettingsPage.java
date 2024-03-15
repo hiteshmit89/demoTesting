@@ -10,17 +10,22 @@ import javax.swing.*;
 
 public class SettingsPage extends BasePage{
 
+
+    public SettingsPage(Constants.PageTitle title) {
+        super(title);
+    }
     public static WebElement paymentToggleAdyen = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@class='custom-control-input']"));
-    public static void toggleButton(){
-        Browser.waitForElementToDisplay(paymentToggleAdyen);
+
+
+    public void clicktoggleButton(){
+
+        Browser.scrollToView(paymentToggleAdyen);
         paymentToggleAdyen.isEnabled();
 
     }
 
 
 
-    public SettingsPage(Constants.PageTitle title) {
-        super(title);
-    }
+
 
 }
