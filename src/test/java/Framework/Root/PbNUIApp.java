@@ -1,6 +1,7 @@
 package Framework.Root;
 
 import DataModels.UserData;
+import Pages.AppointmentBookingPage;
 import Pages.AppointmentsPage;
 import Pages.HomePage;
 import Pages.LoginPage;
@@ -32,6 +33,9 @@ public class PbNUIApp {
 
     public static AppointmentsPage appointmentsPage() {
         return new AppointmentsPage(AppointmentsTitle);
+    }
+    public static AppointmentBookingPage appointmentBookingPage() {
+        return new AppointmentBookingPage(AppointmentBookingTitle);
     }
 }
 

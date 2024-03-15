@@ -26,8 +26,8 @@ public class AppointmentsNewPatientStepDefinition {
         PbNUIApp.homePage().clickOnAppointmentsTab();
         PbNUIApp.appointmentsPage().clickOnWidgets();
         PbNUIApp.appointmentsPage().clickOnCopyUrl();
-        PbNUIApp.appointmentsPage().clickOnPickLocation();
-        PbNUIApp.appointmentsPage().clickOnSelectNewPatient();
+        PbNUIApp.appointmentBookingPage().clickOnPickLocation();
+        PbNUIApp.appointmentBookingPage().clickOnSelectNewPatient();
         PbNUIApp.appointmentsPage().clickOnEmergencyConsult();
         PbNUIApp.appointmentsPage().clickOnEarliest();
         PbNUIApp.appointmentsPage().enterFirstName("Test First Name");
@@ -38,11 +38,8 @@ public class AppointmentsNewPatientStepDefinition {
         PbNUIApp.appointmentsPage().clickOnCheckBox();
 
 
-
-
-
-
     }
+
     @Then("I will be able to book appointments")
     public void iWillBookAppointments() {
         PbNUIApp.homePage().verifyWelcomeTextDisplayed();
