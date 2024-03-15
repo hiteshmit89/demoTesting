@@ -7,28 +7,24 @@ import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import javax.swing.*;
-import java.util.List;
-
 public class AppointmentsPage extends BasePage {
 
     public AppointmentsPage(PageTitle title) {
         super(title);
     }
 
-
-
+    WebElement header = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='appointment-booking']//span[text()='Online Appointment Booking']"));
+    WebElement CopyUrlIcon = DriverManager.getInstance().Driver.findElement(By.xpath("(//i[@class='fa fa-copy'])[1]"));
+    WebElement e = DriverManager.getInstance().Driver.findElement(By.xpath("(//span[contains(text(),'https://www.patientsreach.com/schedule/')])[1]"));
+    WebElement pickLocation = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='location-item-name'and text()='Romans, Burke and Wagner']"));
     public void clickOnWidgets() {
         WebElement widgetsTab = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='appointment-booking-page-tab-Widgets']"));
         Browser.clickOnElement(widgetsTab);
     }
 
     public void clickOnCopyUrl() {
-        WebElement CopyUrlIcon = DriverManager.getInstance().Driver.findElement(By.xpath("(//i[@class='fa fa-copy'])[1]"));
+
         Browser.clickOnElement(CopyUrlIcon);
-        //CopyUrlIcon.sendKeys(Keys.CONTROL+ "v");
-        WebElement e = DriverManager.getInstance().Driver.findElement(By.xpath("(//span[contains(text(),'https://www.patientsreach.com/schedule/')])[1]"));
-        System.out.println(e.getText());
         String urlText = e.getText();
         String[] arrOfStr = urlText.split("schedule");
         for (String a : arrOfStr) {
@@ -37,24 +33,11 @@ public class AppointmentsPage extends BasePage {
        String URL = "https://qa3.pbn-dev.com";
                URL = String.join("", URL,"/schedule",arrOfStr[1] );
         System.out.println(URL);
-        //System.out.println(arrOfStr);
-        // ((JavascriptExecutor) DriverManager.getInstance().Driver).executeScript("window.open(urlText)");
-        ChromeDriver driver = new ChromeDriver();
-
-        //login
-        //driver.get(URL);
-        driver.navigate().to(URL);
-        driver.manage().window().maximize();
-        String originalWindow = driver.getWindowHandle();
-        for (String winHandle : driver.getWindowHandles()) {
-            driver.switchTo().window(winHandle);
-        }
-        //driver.switchTo().newWindow(WindowType.WINDOW);
+        //Browser.openNewTab();
+        Browser.navigateToNewURL(URL);
     }
 
     public void clickOnPickLocation() {
-
-        WebElement pickLocation = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='location-item-name'and text()='Romans, Burke and Wagner']"));
         Browser.clickOnElement(pickLocation);
     }
 
@@ -75,12 +58,36 @@ public class AppointmentsPage extends BasePage {
         WebElement selectEarliest = DriverManager.getInstance().Driver.findElement(By.xpath("(//button[@class='MuiButtonBase-root MuiButton-root MuiButton-text'])[2]"));
         Browser.clickOnElement(selectEarliest);
     }
-    public void enterFirstName(){
-        WebElement firstName = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@placeholder='Patient First Name']"));
-        Browser.enterTextInEditBox(firstName,);
+    public void enterFirstName(String firstNameData){
+        WebElement firstNameID = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@placeholder='Patient First Name']"));
+        Browser.enterTextInEditBox(firstNameID,firstNameData);
+    }
+    public void enterLastName(String lastNameData){
+        WebElement lastNameID = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@placeholder='Patient Last Name']"));
+        Browser.enterTextInEditBox(lastNameID,lastNameData);
     }
 
+    public void enterPhoneNumber(String phoneNumberData){
+        WebElement phoneNumberID = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@placeholder='//input[@placeholder='(###) ###-####']"));
+        Browser.enterTextInEditBox(phoneNumberID,phoneNumberData);
+    }
+    public void enterEmailID(String emailIdData){
+        WebElement emailID = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@placeholder='//input[@placeholder='email']"));
+        Browser.enterTextInEditBox(emailID,emailIdData);
+    }
 
+    public void enterBirthDate(String birthDateData){
+        WebElement birthDate = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@placeholder='(//input[@placeholder='MM/DD/YYYY'])[1]"));
+        Browser.enterTextInEditBox(birthDate,birthDateData);
+    }
+    public void clickOnCheckBox(){
+        WebElement agreeCheckBox = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@type='checkbox']"));
+        Browser.clickOnElement(agreeCheckBox);
+    }
+    public void clickOnNextButton(){
+        WebElement nextButton = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='MuiButton-label' and contains(text(),'Next')]"));
+        Browser.clickOnElement(nextButton);
+    }
 
 
 }

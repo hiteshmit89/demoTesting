@@ -27,6 +27,18 @@ public class AppointmentsNewPatientStepDefinition {
         PbNUIApp.appointmentsPage().clickOnWidgets();
         PbNUIApp.appointmentsPage().clickOnCopyUrl();
         PbNUIApp.appointmentsPage().clickOnPickLocation();
+        PbNUIApp.appointmentsPage().clickOnSelectNewPatient();
+        PbNUIApp.appointmentsPage().clickOnEmergencyConsult();
+        PbNUIApp.appointmentsPage().clickOnEarliest();
+        PbNUIApp.appointmentsPage().enterFirstName("Test First Name");
+        PbNUIApp.appointmentsPage().enterLastName("Test Last Name");
+        PbNUIApp.appointmentsPage().enterPhoneNumber("1234567890");
+        PbNUIApp.appointmentsPage().enterEmailID("test@test.com");
+        PbNUIApp.appointmentsPage().enterBirthDate("01011976");
+        PbNUIApp.appointmentsPage().clickOnCheckBox();
+
+
+
 
 
 

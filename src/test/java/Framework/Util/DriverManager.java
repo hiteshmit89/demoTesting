@@ -1,9 +1,6 @@
 package Framework.Util;
 
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.SearchContext;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -20,6 +17,7 @@ import java.time.Duration;
 public class DriverManager {
     private WebDriver webDriver = null;
     public SearchContext Driver = null;
+    private String originalWindowHandle;
     private static ThreadLocal<DriverManager> manager = new ThreadLocal<DriverManager>();
 
     private DriverManager() {
@@ -55,6 +53,7 @@ public class DriverManager {
                 }
                 break;
         }
+        originalWindowHandle = webDriver.getWindowHandle();
         webDriver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(
                 Integer.parseInt(ConfigManager.getInstance().getProperty("Timeout"))));
         webDriver.manage().window().maximize();
@@ -75,6 +74,18 @@ public class DriverManager {
 
     public void navigateToURL(String url) {
         webDriver.get(url);
+    }
+
+    public void openNew(WindowType windowType) {
+        switch (windowType) {
+            case WindowType.TAB -> webDriver.switchTo().newWindow(WindowType.TAB);
+            case WindowType.WINDOW -> webDriver.switchTo().newWindow(WindowType.WINDOW);
+        }
+    }
+
+    public void closeNewWindow() {
+        webDriver.close();
+        webDriver.switchTo().window(originalWindowHandle);
     }
 
     public void closeDriver() {

@@ -1,10 +1,10 @@
 package Framework;
 
-import Framework.Constants.Constants;
 import Framework.Constants.Constants.PageTitle;
 import Framework.Util.ConfigManager;
 import Framework.Util.DriverManager;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.WindowType;
 
 import java.util.function.BooleanSupplier;
 
@@ -42,6 +42,23 @@ public class Browser {
     public static void waitForPageReady() {
         DriverManager.getInstance().pageReady();
     }
+
+    public static void navigateToNewURL(String url) {
+        DriverManager.getInstance().navigateToURL(url);
+    }
+
+    public static void openNewTab() {
+        DriverManager.getInstance().openNew(WindowType.TAB);
+    }
+
+    public static void openNewWindow() {
+        DriverManager.getInstance().openNew(WindowType.WINDOW);
+    }
+
+    public static void closeWindowAndGetOriginalPage() {
+        DriverManager.getInstance().closeNewWindow();
+    }
+
     private static void retry(BooleanSupplier function)
     {
         int count = 0;
