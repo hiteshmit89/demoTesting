@@ -1,10 +1,7 @@
 package Framework.Root;
 
 import DataModels.UserData;
-import Pages.CampaignsPage;
-import Pages.AppHomePage;
-import Pages.LoginPage;
-import Pages.PracticeHomePage;
+import Pages.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
@@ -33,5 +30,8 @@ public class PbNUIApp {
     }
     public static CampaignsPage campaignsPage() {
         return new CampaignsPage(CampaignsTitle);
+    }
+    public static Navigator navigator() {
+        return new Navigator();
     }
 }
