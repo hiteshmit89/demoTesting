@@ -14,13 +14,13 @@ public class SettingsPage extends BasePage{
     public SettingsPage(Constants.PageTitle title) {
         super(title);
     }
-    public static WebElement paymentToggleAdyen = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@class='custom-control-input']"));
+    public static WebElement paymentToggleAdyen = DriverManager.getInstance().Driver.findElement(By.xpath("//label[@class='custom-control-label']"));
 
 
     public void clicktoggleButton(){
 
         Browser.scrollToView(paymentToggleAdyen);
-        paymentToggleAdyen.isEnabled();
+        paymentToggleAdyen.click();
 
     }
 

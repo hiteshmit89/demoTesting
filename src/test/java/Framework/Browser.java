@@ -76,7 +76,7 @@ public class Browser {
     }
 
     public static void scrollToView(WebElement element) {
-        waitForElementToDisplay(element);
+        //waitForElementToDisplay(element);
         DriverManager.getInstance().scrollDown(element);
     }
 
