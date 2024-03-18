@@ -18,4 +18,9 @@ public class Navigator {
             }
         }
     }
+
+    public void selectProfileDropdownOption(String dropdownOption) {
+        DriverManager.getInstance().Driver.findElement(By.linkText(dropdownOption)).click();
+    }
+
 }
