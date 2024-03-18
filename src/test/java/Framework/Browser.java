@@ -3,6 +3,7 @@ package Framework;
 import Framework.Constants.Constants.PageTitle;
 import Framework.Util.ConfigManager;
 import Framework.Util.DriverManager;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WindowType;
 
@@ -58,7 +59,10 @@ public class Browser {
     public static void closeWindowAndGetOriginalPage() {
         DriverManager.getInstance().closeNewWindow();
     }
-
+    public static void scrollByVisibleElement(WebElement object) {
+        JavascriptExecutor js = (JavascriptExecutor) DriverManager.getInstance().Driver;
+        js.executeScript("arguments[0].scrollIntoView();", object);
+    }
     private static void retry(BooleanSupplier function)
     {
         int count = 0;

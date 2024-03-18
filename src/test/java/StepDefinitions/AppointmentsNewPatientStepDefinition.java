@@ -28,15 +28,16 @@ public class AppointmentsNewPatientStepDefinition {
         PbNUIApp.appointmentsPage().clickOnCopyUrl();
         PbNUIApp.appointmentBookingPage().clickOnPickLocation();
         PbNUIApp.appointmentBookingPage().clickOnSelectNewPatient();
-        PbNUIApp.appointmentsPage().clickOnEmergencyConsult();
-        PbNUIApp.appointmentsPage().clickOnEarliest();
-        PbNUIApp.appointmentsPage().enterFirstName("Test First Name");
-        PbNUIApp.appointmentsPage().enterLastName("Test Last Name");
-        PbNUIApp.appointmentsPage().enterPhoneNumber("1234567890");
-        PbNUIApp.appointmentsPage().enterEmailID("test@test.com");
-        PbNUIApp.appointmentsPage().enterBirthDate("01011976");
-        PbNUIApp.appointmentsPage().clickOnCheckBox();
-
+        PbNUIApp.appointmentBookingPage().clickOnEmergencyConsult();
+        PbNUIApp.appointmentBookingPage().clickOnEarliest();
+        PbNUIApp.appointmentBookingPage().enterFirstName("Test First Name");
+        PbNUIApp.appointmentBookingPage().enterLastName("Test Last Name");
+        PbNUIApp.appointmentBookingPage().enterPhoneNumber("1234567890");
+        PbNUIApp.appointmentBookingPage().enterEmailID("test@test.com");
+        PbNUIApp.appointmentBookingPage().enterBirthDate("01011976");
+        PbNUIApp.appointmentBookingPage().clickOnCheckBox();
+        PbNUIApp.appointmentBookingPage().clickOnNextButton();
+PbNUIApp.appointmentBookingPage().enterCreditCardNumber("4242424242424242");
 
     }
 
