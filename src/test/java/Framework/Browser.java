@@ -3,10 +3,11 @@ package Framework;
 import Framework.Constants.Constants.PageTitle;
 import Framework.Util.ConfigManager;
 import Framework.Util.DriverManager;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.WindowType;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.function.BooleanSupplier;
 
 public class Browser {
@@ -62,6 +63,17 @@ public class Browser {
     public static void scrollByVisibleElement(WebElement object) {
         JavascriptExecutor js = (JavascriptExecutor) DriverManager.getInstance().Driver;
         js.executeScript("arguments[0].scrollIntoView();", object);
+    }
+
+    //Switch to Frame
+    public static void switchToFrame() {
+        WebDriverWait wait=new WebDriverWait((WebDriver) DriverManager.getInstance().Driver, Duration.ofSeconds(50));
+        WebElement ele=wait.until(ExpectedConditions.visibilityOf(DriverManager.getInstance().Driver.findElement(By.tagName("iframe"))));
+        ele.isDisplayed();
+        WebDriverWait wait1=new WebDriverWait((WebDriver) DriverManager.getInstance().Driver,Duration.ofSeconds(50));
+        WebElement el=wait1.until(ExpectedConditions.elementToBeClickable(DriverManager.getInstance().Driver.findElement(By.tagName("iframe"))));
+        el.isDisplayed();
+        ((WebDriver) DriverManager.getInstance().Driver).switchTo().frame(0);
     }
     private static void retry(BooleanSupplier function)
     {

@@ -52,8 +52,6 @@ public class AppointmentBookingPage extends BasePage {
         } catch (Exception e) {
             clickOnEarliest();
         }
-       // WebElement selectEarliest = DriverManager.getInstance().Driver.findElement(By.xpath("(//button[@class='MuiButtonBase-root MuiButton-root MuiButton-text'])[2]"));
-       // Browser.clickOnElement(selectEarliest);
     }
     public void enterFirstName(String firstNameData) {
         DriverManager.getInstance().fluentwait().until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@placeholder='Patient First Name']")));
@@ -93,14 +91,19 @@ public class AppointmentBookingPage extends BasePage {
         Browser.clickOnElement(nextButton);
 
     }
-    public void enterCreditCardNumber(String CreditCardNumber) throws InterruptedException {
-        Thread.sleep(10000);
-        //DriverManager.getInstance().fluentwait().until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@aria-label='Card number']")));
-        WebElement CCNumber = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@aria-label='Card number']"));
-        Browser.scrollByVisibleElement(CCNumber);
-        Browser.enterTextInEditBox(CCNumber, CreditCardNumber);
+    public void clickOnIDontHaveInsurance() {
 
 
+        try {
+            DriverManager.getInstance().fluentwait().until(ExpectedConditions.elementToBeClickable(By.xpath("//span[@class='MuiButton-label' and contains(text(),'I do')]")));
+            WebElement iDontHaveInsuranceButton = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='MuiButton-label' and contains(text(),'I do')]"));
+            Browser.clickOnElement(iDontHaveInsuranceButton);
+
+        } catch (Exception e) {
+            clickOnIDontHaveInsurance();
+        }
     }
+
+
 }
 

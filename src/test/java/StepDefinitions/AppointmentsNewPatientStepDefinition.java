@@ -19,7 +19,7 @@ public class AppointmentsNewPatientStepDefinition {
     }
 
     @When("I click on appointments tab and try to book appointments for new patient")
-    public void iClickOnAppointmentsAndTryToBookAppointmentsForNewPatient() throws InterruptedException {
+    public void iClickOnAppointmentsAndTryToBookAppointmentsForNewPatient() {
 
 
         /*assert PbNUIApp.appointmentsPage() != null;*/
@@ -37,7 +37,9 @@ public class AppointmentsNewPatientStepDefinition {
         PbNUIApp.appointmentBookingPage().enterBirthDate("01011976");
         PbNUIApp.appointmentBookingPage().clickOnCheckBox();
         PbNUIApp.appointmentBookingPage().clickOnNextButton();
-PbNUIApp.appointmentBookingPage().enterCreditCardNumber("4242424242424242");
+        PbNUIApp.appointmentBookingPage().clickOnIDontHaveInsurance();
+        PbNUIApp.appointmentBookingPage().clickOnNextButton();
+
 
     }
 
