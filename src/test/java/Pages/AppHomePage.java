@@ -9,13 +9,14 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
-public class HomePage extends BasePage {
-    public HomePage(PageTitle title) {
+public class AppHomePage extends BasePage {
+    public AppHomePage(PageTitle title) {
         super(title);
     }
 
     private WebElement userHeader = DriverManager.getInstance().Driver.findElement(By.xpath("//div//li[@class='user-header-info']"));
     private List<WebElement> practiceInfoTableRows = DriverManager.getInstance().Driver.findElements(By.xpath("//*[@aria-describedby='practice_table_info']/tbody/tr"));
+
 
 
     public void verifyUserHeaderIsDisplayed() {
@@ -47,4 +48,5 @@ public class HomePage extends BasePage {
         WebElement welcomeText = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='HomePageRoot']//h1[contains(text(),'Welcome')]"));
         Assert.assertTrue("Welcome text not displayed on practice home page.", welcomeText.isDisplayed());
     }
+
 }

@@ -1,11 +1,7 @@
 package Framework.Root;
 
 import DataModels.UserData;
-import Pages.AppointmentBookingPage;
-import Pages.AppointmentsPage;
-import Pages.HomePage;
-import Pages.LoginPage;
-import Framework.Constants.Constants;
+import Pages.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
@@ -26,9 +22,17 @@ public class PbNUIApp {
     public static LoginPage loginPage() {
         return new LoginPage(LoginTitle);
     }
-
-    public static HomePage homePage() {
-        return new HomePage(HomeTitle);
+    public static AppHomePage appHomePage() {
+        return new AppHomePage(HomeTitle);
+    }
+    public static PracticeHomePage practiceHomePage() {
+        return new PracticeHomePage(HomeTitle);
+    }
+    public static CampaignsPage campaignsPage() {
+        return new CampaignsPage(CampaignsTitle);
+    }
+    public static Navigator navigator() {
+        return new Navigator();
     }
 
     public static AppointmentsPage appointmentsPage() {
@@ -38,4 +42,3 @@ public class PbNUIApp {
         return new AppointmentBookingPage(AppointmentBookingTitle);
     }
 }
-
