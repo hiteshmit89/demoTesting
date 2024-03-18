@@ -39,6 +39,7 @@ public class AppointmentsNewPatientStepDefinition {
         PbNUIApp.appointmentBookingPage().clickOnNextButton();
         PbNUIApp.appointmentBookingPage().clickOnIDontHaveInsurance();
         PbNUIApp.appointmentBookingPage().clickOnNextButton();
+        PbNUIApp.appointmentBookingPage().clickOnUseCellPhone();
 
 
     }

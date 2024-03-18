@@ -103,6 +103,18 @@ public class AppointmentBookingPage extends BasePage {
             clickOnIDontHaveInsurance();
         }
     }
+    public void clickOnUseCellPhone() {
+
+
+        try {
+            DriverManager.getInstance().fluentwait().until(ExpectedConditions.elementToBeClickable(By.xpath("//span[@class='MuiButton-label' and contains(text(),'Use Cell Phone')]")));
+            WebElement useCellPhone = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='MuiButton-label' and contains(text(),'Use Cell Phone')]"));
+            Browser.clickOnElement(useCellPhone);
+
+        } catch (Exception e) {
+            clickOnUseCellPhone();
+        }
+    }
 
 
 }
