@@ -93,9 +93,11 @@ public class AppointmentBookingPage extends BasePage {
         Browser.clickOnElement(nextButton);
 
     }
-    public void enterCreditCardNumber(String CreditCardNumber) {
-        DriverManager.getInstance().fluentwait().until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@aria-label='Card number']")));
+    public void enterCreditCardNumber(String CreditCardNumber) throws InterruptedException {
+        Thread.sleep(10000);
+        //DriverManager.getInstance().fluentwait().until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@aria-label='Card number']")));
         WebElement CCNumber = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@aria-label='Card number']"));
+        Browser.scrollByVisibleElement(CCNumber);
         Browser.enterTextInEditBox(CCNumber, CreditCardNumber);
 
 

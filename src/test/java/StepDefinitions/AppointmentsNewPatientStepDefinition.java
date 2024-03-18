@@ -19,7 +19,7 @@ public class AppointmentsNewPatientStepDefinition {
     }
 
     @When("I click on appointments tab and try to book appointments for new patient")
-    public void iClickOnAppointmentsAndTryToBookAppointmentsForNewPatient() {
+    public void iClickOnAppointmentsAndTryToBookAppointmentsForNewPatient() throws InterruptedException {
 
 
         /*assert PbNUIApp.appointmentsPage() != null;*/
