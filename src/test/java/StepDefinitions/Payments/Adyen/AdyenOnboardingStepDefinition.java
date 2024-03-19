@@ -8,26 +8,6 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class AdyenOnboardingStepDefinition {
-
-    @Given("The User is able to login")
-    public void the_user_is_able_to_login() {
-        PbNUIApp.loginPage().enterEmail(PbNUIApp.userdata().getPractices().getFirst().getEmail());
-        PbNUIApp.loginPage().enterPassword(PbNUIApp.userdata().getPractices().getFirst().getPassword());
-        PbNUIApp.loginPage().clickOnLoginButton();
-    }
-
-    @And("The user is able to select practice")
-    public void theUserIsAbleToSelectPractice() {
-        PbNUIApp.appHomePage().clickOnPracticeInPracticeInfoTable(PbNUIApp.userdata().getPractices().getFirst().getPractice_name());
-
-    }
-
-    @And("The user in on HomePage")
-    public void theUserInOnHomePage() {
-        AppHomePage.verifyWelcomeTextDisplayed();
-    }
-
-
     @When("The user is able to click on Profile icon")
     public void theUserIsAbleToClickOnProfileIcon() {
         PbNUIApp.practiceHomePage().clickOnUserProfileDropdown();
