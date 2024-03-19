@@ -2,14 +2,13 @@
   "Practices":[
     {
       "practice_id": 1,
-      "users": [
-        {"user_id": 1, "user_name": "Chris Lau", "email": "chris.lau@practicenumbers.com", "password": "ppp###2025",
-          "role": "super_admin"},
-        {"user_id": 2, "user_name": "Chris Lau", "email": "chris.lau@practicenumbers.com", "password": "ppp###2025",
-          "role": "super_admin"}
-      ],
+      "email": "chris.lau@practicenumbers.com",
+      "user_id": 1,
       "practice_name": "Romans, Burke and Wagner",
-      "address": 123
+      "address": 123,
+      "role": "super_admin",
+      "password": "ppp###2025",
+      "user_name": "Chris Lau"
     },
     {
       "practice_id": 2,
