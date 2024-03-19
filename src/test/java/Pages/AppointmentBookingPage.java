@@ -13,9 +13,10 @@ public class AppointmentBookingPage extends BasePage {
     public AppointmentBookingPage(PageTitle title) {
         super(title);
     }
+private List<WebElement> locationFinder = DriverManager.getInstance().Driver.findElements(By.xpath("//*[@id='patient-appointment-booking-page']//div[@class='location-item-name']"));
 
     public void clickOnPickLocation() {
-        List<WebElement> locationFinder = DriverManager.getInstance().Driver.findElements(By.xpath("//*[@id='patient-appointment-booking-page']//div[@class='location-item-name']"));
+
         Browser.clickOnElement(locationFinder.getFirst());
     }
     public void clickOnSelectNewPatient() {
@@ -29,7 +30,7 @@ public class AppointmentBookingPage extends BasePage {
         Browser.clickOnElement(selectEmergencyConsult);
     }
     public void clickOnEarliest() {
-            Browser.clickOnElement(DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='MuiButton-label' and contains(text(),'Earliest: ')]")));
+        Browser.clickOnElement(DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='MuiButton-label' and contains(text(),'Earliest: ')]")));
     }
     public void enterFirstName(String firstNameData) {
         WebElement firstNameID = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@placeholder='Patient First Name']"));
@@ -71,14 +72,9 @@ public class AppointmentBookingPage extends BasePage {
             Browser.clickOnElement(iDontHaveInsuranceButton);
     }
     public void clickOnUseCellPhone() {
-            WebElement useCellPhone = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='MuiButton-label' and contains(text(),'Use Cell Phone')]"));
-            Browser.clickOnElement(useCellPhone);
+        WebElement useCellPhone = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='MuiButton-label' and contains(text(),'Use Cell Phone')]"));
+        Browser.clickOnElement(useCellPhone);
     }
-
-
-
-
-
 }
 
 
