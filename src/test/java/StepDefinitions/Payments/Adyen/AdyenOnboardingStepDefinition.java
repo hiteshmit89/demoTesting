@@ -38,7 +38,7 @@ public class AdyenOnboardingStepDefinition {
         PbNUIApp.practiceHomePage().clickOnSettingsMenuItem();
     }
 
-    @Then("The user is able to enable toggle for adyen feature")
+    @And("The user is able to enable toggle for adyen feature")
     public void theUserIsAbleToEnableToggleForAdyenFeature() {
         PbNUIApp.settingsPage().clicktoggleButton();
     }

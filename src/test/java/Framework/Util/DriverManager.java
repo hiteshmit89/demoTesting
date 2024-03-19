@@ -110,12 +110,6 @@ public class DriverManager {
         Driver = null;
     }
 
-    public void scrollDown(WebElement element) {
-        JavascriptExecutor js = (JavascriptExecutor) webDriver;
-        js.executeScript("arguments[0].scrollIntoView();", element);
-    }
-
-
     public void remove() {
         manager.remove();
     }

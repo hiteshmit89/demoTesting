@@ -44,29 +44,24 @@ public class Browser {
     public static void waitForPageReady() {
         DriverManager.getInstance().pageReady();
     }
-    private static void retry(BooleanSupplier function)
-    {
+
+    private static void retry(BooleanSupplier function) {
         int count = 0;
         Exception exception = null;
         String exceptionMessage = "";
         int retryInterval = Integer.parseInt(ConfigManager.getInstance().getProperty("Polling"));
         int timeOut = Integer.parseInt(ConfigManager.getInstance().getProperty("Timeout"));
-        float temp = ((float) retryInterval/1000) % 60;
-        int retryCount = (int) (timeOut/ temp);
-        do
-        {
-            try
-            {
+        float temp = ((float) retryInterval / 1000) % 60;
+        int retryCount = (int) (timeOut / temp);
+        do {
+            try {
                 if (function.getAsBoolean()) {
                     return;
-                }
-                else{
+                } else {
                     Thread.sleep(retryInterval);
                     count++;
                 }
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 exception = ex;
                 count++;
             }
@@ -75,9 +70,10 @@ public class Browser {
         throw new RuntimeException(exceptionMessage + exception);
     }
 
-    public static void scrollToView(WebElement element) {
-        //waitForElementToDisplay(element);
-        DriverManager.getInstance().scrollDown(element);
+
+    public static void scrollByVisibleElement(WebElement object) {
+        JavascriptExecutor js = (JavascriptExecutor) DriverManager.getInstance().Driver;
+        js.executeScript("arguments[0].scrollIntoView();", object);
     }
 
 }
