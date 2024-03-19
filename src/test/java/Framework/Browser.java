@@ -1,11 +1,10 @@
 package Framework;
 
+import Framework.Constants.Constants;
 import Framework.Constants.Constants.PageTitle;
 import Framework.Util.ConfigManager;
 import Framework.Util.DriverManager;
-import org.openqa.selenium.*;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.WebElement;
 
 import java.time.Duration;
 import java.util.function.BooleanSupplier;
@@ -19,6 +18,10 @@ public class Browser {
 
     public static void waitForPageTitle(PageTitle title) {
         retry(() -> DriverManager.getInstance().getPgeTitle().contains(title.label));
+    }
+
+    public static void waitForTableToLoad(WebElement table) {
+        retry(() -> !table.findElements(By.xpath(".//tr")).isEmpty());
     }
 
     public static void clickOnElement(WebElement element) {
