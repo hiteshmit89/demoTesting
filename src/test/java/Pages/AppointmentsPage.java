@@ -15,7 +15,7 @@ public class AppointmentsPage extends BasePage {
 
     WebElement header = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='appointment-booking']//span[text()='Online Appointment Booking']"));
     WebElement CopyUrlIcon = DriverManager.getInstance().Driver.findElement(By.xpath("(//i[@class='fa fa-copy'])[1]"));
-    WebElement e = DriverManager.getInstance().Driver.findElement(By.xpath("(//span[contains(text(),'https://www.patientsreach.com/schedule/')])[1]"));
+    WebElement eUrl = DriverManager.getInstance().Driver.findElement(By.xpath("(//span[contains(text(),'https://www.patientsreach.com/schedule/')])[1]"));
 
 
     public void clickOnWidgets() {
@@ -26,7 +26,7 @@ public class AppointmentsPage extends BasePage {
     public void clickOnCopyUrl() {
 
         Browser.clickOnElement(CopyUrlIcon);
-        String urlText = e.getText();
+        String urlText = eUrl.getText();
         String[] arrOfStr = urlText.split("schedule");
         for (String a : arrOfStr) {
             System.out.println(a);
