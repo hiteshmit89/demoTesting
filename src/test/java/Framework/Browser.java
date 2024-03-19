@@ -4,6 +4,7 @@ import Framework.Constants.Constants;
 import Framework.Constants.Constants.PageTitle;
 import Framework.Util.ConfigManager;
 import Framework.Util.DriverManager;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.util.function.BooleanSupplier;
@@ -37,6 +38,10 @@ public class Browser {
 
     public static void waitForAttributeValue(WebElement element, String attribute, String expectedValue) {
         retry(() -> element.getAttribute(attribute).equals(expectedValue));
+    }
+
+    public static void waitForTableToLoad(WebElement table) {
+        retry(() -> !table.findElements(By.xpath(".//tr")).isEmpty());
     }
 
     public static void waitForPageReady() {

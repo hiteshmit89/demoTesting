@@ -25,13 +25,12 @@ public class PbNUIApp {
     public static AppHomePage appHomePage() {
         return new AppHomePage(HomeTitle);
     }
-    public static PracticeHomePage practiceHomePage() {
-        return new PracticeHomePage(HomeTitle);
+    public static PracticeHomePage practiceHomePage() {return new PracticeHomePage(HomeTitle);
     }
     public static CampaignsPage campaignsPage() {
         return new CampaignsPage(CampaignsTitle);
     }
-    public static Navigator navigator() {
-        return new Navigator();
+    public static Navigator navigator() {return new Navigator();
     }
+    public static PatientWindowPage patientWindowPage() { return new PatientWindowPage(HomeTitle);}
 }

@@ -18,4 +18,24 @@ public class Navigator {
             }
         }
     }
+    public void findAndSelectPatientByExactMatchOf(String patientName) {
+        WebElement topNavSearch = DriverManager.getInstance().Driver.findElement(By.xpath("/html/body//li//i[@class='fa fa-search']"));
+        Browser.clickOnElement(topNavSearch);
+        WebElement patientFinderPopup = DriverManager.getInstance().Driver.findElement(By.xpath("//*[contains(@class,'popover popover-patient-finder')]"));
+        Browser.waitForElementToDisplay(patientFinderPopup);
+        WebElement patientSearch = patientFinderPopup.findElement(By.xpath(".//input"));
+        Browser.enterTextInEditBox(patientSearch, patientName);
+        WebElement searchResults = patientFinderPopup.findElement(By.xpath(".//div[@class='search-results']"));
+        Browser.waitForTableToLoad(searchResults);
+        List<WebElement> tableRows = searchResults.findElements(By.xpath(".//tr"));
+        for (WebElement row: tableRows) {
+            if (Browser.getTextFromElement(row).equals(patientName)) {
+                Browser.clickOnElement(row);
+                break;
+            }
+        }
+    }
+
+
 }
+
