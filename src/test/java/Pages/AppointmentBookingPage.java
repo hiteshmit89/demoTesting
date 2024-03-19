@@ -20,12 +20,15 @@ private List<WebElement> locationFinder = DriverManager.getInstance().Driver.fin
         Browser.clickOnElement(locationFinder.getFirst());
     }
     public void clickOnSelectNewPatient() {
-        WebElement selectNewPatient = DriverManager.getInstance().Driver.findElement(By.xpath("//span[normalize-space()=\"I'm a New Patient\"]"));
+        WebElement selectNewPatient = DriverManager.getInstance().Driver.findElement(By.xpath("//button/span[text()='New Patient']"));
         Browser.waitForElementToDisplay(selectNewPatient);
         Browser.clickOnElement(selectNewPatient);
     }
     public void clickOnEmergencyConsult() {
-        WebElement selectEmergencyConsult = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='MuiButton-label' and contains(text(),'Emergency Consult')]"));
+        Browser.waitForPageReady();
+        //WebElement header = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='patient-appointment-booking-page']//div[@class='panel-header-text']"));
+        WebElement selectEmergencyConsult = DriverManager.getInstance().Driver.findElement(By.xpath("//span[contains(text(),'Emergency Consult')]"));
+        Browser.waitForElementToBeClickable(selectEmergencyConsult);
         Browser.waitForElementToDisplay(selectEmergencyConsult);
         Browser.clickOnElement(selectEmergencyConsult);
     }

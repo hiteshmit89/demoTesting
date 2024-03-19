@@ -26,6 +26,10 @@ public class Browser {
         element.click();
     }
 
+    public static void waitForElementToBeClickable(WebElement element) {
+        retry(() -> ExpectedConditions.elementToBeClickable(element).equals(element));
+    }
+
     public static String getTextFromElement(WebElement element) {
         waitForElementToDisplay(element);
         return element.getText();

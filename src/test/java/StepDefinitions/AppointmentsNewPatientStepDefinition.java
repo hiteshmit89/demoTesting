@@ -12,10 +12,10 @@ import io.opentelemetry.exporter.logging.SystemOutLogRecordExporter;
 public class AppointmentsNewPatientStepDefinition {
     @Given("I login to PbN app and select the practice")
     public void iLoginToPbNApp() {
-        PbNUIApp.loginPage().enterEmail("chris.lau@practicenumbers.com");
-        PbNUIApp.loginPage().enterPassword("ppp###2025");
+        PbNUIApp.loginPage().enterEmail(PbNUIApp.userdata().getPractices().getFirst().getEmail());
+        PbNUIApp.loginPage().enterPassword(PbNUIApp.userdata().getPractices().getFirst().getPassword());
         PbNUIApp.loginPage().clickOnLoginButton();
-        PbNUIApp.appHomePage().clickOnPracticeInPracticeInfoTable("Romans, Burke and Wagner");
+        PbNUIApp.appHomePage().clickOnPracticeInPracticeInfoTable(PbNUIApp.userdata().getPractices().getFirst().getPractice_name());
     }
 
     @When("I click on appointments tab and try to book appointments for new patient")
