@@ -17,7 +17,6 @@ public class SettingsPage extends BasePage {
 
 
     public void clicktoggleButton() {
-
         Browser.scrollToVisibleElement(paymentToggleAdyen);
         Browser.clickOnElement(paymentToggleAdyen);
 

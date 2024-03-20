@@ -67,6 +67,7 @@ public class DriverManager {
                     .ignoring(ElementClickInterceptedException.class)
                     .ignoring(ElementNotInteractableException.class);
     }
+
     public void pageReady() {
         Wait<WebDriver> wait = fluentwait();
         wait.until(webDriver -> ((JavascriptExecutor) webDriver)
@@ -120,7 +121,7 @@ public class DriverManager {
         return webDriver.getWindowHandle();
     }
 
-    public void killSession(){
+    public void killSession() {
         webDriver = null;
         Driver = null;
     }

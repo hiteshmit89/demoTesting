@@ -2,6 +2,7 @@ package Pages;
 
 import Framework.Browser;
 import Framework.Constants.Constants.PageTitle;
+import Framework.Root.PbNUIApp;
 import Framework.Util.DriverManager;
 import org.junit.Assert;
 import org.openqa.selenium.*;
@@ -38,6 +39,14 @@ public class AppointmentBookingPage extends BasePage {
         Browser.clickOnElement(selectEarliest);
     }
 
+    public void fillAppointmentBookingForm() {
+        enterFirstName("Test First Name");
+        enterLastName("Test Last Name");
+        enterPhoneNumber("1234567890");
+        enterEmailID("test@test.com");
+        enterBirthDate("01011976");
+    }
+
     public void enterFirstName(String firstNameData) {
         Browser.waitForElementToBeVisible(By.xpath("//input[@placeholder='Patient First Name']"));
         WebElement firstNameID = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@placeholder='Patient First Name']"));
@@ -68,6 +77,7 @@ public class AppointmentBookingPage extends BasePage {
         WebElement agreeCheckBox = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@type='checkbox']"));
         Browser.scrollToVisibleElement(agreeCheckBox);
         agreeCheckBox.click();
+
     }
 
     public void clickOnNextButton() {
@@ -100,5 +110,3 @@ public class AppointmentBookingPage extends BasePage {
         Assert.assertTrue("Successful text not displayed on appointment booking page.", successfulText.isDisplayed());
     }
 }
-
-

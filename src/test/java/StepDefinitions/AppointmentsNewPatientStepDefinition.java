@@ -1,5 +1,6 @@
 package StepDefinitions;
 
+import Framework.Constants.Constants;
 import Framework.Root.PbNUIApp;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -17,18 +18,14 @@ public class AppointmentsNewPatientStepDefinition {
 
     @When("I click on appointments tab and try to book appointments for new patient")
     public void iClickOnAppointmentsAndTryToBookAppointmentsForNewPatient() {
-        PbNUIApp.appHomePage().clickOnAppointmentsTab();
+        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
         PbNUIApp.appointmentsPage().clickOnWidgets();
         PbNUIApp.appointmentsPage().createAppointmentURLAndNavigate();
         PbNUIApp.appointmentBookingPage().clickOnPickLocation();
         PbNUIApp.appointmentBookingPage().clickOnSelectNewPatient();
         PbNUIApp.appointmentBookingPage().clickOnEmergencyConsult();
         PbNUIApp.appointmentBookingPage().clickOnEarliest();
-        PbNUIApp.appointmentBookingPage().enterFirstName("Test First Name");
-        PbNUIApp.appointmentBookingPage().enterLastName("Test Last Name");
-        PbNUIApp.appointmentBookingPage().enterPhoneNumber("1234567890");
-        PbNUIApp.appointmentBookingPage().enterEmailID("test@test.com");
-        PbNUIApp.appointmentBookingPage().enterBirthDate("01011976");
+        PbNUIApp.appointmentBookingPage().fillAppointmentBookingForm();
         PbNUIApp.appointmentBookingPage().clickOnCheckBox();
         PbNUIApp.appointmentBookingPage().clickOnNextButton();
         PbNUIApp.appointmentBookingPage().clickOnIDoNotHaveInsurance();

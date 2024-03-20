@@ -47,6 +47,7 @@ public class Browser {
                 .ignoring(ElementClickInterceptedException.class)
                 .ignoring(ElementNotInteractableException.class);
     }
+
     public static void waitForAttributeValue(WebElement element, String attribute, String expectedValue) {
         retry(() -> element.getAttribute(attribute).equals(expectedValue));
     }

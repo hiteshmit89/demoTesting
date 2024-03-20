@@ -2,6 +2,7 @@ package Pages;
 
 import Framework.Browser;
 import Framework.Constants.Constants.PageTitle;
+import Framework.Util.ConfigManager;
 import Framework.Util.DriverManager;
 import org.junit.Assert;
 import org.openqa.selenium.*;
@@ -13,8 +14,8 @@ public class AppointmentsPage extends BasePage {
         super(title);
     }
 
-    WebElement header = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='appointment-booking']//span[text()='Online Appointment Booking']"));
-    WebElement eUrl = DriverManager.getInstance().Driver.findElement(By.xpath("(//span[contains(text(),'https://www.patientsreach.com/schedule/')])[1]"));
+    private WebElement header = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='appointment-booking']//span[text()='Online Appointment Booking']"));
+    private WebElement eUrl = DriverManager.getInstance().Driver.findElement(By.xpath("(//span[contains(text(),'https://www.patientsreach.com/schedule/')])[1]"));
 
     public void clickOnWidgets() {
         WebElement widgetsTab = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='appointment-booking-page-tab-Widgets']"));
@@ -24,12 +25,10 @@ public class AppointmentsPage extends BasePage {
     public void createAppointmentURLAndNavigate() {
         String urlText = eUrl.getText();
         String[] arrOfStr = urlText.split("schedule");
-        String URL = "https://qa3.pbn-dev.com";
+        String URL = ConfigManager.getInstance().getProperty("URL");
         URL = String.join("", URL, "/schedule", arrOfStr[1]);
         Browser.navigateToNewURL(URL);
     }
-
-
 }
 
 
