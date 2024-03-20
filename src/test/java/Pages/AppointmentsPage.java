@@ -21,7 +21,7 @@ public class AppointmentsPage extends BasePage {
         Browser.clickOnElement(widgetsTab);
     }
 
-    public void clickOnCopyUrl() {
+    public void createAppointmentURLAndNavigate() {
         String urlText = eUrl.getText();
         String[] arrOfStr = urlText.split("schedule");
         String URL = "https://qa3.pbn-dev.com";
