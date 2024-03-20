@@ -19,7 +19,7 @@ public class AppointmentsNewPatientStepDefinition {
     public void iClickOnAppointmentsAndTryToBookAppointmentsForNewPatient() {
         PbNUIApp.appHomePage().clickOnAppointmentsTab();
         PbNUIApp.appointmentsPage().clickOnWidgets();
-        PbNUIApp.appointmentsPage().clickOnCopyUrl();
+        PbNUIApp.appointmentsPage().createAppointmentURLAndNavigate();
         PbNUIApp.appointmentBookingPage().clickOnPickLocation();
         PbNUIApp.appointmentBookingPage().clickOnSelectNewPatient();
         PbNUIApp.appointmentBookingPage().clickOnEmergencyConsult();
