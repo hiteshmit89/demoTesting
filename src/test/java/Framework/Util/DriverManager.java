@@ -77,7 +77,7 @@ public class DriverManager {
         webDriver.get(url);
     }
 
-    public void openNew(WindowType windowType) {
+    public void openNewWindow(WindowType windowType) {
         switch (windowType) {
             case WindowType.TAB -> webDriver.switchTo().newWindow(WindowType.TAB);
             case WindowType.WINDOW -> webDriver.switchTo().newWindow(WindowType.WINDOW);

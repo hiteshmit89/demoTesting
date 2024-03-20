@@ -76,8 +76,6 @@ public class Browser {
         JavascriptExecutor js = (JavascriptExecutor) DriverManager.getInstance().Driver;
         js.executeScript("arguments[0].scrollIntoView();", object);
     }
-
-    //Switch to Frame
     public static void switchToFrame() {
         WebDriverWait wait=new WebDriverWait((WebDriver) DriverManager.getInstance().Driver, Duration.ofSeconds(50));
         WebElement ele=wait.until(ExpectedConditions.visibilityOf(DriverManager.getInstance().Driver.findElement(By.tagName("iframe"))));
