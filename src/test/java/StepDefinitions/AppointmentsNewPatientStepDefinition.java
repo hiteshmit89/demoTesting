@@ -20,9 +20,6 @@ public class AppointmentsNewPatientStepDefinition {
 
     @When("I click on appointments tab and try to book appointments for new patient")
     public void iClickOnAppointmentsAndTryToBookAppointmentsForNewPatient() {
-
-
-        /*assert PbNUIApp.appointmentsPage() != null;*/
         PbNUIApp.appHomePage().clickOnAppointmentsTab();
         PbNUIApp.appointmentsPage().clickOnWidgets();
         PbNUIApp.appointmentsPage().clickOnCopyUrl();
@@ -41,13 +38,10 @@ public class AppointmentsNewPatientStepDefinition {
         PbNUIApp.appointmentBookingPage().clickOnNextButton();
         PbNUIApp.appointmentBookingPage().clickOnUseCellPhone();
         PbNUIApp.appointmentBookingPage().enterOTP("1234");
-
-
-
     }
 
-    @Then("I will be able to book appointments")
-    public void iWillBookAppointments() {
+    @Then("I will be able to see successful message for appointment booking.")
+    public void iWillBeAbleToSeeSuccessfulMessageForAppointmentBooking() {
         PbNUIApp.appointmentBookingPage().verifySuccessfulTextDisplayed();
     }
 }

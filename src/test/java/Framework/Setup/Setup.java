@@ -53,12 +53,12 @@ public class Setup {
             DriverManager.getInstance().closeDriver();
         }
 
-        //DriverManager.getInstance().quitDriver();
+        DriverManager.getInstance().quitDriver();
         DriverManager.getInstance().killSession();
     }
 
     @AfterAll
     public static void looseDriverManager() {
-        //DriverManager.getInstance().remove();
+        DriverManager.getInstance().remove();
     }
 }

@@ -34,12 +34,8 @@ public class AppointmentsPage extends BasePage {
         String URL = "https://qa3.pbn-dev.com";
         URL = String.join("", URL, "/schedule", arrOfStr[1]);
         System.out.println(URL);
-        //Browser.openNewTab();
         Browser.navigateToNewURL(URL);
     }
-
-
-
 
 
 }
