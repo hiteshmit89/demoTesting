@@ -1,12 +1,9 @@
 package StepDefinitions;
 
-import Framework.Browser;
 import Framework.Root.PbNUIApp;
-import Pages.AppHomePage;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.opentelemetry.exporter.logging.SystemOutLogRecordExporter;
 
 
 public class AppointmentsNewPatientStepDefinition {
@@ -34,7 +31,7 @@ public class AppointmentsNewPatientStepDefinition {
         PbNUIApp.appointmentBookingPage().enterBirthDate("01011976");
         PbNUIApp.appointmentBookingPage().clickOnCheckBox();
         PbNUIApp.appointmentBookingPage().clickOnNextButton();
-        PbNUIApp.appointmentBookingPage().clickOnIDontHaveInsurance();
+        PbNUIApp.appointmentBookingPage().clickOnIDoNotHaveInsurance();
         PbNUIApp.appointmentBookingPage().clickOnNextButton();
         PbNUIApp.appointmentBookingPage().clickOnUseCellPhone();
         PbNUIApp.appointmentBookingPage().enterOTP("1234");

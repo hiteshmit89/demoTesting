@@ -5,8 +5,6 @@ import Framework.Constants.Constants.PageTitle;
 import Framework.Util.DriverManager;
 import org.junit.Assert;
 import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
 
@@ -15,33 +13,33 @@ public class AppointmentBookingPage extends BasePage {
         super(title);
     }
 
-    private List<WebElement> locationFinder = DriverManager.getInstance().Driver.findElements(By.xpath("//*[@id='patient-appointment-booking-page']//div[@class='location-item-name']"));
+    private final List<WebElement> locationFinder = DriverManager.getInstance().Driver.findElements(By.xpath("//*[@id='patient-appointment-booking-page']//div[@class='location-item-name']"));
 
     public void clickOnPickLocation() {
         Browser.clickOnElement(locationFinder.getFirst());
     }
 
     public void clickOnSelectNewPatient() {
-        DriverManager.getInstance().fluentwait().until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button/span[text()='New Patient']")));
+        Browser.waitForElementToBeVisible(By.xpath("//button/span[text()='New Patient']"));
         WebElement selectNewPatient = DriverManager.getInstance().Driver.findElement(By.xpath("//button/span[text()='New Patient']"));
         Browser.waitForElementToDisplay(selectNewPatient);
         Browser.clickOnElement(selectNewPatient);
     }
 
     public void clickOnEmergencyConsult() {
-        DriverManager.getInstance().fluentwait().until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(),'Emergency Consult')]")));
+        Browser.waitForElementToBeVisible(By.xpath("//span[contains(text(),'Emergency Consult')]"));
         WebElement selectEmergencyConsult = DriverManager.getInstance().Driver.findElement(By.xpath("//button/span[text()='Emergency Consult']"));
         Browser.clickOnElement(selectEmergencyConsult);
     }
 
     public void clickOnEarliest() {
-        DriverManager.getInstance().fluentwait().until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='MuiButton-label' and contains(text(),'Earliest: ')]")));
+        Browser.waitForElementToBeVisible(By.xpath("//span[@class='MuiButton-label' and contains(text(),'Earliest: ')]"));
         WebElement selectEarliest = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='MuiButton-label' and contains(text(),'Earliest: ')]"));
         Browser.clickOnElement(selectEarliest);
     }
 
     public void enterFirstName(String firstNameData) {
-        DriverManager.getInstance().fluentwait().until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@placeholder='Patient First Name']")));
+        Browser.waitForElementToBeVisible(By.xpath("//input[@placeholder='Patient First Name']"));
         WebElement firstNameID = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@placeholder='Patient First Name']"));
         Browser.enterTextInEditBox(firstNameID, firstNameData);
     }
@@ -68,7 +66,7 @@ public class AppointmentBookingPage extends BasePage {
 
     public void clickOnCheckBox() {
         WebElement agreeCheckBox = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@type='checkbox']"));
-        Browser.scrollByVisibleElement(agreeCheckBox);
+        Browser.scrollToVisibleElement(agreeCheckBox);
         agreeCheckBox.click();
     }
 
@@ -78,21 +76,21 @@ public class AppointmentBookingPage extends BasePage {
 
     }
 
-    public void clickOnIDontHaveInsurance() {
-        DriverManager.getInstance().fluentwait().until(ExpectedConditions.elementToBeClickable(By.xpath("//span[@class='MuiButton-label' and contains(text(),'I do')]")));
-        DriverManager.getInstance().fluentwait().until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='MuiButton-label' and contains(text(),'I do')]")));
-        WebElement iDontHaveInsuranceButton = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='MuiButton-label' and contains(text(),'I do')]"));
-        Browser.clickOnElement(iDontHaveInsuranceButton);
+    public void clickOnIDoNotHaveInsurance() {
+        Browser.waitForElementToBeClickable(By.xpath("//span[@class='MuiButton-label' and contains(text(),'I do')]"));
+        Browser.waitForElementToBeVisible(By.xpath("//span[@class='MuiButton-label' and contains(text(),'I do')]"));
+        WebElement iDoNotHaveInsuranceButton = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='MuiButton-label' and contains(text(),'I do')]"));
+        Browser.clickOnElement(iDoNotHaveInsuranceButton);
     }
 
     public void clickOnUseCellPhone() {
-        DriverManager.getInstance().fluentwait().until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='MuiButton-label' and contains(text(),'Use Cell Phone')]")));
+        Browser.waitForElementToBeVisible(By.xpath("//span[@class='MuiButton-label' and contains(text(),'Use Cell Phone')]"));
         WebElement useCellPhone = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='MuiButton-label' and contains(text(),'Use Cell Phone')]"));
         Browser.clickOnElement(useCellPhone);
     }
 
     public void enterOTP(String OTP) {
-        DriverManager.getInstance().fluentwait().until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@placeholder='XXXX']")));
+        Browser.waitForElementToBeVisible(By.xpath("//input[@placeholder='XXXX']"));
         WebElement varOTP = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@placeholder='XXXX']"));
         Browser.enterTextInEditBox(varOTP, OTP);
     }

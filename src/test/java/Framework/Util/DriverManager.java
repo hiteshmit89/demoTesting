@@ -59,7 +59,7 @@ public class DriverManager {
         webDriver.manage().window().maximize();
     }
 
-    public Wait<WebDriver> fluentwait(){
+    private Wait<WebDriver> fluentwait(){
             return new FluentWait<WebDriver>(webDriver)
                     .withTimeout(Duration.ofSeconds(Integer.parseInt(ConfigManager.getInstance().getProperty("Timeout"))))
                     .pollingEvery(Duration.ofMillis(Integer.parseInt(ConfigManager.getInstance().getProperty("Polling"))))
@@ -67,7 +67,7 @@ public class DriverManager {
                     .ignoring(ElementClickInterceptedException.class)
                     .ignoring(ElementNotInteractableException.class);
     }
-    public void pageReady(){
+    public void pageReady() {
         Wait<WebDriver> wait = fluentwait();
         wait.until(webDriver -> ((JavascriptExecutor) webDriver)
                 .executeScript("return document.readyState").equals("complete"));

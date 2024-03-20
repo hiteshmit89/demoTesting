@@ -6,8 +6,6 @@ import Framework.Util.DriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import javax.swing.*;
-
 public class SettingsPage extends BasePage {
 
 
@@ -20,7 +18,7 @@ public class SettingsPage extends BasePage {
 
     public void clicktoggleButton() {
 
-        Browser.scrollByVisibleElement(paymentToggleAdyen);
+        Browser.scrollToVisibleElement(paymentToggleAdyen);
         Browser.clickOnElement(paymentToggleAdyen);
 
     }
