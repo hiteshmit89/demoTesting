@@ -59,11 +59,13 @@ public class DriverManager {
         webDriver.manage().window().maximize();
     }
 
-    private Wait<WebDriver> fluentwait(){
-        return new FluentWait<WebDriver>(webDriver)
-                .withTimeout(Duration.ofSeconds(Integer.parseInt(ConfigManager.getInstance().getProperty("Timeout"))))
-                .pollingEvery(Duration.ofMillis(Integer.parseInt(ConfigManager.getInstance().getProperty("Polling"))))
-                .ignoring(NoSuchElementException.class);
+    public Wait<WebDriver> fluentwait(){
+            return new FluentWait<WebDriver>(webDriver)
+                    .withTimeout(Duration.ofSeconds(Integer.parseInt(ConfigManager.getInstance().getProperty("Timeout"))))
+                    .pollingEvery(Duration.ofMillis(Integer.parseInt(ConfigManager.getInstance().getProperty("Polling"))))
+                    .ignoring(NoSuchElementException.class)
+                    .ignoring(ElementClickInterceptedException.class)
+                    .ignoring(ElementNotInteractableException.class);
     }
 
     public void pageReady(){

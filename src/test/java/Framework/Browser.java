@@ -1,6 +1,5 @@
 package Framework;
 
-import Framework.Constants.Constants;
 import Framework.Constants.Constants.PageTitle;
 import Framework.Util.ConfigManager;
 import Framework.Util.DriverManager;

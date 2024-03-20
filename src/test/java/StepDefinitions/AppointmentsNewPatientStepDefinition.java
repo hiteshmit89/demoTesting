@@ -40,13 +40,14 @@ public class AppointmentsNewPatientStepDefinition {
         PbNUIApp.appointmentBookingPage().clickOnIDontHaveInsurance();
         PbNUIApp.appointmentBookingPage().clickOnNextButton();
         PbNUIApp.appointmentBookingPage().clickOnUseCellPhone();
+        PbNUIApp.appointmentBookingPage().enterOTP("1234");
+
 
 
     }
 
     @Then("I will be able to book appointments")
     public void iWillBookAppointments() {
-        PbNUIApp.appHomePage().verifyWelcomeTextDisplayed();
+        PbNUIApp.appointmentBookingPage().verifySuccessfulTextDisplayed();
     }
 }
-
