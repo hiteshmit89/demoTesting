@@ -4,6 +4,9 @@ import Framework.Constants.Constants;
 import Framework.Constants.Constants.PageTitle;
 import Framework.Util.ConfigManager;
 import Framework.Util.DriverManager;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.util.function.BooleanSupplier;
@@ -17,6 +20,10 @@ public class Browser {
 
     public static void waitForPageTitle(PageTitle title) {
         retry(() -> DriverManager.getInstance().getPgeTitle().contains(title.label));
+    }
+
+    public static void waitForTableToLoad(WebElement table) {
+        retry(() -> !table.findElements(By.xpath(".//tr")).isEmpty());
     }
 
     public static void clickOnElement(WebElement element) {
@@ -42,29 +49,24 @@ public class Browser {
     public static void waitForPageReady() {
         DriverManager.getInstance().pageReady();
     }
-    private static void retry(BooleanSupplier function)
-    {
+
+    private static void retry(BooleanSupplier function) {
         int count = 0;
         Exception exception = null;
         String exceptionMessage = "";
         int retryInterval = Integer.parseInt(ConfigManager.getInstance().getProperty("Polling"));
         int timeOut = Integer.parseInt(ConfigManager.getInstance().getProperty("Timeout"));
-        float temp = ((float) retryInterval/1000) % 60;
-        int retryCount = (int) (timeOut/ temp);
-        do
-        {
-            try
-            {
+        float temp = ((float) retryInterval / 1000) % 60;
+        int retryCount = (int) (timeOut / temp);
+        do {
+            try {
                 if (function.getAsBoolean()) {
                     return;
-                }
-                else{
+                } else {
                     Thread.sleep(retryInterval);
                     count++;
                 }
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 exception = ex;
                 count++;
             }
@@ -72,4 +74,11 @@ public class Browser {
         System.out.println(exceptionMessage = "Retry Timed Out while trying to execute - " + new Throwable().getStackTrace()[1].getMethodName());
         throw new RuntimeException(exceptionMessage + exception);
     }
+
+
+    public static void scrollByVisibleElement(WebElement object) {
+        JavascriptExecutor js = (JavascriptExecutor) DriverManager.getInstance().Driver;
+        js.executeScript("arguments[0].scrollIntoView();", object);
+    }
+
 }

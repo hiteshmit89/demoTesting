@@ -33,6 +33,8 @@ public class CampaignsPage extends BasePage {
     }
 
     public void verifyFollowUpPageUi() {
+        WebElement campaignTable = DriverManager.getInstance().Driver.findElements(By.xpath("//div[@class='table-responsive']/table")).getFirst();
+        Browser.waitForTableToLoad(campaignTable);
         WebElement recallCampaign = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='table-responsive']//td[contains(text(),'Recall Campaign')]"));
         List<WebElement> gridCells =recallCampaign.findElements(By.xpath("./following-sibling::td"));
         if (gridCells.size() == 1) {
