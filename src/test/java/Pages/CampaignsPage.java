@@ -31,4 +31,18 @@ public class CampaignsPage extends BasePage {
         Assert.assertTrue("Review reply templates heading is not visible on campaigns page.", reviewReplyTemplatesHeading.isDisplayed());
 
     }
+
+    public void verifyFollowUpPageUi() {
+        WebElement recallCampaign = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='table-responsive']//td[contains(text(),'Recall Campaign')]"));
+        List<WebElement> gridCells =recallCampaign.findElements(By.xpath("./following-sibling::td"));
+        if (gridCells.size() == 1) {
+            //ToDo we HAVE CLICK TO SETUP LINK IN gridCells(0)
+            Browser.clickOnElement(gridCells.getFirst());
+            WebElement inactiveButton = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='table-responsive']//td[contains(text(),'Recall Campaign')]/following-sibling::td//button[contains(text(),'Inactive')]"));
+            Browser.waitForElementToDisplay(inactiveButton);
+        }
+        else {
+            //ToDo We have full table columns to handle other cases
+        }
+    }
 }

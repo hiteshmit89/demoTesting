@@ -1,7 +1,7 @@
 package Pages;
 
 import Framework.Browser;
-import Framework.Constants.Constants.Destination;
+import Framework.Constants.Constants.*;
 import Framework.Util.DriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -19,8 +19,8 @@ public class Navigator {
         }
     }
 
-    public void selectProfileDropdownOption(String dropdownOption) {
-        DriverManager.getInstance().Driver.findElement(By.linkText(dropdownOption)).click();
+    public void selectProfileDropdownOption(userProfileOptions profileOptions) {
+        DriverManager.getInstance().Driver.findElement(By.linkText(profileOptions.label)).click();
     }
 
 }
