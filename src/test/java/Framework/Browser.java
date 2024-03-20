@@ -6,6 +6,10 @@ import Framework.Util.DriverManager;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import java.time.Duration;
 import java.util.function.BooleanSupplier;
@@ -90,22 +94,17 @@ public class Browser {
         String exceptionMessage = "";
         int retryInterval = Integer.parseInt(ConfigManager.getInstance().getProperty("Polling"));
         int timeOut = Integer.parseInt(ConfigManager.getInstance().getProperty("Timeout"));
-        float temp = ((float) retryInterval/1000) % 60;
-        int retryCount = (int) (timeOut/ temp);
-        do
-        {
-            try
-            {
+        float temp = ((float) retryInterval / 1000) % 60;
+        int retryCount = (int) (timeOut / temp);
+        do {
+            try {
                 if (function.getAsBoolean()) {
                     return;
-                }
-                else{
+                } else {
                     Thread.sleep(retryInterval);
                     count++;
                 }
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 exception = ex;
                 count++;
             }

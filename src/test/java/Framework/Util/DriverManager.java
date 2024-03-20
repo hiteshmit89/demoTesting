@@ -67,7 +67,6 @@ public class DriverManager {
                     .ignoring(ElementClickInterceptedException.class)
                     .ignoring(ElementNotInteractableException.class);
     }
-
     public void pageReady(){
         Wait<WebDriver> wait = fluentwait();
         wait.until(webDriver -> ((JavascriptExecutor) webDriver)
