@@ -40,13 +40,12 @@ public class AppointmentBookingPage extends BasePage {
     }
 
     public void fillAppointmentBookingForm() {
-        enterFirstName("Test First Name");
-        enterLastName("Test Last Name");
-        enterPhoneNumber("1234567890");
-        enterEmailID("test@test.com");
-        enterBirthDate("01011976");
+        enterFirstName(PbNUIApp.userdata().getPractices().getFirst().getFormsData().getFirst().getFirst_name());
+        enterLastName(PbNUIApp.userdata().getPractices().getFirst().getFormsData().getFirst().getLast_name());
+        enterPhoneNumber(PbNUIApp.userdata().getPractices().getFirst().getFormsData().getFirst().getPhone_number());
+        enterEmailID(PbNUIApp.userdata().getPractices().getFirst().getFormsData().getFirst().getEmail_id());
+        enterBirthDate(PbNUIApp.userdata().getPractices().getFirst().getFormsData().getFirst().getBirth_date());
     }
-
     public void enterFirstName(String firstNameData) {
         Browser.waitForElementToBeVisible(By.xpath("//input[@placeholder='Patient First Name']"));
         WebElement firstNameID = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@placeholder='Patient First Name']"));
