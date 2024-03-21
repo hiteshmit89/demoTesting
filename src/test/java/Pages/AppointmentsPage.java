@@ -29,6 +29,21 @@ public class AppointmentsPage extends BasePage {
         URL = String.join("", URL, "/schedule", arrOfStr[1]);
         Browser.navigateToNewURL(URL);
     }
+
+    public void clickOnAppointmentSettingTab() {
+        WebElement appointmentSetting = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='appointment-booking-page-tab-Settings']"));
+        Browser.clickOnElement(appointmentSetting);
+    }
+
+    public void clickOnSetupInsurance() {
+        WebElement setupInsuranceButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='Setup Insurances']"));
+        Browser.scrollToVisibleElement(setupInsuranceButton);
+       // Browser.clickOnElement(setupInsuranceButton);
+        setupInsuranceButton.click();
+        //input[@id='insurance-active']
+    }
+
+    
 }
 
 

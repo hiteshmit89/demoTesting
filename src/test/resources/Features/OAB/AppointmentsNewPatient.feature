@@ -1,5 +1,5 @@
 @AppointmentsFeature
-Feature: Appointments
+Feature: Appointments_Booking
 
   @appointments @in-progress
   Scenario: Verify I can Book the appointments for new patient
