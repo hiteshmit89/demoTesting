@@ -11,6 +11,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 
 public class PatientWindowPage extends BasePage {
@@ -23,28 +24,61 @@ public class PatientWindowPage extends BasePage {
         return (new SimpleDateFormat("MM/dd/yyyy").format(new Date()));
 
     }
-    public void createTaskInPatientWindow (String TaskDescription) throws InterruptedException {
+    public void createGeneralTaskInPatientWindow (String TaskDescription)  {
         WebElement taskButton = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class=\"patient-actions\"]//div[@class='action-item']//span[contains(text(),'Task')]"));
         Browser.waitForElementToDisplay(taskButton);
         Browser.clickOnElement(taskButton);
 
-        Thread.sleep(1000);
-
         WebElement taskWindow = DriverManager.getInstance().Driver.findElement(By.xpath("//h3[contains(text(),'Create Task')]"));
         String title = taskWindow.getText();
         Assert.assertEquals("Create Task", title);
-
 
         WebElement taskDescription = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='margin-top description-section form-group']//input[@id='formControlsDescription']"));
         Browser.enterTextInEditBox(taskDescription, TaskDescription);
 
     }
 
+   /* public void createAccountReceivableTaskInPatientWindow (String accountReceivable) throws InterruptedException {
+        WebElement taskButton = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class=\"patient-actions\"]//div[@class='action-item']//span[contains(text(),'Task')]"));
+        Browser.waitForElementToDisplay(taskButton);
+        Browser.clickOnElement(taskButton);
+
+        WebElement taskWindow = DriverManager.getInstance().Driver.findElement(By.xpath("//h3[contains(text(),'Create Task')]"));
+        String title = taskWindow.getText();
+        Assert.assertEquals("Create Task", title);
+        *//*Thread.sleep(3000);*//*
+        WebElement accountReceivableTask =DriverManager.getInstance().Driver.findElement(By.xpath("//span[text()='Account Receivable']"));
+
+        }
+
+    }*/
+
+
+    public void selectTask(String taskType) {
+        WebElement taskButton = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class=\"patient-actions\"]//div[@class='action-item']//span[contains(text(),'Task')]"));
+
+        Browser.clickOnElement(taskButton);
+
+            WebElement taskList = DriverManager.getInstance().Driver.findElement(By.xpath("//form[@class='create-task-form']"));
+        Browser.waitForTaskList(taskList);
+
+        List<WebElement> taskElements = taskList.findElements(By.xpath(".//label[@title]/span"));
+
+
+   /*     WebElement taskList1 = DriverManager.getInstance().Driver.findElement(By.xpath("//label[@title]//input[@value='patient_ar_followup']"));
+        Browser.clickOnElement(taskList1);*/
+        for (WebElement row : taskElements) {
+            if (Browser.getTextFromElement(row).equals(taskType)) {
+                Browser.clickOnElement(row);
+                break;
+                }
+            }
+        }
+
+
     public void taskDueDate () {
-        //String currentDate = new SimpleDateFormat("MM/dd/yyyy").format(new Date());
         WebElement taskDueDate = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@id='due_date']"));
         Browser.enterTextInEditBox(taskDueDate, getCurrentDate());
-
 
     }
     public void taskCreation () {
@@ -52,7 +86,5 @@ public class PatientWindowPage extends BasePage {
         Browser.clickOnElement(taskCreation);
 
     }
-
-
 
 }

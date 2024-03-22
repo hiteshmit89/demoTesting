@@ -43,7 +43,6 @@ public class Browser {
     public static void waitForTableToLoad(WebElement table) {
         retry(() -> !table.findElements(By.xpath(".//tr")).isEmpty());
     }
-
     public static void waitForPageReady() {
         DriverManager.getInstance().pageReady();
     }
@@ -77,4 +76,9 @@ public class Browser {
         System.out.println(exceptionMessage = "Retry Timed Out while trying to execute - " + new Throwable().getStackTrace()[1].getMethodName());
         throw new RuntimeException(exceptionMessage + exception);
     }
+    public static void waitForTaskList(WebElement table) {
+        retry(() -> !table.findElements(By.xpath("//div[@class='col-xs-12']//div[@class='radio-button radio']")).isEmpty());
+    }
+
+
 }

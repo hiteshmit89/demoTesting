@@ -8,7 +8,10 @@
       "address": 123,
       "role": "super_admin",
       "password": "ppp###2025",
-      "user_name": "Chris Lau"
+      "user_name": "Chris Lau",
+      "patient_name": "Joel White",
+      "task_description": "Automation",
+      "task_type": "Treatment Follow-up"
     },
     {
       "practice_id": 2,

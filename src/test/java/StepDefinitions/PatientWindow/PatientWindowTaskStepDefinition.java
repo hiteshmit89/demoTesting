@@ -11,62 +11,54 @@ import java.util.Date;
 
 public class PatientWindowTaskStepDefinition {
 
-    @Given("I will login to PbN app")
-    public void iLoginToPbNApp() {
-        PbNUIApp.loginPage().enterEmail("chris.lau@practicenumbers.com");
-        PbNUIApp.loginPage().enterPassword("ppp###2025");
-        PbNUIApp.loginPage().clickOnLoginButton();
-    }
+    /* @Given("I will login to PbN app")
+      public void iLoginToPbNApp() {
+          PbNUIApp.loginPage().enterEmail(PbNUIApp.userdata().getPractices().getFirst().getEmail());
+          PbNUIApp.loginPage().enterPassword(PbNUIApp.userdata().getPractices().getFirst().getPassword());
+          PbNUIApp.loginPage().clickOnLoginButton();
 
-    @When("I will click on practice name")
-    public void iClickOnPracticeName()
-    {
-        PbNUIApp.appHomePage().clickOnPracticeInPracticeInfoTable("Roman, Burke and Wagner");
-    }
+      }
+          @When("I will click on practice name")
+          public void iWillClickOnPracticeName() {
+              PbNUIApp.appHomePage().clickOnPracticeInPracticeInfoTable(PbNUIApp.userdata().getPractices().getFirst().getPractice_name());
 
+          }*/
     @Then("I see activity for practice")
-    public void iWillSeeActivityForPractice()
-    {
+    public void iWillSeeActivityForPractice() {
         PbNUIApp.appHomePage().verifyWelcomeTextDisplayed();
     }
 
     @And("I click on patient finder & open Patient Window")
-    public void iClickOnPatientFinderOpenPatientWindow() throws InterruptedException
-    {
-        PbNUIApp.navigator().findAndSelectPatientByExactMatchOf("Charles Abbott");
-        //PbNUIApp.patientWindowPage().openPatientWindow("Charles Abbott");
+    public void iClickOnPatientFinderOpenPatientWindow() {
+        PbNUIApp.navigator().findAndSelectPatientByExactMatchOf(PbNUIApp.userdata().getPractices().getFirst().getPatient_name());
+
     }
 
-    @Then("I click on task button & added description")
-    public void iClickOnTaskButtonAddedDescription()  throws InterruptedException
-    {
-
-        PbNUIApp.patientWindowPage().createTaskInPatientWindow("Automation");
+    @When("I click on task button & added description")
+    public void iClickOnTaskButtonAddedDescription() {
+        PbNUIApp.patientWindowPage().createGeneralTaskInPatientWindow(PbNUIApp.userdata().getPractices().getFirst().getTask_description());
     }
 
-    @And("I added task due date")
-    public void iAddedTaskDueDate()
-    {
+    @Then("I added task due date")
+    public void iAddedTaskDueDate() {
         PbNUIApp.patientWindowPage().taskDueDate();
     }
 
-
-    @Then("I created a task")
-    public void iCreatedATask(){
+    @And("I created a task")
+    public void iCreatedATask() {
         PbNUIApp.patientWindowPage().taskCreation();
 
     }
 
+    @And("I click on task button & opted {string}")
+    public void iClickOnTaskButtonOpted(String taskType) {
+        if (taskType.equals(PbNUIApp.userdata().getPractices().getFirst().getTask_type())) {
 
-    @Given("I am login to PbN app")
-    public void iAmLoginToPbNApp()
-    {
-        PbNUIApp.loginPage().enterEmail("chris.lau@practicenumbers.com");
-        PbNUIApp.loginPage().enterPassword("ppp###2025");
-        PbNUIApp.loginPage().clickOnLoginButton();
+        } else {
+            PbNUIApp.patientWindowPage().selectTask(taskType);
+        }
     }
-
-
-
 }
+
+
 

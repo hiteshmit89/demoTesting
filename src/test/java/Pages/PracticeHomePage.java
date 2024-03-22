@@ -2,6 +2,7 @@ package Pages;
 import Framework.Browser;
 import Framework.Constants.Constants;
 import Framework.Util.DriverManager;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -19,4 +20,8 @@ public class PracticeHomePage extends BasePage{
 
     public void clickOnCampaignsMenuItem() {Browser.clickOnElement(campaignsMenuItem);
     }
+
+
+
+
 }
