@@ -17,6 +17,7 @@ public class AppointmentBookingPage extends BasePage {
     private final List<WebElement> locationFinder = DriverManager.getInstance().Driver.findElements(By.xpath("//*[@id='patient-appointment-booking-page']//div[@class='location-item-name']"));
 
     public void clickOnPickLocation() {
+        //Browser.waitForElementToBeVisible(By.xpath("//button/span[text()='New Patient']"));
         Browser.clickOnElement(locationFinder.getFirst());
     }
 

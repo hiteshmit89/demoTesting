@@ -13,6 +13,17 @@ public class AppointmentInsuranceFeature {
         PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
         PbNUIApp.appointmentsPage().clickOnAppointmentSettingTab();
         PbNUIApp.appointmentsPage().clickOnSetupInsurance();
+        PbNUIApp.appointmentsPage().clickOnDisableInsurance();
+        PbNUIApp.appointmentsPage().clickOnSaveButton();
+        PbNUIApp.appointmentsPage().clickOnWidgets();
+        PbNUIApp.appointmentsPage().createAppointmentURLAndNavigate();
+        PbNUIApp.appointmentBookingPage().clickOnPickLocation();
+        PbNUIApp.appointmentBookingPage().clickOnSelectNewPatient();
+        PbNUIApp.appointmentBookingPage().clickOnEmergencyConsult();
+        PbNUIApp.appointmentBookingPage().clickOnEarliest();
+        PbNUIApp.appointmentBookingPage().fillAppointmentBookingForm();
+        PbNUIApp.appointmentBookingPage().clickOnCheckBox();
+        PbNUIApp.appointmentBookingPage().clickOnNextButton();
     }
 
     @And("I click on appointments tab and try to book appointment")
