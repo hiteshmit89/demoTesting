@@ -35,7 +35,6 @@
         |Account Receivable|
         |Patient Recall    |
         |Patient Reactivation|
-        |Treatment Follow-up |
 
 
 
