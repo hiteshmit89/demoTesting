@@ -2,7 +2,6 @@ package Framework.Util;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -18,6 +17,7 @@ import java.time.Duration;
 public class DriverManager {
     private WebDriver webDriver = null;
     public SearchContext Driver = null;
+    private String originalWindowHandle;
     private static ThreadLocal<DriverManager> manager = new ThreadLocal<DriverManager>();
 
     private DriverManager() {
@@ -36,10 +36,10 @@ public class DriverManager {
             case "edge":
                 setDriver(new EdgeDriver());
                 break;
-            case "firefox":
+            case "firefox" :
                 setDriver(new FirefoxDriver());
                 break;
-            case "safari":
+            case "safari" :
                 setDriver(new SafariDriver());
                 break;
             default:
@@ -47,21 +47,25 @@ public class DriverManager {
                     DesiredCapabilities capabilities = new DesiredCapabilities();
                     capabilities.setBrowserName("chrome");
                     setDriver(new RemoteWebDriver(new URL(ConfigManager.getInstance().getProperty("DOCKERHUB")), capabilities));
-                } else {
+                }
+                else {
                     setDriver(new ChromeDriver());
                 }
                 break;
         }
+        originalWindowHandle = webDriver.getWindowHandle();
         webDriver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(
                 Integer.parseInt(ConfigManager.getInstance().getProperty("Timeout"))));
         webDriver.manage().window().maximize();
     }
 
-    public Wait<WebDriver> fluentwait() {
-        return new FluentWait<WebDriver>(webDriver)
-                .withTimeout(Duration.ofSeconds(Integer.parseInt(ConfigManager.getInstance().getProperty("Timeout"))))
-                .pollingEvery(Duration.ofMillis(Integer.parseInt(ConfigManager.getInstance().getProperty("Polling"))))
-                .ignoring(NoSuchElementException.class);
+    private Wait<WebDriver> fluentwait(){
+            return new FluentWait<WebDriver>(webDriver)
+                    .withTimeout(Duration.ofSeconds(Integer.parseInt(ConfigManager.getInstance().getProperty("Timeout"))))
+                    .pollingEvery(Duration.ofMillis(Integer.parseInt(ConfigManager.getInstance().getProperty("Polling"))))
+                    .ignoring(NoSuchElementException.class)
+                    .ignoring(ElementClickInterceptedException.class)
+                    .ignoring(ElementNotInteractableException.class);
     }
 
     public void pageReady() {
@@ -72,6 +76,18 @@ public class DriverManager {
 
     public void navigateToURL(String url) {
         webDriver.get(url);
+    }
+
+    public void openNewWindow(WindowType windowType) {
+        switch (windowType) {
+            case WindowType.TAB -> webDriver.switchTo().newWindow(WindowType.TAB);
+            case WindowType.WINDOW -> webDriver.switchTo().newWindow(WindowType.WINDOW);
+        }
+    }
+
+    public void closeNewWindow() {
+        webDriver.close();
+        webDriver.switchTo().window(originalWindowHandle);
     }
 
     public void closeDriver() {
@@ -110,7 +126,7 @@ public class DriverManager {
         Driver = null;
     }
 
-    public void remove() {
+    public void remove(){
         manager.remove();
     }
 

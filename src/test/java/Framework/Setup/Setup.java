@@ -20,7 +20,7 @@ public class Setup {
     private static final Logger logger = Logger.getLogger("PBN");
 
     @BeforeAll
-    public static void resolvePropertiesFile(){
+    public static void resolvePropertiesFile() {
         switch (ConfigManager.getInstance().getProperty("Environment").toUpperCase()) {
             case "TEST" -> ConfigManager.getInstance().loadAdditionalProperties("Test.properties");
             case "ACCEPTANCE" -> ConfigManager.getInstance().loadAdditionalProperties("Acceptance.properties");
@@ -29,14 +29,13 @@ public class Setup {
     }
 
     @Before
-    public void scenarioSetup(Scenario scenario){
+    public void scenarioSetup(Scenario scenario) {
         this.scenario = scenario;
         logger.info("\u001B[32m" + "########starting thread: " + Thread.currentThread().getName() + " at " + Time.valueOf(LocalTime.now()) + "\u001B[0m");
-        logger.info("\u001B[32m" + "###############Running test############# "+ scenario.getName() + "\u001B[0m");
+        logger.info("\u001B[32m" + "###############Running test############# " + scenario.getName() + "\u001B[0m");
         try {
             DriverManager.getInstance().loadDriver(ConfigManager.getInstance().getProperty("browser"));
-        }
-        catch (MalformedURLException e) {
+        } catch (MalformedURLException e) {
             e.printStackTrace();
         }
 
@@ -44,13 +43,13 @@ public class Setup {
     }
 
     @After
-    public void scenarioReport(){
+    public void scenarioReport() {
         if (scenario.isFailed()) {
             byte[] screenshot = ((TakesScreenshot) DriverManager.getInstance().Driver).getScreenshotAs(OutputType.BYTES);
             scenario.attach(screenshot, "image/png", "Screenshot");
         }
 
-        if (!ConfigManager.getInstance().getProperty("browser").equals("firefox")){
+        if (!ConfigManager.getInstance().getProperty("browser").equals("firefox")) {
             DriverManager.getInstance().closeDriver();
         }
 
@@ -59,7 +58,7 @@ public class Setup {
     }
 
     @AfterAll
-    public static void looseDriverManager(){
+    public static void looseDriverManager() {
         DriverManager.getInstance().remove();
     }
 }
