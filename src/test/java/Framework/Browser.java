@@ -6,8 +6,6 @@ import Framework.Util.DriverManager;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.Wait;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -48,9 +46,6 @@ public class Browser {
                 .ignoring(ElementNotInteractableException.class);
     }
 
-    public static void waitForAttributeValue(WebElement element, String attribute, String expectedValue) {
-        retry(() -> element.getAttribute(attribute).equals(expectedValue));
-    }
 
     public static void waitForPageTitle(PageTitle title) {
         retry(() -> DriverManager.getInstance().getPgeTitle().contains(title.label));

@@ -43,7 +43,4 @@ public class AppHomePage extends BasePage {
         Assert.assertTrue("Welcome text not displayed on practice home page.", welcomeText.isDisplayed());
     }
 
-
-
-
 }

@@ -28,7 +28,4 @@ public class PracticeHomePage extends BasePage {
         Browser.clickOnElement(settingMenuItem);
     }
 
-
-
-
 }

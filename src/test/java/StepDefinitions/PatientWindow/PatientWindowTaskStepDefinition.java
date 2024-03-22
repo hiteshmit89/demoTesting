@@ -11,19 +11,7 @@ import java.util.Date;
 
 public class PatientWindowTaskStepDefinition {
 
-    /* @Given("I will login to PbN app")
-      public void iLoginToPbNApp() {
-          PbNUIApp.loginPage().enterEmail(PbNUIApp.userdata().getPractices().getFirst().getEmail());
-          PbNUIApp.loginPage().enterPassword(PbNUIApp.userdata().getPractices().getFirst().getPassword());
-          PbNUIApp.loginPage().clickOnLoginButton();
-
-      }
-          @When("I will click on practice name")
-          public void iWillClickOnPracticeName() {
-              PbNUIApp.appHomePage().clickOnPracticeInPracticeInfoTable(PbNUIApp.userdata().getPractices().getFirst().getPractice_name());
-
-          }*/
-    @Then("I see activity for practice")
+    @When("I see activity for practice")
     public void iWillSeeActivityForPractice() {
         PbNUIApp.appHomePage().verifyWelcomeTextDisplayed();
     }
@@ -34,7 +22,7 @@ public class PatientWindowTaskStepDefinition {
 
     }
 
-    @When("I click on task button & added description")
+    @And("I click on task button & added description")
     public void iClickOnTaskButtonAddedDescription() {
         PbNUIApp.patientWindowPage().createGeneralTaskInPatientWindow(PbNUIApp.userdata().getPractices().getFirst().getTask_description());
     }

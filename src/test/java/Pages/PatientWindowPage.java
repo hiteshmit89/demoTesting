@@ -8,11 +8,8 @@ import java.util.Date;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-
 import java.text.SimpleDateFormat;
 import java.util.List;
-
 
 public class PatientWindowPage extends BasePage {
 
@@ -38,22 +35,6 @@ public class PatientWindowPage extends BasePage {
 
     }
 
-   /* public void createAccountReceivableTaskInPatientWindow (String accountReceivable) throws InterruptedException {
-        WebElement taskButton = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class=\"patient-actions\"]//div[@class='action-item']//span[contains(text(),'Task')]"));
-        Browser.waitForElementToDisplay(taskButton);
-        Browser.clickOnElement(taskButton);
-
-        WebElement taskWindow = DriverManager.getInstance().Driver.findElement(By.xpath("//h3[contains(text(),'Create Task')]"));
-        String title = taskWindow.getText();
-        Assert.assertEquals("Create Task", title);
-        *//*Thread.sleep(3000);*//*
-        WebElement accountReceivableTask =DriverManager.getInstance().Driver.findElement(By.xpath("//span[text()='Account Receivable']"));
-
-        }
-
-    }*/
-
-
     public void selectTask(String taskType) {
         WebElement taskButton = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class=\"patient-actions\"]//div[@class='action-item']//span[contains(text(),'Task')]"));
 
@@ -64,9 +45,6 @@ public class PatientWindowPage extends BasePage {
 
         List<WebElement> taskElements = taskList.findElements(By.xpath(".//label[@title]/span"));
 
-
-   /*     WebElement taskList1 = DriverManager.getInstance().Driver.findElement(By.xpath("//label[@title]//input[@value='patient_ar_followup']"));
-        Browser.clickOnElement(taskList1);*/
         for (WebElement row : taskElements) {
             if (Browser.getTextFromElement(row).equals(taskType)) {
                 Browser.clickOnElement(row);
