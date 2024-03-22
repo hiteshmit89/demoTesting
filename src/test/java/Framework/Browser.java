@@ -1,12 +1,19 @@
 package Framework;
 
-import Framework.Constants.Constants;
 import Framework.Constants.Constants.PageTitle;
 import Framework.Util.ConfigManager;
 import Framework.Util.DriverManager;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import java.time.Duration;
 import java.util.function.BooleanSupplier;
 
 public class Browser {
@@ -16,8 +23,41 @@ public class Browser {
         retry(() -> element.isDisplayed() && element.isEnabled());
     }
 
+    public static void waitForElementToBeVisible(WebElement element) {
+        getFluentWait().until(ExpectedConditions.visibilityOf(element));
+    }
+
+    public static void waitForElementToBeClickable(WebElement element) {
+        getFluentWait().until(ExpectedConditions.elementToBeClickable(element));
+    }
+
+    public static void waitForElementToBeClickable(By locator) {
+        getFluentWait().until(ExpectedConditions.elementToBeClickable(locator));
+    }
+
+    public static void waitForElementToBeVisible(By locator) {
+        getFluentWait().until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+
+    private static FluentWait<WebDriver> getFluentWait() {
+        return new FluentWait<WebDriver>((WebDriver) DriverManager.getInstance().Driver)
+                .withTimeout(Duration.ofSeconds(Integer.parseInt(ConfigManager.getInstance().getProperty("Timeout"))))
+                .pollingEvery(Duration.ofMillis(Integer.parseInt(ConfigManager.getInstance().getProperty("Polling"))))
+                .ignoring(NoSuchElementException.class)
+                .ignoring(ElementClickInterceptedException.class)
+                .ignoring(ElementNotInteractableException.class);
+    }
+
+    public static void waitForAttributeValue(WebElement element, String attribute, String expectedValue) {
+        retry(() -> element.getAttribute(attribute).equals(expectedValue));
+    }
+
     public static void waitForPageTitle(PageTitle title) {
         retry(() -> DriverManager.getInstance().getPgeTitle().contains(title.label));
+    }
+
+    public static void waitForTableToLoad(WebElement table) {
+        retry(() -> !table.findElements(By.xpath(".//tr")).isEmpty());
     }
 
     public static void clickOnElement(WebElement element) {
@@ -40,12 +80,37 @@ public class Browser {
         retry(() -> element.getAttribute(attribute).equals(expectedValue));
     }
 
-    public static void waitForTableToLoad(WebElement table) {
-        retry(() -> !table.findElements(By.xpath(".//tr")).isEmpty());
-    }
     public static void waitForPageReady() {
         DriverManager.getInstance().pageReady();
     }
+
+    public static void navigateToNewURL(String url) {
+        DriverManager.getInstance().navigateToURL(url);
+    }
+
+    public static void openNewTab() {
+        DriverManager.getInstance().openNewWindow(WindowType.TAB);
+    }
+
+    public static void openNewWindow() {
+        DriverManager.getInstance().openNewWindow(WindowType.WINDOW);
+    }
+
+    public static void closeWindowAndGetOriginalPage() {
+        DriverManager.getInstance().closeNewWindow();
+    }
+
+    public static void scrollToVisibleElement(WebElement object) {
+        JavascriptExecutor js = (JavascriptExecutor) DriverManager.getInstance().Driver;
+        js.executeScript("arguments[0].scrollIntoView();", object);
+    }
+
+    public static void switchToFrame(WebElement iFrame) {
+        waitForElementToDisplay(iFrame);
+        waitForElementToBeClickable(iFrame);
+        ((WebDriver) DriverManager.getInstance().Driver).switchTo().frame(0);
+    }
+
     private static void retry(BooleanSupplier function)
     {
         int count = 0;
@@ -53,22 +118,17 @@ public class Browser {
         String exceptionMessage = "";
         int retryInterval = Integer.parseInt(ConfigManager.getInstance().getProperty("Polling"));
         int timeOut = Integer.parseInt(ConfigManager.getInstance().getProperty("Timeout"));
-        float temp = ((float) retryInterval/1000) % 60;
-        int retryCount = (int) (timeOut/ temp);
-        do
-        {
-            try
-            {
+        float temp = ((float) retryInterval / 1000) % 60;
+        int retryCount = (int) (timeOut / temp);
+        do {
+            try {
                 if (function.getAsBoolean()) {
                     return;
-                }
-                else{
+                } else {
                     Thread.sleep(retryInterval);
                     count++;
                 }
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 exception = ex;
                 count++;
             }

@@ -1,9 +1,6 @@
 package Framework.Util;
 
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.SearchContext;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -20,6 +17,7 @@ import java.time.Duration;
 public class DriverManager {
     private WebDriver webDriver = null;
     public SearchContext Driver = null;
+    private String originalWindowHandle;
     private static ThreadLocal<DriverManager> manager = new ThreadLocal<DriverManager>();
 
     private DriverManager() {
@@ -55,19 +53,22 @@ public class DriverManager {
                 }
                 break;
         }
+        originalWindowHandle = webDriver.getWindowHandle();
         webDriver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(
                 Integer.parseInt(ConfigManager.getInstance().getProperty("Timeout"))));
         webDriver.manage().window().maximize();
     }
 
-    public Wait<WebDriver> fluentwait(){
-        return new FluentWait<WebDriver>(webDriver)
-                .withTimeout(Duration.ofSeconds(Integer.parseInt(ConfigManager.getInstance().getProperty("Timeout"))))
-                .pollingEvery(Duration.ofMillis(Integer.parseInt(ConfigManager.getInstance().getProperty("Polling"))))
-                .ignoring(NoSuchElementException.class);
+    private Wait<WebDriver> fluentwait(){
+            return new FluentWait<WebDriver>(webDriver)
+                    .withTimeout(Duration.ofSeconds(Integer.parseInt(ConfigManager.getInstance().getProperty("Timeout"))))
+                    .pollingEvery(Duration.ofMillis(Integer.parseInt(ConfigManager.getInstance().getProperty("Polling"))))
+                    .ignoring(NoSuchElementException.class)
+                    .ignoring(ElementClickInterceptedException.class)
+                    .ignoring(ElementNotInteractableException.class);
     }
 
-    public void pageReady(){
+    public void pageReady() {
         Wait<WebDriver> wait = fluentwait();
         wait.until(webDriver -> ((JavascriptExecutor) webDriver)
                 .executeScript("return document.readyState").equals("complete"));
@@ -75,6 +76,18 @@ public class DriverManager {
 
     public void navigateToURL(String url) {
         webDriver.get(url);
+    }
+
+    public void openNewWindow(WindowType windowType) {
+        switch (windowType) {
+            case WindowType.TAB -> webDriver.switchTo().newWindow(WindowType.TAB);
+            case WindowType.WINDOW -> webDriver.switchTo().newWindow(WindowType.WINDOW);
+        }
+    }
+
+    public void closeNewWindow() {
+        webDriver.close();
+        webDriver.switchTo().window(originalWindowHandle);
     }
 
     public void closeDriver() {
@@ -108,7 +121,7 @@ public class DriverManager {
         return webDriver.getWindowHandle();
     }
 
-    public void killSession(){
+    public void killSession() {
         webDriver = null;
         Driver = null;
     }
