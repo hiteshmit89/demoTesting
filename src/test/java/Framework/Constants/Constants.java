@@ -1,7 +1,5 @@
 package Framework.Constants;
 
-import Pages.SettingsPage;
-
 public class Constants {
     public static enum PageTitle {
         LoginTitle("Log In"),
@@ -9,7 +7,8 @@ public class Constants {
         AppointmentsTitle("Practice by Numbers: Appointment Booking"),
         AppointmentBookingTitle("Appointment Booking"),
         CampaignsTitle("Practice by Numbers: communication"),
-        SettingsTitle("Practice by Numbers: Settings");
+        SettingsTitle("Practice by Numbers: Settings"),
+        PatientOverviewTitle("Practice by Numbers: Home");
         public final String label;
 
         PageTitle(String label) {

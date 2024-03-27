@@ -14,6 +14,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.time.Duration;
+import java.util.List;
 import java.util.function.BooleanSupplier;
 
 public class Browser {
@@ -27,6 +28,7 @@ public class Browser {
         getFluentWait().until(ExpectedConditions.visibilityOf(element));
     }
 
+
     public static void waitForElementToBeClickable(WebElement element) {
         getFluentWait().until(ExpectedConditions.elementToBeClickable(element));
     }
@@ -39,6 +41,11 @@ public class Browser {
         getFluentWait().until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
+    public static void clickUsingJavascript(WebElement ele) {
+        JavascriptExecutor js = (JavascriptExecutor)DriverManager.getInstance().Driver;
+        js.executeScript("arguments[0].scrollIntoView(true);",ele);
+        js.executeScript("arguments[0].click();", ele);
+    }
     private static FluentWait<WebDriver> getFluentWait() {
         return new FluentWait<WebDriver>((WebDriver) DriverManager.getInstance().Driver)
                 .withTimeout(Duration.ofSeconds(Integer.parseInt(ConfigManager.getInstance().getProperty("Timeout"))))
