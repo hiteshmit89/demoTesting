@@ -16,10 +16,3 @@
         |Account Receivable|
         |Patient Recall    |
         |Patient Reactivation|
-
-
-
-
-
-
-

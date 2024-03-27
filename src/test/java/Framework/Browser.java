@@ -106,8 +106,7 @@ public class Browser {
         ((WebDriver) DriverManager.getInstance().Driver).switchTo().frame(0);
     }
 
-    private static void retry(BooleanSupplier function)
-    {
+    private static void retry(BooleanSupplier function) {
         int count = 0;
         Exception exception = null;
         String exceptionMessage = "";
@@ -128,12 +127,10 @@ public class Browser {
                 count++;
             }
         } while (count != retryCount);
-        System.out.println(exceptionMessage = "Retry Timed Out while trying to execute - " + new Throwable().getStackTrace()[1].getMethodName());
         throw new RuntimeException(exceptionMessage + exception);
     }
+
     public static void waitForTaskList(WebElement table) {
         retry(() -> !table.findElements(By.xpath("//div[@class='col-xs-12']//div[@class='radio-button radio']")).isEmpty());
     }
-
-
 }
