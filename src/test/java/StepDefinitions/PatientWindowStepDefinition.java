@@ -5,7 +5,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-public class PatientWindow {
+public class PatientWindowStepDefinition {
     @When("I select search finder to open the patient window")
     public void iSelectSearchFinderToOpenThePatientWindow() {
         PbNUIApp.navigator().findAndSelectPatientByExactMatchOf("Sally Walker");
