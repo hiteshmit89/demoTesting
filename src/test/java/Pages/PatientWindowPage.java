@@ -1,18 +1,16 @@
 package Pages;
 
-
 import Framework.Browser;
 import Framework.Constants.Constants;
 import Framework.Util.DriverManager;
 
 import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.List;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-
-import java.text.SimpleDateFormat;
-import java.util.List;
 
 public class PatientWindowPage extends BasePage {
     public PatientWindowPage(Constants.PageTitle title) {
