@@ -39,7 +39,6 @@ public class AppointmentsPage extends BasePage {
         Browser.waitForElementToBeClickable((By.xpath("//button[text()='Setup Insurances']")));
         WebElement setupInsuranceButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='Setup Insurances']"));
         Browser.scrollToVisibleElement(setupInsuranceButton);
-       // Browser.clickOnElement(setupInsuranceButton);
         setupInsuranceButton.click();
 
     }
@@ -57,10 +56,6 @@ public class AppointmentsPage extends BasePage {
         Browser.scrollToVisibleElement(saveButton);
         Browser.clickOnElement(saveButton);
     }
-
-
-
-
 }
 
 
