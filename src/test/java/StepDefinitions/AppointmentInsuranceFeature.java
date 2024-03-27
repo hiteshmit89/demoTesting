@@ -32,8 +32,5 @@ public class AppointmentInsuranceFeature {
 
     @Then("I will not be able to see insurance page on appointment booking page.")
     public void iWillNotBeAbleToSeeInsurancePageOnAppointmentBookingPage() {
-
     }
-
-
 }
