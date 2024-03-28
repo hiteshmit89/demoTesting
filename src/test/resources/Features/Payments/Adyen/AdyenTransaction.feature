@@ -1,6 +1,9 @@
 @AdyenTransaction
 Feature: Verify As a user I am able Charge a patient using adyen payment services
-
+"""
+Author : pankaj.kumar@practicenumbers.com
+Jira Task Id: https://practicebynumbers.atlassian.net/browse/PUA-17
+"""
   @AdyenTransaction
   Scenario: Verify user is able to do successful transaction
     Given The User is able to login into the webapp
