@@ -20,7 +20,6 @@ public class AppointmentBookingPage extends BasePage {
         Browser.waitForElementToBeClickable(By.xpath("//div[@class='location-item-name'and text()='Romans, Burke and Wagner']"));
         Browser.waitForElementToBeVisible(By.xpath("//div[@class='location-item-name'and text()='Romans, Burke and Wagner']"));
         WebElement setLocation = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='location-item-name'and text()='Romans, Burke and Wagner']"));
-        //Browser.clickOnElement(locationFinder.getFirst());
         Browser.clickOnElement(setLocation);
     }
 
