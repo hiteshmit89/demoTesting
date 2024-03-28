@@ -5,7 +5,7 @@
 
 # Prerequisites: pom.xml and appropriate project structure should exist in the repository.
 
-image: maven:3.6.3
+image: maven:3.9.6
 
 pipelines:
   default:
@@ -15,6 +15,8 @@ pipelines:
           caches:
             - maven
           script:
+            - mvn --version
+            - java -version
             - mvn clean install -DskipTests
             - mvn test
           after-script:
