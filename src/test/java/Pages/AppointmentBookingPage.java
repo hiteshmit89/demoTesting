@@ -17,8 +17,11 @@ public class AppointmentBookingPage extends BasePage {
     private final List<WebElement> locationFinder = DriverManager.getInstance().Driver.findElements(By.xpath("//*[@id='patient-appointment-booking-page']//div[@class='location-item-name']"));
 
     public void clickOnPickLocation() {
-        Browser.waitForElementToBeVisible(By.xpath("//*[@id='patient-appointment-booking-page']//div[@class='location-item-name']"));
-        Browser.clickOnElement(locationFinder.getFirst());
+        Browser.waitForElementToBeClickable(By.xpath("//div[@class='location-item-name'and text()='Romans, Burke and Wagner']"));
+        Browser.waitForElementToBeVisible(By.xpath("//div[@class='location-item-name'and text()='Romans, Burke and Wagner']"));
+        WebElement setLocation = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='location-item-name'and text()='Romans, Burke and Wagner']"));
+        //Browser.clickOnElement(locationFinder.getFirst());
+        Browser.clickOnElement(setLocation);
     }
 
     public void clickOnSelectNewPatient() {
@@ -47,6 +50,7 @@ public class AppointmentBookingPage extends BasePage {
         enterEmailID(PbNUIApp.userdata().getPractices().getFirst().getFormsData().getFirst().getEmail_id());
         enterBirthDate(PbNUIApp.userdata().getPractices().getFirst().getFormsData().getFirst().getBirth_date());
     }
+
     public void enterFirstName(String firstNameData) {
         Browser.waitForElementToBeVisible(By.xpath("//input[@placeholder='Patient First Name']"));
         WebElement firstNameID = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@placeholder='Patient First Name']"));
@@ -91,6 +95,15 @@ public class AppointmentBookingPage extends BasePage {
         Browser.waitForElementToBeVisible(By.xpath("//span[@class='MuiButton-label' and contains(text(),'I do')]"));
         WebElement iDoNotHaveInsuranceButton = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='MuiButton-label' and contains(text(),'I do')]"));
         Browser.clickOnElement(iDoNotHaveInsuranceButton);
+    }
+
+    public void verifyInsurancePage() {
+        Browser.waitForElementToBeClickable(By.xpath("//span[@class='MuiButton-label' and contains(text(),'Use Cell Phone')]"));
+        WebElement OtpPage = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='MuiButton-label' and contains(text(),'Use Cell Phone')]"));
+        boolean status = OtpPage.isDisplayed();
+        if (status){
+            Assert.assertTrue("Insurance page is not displayed on appointment booking page.", OtpPage.isDisplayed());
+        }
     }
 
     public void clickOnUseCellPhone() {
