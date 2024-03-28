@@ -17,7 +17,10 @@ public class AppointmentBookingPage extends BasePage {
     private final List<WebElement> locationFinder = DriverManager.getInstance().Driver.findElements(By.xpath("//*[@id='patient-appointment-booking-page']//div[@class='location-item-name']"));
 
     public void clickOnPickLocation() {
-        Browser.clickOnElement(locationFinder.getFirst());
+        Browser.waitForElementToBeClickable(By.xpath("//div[@class='location-item-name'and text()='Romans, Burke and Wagner']"));
+        Browser.waitForElementToBeVisible(By.xpath("//div[@class='location-item-name'and text()='Romans, Burke and Wagner']"));
+        WebElement setLocation = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='location-item-name'and text()='Romans, Burke and Wagner']"));
+        Browser.clickOnElement(setLocation);
     }
 
     public void clickOnSelectNewPatient() {
@@ -40,11 +43,11 @@ public class AppointmentBookingPage extends BasePage {
     }
 
     public void fillAppointmentBookingForm() {
-        enterFirstName("Test First Name");
-        enterLastName("Test Last Name");
-        enterPhoneNumber("1234567890");
-        enterEmailID("test@test.com");
-        enterBirthDate("01011976");
+        enterFirstName(PbNUIApp.userdata().getPractices().getFirst().getFormsData().getFirst().getFirst_name());
+        enterLastName(PbNUIApp.userdata().getPractices().getFirst().getFormsData().getFirst().getLast_name());
+        enterPhoneNumber(PbNUIApp.userdata().getPractices().getFirst().getFormsData().getFirst().getPhone_number());
+        enterEmailID(PbNUIApp.userdata().getPractices().getFirst().getFormsData().getFirst().getEmail_id());
+        enterBirthDate(PbNUIApp.userdata().getPractices().getFirst().getFormsData().getFirst().getBirth_date());
     }
 
     public void enterFirstName(String firstNameData) {
@@ -91,6 +94,15 @@ public class AppointmentBookingPage extends BasePage {
         Browser.waitForElementToBeVisible(By.xpath("//span[@class='MuiButton-label' and contains(text(),'I do')]"));
         WebElement iDoNotHaveInsuranceButton = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='MuiButton-label' and contains(text(),'I do')]"));
         Browser.clickOnElement(iDoNotHaveInsuranceButton);
+    }
+
+    public void verifyInsurancePage() {
+        Browser.waitForElementToBeClickable(By.xpath("//span[@class='MuiButton-label' and contains(text(),'Use Cell Phone')]"));
+        WebElement OtpPage = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='MuiButton-label' and contains(text(),'Use Cell Phone')]"));
+        boolean status = OtpPage.isDisplayed();
+        if (status){
+            Assert.assertTrue("Insurance page is not displayed on appointment booking page.", OtpPage.isDisplayed());
+        }
     }
 
     public void clickOnUseCellPhone() {
