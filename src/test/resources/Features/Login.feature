@@ -1,4 +1,4 @@
-@LoginFeature
+@LoginFeature @pbnAll
 Feature: Login
 
   @login
