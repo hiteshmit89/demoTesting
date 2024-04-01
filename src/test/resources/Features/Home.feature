@@ -1,4 +1,4 @@
-@HomeFeature
+@HomeFeature @pbnAll
 Feature: Home
 
   @home
