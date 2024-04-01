@@ -9,6 +9,7 @@ import static Framework.Constants.Constants.*;
 
 public class BasePage {
 
+    public static final Logger logger = Logger.getLogger("PBN");
     public BasePage(PageTitle title) {
         Browser.waitForPageReady();
         Browser.waitForPageTitle(title);

@@ -12,8 +12,7 @@ Jira Task Id: https://practicebynumbers.atlassian.net/browse/PUA-17
     And Click on Payment method from side nav
     And click on any card from payments table to charge patient
     And Select the payment method, enter amount, description from charge customer modal
-    Then Select charge convenience fee radio button
-    And Click on Charge button
+    Then Click on Charge button
     And Verify Successful toast message
 
 

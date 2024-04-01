@@ -4,10 +4,7 @@ import Framework.Constants.Constants.PageTitle;
 import Framework.Util.ConfigManager;
 import Framework.Util.DriverManager;
 import org.openqa.selenium.*;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.Wait;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -106,6 +103,10 @@ public class Browser {
         waitForElementToBeClickable(iFrame);
         ((WebDriver) DriverManager.getInstance().Driver).switchTo().frame(0);
     }
+    public static void selectIndexFromDropdown(WebElement ele , int index){
+        Select select = new Select(ele);
+        select.selectByIndex(index);
+    }
 
     private static void retry(BooleanSupplier function)
     {
@@ -132,4 +133,5 @@ public class Browser {
         System.out.println(exceptionMessage = "Retry Timed Out while trying to execute - " + new Throwable().getStackTrace()[1].getMethodName());
         throw new RuntimeException(exceptionMessage + exception);
     }
+
 }

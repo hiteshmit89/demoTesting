@@ -12,8 +12,8 @@ public class AdyenTransactionStepDefinition {
 
     @Given("The User is able to login into the webapp")
     public void theUserIsAbleToLoginIntoTheWebapp() {
-        PbNUIApp.loginPage().enterEmail(PbNUIApp.userdata().getPractices().getFirst().getEmail());
-        PbNUIApp.loginPage().enterPassword(PbNUIApp.userdata().getPractices().getFirst().getPassword());
+        PbNUIApp.loginPage().enterEmail(PbNUIApp.userdata().getPractices().getFirst().getUsers().getFirst().getEmail());
+        PbNUIApp.loginPage().enterPassword(PbNUIApp.userdata().getPractices().getFirst().getUsers().getFirst().getPassword());
         PbNUIApp.loginPage().clickOnLoginButton();
     }
 
@@ -29,28 +29,29 @@ public class AdyenTransactionStepDefinition {
     }
 
     @And("Click on Payment method from side nav")
-    public void clickOnPaymentMethodFromSideNav() {
+    public void clickOnPaymentMethodFromSideNav(){
     PbNUIApp.paymentsPage().clickPaymentsMethodsMenu();
     }
 
     @And("click on any card from payments table to charge patient")
-    public void clickOnAnyCardFromPaymentsTableToChargePatient() {
-
+    public void clickOnAnyCardFromPaymentsTableToChargePatient(){
+        PbNUIApp.paymentsPage().clickCardIcon();
     }
 
     @And("Select the payment method, enter amount, description from charge customer modal")
     public void selectThePaymentMethodEnterAmountDescriptionFromChargeCustomerModal() {
-    }
+        PbNUIApp.paymentsPage().selectDropdownValue();
+        PbNUIApp.paymentsPage().enterAmount();
+        PbNUIApp.paymentsPage().enterChargeDescription();
 
-    @Then("Select charge convenience fee radio button")
-    public void selectChargeconvenienceFeeRadioButton() {
-    }
 
-    @And("Click on Charge button")
+    }  @Then("Click on Charge button")
     public void clickOnChargeButton() {
+        PbNUIApp.paymentsPage().btnClickCharge();
     }
 
     @And("Verify Successful toast message")
     public void verifySuccessfulToastMessage() {
+        PbNUIApp.paymentsPage().verifyChargeConfirmationText();
     }
 }
