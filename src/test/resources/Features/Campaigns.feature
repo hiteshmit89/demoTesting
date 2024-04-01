@@ -1,4 +1,4 @@
-@CampaignsFeature
+@CampaignsFeature @pbnAll
 Feature: Campaigns
 
   @Campaigns

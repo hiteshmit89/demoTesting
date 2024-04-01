@@ -4,7 +4,10 @@ import Pages.SettingsPage;
 
 public class Constants {
     public static enum PageTitle {
-        LoginTitle("Log In"), HomeTitle("Practice by Numbers: Home"),
+        LoginTitle("Log In"),
+        HomeTitle("Practice by Numbers: Home"),
+        AppointmentsTitle("Practice by Numbers: Appointment Booking"),
+        AppointmentBookingTitle("Appointment Booking"),
         CampaignsTitle("Practice by Numbers: communication"),
         SettingsTitle("Practice by Numbers: Settings");
         public final String label;

@@ -44,4 +44,12 @@ public class PbNUIApp {
     public static Navigator navigator() {
         return new Navigator();
     }
+
+    public static AppointmentsPage appointmentsPage() {
+        return new AppointmentsPage(AppointmentsTitle);
+    }
+
+    public static AppointmentBookingPage appointmentBookingPage() {
+        return new AppointmentBookingPage(AppointmentBookingTitle);
+    }
 }
