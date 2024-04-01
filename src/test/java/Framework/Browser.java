@@ -12,13 +12,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
 import java.time.Duration;
 import java.util.List;
 import java.util.function.BooleanSupplier;
 
 public class Browser {
-
 
     public static void waitForElementToDisplay(WebElement element) {
         retry(() -> element.isDisplayed() && element.isEnabled());
@@ -27,7 +25,6 @@ public class Browser {
     public static void waitForElementToBeVisible(WebElement element) {
         getFluentWait().until(ExpectedConditions.visibilityOf(element));
     }
-
 
     public static void waitForElementToBeClickable(WebElement element) {
         getFluentWait().until(ExpectedConditions.elementToBeClickable(element));
@@ -46,6 +43,7 @@ public class Browser {
         js.executeScript("arguments[0].scrollIntoView(true);",ele);
         js.executeScript("arguments[0].click();", ele);
     }
+
     private static FluentWait<WebDriver> getFluentWait() {
         return new FluentWait<WebDriver>((WebDriver) DriverManager.getInstance().Driver)
                 .withTimeout(Duration.ofSeconds(Integer.parseInt(ConfigManager.getInstance().getProperty("Timeout"))))
