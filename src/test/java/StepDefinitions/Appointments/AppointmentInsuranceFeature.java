@@ -1,4 +1,4 @@
-package StepDefinitions;
+package StepDefinitions.Appointments;
 
 import Framework.Browser;
 import Framework.Constants.Constants;

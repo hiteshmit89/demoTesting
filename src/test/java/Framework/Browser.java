@@ -107,6 +107,12 @@ public class Browser {
         ((WebDriver) DriverManager.getInstance().Driver).switchTo().frame(0);
     }
 
+    public static void clickUsingJavascript(WebElement ele) {
+        JavascriptExecutor js = (JavascriptExecutor)DriverManager.getInstance().Driver;
+        js.executeScript("arguments[0].scrollIntoView(true);",ele);
+        js.executeScript("arguments[0].click();", ele);
+    }
+
     private static void retry(BooleanSupplier function)
     {
         int count = 0;

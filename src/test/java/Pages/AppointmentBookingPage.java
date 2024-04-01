@@ -104,6 +104,14 @@ public class AppointmentBookingPage extends BasePage {
             Assert.assertTrue("Insurance page is not displayed on appointment booking page.", OtpPage.isDisplayed());
         }
     }
+    public void verifyCreditCardPage() {
+        Browser.waitForElementToBeClickable(By.xpath("//h2[@class=contains(text(),'Please enter your credit card information')]"));
+        WebElement CreditCardPage = DriverManager.getInstance().Driver.findElement(By.xpath("//h2[@class=contains(text(),'Please enter your credit card information')]"));
+        boolean status = CreditCardPage.isDisplayed();
+        if (status){
+            Assert.assertTrue("Credit Card page is displayed on appointment booking page.", CreditCardPage.isDisplayed());
+        }
+    }
 
     public void clickOnUseCellPhone() {
         Browser.waitForElementToBeVisible(By.xpath("//span[@class='MuiButton-label' and contains(text(),'Use Cell Phone')]"));
