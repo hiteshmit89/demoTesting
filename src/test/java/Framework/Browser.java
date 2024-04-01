@@ -17,7 +17,6 @@ import java.util.List;
 import java.util.function.BooleanSupplier;
 
 public class Browser {
-
     public static void waitForElementToDisplay(WebElement element) {
         retry(() -> element.isDisplayed() && element.isEnabled());
     }
