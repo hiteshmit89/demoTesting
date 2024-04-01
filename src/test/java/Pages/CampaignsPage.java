@@ -15,12 +15,12 @@ public class CampaignsPage extends BasePage {
         super(title);
     }
 
-    private WebElement followUpCampaignsHeading = DriverManager.getInstance().Driver.findElement(By.xpath("//li[@class='active']/a"));
-    private WebElement customCampaignsHeading = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@id='Communication']//li/a[contains(text(),'Custom Campaigns')]"));
-    private WebElement emailTemplatesHeading = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@id='Communication']//li/a[contains(text(),'Email Templates')]"));
-    private WebElement smsTemplatesHeading = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@id='Communication']//li/a[contains(text(),'SMS Templates')]"));
-    private WebElement reviewReplyTemplatesHeading = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@id='Communication']//li/a[contains(text(),'Review Reply Templates')]"));
-
+    private final WebElement followUpCampaignsHeading = DriverManager.getInstance().Driver.findElement(By.xpath("//li[@class='active']/a"));
+    private final WebElement customCampaignsHeading = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@id='Communication']//li/a[contains(text(),'Custom Campaigns')]"));
+    private final WebElement emailTemplatesHeading = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@id='Communication']//li/a[contains(text(),'Email Templates')]"));
+    private final WebElement smsTemplatesHeading = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@id='Communication']//li/a[contains(text(),'SMS Templates')]"));
+    private final WebElement reviewReplyTemplatesHeading = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@id='Communication']//li/a[contains(text(),'Review Reply Templates')]"));
+    private final List<WebElement> patientFollowUpTable = DriverManager.getInstance().Driver.findElements(By.xpath("//*[@id='root']//table"));
 
     public void verifyCampaignsHeadingDisplayedOnCampaignsPage() {
         Browser.waitForElementToDisplay(followUpCampaignsHeading);
@@ -33,15 +33,15 @@ public class CampaignsPage extends BasePage {
     }
 
     public void verifyFollowUpPageUi() {
-        WebElement campaignTable = DriverManager.getInstance().Driver.findElements(By.xpath("//div[@class='table-responsive']/table")).getFirst();
-        Browser.waitForTableToLoad(campaignTable);
+        Browser.waitForTableSizeToBe(patientFollowUpTable.getFirst(), 5);
         WebElement recallCampaign = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='table-responsive']//td[contains(text(),'Recall Campaign')]"));
-        List<WebElement> gridCells =recallCampaign.findElements(By.xpath("./following-sibling::td"));
+        List<WebElement> gridCells = recallCampaign.findElements(By.xpath("./following-sibling::td"));
         if (gridCells.size() == 1) {
             //ToDo we HAVE CLICK TO SETUP LINK IN gridCells(0)
             Browser.clickOnElement(gridCells.getFirst());
-            WebElement inactiveButton = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='table-responsive']//td[contains(text(),'Recall Campaign')]/following-sibling::td//button[contains(text(),'Inactive')]"));
-            Browser.waitForElementToDisplay(inactiveButton);
+            gridCells = recallCampaign.findElements(By.xpath("./following-sibling::td"));
+            Assert.assertTrue("Inactive button is not displayed", Browser.getTextFromElement(gridCells.getFirst().findElement(By.xpath((".//button[@id]")))).equals("Inactive"));
+            //Browser.waitForElementToDisplay(DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='table-responsive']//td[contains(text(),'Recall Campaign')]/following-sibling::td//button[contains(text(),'Inactive')]")));
         }
         else {
             //ToDo We have full table columns to handle other cases

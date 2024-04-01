@@ -19,7 +19,7 @@ public class CampaignsStepDefinition {
         PbNUIApp.campaignsPage().verifyCampaignsHeadingDisplayedOnCampaignsPage();
     }
 
-    @When("I click on {string}")
+    @When("I click on {string} dropdown option")
     public void iSelectProfileDropdownOption(String dropdownOption) {
         PbNUIApp.practiceHomePage().iClickOn(dropdownOption);
     }

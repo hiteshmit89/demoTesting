@@ -13,11 +13,6 @@ public class AdyenOnboardingStepDefinition {
         PbNUIApp.practiceHomePage().clickOnUserProfileDropdown();
     }
 
-    @Then("The user is able to click on settings")
-    public void theUserIsAbleToClickOnSettings() {
-        PbNUIApp.practiceHomePage().clickOnSettingsMenuItem();
-    }
-
     @And("The user is able to enable toggle for adyen feature")
     public void theUserIsAbleToEnableToggleForAdyenFeature() {
         PbNUIApp.settingsPage().clicktoggleButton();

@@ -26,6 +26,10 @@ public class Browser {
         retry(() -> !table.findElements(By.xpath(".//tr")).isEmpty());
     }
 
+    public static void waitForTableSizeToBe(WebElement table, int size) {
+        retry(() -> table.findElements(By.xpath(".//tr")).size() >= size);
+    }
+
     public static void clickOnElement(WebElement element) {
         waitForElementToDisplay(element);
         element.click();

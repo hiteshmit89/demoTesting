@@ -10,7 +10,7 @@ Feature: Verify As a user I am able to onboard a practice to adyen payment servi
     When I click on login button
     Then I am navigated to home page
     When The user is able to click on Profile icon
-    Then  The user is able to click on settings
+    Then  I click on "Settings" dropdown option
     And The user is able to enable toggle for adyen feature
 
 
