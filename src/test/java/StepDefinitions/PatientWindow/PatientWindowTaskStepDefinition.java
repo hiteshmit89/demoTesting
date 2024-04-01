@@ -17,12 +17,12 @@ public class PatientWindowTaskStepDefinition {
 
     @And("I click on patient finder & open Patient Window")
     public void iClickOnPatientFinderOpenPatientWindow() {
-        PbNUIApp.navigator().findAndSelectPatientByExactMatchOf(PbNUIApp.userdata().getPractices().getFirst().getPatient_name());
+        PbNUIApp.navigator().findAndSelectPatientByExactMatchOf(PbNUIApp.userdata().getPractices().getFirst().getPatientData().getFirst().getPatient_name());
     }
 
     @And("I click on task button & added description")
     public void iClickOnTaskButtonAddedDescription() {
-        PbNUIApp.patientWindowPage().createGeneralTaskInPatientWindow(PbNUIApp.userdata().getPractices().getFirst().getTask_description());
+        PbNUIApp.patientWindowPage().createGeneralTaskInPatientWindow(PbNUIApp.userdata().getPractices().getFirst().getPatientData().getFirst().getTask_description());
     }
 
     @Then("I added task due date")
@@ -37,9 +37,9 @@ public class PatientWindowTaskStepDefinition {
 
     @And("I click on task button & opted {string}")
     public void iClickOnTaskButtonOpted(String taskType) {
-        if (taskType.equals(PbNUIApp.userdata().getPractices().getFirst().getTask_type()))
+        if (taskType.equals(PbNUIApp.userdata().getPractices().getFirst().getPatientData().getFirst().getTask_type())) {
+        } else
         {
-        } else {
             PbNUIApp.patientWindowPage().selectTask(taskType);
         }
     }

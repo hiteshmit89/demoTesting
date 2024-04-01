@@ -1,5 +1,5 @@
 {
-  "Practices":[
+  "Practices": [
     {
       "practice_id": 1,
       "practice_name": "Romans, Burke and Wagner",
@@ -28,22 +28,18 @@
           "phone_number": "1234567890",
           "email_id": "test@test.com",
           "birth_date": "01011976"
+        }
+      ],
+      "PatientData": [
+        {
+          "patient_name": "Sally Walker",
+          "task_description": "Automation",
+          "task_type": "Treatment"
         }
       ]
     },
     {
       "practice_id": 1,
-      "role": "super_admin",
-      "password": "ppp###2025",
-      "user_name": "Chris Lau",
-      "patient_name": "Joel White",
-      "task_description": "Automation",
-      "task_type": "Treatment Follow-up"
-    },
-    {
-      "practice_id": 2,
-      "email": "rakesh.chauhan@practicenumbers.com",
-      "user_id": 1,
       "practice_name": "Romans, Burke and Wagner",
       "address": 123,
       "Users": [
@@ -70,6 +66,13 @@
           "phone_number": "1234567890",
           "email_id": "test@test.com",
           "birth_date": "01011976"
+        }
+      ],
+      "PatientData": [
+        {
+          "patient_name": "Sally Walker",
+          "task_description": "Automation",
+          "task_type": "Treatment"
         }
       ]
     }

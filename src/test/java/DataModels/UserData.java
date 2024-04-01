@@ -12,4 +12,3 @@ public class UserData {
         this.practices = practices; }
     ArrayList<Practice> practices;
 }
-

@@ -5,6 +5,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
 
 public class Practice {
+    ArrayList<PatientData> patientData;
+    ArrayList<FormsData> formsData;
+
     @JsonProperty("practice_id")
     public int getPractice_id() {
         return this.practice_id; }
@@ -32,48 +35,14 @@ public class Practice {
     @JsonProperty("FormsData")
     public ArrayList<FormsData> getFormsData() {
         return this.formsData; }
+
     public void setFormsData(ArrayList<FormsData> formsData) {
         this.formsData = formsData; }
-    ArrayList<FormsData> formsData;
-    @JsonProperty("role")
-    public String getRole() {
-        return this.role; }
-    public void setRole(String role) {
-        this.role = role; }
-    String role;
-    @JsonProperty("password")
-    public String getPassword() {
-        return this.password; }
-    public void setPassword(String password) {
-        this.password = password; }
-    String password;
-    @JsonProperty("user_name")
-    public String getUser_name() {
-        return this.user_name; }
-    public void setUser_name(String user_name) {
-        this.user_name = user_name; }
-    String user_name;
-    @JsonProperty("patient_name")
-    public String getPatient_name() {
-        return this.patient_name; }
-    public void setPatient_name(String patient_name) {
-        this.patient_name = patient_name; }
-    String patient_name;
 
-    @JsonProperty("task_description")
-    public String getTask_description () {
-        return this.task_description;}
-    public void setTask_description(String task_type){
-        this.task_description = task_type; }
-
-    String task_description;
-
-    @JsonProperty("task_type")
-    public String getTask_type () {
-        return this.task_type;}
-    public void setTask_type(String task_type){
-        this.task_type = task_type; }
-
-    String task_type;
-
+    @JsonProperty("PatientData")
+    public ArrayList<PatientData> getPatientData() {
+        return this.patientData; }
+    @JsonProperty("PatientData")
+    public ArrayList<PatientData> setPatientData() {
+        return this.patientData; }
 }
