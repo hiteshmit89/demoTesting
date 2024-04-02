@@ -4,9 +4,8 @@ import Framework.Browser;
 import Framework.Constants.Constants.PageTitle;
 import Framework.Util.ConfigManager;
 import Framework.Util.DriverManager;
-import org.junit.Assert;
-import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 public class AppointmentsPage extends BasePage {
 
@@ -66,7 +65,6 @@ public class AppointmentsPage extends BasePage {
         WebElement setupCreditCardButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='Setup Credit Card Collection']"));
         Browser.scrollToVisibleElement(setupCreditCardButton);
         Browser.clickOnElement(setupCreditCardButton);
-        //Browser.clickOnElementUsingJavascript(setupInsuranceButton);
     }
 
     public void clickOnEnableCreditCard() {
