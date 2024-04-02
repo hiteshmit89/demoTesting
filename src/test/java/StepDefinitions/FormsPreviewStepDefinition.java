@@ -14,6 +14,7 @@ public class FormsPreviewStepDefinition {
     @When("I click on the forms")
     public void iClickOnTheForms() {
         PbNUIApp.navigator().NavigateTo(Constants.Destination.Forms);
+
     }
 
     @And("I click on Completed forms on left-hand side")
@@ -25,10 +26,12 @@ public class FormsPreviewStepDefinition {
     public void iWillSeeHeadingCompletedForms() {
         PbNUIApp.formsPage().verifyCompletedFormsHeadingIsVisible();
     }
+
     @And("I click on toggle next to Only show completed forms that have not synced")
     public void iClickOnToggleNextToOnlyShowCompletedFormsThatHaveNotSynced()  {
         PbNUIApp.formsPage().clickTextNextToCheckNotSyncedForms();
     }
+
     @Then("I Click on the preview icon")
     public void iClickOnThePreviewIcon() {
         PbNUIApp.formsPage().clickPreviewIcon();
