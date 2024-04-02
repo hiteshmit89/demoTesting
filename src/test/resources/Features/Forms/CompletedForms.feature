@@ -1,7 +1,7 @@
-@FormsPreviewFeature
+@FormsPreviewFeature @pbnAll
 Feature: Forms Feature
 
-  @ViewCompletedFormsPAge
+
   Scenario: Verify I can see forms table
     Given I login to PbN app
     And I click on practice name

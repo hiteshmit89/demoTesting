@@ -64,6 +64,7 @@ public class FormsPage extends BasePage {
         Browser.clickOnElement(customDropDown);
         Browser.waitForPageReady();
     }
+
     public void clickTextNextToCheckNotSyncedForms() {
         Browser.clickOnElement(textNextToCheckNotSyncedForms);
         Browser.waitForPageReady();
