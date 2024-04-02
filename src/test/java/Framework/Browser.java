@@ -4,6 +4,7 @@ import Framework.Constants.Constants.PageTitle;
 import Framework.Util.ConfigManager;
 import Framework.Util.DriverManager;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
@@ -13,6 +14,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import javax.swing.*;
 import java.time.Duration;
 import java.util.function.BooleanSupplier;
 
@@ -63,6 +65,12 @@ public class Browser {
     public static void clickOnElement(WebElement element) {
         waitForElementToDisplay(element);
         element.click();
+    }
+
+    public static void doubleClickOnElement(WebElement element) {
+        waitForElementToDisplay(element);
+        Actions mouseAction = new Actions((WebDriver) DriverManager.getInstance().Driver);
+        mouseAction.doubleClick(element).build().perform();
     }
 
     public static String getTextFromElement(WebElement element) {

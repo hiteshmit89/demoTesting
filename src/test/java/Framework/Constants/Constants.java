@@ -37,4 +37,16 @@ public class Constants {
             this.label = label;
         }
     }
+
+    public static enum Sections {
+        CommCenter("message-section"),
+        Schedule("schedule-section"),
+        Operations("hidden-xs operations-section"),
+        TeamMessaging("team-message-section");
+        public final String label;
+
+        Sections(String label) {
+            this.label = label;
+        }
+    }
 }
