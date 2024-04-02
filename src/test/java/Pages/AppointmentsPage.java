@@ -53,6 +53,7 @@ public class AppointmentsPage extends BasePage {
         WebElement saveButton = DriverManager.getInstance().Driver.findElement(By.xpath("(//button[text()='Save'])[5]"));
         Browser.scrollToVisibleElement(saveButton);
         Browser.waitForElementToBeClickable(saveButton);
+        Browser.clickOnElementUsingJavascript(saveButton);
     }
 
     public void clickOnSettingSaveButton() {
@@ -62,9 +63,11 @@ public class AppointmentsPage extends BasePage {
     }
 
     public void clickOnSetupCreditCard() {
-        WebElement setupInsuranceButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='Setup Credit Card Collection']"));
-        Browser.scrollToVisibleElement(setupInsuranceButton);
-        Browser.clickOnElementUsingJavascript(setupInsuranceButton);
+        Browser.waitForElementToBeVisible(By.xpath("//button[text()='Setup Credit Card Collection']"));
+        WebElement setupCreditCardButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='Setup Credit Card Collection']"));
+        Browser.scrollToVisibleElement(setupCreditCardButton);
+        Browser.clickOnElement(setupCreditCardButton);
+        //Browser.clickOnElementUsingJavascript(setupInsuranceButton);
     }
 
     public void clickOnEnableCreditCard() {
