@@ -29,7 +29,6 @@ public class CampaignsPage extends BasePage {
         Assert.assertTrue("Email templates heading is not visible on campaigns page.", emailTemplatesHeading.isDisplayed());
         Assert.assertTrue("SMS templates heading is not visible on campaigns page.", smsTemplatesHeading.isDisplayed());
         Assert.assertTrue("Review reply templates heading is not visible on campaigns page.", reviewReplyTemplatesHeading.isDisplayed());
-
     }
 
     public void verifyFollowUpPageUi() throws InterruptedException {
@@ -37,12 +36,10 @@ public class CampaignsPage extends BasePage {
         WebElement recallCampaign = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='table-responsive']//td[contains(text(),'Recall Campaign')]"));
         List<WebElement> gridCells = recallCampaign.findElements(By.xpath("./following-sibling::td"));
         if (gridCells.size() == 1) {
-            //ToDo we HAVE CLICK TO SETUP LINK IN gridCells(0)
             Browser.clickOnElement(gridCells.getFirst());
             String gridCellsText = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='table-responsive']//td[contains(text(),'Recall Campaign')]/..//button[@id]")).getText();
         }
         else {
-            //ToDo We have full table columns to handle other cases
         }
     }
 }

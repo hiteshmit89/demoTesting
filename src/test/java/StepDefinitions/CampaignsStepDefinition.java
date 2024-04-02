@@ -13,9 +13,8 @@ public class CampaignsStepDefinition {
         PbNUIApp.practiceHomePage().clickOnUserProfileDropdown();
     }
 
-
     @Then("I am redirected to the campaigns page")
-    public void IamRedirectedToTheCampaignsPage() {
+    public void iAmRedirectedToTheCampaignsPage() {
         PbNUIApp.campaignsPage().verifyCampaignsHeadingDisplayedOnCampaignsPage();
     }
 
@@ -24,8 +23,7 @@ public class CampaignsStepDefinition {
         PbNUIApp.practiceHomePage().iClickOn(dropdownOption);
     }
 
-
-    @Then("I am redirected to Follow-up campaigns tab")
+    @Then("I check for Follow-up campaigns UI")
     public void iAmRedirectedToFollowUpCampaignsTab() throws InterruptedException {
         PbNUIApp.campaignsPage().verifyFollowUpPageUi();
     }
