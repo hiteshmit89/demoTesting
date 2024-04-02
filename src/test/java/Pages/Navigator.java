@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.security.PrivateKey;
+import java.sql.Driver;
 import java.util.List;
 
 public class Navigator {
@@ -18,6 +19,12 @@ public class Navigator {
                 break;
             }
         }
+    }
+
+    public void ClickOnFloatingButton(Sections section) {
+        WebElement chatBox = DriverManager.getInstance().Driver.findElement(By.id("chat-box"));
+        Browser.waitForElementToBeVisible(chatBox);
+        Browser.clickOnElement(chatBox.findElement(By.xpath(".//span[@class='" + section.label + "']")));
     }
 
     public void findAndSelectPatientByExactMatchOf(String patientName) {
