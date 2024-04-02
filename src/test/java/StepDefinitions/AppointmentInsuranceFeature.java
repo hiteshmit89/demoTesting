@@ -45,4 +45,5 @@ public class AppointmentInsuranceFeature {
         PbNUIApp.appointmentsPage().clickOnSaveButton();
         PbNUIApp.appointmentsPage().clickOnSettingSaveButton();
     }
+
 }
