@@ -34,7 +34,6 @@ public class AppointmentsPage extends BasePage {
     public void clickOnAppointmentSettingTab() {
         WebElement appointmentSetting = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='appointment-booking-page-tab-Settings']"));
         Browser.clickOnElement(appointmentSetting);
-        Browser.waitForPageReady();
     }
 
     public void clickOnSetupInsurance() {

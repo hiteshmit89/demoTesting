@@ -109,7 +109,6 @@ public class Browser {
 
     public static void clickOnElementUsingJavascript(WebElement element) {
         JavascriptExecutor js = (JavascriptExecutor)DriverManager.getInstance().Driver;
-        js.executeScript("arguments[0].scrollIntoView(true);",element);
         js.executeScript("arguments[0].click();", element);
     }
 
