@@ -9,7 +9,9 @@ public class Constants {
         AppointmentsTitle("Practice by Numbers: Appointment Booking"),
         AppointmentBookingTitle("Appointment Booking"),
         CampaignsTitle("Practice by Numbers: communication"),
-        SettingsTitle("Practice by Numbers: Settings");
+        SettingsTitle("Practice by Numbers: Settings"),
+        FormsTitle("Practice by Numbers: online_forms");
+
         public final String label;
 
         PageTitle(String label) {
