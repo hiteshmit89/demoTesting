@@ -64,6 +64,10 @@ public class Browser {
         retry(() -> table.findElements(By.xpath(".//tr")).size() >= size);
     }
 
+    public static void waitForTableRowSizeToBe(WebElement table, int size) {
+        retry(() -> table.findElements(By.xpath("./following-sibling::td")).size() >= size);
+    }
+
     public static void clickOnElement(WebElement element) {
         waitForElementToDisplay(element);
         element.click();
