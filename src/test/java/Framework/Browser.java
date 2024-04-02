@@ -107,10 +107,10 @@ public class Browser {
         ((WebDriver) DriverManager.getInstance().Driver).switchTo().frame(0);
     }
 
-    public static void clickUsingJavascript(WebElement ele) {
+    public static void clickOnElementUsingJavascript(WebElement element) {
         JavascriptExecutor js = (JavascriptExecutor)DriverManager.getInstance().Driver;
-        js.executeScript("arguments[0].scrollIntoView(true);",ele);
-        js.executeScript("arguments[0].click();", ele);
+        js.executeScript("arguments[0].scrollIntoView(true);",element);
+        js.executeScript("arguments[0].click();", element);
     }
 
     private static void retry(BooleanSupplier function)

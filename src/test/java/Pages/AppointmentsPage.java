@@ -18,10 +18,9 @@ public class AppointmentsPage extends BasePage {
     private WebElement eUrl = DriverManager.getInstance().Driver.findElement(By.xpath("(//span[contains(text(),'https://www.patientsreach.com/schedule/')])[1]"));
 
     public void clickOnWidgets() {
-        Browser.waitForElementToBeVisible((By.xpath("//a[@id='appointment-booking-page-tab-Widgets']")));
-        Browser.waitForElementToBeClickable((By.xpath("//a[@id='appointment-booking-page-tab-Widgets']")));
         WebElement widgetsTab = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='appointment-booking-page-tab-Widgets']"));
         Browser.clickOnElement(widgetsTab);
+        Browser.waitForElementToDisplay(widgetsTab);
     }
 
     public void createAppointmentURLAndNavigate() {
@@ -39,48 +38,38 @@ public class AppointmentsPage extends BasePage {
     }
 
     public void clickOnSetupInsurance() {
-        Browser.waitForElementToBeVisible((By.xpath("//button[text()='Setup Insurances']")));
-        Browser.waitForElementToBeClickable((By.xpath("//button[text()='Setup Insurances']")));
         WebElement setupInsuranceButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='Setup Insurances']"));
         Browser.scrollToVisibleElement(setupInsuranceButton);
-        setupInsuranceButton.click();
+        Browser.clickOnElementUsingJavascript(setupInsuranceButton);
     }
 
     public void clickOnDisableInsurance() {
-        Browser.waitForElementToBeVisible(By.xpath("//label[text()='Ask Patients for their insurance Information']"));
-        Browser.waitForElementToBeClickable(By.xpath("//label[text()='Ask Patients for their insurance Information']"));
         WebElement disableInsurance = DriverManager.getInstance().Driver.findElement(By.xpath("//label[text()='Ask Patients for their insurance Information']"));
         Browser.scrollToVisibleElement(disableInsurance);
-        Browser.clickOnElement(disableInsurance);
+        Browser.clickOnElementUsingJavascript(disableInsurance);
     }
 
     public void clickOnSaveButton() {
-        Browser.waitForElementToBeVisible(By.xpath("(//button[text()='Save'])[5]"));
         WebElement saveButton = DriverManager.getInstance().Driver.findElement(By.xpath("(//button[text()='Save'])[5]"));
         Browser.scrollToVisibleElement(saveButton);
-        Browser.clickOnElement(saveButton);
+        Browser.waitForElementToBeClickable(saveButton);
     }
+
     public void clickOnSettingSaveButton() {
-        Browser.waitForElementToBeVisible(By.xpath("//div[@class='bottom-buttons-row']//button[text()='Save']"));
-        Browser.waitForElementToBeClickable(By.xpath("//div[@class='bottom-buttons-row']//button[text()='Save']"));
-        Browser.waitForPageReady();
         WebElement saveButton = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='bottom-buttons-row']//button[text()='Save']"));
         Browser.scrollToVisibleElement(saveButton);
-        Browser.clickUsingJavascript(saveButton);
+        Browser.clickOnElementUsingJavascript(saveButton);
     }
+
     public void clickOnSetupCreditCard() {
-        Browser.waitForElementToBeVisible((By.xpath("//button[text()='Setup Credit Card Collection']")));
-        Browser.waitForElementToBeClickable((By.xpath("//button[text()='Setup Credit Card Collection']")));
         WebElement setupInsuranceButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='Setup Credit Card Collection']"));
         Browser.scrollToVisibleElement(setupInsuranceButton);
-        setupInsuranceButton.click();
+        Browser.clickOnElementUsingJavascript(setupInsuranceButton);
     }
+
     public void clickOnEnableCreditCard() {
         WebElement enableCreditCard = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@id='card-setup-toggle']"));
         Browser.scrollToVisibleElement(enableCreditCard);
-        Browser.clickUsingJavascript(enableCreditCard);
-
+        Browser.clickOnElementUsingJavascript(enableCreditCard);
     }
 }
-
-
