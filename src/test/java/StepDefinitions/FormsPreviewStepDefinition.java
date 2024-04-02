@@ -1,20 +1,16 @@
 
 package StepDefinitions;
-import Framework.Constants.Constants;
 import Framework.Root.PbNUIApp;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.WebDriver;
-
-import java.util.concurrent.TimeUnit;
+import static Framework.Constants.Constants.Destination.*;
 
 public class FormsPreviewStepDefinition {
     @When("I click on the forms")
     public void iClickOnTheForms() {
-        PbNUIApp.navigator().NavigateTo(Constants.Destination.Forms);
-
+        PbNUIApp.navigator().NavigateTo(Forms);
     }
 
     @And("I click on Completed forms on left-hand side")
@@ -36,6 +32,7 @@ public class FormsPreviewStepDefinition {
     public void iClickOnThePreviewIcon() {
         PbNUIApp.formsPage().clickPreviewIcon();
     }
+
     @Then("I click on download icon")
     public void iClickOnDownloadIcon() {
         PbNUIApp.formsPage().clickDownloadIcon();
@@ -45,6 +42,7 @@ public class FormsPreviewStepDefinition {
     public void iAmAbleToSearchPatientOnCompletedFormsPage() {
         PbNUIApp.formsPage().searchPatient();
     }
+
     @Then("I click on Custom drop down on forms Page")
     public void iClickOnCustomDropDownOnFormsPage() {
         PbNUIApp.formsPage().clickCustomDropDown();

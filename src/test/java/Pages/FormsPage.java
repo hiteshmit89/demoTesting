@@ -25,7 +25,7 @@ public class FormsPage extends BasePage {
 
     private List<WebElement> previewIcon = DriverManager.getInstance().Driver.findElements(By.xpath("//table[@class='table table-striped table-hover table-bordered']//*[@data-icon='image']"));
 
-    private List <WebElement> downloadIcon =DriverManager.getInstance().Driver.findElements(By.xpath("//table[@class='table table-striped table-hover table-bordered']//*[@data-icon='download']"));
+    private List<WebElement> downloadIcon =DriverManager.getInstance().Driver.findElements(By.xpath("//table[@class='table table-striped table-hover table-bordered']//*[@data-icon='download']"));
 
     private WebElement searchPatient = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@placeholder ='Search by Patient Name']"));
 
@@ -40,20 +40,25 @@ public class FormsPage extends BasePage {
     }
 
     public void clickFormsHeading() {
-        Browser.clickOnElement(formsHeading);}
+        Browser.clickOnElement(formsHeading);
+    }
 
     public void verifyCompletedFormsHeadingIsVisible() {
-        Browser.waitForElementToDisplay(completedFormsTextDisplay);}
+        Browser.waitForElementToDisplay(completedFormsTextDisplay);
+    }
 
     public void clickPreviewIcon() {
-        Browser.clickOnElement(previewIcon.getFirst());}
+        Browser.clickOnElement(previewIcon.getFirst());
+    }
 
     public void clickDownloadIcon() {
-        Browser.clickOnElement(downloadIcon.getFirst());}
+        Browser.clickOnElement(downloadIcon.getFirst());
+    }
 
     public void searchPatient() {
         Browser.enterTextInEditBox(searchPatient, "Kathryn");
-        Browser.waitForElementToDisplay(searchPatient);}
+        Browser.waitForElementToDisplay(searchPatient);
+    }
 
     public void clickCustomDropDown() {
         Browser.clickOnElement(customDropDown);
