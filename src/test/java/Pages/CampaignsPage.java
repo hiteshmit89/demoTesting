@@ -31,7 +31,7 @@ public class CampaignsPage extends BasePage {
         Assert.assertTrue("Review reply templates heading is not visible on campaigns page.", reviewReplyTemplatesHeading.isDisplayed());
     }
 
-    public void verifyFollowUpPageUi() throws InterruptedException {
+    public void verifyFollowUpPageUi() {
         Browser.waitForTableSizeToBe(patientFollowUpTable.getFirst(), 5);
         WebElement recallCampaign = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='table-responsive']//td[contains(text(),'Recall Campaign')]"));
         List<WebElement> gridCells = recallCampaign.findElements(By.xpath("./following-sibling::td"));

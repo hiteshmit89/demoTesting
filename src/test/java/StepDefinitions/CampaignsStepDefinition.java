@@ -24,7 +24,7 @@ public class CampaignsStepDefinition {
     }
 
     @Then("I check for Follow-up campaigns UI")
-    public void iAmRedirectedToFollowUpCampaignsTab() throws InterruptedException {
+    public void iAmRedirectedToFollowUpCampaignsTab()  {
         PbNUIApp.campaignsPage().verifyFollowUpPageUi();
     }
 }
