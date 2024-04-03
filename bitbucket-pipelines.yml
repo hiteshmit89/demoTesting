@@ -14,7 +14,7 @@ pipelines:
           caches:
             - maven
           script:
-            - mvn -B -Dtest=TestAll verify
+            - mvn -B -Dtest=pbnAll verify
           artifacts:
             - reports/**
           services:
