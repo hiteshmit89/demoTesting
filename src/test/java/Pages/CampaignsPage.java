@@ -39,14 +39,25 @@ public class CampaignsPage extends BasePage {
         if (gridCells.size() == 1) {
             Browser.clickOnElement(gridCells.getFirst());
             Browser.waitForElementToBeVisible(By.xpath("//div[@class='table-responsive']//td[contains(text(),'"+campaignName+"')]/..//button[@id]"));
-            verifyCampaignsActionItem(campaignName);
+            verifyCampaignsStatusItems(campaignName);
+            verifyCampaignsEllipsisActionItems(campaignName);
         }
         else {
-            verifyCampaignsActionItem(campaignName);
+            verifyCampaignsStatusItems(campaignName);
+            verifyCampaignsEllipsisActionItems(campaignName);
         }
     }
 
-    public void verifyCampaignsActionItem(String campaignName) {
+    public void verifyCampaignsStatusItems(String campaignName){
+        WebElement statusButton = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='table-responsive']//td[contains(text(),'"+campaignName+"')]/..//button[@id]"));
+        Browser.clickOnElement(statusButton);
+        WebElement activeStatus = DriverManager.getInstance().Driver.findElement(By.linkText("Active"));
+        WebElement inActiveStatus = DriverManager.getInstance().Driver.findElement(By.linkText("Inactive"));
+        Assert.assertTrue("Active status is not visible in campaigns page",activeStatus.isDisplayed());
+        Assert.assertTrue("Inactive status is not visible in campaigns page",inActiveStatus.isDisplayed());
+    }
+
+    public void verifyCampaignsEllipsisActionItems(String campaignName) {
         WebElement campaignEllipsisIcon = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='table-responsive']//td[contains(text(),'"+campaignName+"')]/..//button[contains(@class,'ellipsis')]"));
         Browser.clickOnElement(campaignEllipsisIcon);
         WebElement editCampaignAction = DriverManager.getInstance().Driver.findElement(By.linkText("Edit"));
