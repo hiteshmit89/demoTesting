@@ -10,6 +10,7 @@ public class Constants {
         AppointmentBookingTitle("Appointment Booking"),
         CampaignsTitle("Practice by Numbers: communication"),
         SettingsTitle("Practice by Numbers: Settings"),
+        FormsTitle("Practice by Numbers: online_forms"),
         TasksTitle("Practice by Numbers: Tasks");
         public final String label;
 
@@ -33,6 +34,18 @@ public class Constants {
         public final String label;
 
         Destination(String label) {
+            this.label = label;
+        }
+    }
+
+    public static enum Sections {
+        CommCenter("message-section"),
+        Schedule("schedule-section"),
+        Operations("hidden-xs operations-section"),
+        TeamMessaging("team-message-section");
+        public final String label;
+
+        Sections(String label) {
             this.label = label;
         }
     }

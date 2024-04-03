@@ -4,13 +4,17 @@ import Framework.Constants.Constants.PageTitle;
 import Framework.Util.ConfigManager;
 import Framework.Util.DriverManager;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import javax.swing.*;
 import java.time.Duration;
 import java.util.function.BooleanSupplier;
 
@@ -46,7 +50,6 @@ public class Browser {
                 .ignoring(ElementNotInteractableException.class);
     }
 
-
     public static void waitForPageTitle(PageTitle title) {
         retry(() -> DriverManager.getInstance().getPgeTitle().contains(title.label));
     }
@@ -58,6 +61,12 @@ public class Browser {
     public static void clickOnElement(WebElement element) {
         waitForElementToDisplay(element);
         element.click();
+    }
+
+    public static void doubleClickOnElement(WebElement element) {
+        waitForElementToDisplay(element);
+        Actions mouseAction = new Actions((WebDriver) DriverManager.getInstance().Driver);
+        mouseAction.doubleClick(element).build().perform();
     }
 
     public static String getTextFromElement(WebElement element) {
@@ -106,7 +115,13 @@ public class Browser {
         ((WebDriver) DriverManager.getInstance().Driver).switchTo().frame(0);
     }
 
-    private static void retry(BooleanSupplier function) {
+    public static void clickOnElementUsingJavascript(WebElement element) {
+        JavascriptExecutor js = (JavascriptExecutor)DriverManager.getInstance().Driver;
+        js.executeScript("arguments[0].click();", element);
+    }
+
+    private static void retry(BooleanSupplier function)
+    {
         int count = 0;
         Exception exception = null;
         String exceptionMessage = "";
@@ -127,6 +142,7 @@ public class Browser {
                 count++;
             }
         } while (count != retryCount);
+        System.out.println(exceptionMessage = "Retry Timed Out while trying to execute - " + new Throwable().getStackTrace()[1].getMethodName());
         throw new RuntimeException(exceptionMessage + exception);
     }
 
