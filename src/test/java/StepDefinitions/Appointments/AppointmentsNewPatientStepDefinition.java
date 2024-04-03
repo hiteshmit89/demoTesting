@@ -1,4 +1,4 @@
-package StepDefinitions;
+package StepDefinitions.Appointments;
 
 import Framework.Constants.Constants;
 import Framework.Root.PbNUIApp;

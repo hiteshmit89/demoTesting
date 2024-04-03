@@ -120,6 +120,11 @@ public class Browser {
         select.selectByIndex(index);
     }
 
+    public static void clickOnElementUsingJavascript(WebElement element) {
+        JavascriptExecutor js = (JavascriptExecutor)DriverManager.getInstance().Driver;
+        js.executeScript("arguments[0].click();", element);
+    }
+
     private static void retry(BooleanSupplier function)
     {
         int count = 0;
