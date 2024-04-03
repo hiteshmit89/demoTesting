@@ -9,7 +9,6 @@ import io.cucumber.java.AfterAll;
 import io.cucumber.java.Scenario;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-
 import java.net.MalformedURLException;
 import java.sql.Time;
 import java.time.LocalTime;
@@ -49,12 +48,12 @@ public class Setup {
             scenario.attach(screenshot, "image/png", "Screenshot");
         }
 
-        if (!ConfigManager.getInstance().getProperty("browser").equals("firefox")) {
+        /*if (!ConfigManager.getInstance().getProperty("browser").equals("firefox")) {
             DriverManager.getInstance().closeDriver();
         }
 
         DriverManager.getInstance().quitDriver();
-        DriverManager.getInstance().killSession();
+        DriverManager.getInstance().killSession();*/
     }
 
     @AfterAll

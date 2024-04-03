@@ -43,6 +43,18 @@ public class Browser {
         js.executeScript("arguments[0].click();", ele);
     }
 
+    public static boolean iselementDisplayed(String element) {
+        boolean IsElementDispalyed = false;
+        try {
+           Thread.sleep(5000);
+            if ( DriverManager.getInstance().Driver.findElement(By.xpath(element)).isDisplayed()) {
+                IsElementDispalyed = true;
+            }
+        } catch (Exception e) {
+        }
+        return IsElementDispalyed;
+    }
+
     private static FluentWait<WebDriver> getFluentWait() {
         return new FluentWait<WebDriver>((WebDriver) DriverManager.getInstance().Driver)
                 .withTimeout(Duration.ofSeconds(Integer.parseInt(ConfigManager.getInstance().getProperty("Timeout"))))
