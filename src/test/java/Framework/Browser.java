@@ -123,6 +123,11 @@ public class Browser {
         ((WebDriver) DriverManager.getInstance().Driver).switchTo().frame(0);
     }
 
+    public static void clickOnElementUsingJavascript(WebElement element) {
+        JavascriptExecutor js = (JavascriptExecutor)DriverManager.getInstance().Driver;
+        js.executeScript("arguments[0].click();", element);
+    }
+
     private static void retry(BooleanSupplier function)
     {
         int count = 0;
