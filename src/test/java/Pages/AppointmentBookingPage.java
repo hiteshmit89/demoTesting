@@ -86,23 +86,24 @@ public class AppointmentBookingPage extends BasePage {
     public void clickOnNextButton() {
         WebElement nextButton = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='MuiButton-label' and contains(text(),'Next')]"));
         Browser.clickOnElement(nextButton);
-
     }
 
     public void clickOnIDoNotHaveInsurance() {
-        Browser.waitForElementToBeClickable(By.xpath("//span[@class='MuiButton-label' and contains(text(),'I do')]"));
-        Browser.waitForElementToBeVisible(By.xpath("//span[@class='MuiButton-label' and contains(text(),'I do')]"));
         WebElement iDoNotHaveInsuranceButton = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='MuiButton-label' and contains(text(),'I do')]"));
-        Browser.clickOnElement(iDoNotHaveInsuranceButton);
+        Browser.clickOnElementUsingJavascript(iDoNotHaveInsuranceButton);
     }
 
     public void verifyInsurancePage() {
         Browser.waitForElementToBeClickable(By.xpath("//span[@class='MuiButton-label' and contains(text(),'Use Cell Phone')]"));
         WebElement OtpPage = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='MuiButton-label' and contains(text(),'Use Cell Phone')]"));
         boolean status = OtpPage.isDisplayed();
-        if (status){
-            Assert.assertTrue("Insurance page is not displayed on appointment booking page.", OtpPage.isDisplayed());
-        }
+        Assert.assertTrue("Insurance page is displayed on appointment booking page.", OtpPage.isDisplayed());
+    }
+
+    public void verifyCreditCardPage() {
+        Browser.waitForElementToBeClickable(By.xpath("//h2[@class=contains(text(),'Please enter your credit card information')]"));
+        WebElement CreditCardPage = DriverManager.getInstance().Driver.findElement(By.xpath("//h2[@class=contains(text(),'Please enter your credit card information')]"));
+        Assert.assertTrue("Credit Card page is not displayed on appointment booking page.", CreditCardPage.isDisplayed());
     }
 
     public void clickOnUseCellPhone() {
