@@ -4,6 +4,7 @@ import Framework.Constants.Constants.PageTitle;
 import Framework.Util.ConfigManager;
 import Framework.Util.DriverManager;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
@@ -12,6 +13,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
 import java.time.Duration;
 import java.util.List;
 import java.util.function.BooleanSupplier;
@@ -35,24 +37,6 @@ public class Browser {
 
     public static void waitForElementToBeVisible(By locator) {
         getFluentWait().until(ExpectedConditions.visibilityOfElementLocated(locator));
-    }
-
-    public static void clickUsingJavascript(WebElement ele) {
-        JavascriptExecutor js = (JavascriptExecutor)DriverManager.getInstance().Driver;
-        js.executeScript("arguments[0].scrollIntoView(true);",ele);
-        js.executeScript("arguments[0].click();", ele);
-    }
-
-    public static boolean iselementDisplayed(String element) {
-        boolean IsElementDispalyed = false;
-        try {
-           Thread.sleep(5000);
-            if ( DriverManager.getInstance().Driver.findElement(By.xpath(element)).isDisplayed()) {
-                IsElementDispalyed = true;
-            }
-        } catch (Exception e) {
-        }
-        return IsElementDispalyed;
     }
 
     private static FluentWait<WebDriver> getFluentWait() {
@@ -79,6 +63,12 @@ public class Browser {
     public static void clickOnElement(WebElement element) {
         waitForElementToDisplay(element);
         element.click();
+    }
+
+    public static void doubleClickOnElement(WebElement element) {
+        waitForElementToDisplay(element);
+        Actions mouseAction = new Actions((WebDriver) DriverManager.getInstance().Driver);
+        mouseAction.doubleClick(element).build().perform();
     }
 
     public static String getTextFromElement(WebElement element) {
@@ -121,6 +111,11 @@ public class Browser {
         waitForElementToDisplay(iFrame);
         waitForElementToBeClickable(iFrame);
         ((WebDriver) DriverManager.getInstance().Driver).switchTo().frame(0);
+    }
+
+    public static void clickOnElementUsingJavascript(WebElement element) {
+        JavascriptExecutor js = (JavascriptExecutor)DriverManager.getInstance().Driver;
+        js.executeScript("arguments[0].click();", element);
     }
 
     private static void retry(BooleanSupplier function)

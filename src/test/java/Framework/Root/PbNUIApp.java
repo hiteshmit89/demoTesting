@@ -24,6 +24,7 @@ public class PbNUIApp {
     public static LoginPage loginPage() {
         return new LoginPage(LoginTitle);
     }
+    public static FormsPage formsPage() { return new FormsPage(FormsTitle); }
 
     public static AppHomePage appHomePage() {
         return new AppHomePage(HomeTitle);
@@ -49,7 +50,7 @@ public class PbNUIApp {
         return new AppointmentsPage(AppointmentsTitle);
     }
 
-    public static AppointmentBookingPage appointmentBookingPage() {return new AppointmentBookingPage(AppointmentBookingTitle);}
-
-    public static PatientOverviewPage patientOverviewPage() {return new PatientOverviewPage(PatientOverviewTitle);}
+    public static AppointmentBookingPage appointmentBookingPage() {
+        return new AppointmentBookingPage(AppointmentBookingTitle);
+    }
 }
