@@ -5,7 +5,7 @@
 
 # Prerequisites: pom.xml and appropriate project structure should exist in the repository.
 
-image: maven:3.9.6
+#image: maven:3.9.6
 
 pipelines:
   default:
@@ -22,4 +22,4 @@ pipelines:
 definitions:
   services:
     chrome:
-      image: selenium/standalone-chrome:4.19.1-20240402
+      image: selenium/standalone-chrome
