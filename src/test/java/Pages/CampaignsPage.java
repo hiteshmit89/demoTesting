@@ -31,15 +31,31 @@ public class CampaignsPage extends BasePage {
         Assert.assertTrue("Review reply templates heading is not visible on campaigns page.", reviewReplyTemplatesHeading.isDisplayed());
     }
 
-    public void verifyFollowUpPageUi() {
+    public void verifyFollowUpPageUiFor(String campaignName) {
         Browser.waitForTableSizeToBe(patientFollowUpTable.getFirst(), 5);
-        WebElement recallCampaign = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='table-responsive']//td[contains(text(),'Recall Campaign')]"));
-        List<WebElement> gridCells = recallCampaign.findElements(By.xpath("./following-sibling::td"));
+        WebElement campaignTitle = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='table-responsive']//td[contains(text(),'"+campaignName+"')]"));
+        Browser.scrollToVisibleElement(campaignTitle);
+        List<WebElement> gridCells = campaignTitle.findElements(By.xpath("./following-sibling::td"));
         if (gridCells.size() == 1) {
             Browser.clickOnElement(gridCells.getFirst());
-            String gridCellsText = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='table-responsive']//td[contains(text(),'Recall Campaign')]/..//button[@id]")).getText();
+            Browser.waitForElementToBeVisible(By.xpath("//div[@class='table-responsive']//td[contains(text(),'"+campaignName+"')]/..//button[@id]"));
+            verifyCampaignsActionItem(campaignName);
         }
         else {
+            verifyCampaignsActionItem(campaignName);
         }
+    }
+
+    public void verifyCampaignsActionItem(String campaignName) {
+        WebElement campaignEllipsisIcon = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='table-responsive']//td[contains(text(),'"+campaignName+"')]/..//button[contains(@class,'ellipsis')]"));
+        Browser.clickOnElement(campaignEllipsisIcon);
+        WebElement editCampaignAction = DriverManager.getInstance().Driver.findElement(By.linkText("Edit"));
+        WebElement createNewCampaignAction = DriverManager.getInstance().Driver.findElement(By.linkText("Create new from default"));
+        WebElement duplicateCampaignAction = DriverManager.getInstance().Driver.findElement(By.linkText("Duplicate"));
+        WebElement deleteCampaignAction = DriverManager.getInstance().Driver.findElement(By.linkText("Delete"));
+        Assert.assertTrue("Edit campaign action item is not visible in campaigns page", editCampaignAction.isDisplayed());
+        Assert.assertTrue("Create new campaign action item is not visible in campaigns page", createNewCampaignAction.isDisplayed());
+        Assert.assertTrue("Duplicate campaign action item is not visible in campaigns page", duplicateCampaignAction.isDisplayed());
+        Assert.assertTrue("Delete campaign action item is not visible in campaigns page", deleteCampaignAction.isDisplayed());
     }
 }

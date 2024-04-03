@@ -10,10 +10,17 @@ Feature: Campaigns
     Then I am redirected to the campaigns page
 
   @PUA-34 @PRAC-T3573
-  Scenario: Verify Follow-up campaigns UI
+  Scenario Outline: : Verify Follow-up campaigns UI
     Given I login to PbN app
     And I click on practice name
     And I click on profile dropdown
     When I click on "Campaigns" dropdown option
     And I am redirected to the campaigns page
-    Then I check for Follow-up campaigns UI
+    Then I check for "<followUpCampaigns>" UI
+    Examples:
+    |followUpCampaigns|
+    |Preappointments: Perio Maintenance|
+    |Recall Campaign|
+    |Review Request Campaign|
+    |Christmas Holiday Greeting|
+    |Root Canal|

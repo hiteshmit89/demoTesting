@@ -23,8 +23,8 @@ public class CampaignsStepDefinition {
         PbNUIApp.practiceHomePage().iClickOn(dropdownOption);
     }
 
-    @Then("I check for Follow-up campaigns UI")
-    public void iAmRedirectedToFollowUpCampaignsTab()  {
-        PbNUIApp.campaignsPage().verifyFollowUpPageUi();
+    @Then("I check for {string} UI")
+    public void iAmRedirectedToFollowUpCampaignsTab(String campaignName)  {
+        PbNUIApp.campaignsPage().verifyFollowUpPageUiFor(campaignName);
     }
 }

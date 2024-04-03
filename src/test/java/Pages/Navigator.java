@@ -48,5 +48,4 @@ public class Navigator {
     public void selectProfileDropdownOption(userProfileOptions profileOptions) {
         DriverManager.getInstance().Driver.findElement(By.linkText(profileOptions.label)).click();
     }
-
 }
