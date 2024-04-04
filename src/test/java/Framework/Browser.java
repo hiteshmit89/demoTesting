@@ -29,6 +29,10 @@ public class Browser {
         getFluentWait().until(ExpectedConditions.visibilityOf(element));
     }
 
+    public static void waitForPresenceOfElement(By locator) {
+        getFluentWait().until(ExpectedConditions.presenceOfElementLocated(locator));
+    }
+
     public static void waitForElementToBeClickable(WebElement element) {
         getFluentWait().until(ExpectedConditions.elementToBeClickable(element));
     }
@@ -116,12 +120,11 @@ public class Browser {
     }
 
     public static void clickOnElementUsingJavascript(WebElement element) {
-        JavascriptExecutor js = (JavascriptExecutor)DriverManager.getInstance().Driver;
+        JavascriptExecutor js = (JavascriptExecutor) DriverManager.getInstance().Driver;
         js.executeScript("arguments[0].click();", element);
     }
 
-    private static void retry(BooleanSupplier function)
-    {
+    private static void retry(BooleanSupplier function) {
         int count = 0;
         Exception exception = null;
         String exceptionMessage = "";
@@ -144,9 +147,5 @@ public class Browser {
         } while (count != retryCount);
         System.out.println(exceptionMessage = "Retry Timed Out while trying to execute - " + new Throwable().getStackTrace()[1].getMethodName());
         throw new RuntimeException(exceptionMessage + exception);
-    }
-
-    public static void waitForTaskList(WebElement table) {
-        retry(() -> !table.findElements(By.xpath("//div[@class='col-xs-12']//div[@class='radio-button radio']")).isEmpty());
     }
 }

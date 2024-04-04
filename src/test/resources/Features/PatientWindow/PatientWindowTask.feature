@@ -3,7 +3,7 @@ Feature: Patient Window Task Creation
   Description : Creating Tasks from patient window.
 
   @createPatientWindowTasks
-  Scenario Outline: Verify User can create All types of tasks from patient window
+  Scenario Outline: Verify User can create All types of tasks from patient window & close them from Task Page
     Given I login to PbN app
     And I click on practice name
     Then I see activity for practice
@@ -15,10 +15,11 @@ Feature: Patient Window Task Creation
     And I closed patient Window
     And I am redirected to the Task Page
     And I search for created task through task description
+    And I selected tasks of search result
     And I closed the created Tasks
     Examples:
       | TaskType             |
+      | Patient Reactivation |
       | General Task         |
       | Account Receivable   |
       | Patient Recall       |
-      | Patient Reactivation |

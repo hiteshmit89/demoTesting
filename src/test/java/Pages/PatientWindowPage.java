@@ -3,7 +3,6 @@ package Pages;
 import Framework.Browser;
 import Framework.Constants.Constants.PageTitle;
 import Framework.Util.DriverManager;
-import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -20,19 +19,17 @@ public class PatientWindowPage extends BasePage {
         return (new SimpleDateFormat("MM/dd/yyyy").format(new Date()));
     }
 
-   private final WebElement taskButton = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class=\"patient-actions\"]//div[@class='action-item']//span[contains(text(),'Task')]"));
+    private final WebElement taskButton = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='patient-actions']//div[@class='action-item']//span[contains(text(),'Task')]/.."));
 
     public void selectTask(String taskType) {
-        Browser.waitForElementToBeVisible(taskButton);
-        Browser.clickOnElement(taskButton);
-
+        Browser.clickOnElementUsingJavascript(taskButton);
+        Browser.waitForPageReady();
+        Browser.waitForPresenceOfElement(By.xpath("//*[@id='patient-window-tabs-id']//div[@class='col-xs-12']//span[text()='General Task']"));
         WebElement taskList = DriverManager.getInstance().Driver.findElement(By.xpath("//form[@class='create-task-form']"));
-        Browser.waitForTaskList(taskList);
-
         List<WebElement> taskElements = taskList.findElements(By.xpath(".//label[@title]/span"));
-
         for (WebElement row : taskElements) {
             if (Browser.getTextFromElement(row).equals(taskType)) {
+                System.out.println(row);
                 Browser.clickOnElement(row);
                 break;
             }
@@ -53,6 +50,7 @@ public class PatientWindowPage extends BasePage {
         WebElement taskCreation = DriverManager.getInstance().Driver.findElement(By.xpath("// div[@class='create-task-btn']//button[normalize-space()='Create']"));
         Browser.clickOnElement(taskCreation);
     }
+
     public void closePatientWindow() {
         WebElement closePatientWindow = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='close-button']"));
         Browser.clickOnElement(closePatientWindow);
