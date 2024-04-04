@@ -17,7 +17,6 @@ public class AppHomePage extends BasePage {
     private WebElement userHeader = DriverManager.getInstance().Driver.findElement(By.xpath("//div//li[@class='user-header-info']"));
     private List<WebElement> practiceInfoTableRows = DriverManager.getInstance().Driver.findElements(By.xpath("//*[@aria-describedby='practice_table_info']/tbody/tr"));
 
-
     public void verifyUserHeaderIsDisplayed() {
         Browser.waitForElementToDisplay(userHeader);
     }
@@ -42,5 +41,4 @@ public class AppHomePage extends BasePage {
         WebElement welcomeText = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='HomePageRoot']//h1[contains(text(),'Welcome')]"));
         Assert.assertTrue("Welcome text not displayed on practice home page.", welcomeText.isDisplayed());
     }
-
 }

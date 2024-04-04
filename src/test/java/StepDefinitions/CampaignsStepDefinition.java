@@ -1,24 +1,30 @@
 package StepDefinitions;
+
+import Framework.Constants.Constants;
 import Framework.Root.PbNUIApp;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
 
 public class CampaignsStepDefinition {
     @Given("I click on profile dropdown")
-    public void iClickOnProfileDropdown(){
+    public void iClickOnProfileDropdown() {
         PbNUIApp.practiceHomePage().clickOnUserProfileDropdown();
     }
 
-    @When("I click on Campaigns")
-    public void IClickOnCampaigns(){
-        PbNUIApp.practiceHomePage().clickOnCampaignsMenuItem();
-    }
-
     @Then("I am redirected to the campaigns page")
-    public void IamRedirectedToTheCampaignsPage(){
+    public void iAmRedirectedToTheCampaignsPage() {
         PbNUIApp.campaignsPage().verifyCampaignsHeadingDisplayedOnCampaignsPage();
     }
 
+    @When("I click on {string} dropdown option")
+    public void iSelectProfileDropdownOption(String dropdownOption) {
+        PbNUIApp.practiceHomePage().iClickOn(dropdownOption);
+    }
 
+    @Then("I check for {string} UI")
+    public void iAmRedirectedToFollowUpCampaignsTab(String campaignName)  {
+        PbNUIApp.campaignsPage().verifyFollowUpPageUiFor(campaignName);
+    }
 }
