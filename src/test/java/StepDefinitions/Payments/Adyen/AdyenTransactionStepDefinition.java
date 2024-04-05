@@ -20,7 +20,6 @@ public class AdyenTransactionStepDefinition {
     @And("The user is able to select practices")
     public void theUserIsAbleToSelectPractices() {
         PbNUIApp.appHomePage().clickOnPracticeInPracticeInfoTable(PbNUIApp.userdata().getPractices().getFirst().getPractice_name());
-
     }
 
     @When("User is able to click on payments from header nav")
