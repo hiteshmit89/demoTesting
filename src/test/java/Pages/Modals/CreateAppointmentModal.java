@@ -56,6 +56,7 @@ public class CreateAppointmentModal {
         birthDate.sendKeys(Keys.ENTER);
         //Browser.enterTextInEditBox(birthDate, birthDateData);
     }
+
     public static void fillAppointmentBookingDetails() {
         enterFirstName(PbNUIApp.userdata().getPractices().getFirst().getFormsData().getFirst().getFirst_name());
         enterLastName(PbNUIApp.userdata().getPractices().getFirst().getFormsData().getFirst().getLast_name());
@@ -67,8 +68,17 @@ public class CreateAppointmentModal {
     public static void selectProvider() {
         WebElement provider = DriverManager.getInstance().Driver.findElement(By.xpath("(//div[@class=' css-1hwfws3'])[4]"));
         Browser.clickOnElement(provider);
-        provider.sendKeys(Keys.ENTER);
+        Browser.pressEnter();
+    }
+
+    public static void appointmentType() {
+        WebElement appointmentType = DriverManager.getInstance().Driver.findElement(By.xpath("(//div[@class=' css-1hwfws3'])[5]"));
+        Browser.clickOnElement(appointmentType);
+        Browser.pressEnter();
+    }
+
+    public static void clickOnCreateButton() {
+        WebElement appointmentType = DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='Create']"));
+        Browser.clickOnElement(appointmentType);
     }
 }
-
-

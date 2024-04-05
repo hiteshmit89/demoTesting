@@ -15,6 +15,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.time.Duration;
 import java.util.function.BooleanSupplier;
 
@@ -41,6 +43,10 @@ public class Browser {
         getFluentWait().until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
+    public static void waitForElementPresence(By locator) {
+        getFluentWait().until(ExpectedConditions.presenceOfElementLocated(locator));
+    }
+
     private static FluentWait<WebDriver> getFluentWait() {
         return new FluentWait<WebDriver>((WebDriver) DriverManager.getInstance().Driver)
                 .withTimeout(Duration.ofSeconds(Integer.parseInt(ConfigManager.getInstance().getProperty("Timeout"))))
@@ -52,6 +58,7 @@ public class Browser {
 
     public static void waitForAttributeValue(WebElement element, String attribute, String expectedValue) {
         retry(() -> element.getAttribute(attribute).equals(expectedValue));
+        System.out.println(element.getAttribute("class"));
     }
 
     public static void waitForPageTitle(PageTitle title) {
@@ -71,6 +78,16 @@ public class Browser {
         waitForElementToDisplay(element);
         Actions mouseAction = new Actions((WebDriver) DriverManager.getInstance().Driver);
         mouseAction.doubleClick(element).build().perform();
+    }
+
+    public static void pressEnter() {
+        try {
+            Robot robot = new Robot();
+            robot.keyPress(KeyEvent.VK_ENTER);
+            robot.keyRelease(KeyEvent.VK_ENTER);
+        } catch (AWTException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static String getTextFromElement(WebElement element) {
