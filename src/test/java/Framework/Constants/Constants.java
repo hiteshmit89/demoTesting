@@ -39,6 +39,22 @@ public class Constants {
         }
     }
 
+    public static enum userProfileOptions {
+        UserProfile("User Profile"),
+        Goals("Goals"),
+        Campaigns("Campaigns"),
+        GoalsReport("Goals Report"),
+        Communications("Communications"),
+        Notifications("Notifications"),
+        Settings("Settings"),
+        Support("Support"),
+        Logout("Logout");
+
+        public final String label;
+
+        userProfileOptions(String label) { this.label = label; }
+    }
+
     public static enum Sections {
         CommCenter("message-section"),
         Schedule("schedule-section"),

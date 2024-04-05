@@ -20,6 +20,11 @@ public class AdyenOnboardingStepDefinition {
         PbNUIApp.practiceHomePage().clickOnUserProfileDropdown();
     }
 
+    @And("The user is able to select practice")
+    public void theUserIsAbleToSelectPractice() {
+        PbNUIApp.appHomePage().clickOnPracticeInPracticeInfoTable(PbNUIApp.userdata().getPractices().getFirst().getPractice_name());
+    }
+
     @Then("The user is able to click on settings")
     public void theUserIsAbleToClickOnSettings() {
         PbNUIApp.practiceHomePage().clickOnSettingsMenuItem();
