@@ -20,7 +20,7 @@ public class PatientWindowTaskStepDefinition {
     @And("I click on task button & opted {string}")
     public void iClickOnTaskButtonOpted(String taskType) {
         if (taskType.equals(PbNUIApp.userdata().getPractices().getFirst().getPatientData().getFirst().getTask_type())) {
-
+            PbNUIApp.patientWindowPage().selectTask(taskType);
         } else {
             PbNUIApp.patientWindowPage().selectTask(taskType);
         }
