@@ -43,11 +43,4 @@ public class AppHomePage extends BasePage {
         WebElement welcomeText = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='HomePageRoot']//h1[contains(text(),'Welcome')]"));
         Assert.assertTrue("Welcome text not displayed on practice home page.", welcomeText.isDisplayed());
     }
-
-    public void switchPractice(){
-
-    }
-
-
-
 }

@@ -1,7 +1,6 @@
 package Pages.Modals;
 
 import Framework.Browser;
-import Framework.Constants.Constants.*;
 import Framework.Util.DriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -10,13 +9,17 @@ import java.util.List;
 
 public class AppointmentScheduleModal {
     private WebElement modalTitle = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='chat-box']//p"));
-    private List<WebElement> appointmentCalendar = DriverManager.getInstance().Driver.findElements(By.xpath("//*[@id='chat-box']//div[@class='rbc-events-container']"));
+
     AppointmentScheduleModal() {
         Browser.waitForElementToBeVisible(modalTitle);
         Browser.waitForPageReady();
     }
 
-    public void doubleClickOnAppointmentScheduleCalendarFirstProvider() {
-        Browser.doubleClickOnElement(appointmentCalendar.getFirst());
+    public static void doubleClickOnAppointmentScheduleCalendarFirstProvider() {
+        Browser.waitForPageReady();
+        Browser.waitForElementList(By.xpath("//*[@id='chat-box']//div[contains(@class,'rbc-today-off rbc-day-slot')]"));
+        List<WebElement> timeSlots = DriverManager.getInstance().Driver.findElements(By.xpath("//*[@id='chat-box']//div[contains(@class,'rbc-today-off rbc-day-slot')]"));
+        List<WebElement> appointmentSlots = timeSlots.getFirst().findElements(By.xpath(".//div[@class='rbc-time-slot slotDefault']"));
+        Browser.doubleClickOnElement(appointmentSlots.getFirst());
     }
 }
