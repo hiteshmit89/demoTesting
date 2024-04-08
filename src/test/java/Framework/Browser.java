@@ -7,7 +7,6 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -15,6 +14,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.time.Duration;
 import java.util.function.BooleanSupplier;
 
@@ -39,6 +40,10 @@ public class Browser {
 
     public static void waitForElementToBeVisible(By locator) {
         getFluentWait().until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+
+    public static void waitForElementPresence(By locator) {
+        getFluentWait().until(ExpectedConditions.presenceOfElementLocated(locator));
     }
 
     private static FluentWait<WebDriver> getFluentWait() {
@@ -70,6 +75,14 @@ public class Browser {
         retry(() -> table.findElements(By.xpath("./../td/div")).size() >= size);
     }
 
+    public static void waitForElementChildren(WebElement element, By locator) {
+        retry(() -> !element.findElements(locator).isEmpty());
+    }
+
+    public static void waitForElementList(By locator) {
+        retry(() -> !DriverManager.getInstance().Driver.findElements(locator).isEmpty());
+    }
+
     public static void clickOnElement(WebElement element) {
         waitForElementToDisplay(element);
         element.click();
@@ -79,6 +92,16 @@ public class Browser {
         waitForElementToDisplay(element);
         Actions mouseAction = new Actions((WebDriver) DriverManager.getInstance().Driver);
         mouseAction.doubleClick(element).build().perform();
+    }
+
+    public static void pressEnter() {
+        try {
+            Robot robot = new Robot();
+            robot.keyPress(KeyEvent.VK_ENTER);
+            robot.keyRelease(KeyEvent.VK_ENTER);
+        } catch (AWTException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static String getTextFromElement(WebElement element) {
