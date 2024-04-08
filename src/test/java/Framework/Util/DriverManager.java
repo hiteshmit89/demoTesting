@@ -62,7 +62,7 @@ public class DriverManager {
         webDriver.manage().window().maximize();
     }
 
-    public Wait<WebDriver> fluentwait(){
+    private Wait<WebDriver> fluentwait(){
             return new FluentWait<WebDriver>(webDriver)
                     .withTimeout(Duration.ofSeconds(Integer.parseInt(ConfigManager.getInstance().getProperty("Timeout"))))
                     .pollingEvery(Duration.ofMillis(Integer.parseInt(ConfigManager.getInstance().getProperty("Polling"))))

@@ -28,7 +28,6 @@ public class PatientOverviewPage extends BasePage {
         List<WebElement> taskElements = taskList.findElements(By.xpath(".//label[@title]/span"));
         for (WebElement row : taskElements) {
             if (Browser.getTextFromElement(row).equals(taskType)) {
-                System.out.println(row);
                 Browser.clickOnElement(row);
                 break;
             }
@@ -51,7 +50,7 @@ public class PatientOverviewPage extends BasePage {
     }
     public void clickViewTasksList() {
         Browser.waitForPageReady();
-        DriverManager.getInstance().fluentwait().until(ExpectedConditions.elementToBeClickable(By.xpath("//span[@class='task-heading']")));
+        Browser.waitForPresenceOfElement(By.xpath("//span[@class='task-heading']"));
         WebElement ViewTasks = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='task-heading']"));
         Browser.clickOnElementUsingJavascript(ViewTasks);
     }
