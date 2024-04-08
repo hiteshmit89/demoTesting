@@ -46,7 +46,7 @@ public class PatientWindowPage extends BasePage {
     }
 
     public void taskCreation() {
-        WebElement taskCreation = DriverManager.getInstance().Driver.findElement(By.xpath("// div[@class='create-task-btn']//button[normalize-space()='Create']"));
+        WebElement taskCreation = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='create-task-btn']//button[normalize-space()='Create']"));
         Browser.clickOnElement(taskCreation);
     }
 
