@@ -29,6 +29,14 @@ Use these steps to clone from SourceTree, our client for using the repository co
 1. You’ll see the clone button under the **Source** heading. Click that button.
 2. Now click **Check out in SourceTree**. You may need to create a SourceTree account or log in.
 3. When you see the **Clone New** dialog in SourceTree, update the destination path and name if you’d like to and then click **Clone**.
+
+## Running tests locally on Docker
+1. Make sure Docker variable is set to True in Default.properties.
+2. Run docker-compose -f docker-compose.yml up from project root folder.
+3. Navigate to http://localhost:4444/ui/ in your browser and check multiple browser nodes are running.
+4. Rum mvn clean test command in another powershell.
+5. Once tests are finished running run docker-compose -f docker-compose.yml down to release resources.
+6. Verify test results report in target folder.
 4. Open the directory you just created to see your repository’s files.
 
 Now that you're more familiar with your Bitbucket repository, go ahead and add a new file locally. You can [push your change back to Bitbucket with SourceTree](https://confluence.atlassian.com/x/iqyBMg), or you can [add, commit,](https://confluence.atlassian.com/x/8QhODQ) and [push from the command line](https://confluence.atlassian.com/x/NQ0zDQ).
