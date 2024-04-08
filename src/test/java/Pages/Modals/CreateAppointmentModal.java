@@ -19,11 +19,6 @@ public class CreateAppointmentModal {
         Browser.waitForPageReady();
     }
 
-    public static void selectPatient(String patientName) {
-        WebElement patientSelector = DriverManager.getInstance().Driver.findElement(By.xpath("//*[contains(text(),'Search for Patient')]"));
-        Browser.clickOnElement(patientSelector);
-    }
-
     public static void clickOnAddNewPatient() {
         WebElement addNewPatient = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='pull-right btn btn-default']"));
         Browser.clickOnElement(addNewPatient);
