@@ -10,5 +10,6 @@ public class BasePage {
 
     public BasePage(PageTitle title) {
         Browser.waitForPageReady();
-        Browser.waitForPageTitle(title);}
+        Browser.waitForPageTitle(title);
+    }
 }

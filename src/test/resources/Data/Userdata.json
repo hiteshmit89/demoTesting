@@ -2,7 +2,7 @@
   "Practices": [
     {
       "practice_id": 1,
-      "practice_name": "Romans, Burke and Wagner",
+      "practice_name": "Roman, Burke and Wagner",
       "address": 123,
       "Users": [
         {
@@ -28,12 +28,19 @@
           "phone_number": "1234567890",
           "email_id": "test@test.com",
           "birth_date": "01011976"
+        }
+      ],
+      "PatientData": [
+        {
+          "patient_name": "Sally Walker",
+          "task_description": "Automation",
+          "task_type": "Treatment"
         }
       ]
     },
     {
       "practice_id": 1,
-      "practice_name": "Romans, Burke and Wagner",
+      "practice_name": "Roman, Burke and Wagner",
       "address": 123,
       "Users": [
         {
@@ -59,6 +66,13 @@
           "phone_number": "1234567890",
           "email_id": "test@test.com",
           "birth_date": "01011976"
+        }
+      ],
+      "PatientData": [
+        {
+          "patient_name": "Sally Walker",
+          "task_description": "Automation",
+          "task_type": "Treatment"
         }
       ]
     }

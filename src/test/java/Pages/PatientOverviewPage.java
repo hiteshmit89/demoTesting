@@ -57,13 +57,11 @@ public class PatientOverviewPage extends BasePage {
 
     public void clickOpenTasksButton() {
         WebElement OpenButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='Open']"));
-        Browser.waitForPageReady();
         Browser.clickOnElement(OpenButton);
     }
 
     public void clickInProgressTasksButton() {
         WebElement InProgressButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='In progress']"));
-        Browser.waitForPageReady();
         Browser.clickOnElement(InProgressButton);
     }
 
