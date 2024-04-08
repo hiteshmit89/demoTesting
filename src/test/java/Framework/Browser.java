@@ -30,6 +30,10 @@ public class Browser {
         getFluentWait().until(ExpectedConditions.visibilityOf(element));
     }
 
+    public static void waitForPresenceOfElement(By locator) {
+        getFluentWait().until(ExpectedConditions.presenceOfElementLocated(locator));
+    }
+
     public static void waitForElementToBeClickable(WebElement element) {
         getFluentWait().until(ExpectedConditions.elementToBeClickable(element));
     }
@@ -53,10 +57,6 @@ public class Browser {
                 .ignoring(NoSuchElementException.class)
                 .ignoring(ElementClickInterceptedException.class)
                 .ignoring(ElementNotInteractableException.class);
-    }
-
-    public static void waitForAttributeValue(WebElement element, String attribute, String expectedValue) {
-        retry(() -> element.getAttribute(attribute).equals(expectedValue));
     }
 
     public static void waitForPageTitle(PageTitle title) {
@@ -115,6 +115,10 @@ public class Browser {
         element.sendKeys(text);
     }
 
+    public static void waitForAttributeValue(WebElement element, String attribute, String expectedValue) {
+        retry(() -> element.getAttribute(attribute).equals(expectedValue));
+    }
+
     public static void waitForPageReady() {
         DriverManager.getInstance().pageReady();
     }
@@ -147,12 +151,11 @@ public class Browser {
     }
 
     public static void clickOnElementUsingJavascript(WebElement element) {
-        JavascriptExecutor js = (JavascriptExecutor)DriverManager.getInstance().Driver;
+        JavascriptExecutor js = (JavascriptExecutor) DriverManager.getInstance().Driver;
         js.executeScript("arguments[0].click();", element);
     }
 
-    private static void retry(BooleanSupplier function)
-    {
+    private static void retry(BooleanSupplier function) {
         int count = 0;
         Exception exception = null;
         String exceptionMessage = "";
