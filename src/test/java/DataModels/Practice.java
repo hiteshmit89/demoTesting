@@ -5,6 +5,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
 
 public class Practice {
+    ArrayList<PatientData> patientData;
+    ArrayList<FormsData> formsData;
+
     @JsonProperty("practice_id")
     public int getPractice_id() {
         return this.practice_id; }
@@ -32,7 +35,14 @@ public class Practice {
     @JsonProperty("FormsData")
     public ArrayList<FormsData> getFormsData() {
         return this.formsData; }
+
     public void setFormsData(ArrayList<FormsData> formsData) {
         this.formsData = formsData; }
-    ArrayList<FormsData> formsData;
+
+    @JsonProperty("PatientData")
+    public ArrayList<PatientData> getPatientData() {
+        return this.patientData; }
+    @JsonProperty("PatientData")
+    public ArrayList<PatientData> setPatientData() {
+        return this.patientData; }
 }

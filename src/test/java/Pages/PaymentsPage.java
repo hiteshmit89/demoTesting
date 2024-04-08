@@ -16,9 +16,6 @@ public class PaymentsPage extends BasePage {
     private WebElement paymentsTab = DriverManager.getInstance().Driver.findElement(By.xpath("//li[@class='active']//a[contains(text(),'Payments')]"));
     private WebElement widgetLink = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='payment-page-tab-Widgets']"));
 
-   // private WebElement paymentUrl = DriverManager.getInstance().Driver.findElement(By.xpath("//i[@class='fa fa-copy']"));
-   //private WebElement eLink = DriverManager.getInstance().Driver.findElement(By.xpath("//span[contains(text(),'https://www.patientsreach.com/payment/')]"));
-
     public void clickOnWidgetslink() {
         WebElement widgetsTab = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='payment-page-tab-Widgets']"));
         Browser.waitForElementToBeClickable(widgetsTab);

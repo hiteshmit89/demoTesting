@@ -25,9 +25,6 @@ public class PaymentsStepDefination {
     @Then("The user is able to make payment")
     public void theUserIsAbleToMakePayment() {
        PbNUIApp.OnlinePaymentPortalPage().fillPaymentPortalDetails();
-       PbNUIApp.OnlinePaymentPortalPage().enterFirstName("First Name");
-//       PbNUIApp.OnlinePaymentPortalPage().enterLastName("Last Name");
-//       PbNUIApp.OnlinePaymentPortalPage().enterBirthDate("01/01/2001");
        PbNUIApp.OnlinePaymentPortalPage().clickOnContinueButton();
        PbNUIApp.OnlinePaymentPortalPage().enterPaymentAmount("100");
     }

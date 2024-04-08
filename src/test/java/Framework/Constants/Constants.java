@@ -12,8 +12,8 @@ public class Constants {
         SettingsTitle("Practice by Numbers: Settings"),
         PaymentsTitle ("Practice by Numbers: Payment"),
         FormsTitle("Practice by Numbers: online_forms"),
-        OnlinePaymentPortalTitle ("Payment Portal");
-
+        OnlinePaymentPortalTitle ("Payment Portal"),
+        TasksTitle("Practice by Numbers: Tasks");
         public final String label;
 
         PageTitle(String label) {

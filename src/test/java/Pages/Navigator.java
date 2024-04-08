@@ -14,7 +14,7 @@ public class Navigator {
     public void NavigateTo(Destination destination) {
         List<WebElement> mainMenuItems = DriverManager.getInstance().Driver.findElements(By.xpath("//div/ul[contains(@class,'nav navbar-nav navbar-left pn-master-dashboard-nav')]/li/a"));
         for (WebElement item: mainMenuItems) {
-            if (Browser.getTextFromElement(item).equals(destination.label)) {
+            if (Browser.getTextFromElement(item).contains(destination.label)) {
                 Browser.clickOnElement(item);
                 break;
             }
