@@ -6,8 +6,6 @@ import Framework.Util.DriverManager;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-
-
 import java.util.List;
 
 public class PracticeHomePage extends BasePage {
@@ -59,5 +57,3 @@ public class PracticeHomePage extends BasePage {
         Browser.clickOnElement(settingMenuItem);
     }
 }
-
-

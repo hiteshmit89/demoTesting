@@ -7,7 +7,6 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -15,6 +14,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.time.Duration;
 import java.util.function.BooleanSupplier;
 
@@ -29,6 +30,10 @@ public class Browser {
         getFluentWait().until(ExpectedConditions.visibilityOf(element));
     }
 
+    public static void waitForPresenceOfElement(By locator) {
+        getFluentWait().until(ExpectedConditions.presenceOfElementLocated(locator));
+    }
+
     public static void waitForElementToBeClickable(WebElement element) {
         getFluentWait().until(ExpectedConditions.elementToBeClickable(element));
     }
@@ -41,6 +46,10 @@ public class Browser {
         getFluentWait().until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
+    public static void waitForElementPresence(By locator) {
+        getFluentWait().until(ExpectedConditions.presenceOfElementLocated(locator));
+    }
+
     private static FluentWait<WebDriver> getFluentWait() {
         return new FluentWait<WebDriver>((WebDriver) DriverManager.getInstance().Driver)
                 .withTimeout(Duration.ofSeconds(Integer.parseInt(ConfigManager.getInstance().getProperty("Timeout"))))
@@ -48,10 +57,6 @@ public class Browser {
                 .ignoring(NoSuchElementException.class)
                 .ignoring(ElementClickInterceptedException.class)
                 .ignoring(ElementNotInteractableException.class);
-    }
-
-    public static void waitForAttributeValue(WebElement element, String attribute, String expectedValue) {
-        retry(() -> element.getAttribute(attribute).equals(expectedValue));
     }
 
     public static void waitForPageTitle(PageTitle title) {
@@ -70,6 +75,14 @@ public class Browser {
         retry(() -> table.findElements(By.xpath("./../td/div")).size() >= size);
     }
 
+    public static void waitForElementChildren(WebElement element, By locator) {
+        retry(() -> !element.findElements(locator).isEmpty());
+    }
+
+    public static void waitForElementList(By locator) {
+        retry(() -> !DriverManager.getInstance().Driver.findElements(locator).isEmpty());
+    }
+
     public static void clickOnElement(WebElement element) {
         waitForElementToDisplay(element);
         element.click();
@@ -81,6 +94,16 @@ public class Browser {
         mouseAction.doubleClick(element).build().perform();
     }
 
+    public static void pressEnter() {
+        try {
+            Robot robot = new Robot();
+            robot.keyPress(KeyEvent.VK_ENTER);
+            robot.keyRelease(KeyEvent.VK_ENTER);
+        } catch (AWTException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public static String getTextFromElement(WebElement element) {
         waitForElementToDisplay(element);
         return element.getText();
@@ -90,6 +113,10 @@ public class Browser {
         waitForElementToDisplay(element);
         element.clear();
         element.sendKeys(text);
+    }
+
+    public static void waitForAttributeValue(WebElement element, String attribute, String expectedValue) {
+        retry(() -> element.getAttribute(attribute).equals(expectedValue));
     }
 
     public static void waitForPageReady() {
@@ -124,12 +151,11 @@ public class Browser {
     }
 
     public static void clickOnElementUsingJavascript(WebElement element) {
-        JavascriptExecutor js = (JavascriptExecutor)DriverManager.getInstance().Driver;
+        JavascriptExecutor js = (JavascriptExecutor) DriverManager.getInstance().Driver;
         js.executeScript("arguments[0].click();", element);
     }
 
-    private static void retry(BooleanSupplier function)
-    {
+    private static void retry(BooleanSupplier function) {
         int count = 0;
         Exception exception = null;
         String exceptionMessage = "";
