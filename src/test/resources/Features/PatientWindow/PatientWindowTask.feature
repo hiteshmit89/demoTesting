@@ -6,7 +6,6 @@ Feature: Patient Window Task Creation
   Scenario Outline: Verify User can create All types of tasks from patient window & close them from Task Page
     Given I login to PbN app
     And I click on practice name
-   ## And I see activity for practice
     And I click on patient finder & open Patient Window
     And I click on task button & opted "<TaskType>"
     And I added description
