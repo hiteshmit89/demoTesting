@@ -29,7 +29,6 @@ public class PatientWindowPage extends BasePage {
         List<WebElement> taskElements = taskList.findElements(By.xpath(".//label[@title]/span"));
         for (WebElement row : taskElements) {
             if (Browser.getTextFromElement(row).equals(taskType)) {
-                System.out.println(row);
                 Browser.clickOnElement(row);
                 break;
             }
