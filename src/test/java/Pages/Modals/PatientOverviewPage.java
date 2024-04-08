@@ -1,8 +1,9 @@
-package Pages;
+package Pages.Modals;
 
 import Framework.Browser;
 import Framework.Constants.Constants;
 import Framework.Util.DriverManager;
+import Pages.BasePage;
 import junit.framework.Assert;
 
 import java.text.SimpleDateFormat;
@@ -48,6 +49,7 @@ public class PatientOverviewPage extends BasePage {
         WebElement taskCreation = DriverManager.getInstance().Driver.findElement(By.xpath("// div[@class='create-task-btn']//button[normalize-space()='Create']"));
         Browser.clickOnElement(taskCreation);
     }
+
     public void clickViewTasksList() {
         Browser.waitForPageReady();
         Browser.waitForPresenceOfElement(By.xpath("//span[@class='task-heading']"));

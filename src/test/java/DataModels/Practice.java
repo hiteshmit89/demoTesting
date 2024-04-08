@@ -38,8 +38,6 @@ public class Practice {
 
     public void setFormsData(ArrayList<FormsData> formsData) {
         this.formsData = formsData; }
-}
-
     @JsonProperty("PatientData")
     public ArrayList<PatientData> getPatientData() {
         return this.patientData; }
