@@ -69,6 +69,14 @@ public class Browser {
         retry(() -> !table.findElements(By.xpath(".//tr")).isEmpty());
     }
 
+    public static void waitForElementChildren(WebElement element, By locator) {
+        retry(() -> !element.findElements(locator).isEmpty());
+    }
+
+    public static void waitForElementList(By locator) {
+        retry(() -> !DriverManager.getInstance().Driver.findElements(locator).isEmpty());
+    }
+
     public static void clickOnElement(WebElement element) {
         waitForElementToDisplay(element);
         element.click();
