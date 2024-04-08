@@ -12,6 +12,29 @@ public class PatientWindowStepDefinition {
         PbNUIApp.navigator().findAndSelectPatientByExactMatchOf("Sally Walker");
     }
 
+    @And("I click on task button & opted {string}")
+    public void iClickOnTaskButtonOpted(String taskType) {
+        if (taskType.equals(PbNUIApp.userdata().getPractices().getFirst().getPatientData().getFirst().getTask_type())) {
+            PbNUIApp.patientOverviewPage().selectTask(taskType);
+        } else {
+            PbNUIApp.patientOverviewPage().selectTask(taskType);
+        }
+    }
+
+    @And("I added description")
+    public void iAddedDescription() {
+        PbNUIApp.patientOverviewPage().addTaskDescription(PbNUIApp.userdata().getPractices().getFirst().getPatientData().getFirst().getTask_description());
+    }
+
+    @Then("I added task due date")
+    public void iAddedTaskDueDate() {
+        PbNUIApp.patientOverviewPage().taskDueDate();
+    }
+
+    @And("I created a task")
+    public void iCreatedATask() {
+        PbNUIApp.patientOverviewPage().taskCreation();
+    }
     @And("I select the View Tasks")
     public void iSelectTheViewTasks() {
         PbNUIApp.patientOverviewPage().clickViewTasksList();
@@ -32,18 +55,8 @@ public class PatientWindowStepDefinition {
         PbNUIApp.patientOverviewPage().validateAllButtonStatus();
     }
 
-    @Then("I select the closed button and Verify the all Tasks in closed state")
-    public void iSelectTheClosedButtonAndVerifyTheAllTasksInClosedState() {
-        PbNUIApp.patientOverviewPage().validateClosedStatus();
-    }
-
-    @Then("I select the open button and Verify the all Tasks in open state")
-    public void ISelectTheOpenButtonAndVerifyTheAllTasksInOpenState() {
-        PbNUIApp.patientOverviewPage().validateOpenStatus();
-    }
-
-    @Then("I select the In progress button and Verify the all Tasks In progress state")
-    public void ISelectTheInProgressButtonAndVerifyTheAllTasksInProgressState() {
-        PbNUIApp.patientOverviewPage().validateInProgressStatus();
+    @Then("I select the relevant button and Verify the all Tasks in {string} state")
+    public void iSelectTheRelevantButtonAndVerifyTheAllTasksInState(String status) {
+        PbNUIApp.patientOverviewPage().validateTaskStatus(status);
     }
 }

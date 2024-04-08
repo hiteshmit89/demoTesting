@@ -2,105 +2,132 @@ package Pages;
 
 import Framework.Browser;
 import Framework.Constants.Constants;
-import Framework.Util.Verify;
 import Framework.Util.DriverManager;
 import junit.framework.Assert;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-
 public class PatientOverviewPage extends BasePage {
-    public PatientOverviewPage(Constants.PageTitle PageTitle) {
-        super(PageTitle);
+    public PatientOverviewPage(Constants.PageTitle PageTitle) {super(PageTitle);}
+
+    private String getCurrentDate() {
+        return (new SimpleDateFormat("MM/dd/yyyy").format(new Date()));
     }
 
+    public void selectTask(String taskType) {
+        WebElement taskButton = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='patient-actions']//div[@class='action-item']//span[contains(text(),'Task')]/.."));
+        Browser.clickOnElementUsingJavascript(taskButton);
+        Browser.waitForPageReady();
+        Browser.waitForPresenceOfElement(By.xpath("//*[@id='patient-window-tabs-id']//div[@class='col-xs-12']//span[text()='General Task']"));
+        WebElement taskList = DriverManager.getInstance().Driver.findElement(By.xpath("//form[@class='create-task-form']"));
+        List<WebElement> taskElements = taskList.findElements(By.xpath(".//label[@title]/span"));
+        for (WebElement row : taskElements) {
+            if (Browser.getTextFromElement(row).equals(taskType)) {
+                System.out.println(row);
+                Browser.clickOnElement(row);
+                break;
+            }
+        }
+    }
+
+    public void addTaskDescription(String TaskDescription) {
+        WebElement taskDescription = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='margin-top description-section form-group']//input[@id='formControlsDescription']"));
+        Browser.enterTextInEditBox(taskDescription, TaskDescription);
+    }
+
+    public void taskDueDate() {
+        WebElement taskDueDate = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@id='due_date']"));
+        Browser.enterTextInEditBox(taskDueDate, getCurrentDate());
+    }
+
+    public void taskCreation() {
+        WebElement taskCreation = DriverManager.getInstance().Driver.findElement(By.xpath("// div[@class='create-task-btn']//button[normalize-space()='Create']"));
+        Browser.clickOnElement(taskCreation);
+    }
     public void clickViewTasksList() {
-        Browser.waitForElementToDisplay(DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='task-heading']")));
-        Browser.clickUsingJavascript(DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='task-heading']")));
+        Browser.waitForPageReady();
+        DriverManager.getInstance().fluentwait().until(ExpectedConditions.elementToBeClickable(By.xpath("//span[@class='task-heading']")));
+        WebElement ViewTasks = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='task-heading']"));
+        Browser.clickOnElementUsingJavascript(ViewTasks);
     }
 
     public void clickOpenTasksButton() {
-        DriverManager.getInstance().fluentwait().until(ExpectedConditions.elementToBeClickable(By.xpath("//button[text()='Open']")));
-        Browser.clickOnElement(DriverManager.getInstance().Driver.findElement(By.xpath("//button[normalize-space()='Open']")));
+        WebElement OpenButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='Open']"));
+        Browser.waitForPageReady();
+        Browser.clickOnElement(OpenButton);
     }
 
     public void clickInProgressTasksButton() {
-        DriverManager.getInstance().fluentwait().until(ExpectedConditions.elementToBeClickable(By.xpath("//button[text()='In progress']")));
-        Browser.clickOnElement(DriverManager.getInstance().Driver.findElement(By.xpath("//button[normalize-space()='In progress']")));
+        WebElement InProgressButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='In progress']"));
+        Browser.waitForPageReady();
+        Browser.clickOnElement(InProgressButton);
     }
 
     public void validateAllButtonStatus() {
-        DriverManager.getInstance().pageReady();Browser.waitForElementToBeVisible(By.xpath("//*[text()='No tasks available']"));
+        Browser.waitForElementToBeVisible(By.xpath("//*[text()='No tasks available']"));
+        Browser.waitForPageReady();
         WebElement entry = DriverManager.getInstance().Driver.findElement(By.xpath("//*[text()='No tasks available']"));
         Assert.assertTrue(Browser.getTextFromElement(entry).contains("No tasks available"));
     }
 
-    public void validateClosedStatus() {
-        Browser.clickOnElement(DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='Closed']")));
-        DriverManager.getInstance().pageReady();
-
-        if(!Browser.iselementDisplayed("//td[@class='react-bs-table-no-data']")==true) {
-            Browser.waitForElementToBeVisible(By.xpath("(//tbody/tr[@class='custom-row-class']/td[2])[1]"));
-            List<WebElement> closed = DriverManager.getInstance().Driver.findElements(By.xpath("//tbody/tr[@class='custom-row-class']/td[2]"));
-            try {
-                for(WebElement webelement:closed) {
-                    Verify.verifyEquals(Browser.getTextFromElement(webelement), "Closed", "Closed not matched");
+    public void validateTaskStatus(String status) {
+        Browser.clickOnElement(DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='" + status + "']")));
+        Browser.waitForPageReady();
+        WebElement askTaskTable = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='patient-window-tabs-id']//table[@class='table table-hover table-bordered task-list-table']"));
+        Browser.waitForTableToLoad(askTaskTable);
+        if (!askTaskTable.findElements(By.xpath(".//tr")).isEmpty()) {
+            List<WebElement> taskStatusList = askTaskTable.findElements(By.xpath(".//tr//td[2]//span"));
+            for (WebElement taskStatus : taskStatusList) {
+                if (!Browser.getTextFromElement(taskStatus).equals(status)) {
+                    Assert.fail("Closed button filter on patient window all task table does not work as expected");
+                    break;
                 }
-                //Verify.assertAll();
-            } catch (AssertionError e) {
-                logger.warning(e.getMessage());
             }
-            Browser.clickOnElement(DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='Closed']")));
         }
-        else {
-            logger.info("no task available");
-        }
+        Browser.clickOnElement(DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='" + status + "']")));
     }
-
-    public void validateOpenStatus() {
-        Browser.clickOnElement(DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='Open']")));
-        DriverManager.getInstance().pageReady();
-        if(!Browser.iselementDisplayed("//td[@class='react-bs-table-no-data']")==true) {
-            Browser.waitForElementToBeVisible(By.xpath("(//tbody/tr[@class='custom-row-class']/td[2])[1]"));
-            List<WebElement> open = DriverManager.getInstance().Driver.findElements(By.xpath("//tbody/tr[@class='custom-row-class']/td[2]"));
-            try {
-                for(WebElement webelement:open) {
-                    Verify.verifyEquals(Browser.getTextFromElement(webelement), "Open", "Open not matched");
-                }
-              // Verify.assertAll();
-            } catch (AssertionError e) {
-                logger.warning(e.getMessage());
-            }
-            Browser.clickOnElement(DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='Open']")));
-        }
-        else {
-            logger.info("no task available");
-        }
-    }
-
-    public void validateInProgressStatus() {
-        Browser.clickOnElement(DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='In progress']")));
-        DriverManager.getInstance().pageReady();
-        if(!Browser.iselementDisplayed("//td[@class='react-bs-table-no-data']")==true) {
-            Browser.waitForElementToBeVisible(By.xpath("(//tbody/tr[@class='custom-row-class']/td[2])[1]"));
-            List<WebElement> inprogress = DriverManager.getInstance().Driver
-                    .findElements(By.xpath("//tbody/tr[@class='custom-row-class']/td[2]"));
-            try {
-                for(WebElement webelement:inprogress) {
-                    Verify.verifyEquals(Browser.getTextFromElement(webelement), "In Progress", "In Progress not matched");
-                }
-               //Verify.assertAll();
-            } catch (AssertionError e) {
-                logger.warning(e.getMessage());
-            }
-            Browser.clickOnElement(DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='In progress']")));
-        }
-        else {
-            logger.info("no task available");
-        }
-    }
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
