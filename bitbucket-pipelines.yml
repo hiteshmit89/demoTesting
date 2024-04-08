@@ -5,20 +5,22 @@
 
 # Prerequisites: pom.xml and appropriate project structure should exist in the repository.
 
-#image: maven:3.9.6
+image: maven:3.9.6
 
 pipelines:
   default:
-      - step:
-          name: Build and Test
-          caches:
-            - maven
-          script:
-            - mvn clean test
-          artifacts:
-            - reports/**
-          services:
-            - chrome
+    -  parallel:
+        - step:
+            name: Build and Test
+            caches:
+              - maven
+            script:
+              - mvn -B verify pom.xml
+              - mvn clean test
+            artifacts:
+              - target/HtmlReports/**
+            services:
+              - chrome
 definitions:
   services:
     chrome:
