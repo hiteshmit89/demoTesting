@@ -58,7 +58,6 @@ public class Browser {
 
     public static void waitForAttributeValue(WebElement element, String attribute, String expectedValue) {
         retry(() -> element.getAttribute(attribute).equals(expectedValue));
-        System.out.println(element.getAttribute("class"));
     }
 
     public static void waitForPageTitle(PageTitle title) {
@@ -67,6 +66,14 @@ public class Browser {
 
     public static void waitForTableToLoad(WebElement table) {
         retry(() -> !table.findElements(By.xpath(".//tr")).isEmpty());
+    }
+
+    public static void waitForTableSizeToBe(WebElement table, int size) {
+        retry(() -> table.findElements(By.xpath(".//tr")).size() >= size);
+    }
+
+    public static void waitForTableRowSizeToBe(WebElement table, int size) {
+        retry(() -> table.findElements(By.xpath("./../td/div")).size() >= size);
     }
 
     public static void waitForElementChildren(WebElement element, By locator) {
