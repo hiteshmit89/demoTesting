@@ -24,6 +24,3 @@ Feature: Functionality of Patient Task List
       | General Task         |
       | Account Receivable   |
       | Patient Recall       |
-
-
-
