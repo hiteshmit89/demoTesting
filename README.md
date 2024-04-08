@@ -35,7 +35,7 @@ Use these steps to clone from SourceTree, our client for using the repository co
 2. Run docker-compose -f docker-compose.yml up from project root folder.
 3. Navigate to http://localhost:4444/ui/ in your browser and check multiple browser nodes are running.
 4. Rum mvn clean test command in another powershell.
-5. Once tests are finished running run docker-compose -f docker-compose.yml down to release resources.
+5. Once tests are finished running go back to previous powershell and press ctrl+C and run docker-compose -f docker-compose.yml down to release resources.
 6. Verify test results report in target folder.
 4. Open the directory you just created to see your repository’s files.
 
