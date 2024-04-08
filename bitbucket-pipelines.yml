@@ -15,7 +15,7 @@ pipelines:
             caches:
               - maven
             script:
-              - mvn -B verify pom.xml
+              - mvn -B verify
               - mvn clean test
             artifacts:
               - target/HtmlReports/**
