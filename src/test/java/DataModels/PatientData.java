@@ -6,10 +6,15 @@ public class PatientData {
 
     @JsonProperty("patient_name")
     public String getPatient_name() {
-        return this.patient_name; }
+        return this.patient_name;
+    }
+
     public void setPatient_name(String first_name) {
-        this.patient_name = first_name; }
+        this.patient_name = first_name;
+    }
+
     String patient_name;
+
     @JsonProperty("task_description")
 
     public String getTask_description() {
@@ -30,5 +35,6 @@ public class PatientData {
     public void setTask_type(String task_type) {
         this.task_type = task_type;
     }
+
     String task_type;
 }
