@@ -18,7 +18,7 @@ definitions:
   services:
     selenium-hub:
       image: selenium/hub:4.19.1-20240402
-      memory: 2048
+      memory: 1024
 
       variables:
         SE_EVENT_BUS_HOST: "127.0.0.1"
