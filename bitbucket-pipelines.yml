@@ -1,27 +1,15 @@
-#  Template maven-build
-
-#  This template allows you to test and build your Java project with Maven.
-#  The workflow allows running tests, code checkstyle and security scans on the default branch.
-
-# Prerequisites: pom.xml and appropriate project structure should exist in the repository.
-
 image: maven:3.9.6
 
 pipelines:
   default:
-    -  parallel:
-        - step:
-            name: Build and Test
-            caches:
-              - maven
-            script:
-              - mvn clean test
-            artifacts:
-              - target/HtmlReports/**
-            services:
-              - chrome
-definitions:
-  services:
-    chrome:
-      image: selenium/standalone-chrome
-      container_name: standalonechrome
+    - step:
+        name: Run Selenium Tests
+        caches:
+          - maven
+        services:
+          - name: selenium/hub:4.19.1-20240402
+            alias: selenium-hub
+          - name: selenium/node-chrome:4.19.1-20240402
+            alias: chrome
+        script:
+          - mvn clean test

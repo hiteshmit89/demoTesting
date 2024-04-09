@@ -6,7 +6,7 @@ services:
   chrome:
     image: selenium/node-chrome:4.19.1-20240402
     shm_size: 2gb
-    depends_on:
+    depends_on: 
       - selenium-hub
     environment:
       - SE_EVENT_BUS_HOST=selenium-hub
@@ -39,4 +39,13 @@ services:
     ports:
       - "4442:4442"
       - "4443:4443"
-      - "4444:4444"
+      - "4444:4444" 
+      
+  test-runner:
+    build: .
+    volumes:
+      - .:/app
+    depends_on:
+      - selenium-hub
+    command: mvn clean test
+
