@@ -24,7 +24,7 @@ public class CampaignsStepDefinition {
     }
 
     @Then("I check for {string} UI")
-    public void iAmRedirectedToFollowUpCampaignsTab(String campaignName)  {
+    public void iAmRedirectedToFollowUpCampaignsTab(String campaignName) {
         PbNUIApp.campaignsPage().verifyFollowUpPageUiFor(campaignName);
     }
 }
