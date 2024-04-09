@@ -6,9 +6,12 @@ import Framework.Constants.Constants;
 import java.util.logging.Logger;
 
 import static Framework.Constants.Constants.*;
+import java.util.logging.Logger;
+
 
 public class BasePage {
     public final Logger logger = Logger.getLogger("PBN");
+
     public BasePage(PageTitle title) {
         Browser.waitForPageReady();
         Browser.waitForPageTitle(title);
