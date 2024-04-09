@@ -5,13 +5,11 @@ import Framework.Constants.Constants;
 import Framework.Util.DriverManager;
 import Pages.BasePage;
 import junit.framework.Assert;
-
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class PatientOverviewPage extends BasePage {
     public PatientOverviewPage(Constants.PageTitle PageTitle) {super(PageTitle);}
@@ -67,7 +65,7 @@ public class PatientOverviewPage extends BasePage {
         Browser.clickOnElement(InProgressButton);
     }
 
-    public void validateAllButtonStatus() {
+    public void validateNoTaskAvailableButtonStatus() {
         Browser.waitForElementToBeVisible(By.xpath("//*[text()='No tasks available']"));
         Browser.waitForPageReady();
         WebElement entry = DriverManager.getInstance().Driver.findElement(By.xpath("//*[text()='No tasks available']"));

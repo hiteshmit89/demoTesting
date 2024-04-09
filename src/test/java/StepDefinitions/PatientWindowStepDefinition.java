@@ -37,7 +37,7 @@ public class PatientWindowStepDefinition {
 
     @Then("ViewTasks all button should be disabled")
     public void viewTasksAllButtonShouldBeDisabled() {
-        PbNUIApp.patientOverviewPage().validateAllButtonStatus();
+        PbNUIApp.patientOverviewPage().validateNoTaskAvailableButtonStatus();
     }
 
     @And("I select the relevant button and Verify the all Tasks in {string} state")
