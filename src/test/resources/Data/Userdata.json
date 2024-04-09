@@ -28,6 +28,14 @@
           "phone_number": "1234567890",
           "email_id": "test@test.com",
           "birth_date": "01011976"
+        },
+        {
+          "FormType": "AppointmentBooking",
+          "first_name": "Robert",
+          "last_name": "Aguilar",
+          "phone_number": "1234567890",
+          "email_id": "test@test.com",
+          "birth_date": "04192004"
         }
       ],
       "PatientData": [
