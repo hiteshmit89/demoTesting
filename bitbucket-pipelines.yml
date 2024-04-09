@@ -10,8 +10,6 @@ pipelines:
           - selenium-hub
           - chrome
         script:
-          - nslookup selenium-hub
-          - ping -c 3 selenium-hub
           - mvn clean test
 definitions:
   services:
