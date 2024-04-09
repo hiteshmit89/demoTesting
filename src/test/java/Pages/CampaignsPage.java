@@ -23,7 +23,7 @@ public class CampaignsPage extends BasePage {
     private final List<WebElement> patientFollowUpTable = DriverManager.getInstance().Driver.findElements(By.xpath("//*[@id='root']//table"));
 
     public void verifyCampaignsHeadingDisplayedOnCampaignsPage() {
-        Browser.waitForElementToDisplay(followUpCampaignsHeading);
+        Browser.waitForElementToBeVisible(reviewReplyTemplatesHeading);
         Assert.assertTrue("Follow up Campaigns heading is not visible on campaigns page.", followUpCampaignsHeading.isDisplayed());
         Assert.assertTrue("Custom Campaigns heading is not visible on campaigns page.", customCampaignsHeading.isDisplayed());
         Assert.assertTrue("Email templates heading is not visible on campaigns page.", emailTemplatesHeading.isDisplayed());
@@ -33,6 +33,10 @@ public class CampaignsPage extends BasePage {
 
     public void verifyFollowUpPageUiFor(String campaignName) {
         Browser.waitForTableSizeToBe(patientFollowUpTable.getFirst(), 5);
+        Browser.waitForTableSizeToBe(patientFollowUpTable.get(1), 3);
+        Browser.waitForTableSizeToBe(patientFollowUpTable.get(2), 3);
+        Browser.waitForTableSizeToBe(patientFollowUpTable.get(3), 3);
+        Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='table-responsive']//td[contains(text(),'"+campaignName+"')]")));
         WebElement campaignTitle = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='table-responsive']//td[contains(text(),'"+campaignName+"')]"));
         Browser.scrollToVisibleElement(campaignTitle);
         List<WebElement> gridCells = campaignTitle.findElements(By.xpath("./following-sibling::td"));
@@ -60,6 +64,7 @@ public class CampaignsPage extends BasePage {
     public void verifyCampaignsEllipsisActionItems(String campaignName) {
         WebElement campaignEllipsisIcon = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='table-responsive']//td[contains(text(),'"+campaignName+"')]/..//button[contains(@class,'ellipsis')]"));
         Browser.clickOnElement(campaignEllipsisIcon);
+        Browser.waitForElementToBeVisible(By.linkText("Create new from default"));
         WebElement editCampaignAction = DriverManager.getInstance().Driver.findElement(By.linkText("Edit"));
         WebElement createNewCampaignAction = DriverManager.getInstance().Driver.findElement(By.linkText("Create new from default"));
         WebElement duplicateCampaignAction = DriverManager.getInstance().Driver.findElement(By.linkText("Duplicate"));

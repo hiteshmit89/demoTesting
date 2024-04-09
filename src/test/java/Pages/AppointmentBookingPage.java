@@ -17,9 +17,9 @@ public class AppointmentBookingPage extends BasePage {
     private final List<WebElement> locationFinder = DriverManager.getInstance().Driver.findElements(By.xpath("//*[@id='patient-appointment-booking-page']//div[@class='location-item-name']"));
 
     public void clickOnPickLocation() {
-        Browser.waitForElementToBeClickable(By.xpath("//div[@class='location-item-name'and text()='Romans, Burke and Wagner']"));
-        Browser.waitForElementToBeVisible(By.xpath("//div[@class='location-item-name'and text()='Romans, Burke and Wagner']"));
-        WebElement setLocation = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='location-item-name'and text()='Romans, Burke and Wagner']"));
+        Browser.waitForElementToBeClickable(By.xpath("//div[@class='MuiPaper-root location-item-card card-background-color MuiPaper-elevation1 MuiPaper-rounded']"));
+        Browser.waitForElementToBeVisible(By.xpath("//div[@class='MuiPaper-root location-item-card card-background-color MuiPaper-elevation1 MuiPaper-rounded']"));
+        WebElement setLocation = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='MuiPaper-root location-item-card card-background-color MuiPaper-elevation1 MuiPaper-rounded']"));
         Browser.clickOnElement(setLocation);
     }
 
@@ -48,6 +48,14 @@ public class AppointmentBookingPage extends BasePage {
         enterPhoneNumber(PbNUIApp.userdata().getPractices().getFirst().getFormsData().getFirst().getPhone_number());
         enterEmailID(PbNUIApp.userdata().getPractices().getFirst().getFormsData().getFirst().getEmail_id());
         enterBirthDate(PbNUIApp.userdata().getPractices().getFirst().getFormsData().getFirst().getBirth_date());
+    }
+
+    public void fillAppointmentBookingFormForInactivePatient() {
+        enterFirstName(PbNUIApp.userdata().getPractices().getFirst().getFormsData().get(1).getFirst_name());
+        enterLastName(PbNUIApp.userdata().getPractices().getFirst().getFormsData().get(1).getLast_name());
+        enterPhoneNumber(PbNUIApp.userdata().getPractices().getFirst().getFormsData().get(1).getPhone_number());
+        enterEmailID(PbNUIApp.userdata().getPractices().getFirst().getFormsData().get(1).getEmail_id());
+        enterBirthDate(PbNUIApp.userdata().getPractices().getFirst().getFormsData().get(1).getBirth_date());
     }
 
     public void enterFirstName(String firstNameData) {
@@ -80,7 +88,6 @@ public class AppointmentBookingPage extends BasePage {
         WebElement agreeCheckBox = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@type='checkbox']"));
         Browser.scrollToVisibleElement(agreeCheckBox);
         agreeCheckBox.click();
-
     }
 
     public void clickOnNextButton() {
@@ -121,5 +128,11 @@ public class AppointmentBookingPage extends BasePage {
     public void verifySuccessfulTextDisplayed() {
         WebElement successfulText = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='HomePageRoot']//h1[contains(text(),'Successful')]"));
         Assert.assertTrue("Successful text not displayed on appointment booking page.", successfulText.isDisplayed());
+    }
+
+    public void verifyTextDisplayedMessage() {
+        Browser.waitForElementToBeVisible(By.xpath("//div[@class='MuiAlert-message']"));
+        WebElement verifyText = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='MuiAlert-message']"));
+        Assert.assertTrue("Unable to book Appointment text is displayed on appointment booking page.", verifyText.isDisplayed());
     }
 }

@@ -5,7 +5,7 @@
 
 # Prerequisites: pom.xml and appropriate project structure should exist in the repository.
 
-image: maven:3.9.6
+image: maven:3.9.6-eclipse-temurin-21-jammy
 
 pipelines:
   default:
@@ -15,7 +15,6 @@ pipelines:
             caches:
               - maven
             script:
-              - mvn -B verify
               - mvn clean test
             artifacts:
               - target/HtmlReports/**
@@ -24,4 +23,5 @@ pipelines:
 definitions:
   services:
     chrome:
-      image: selenium/standalone-chrome
+      image: selenium/standalone-chrome:4.19.1-20240402
+      container_name: standalonechrome

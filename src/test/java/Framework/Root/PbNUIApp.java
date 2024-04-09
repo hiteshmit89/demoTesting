@@ -20,10 +20,14 @@ public class PbNUIApp {
         }
         return userdata;
     }
+
     public static LoginPage loginPage() {
         return new LoginPage(LoginTitle);
     }
-    public static FormsPage formsPage() { return new FormsPage(FormsTitle); }
+
+    public static FormsPage formsPage() {
+        return new FormsPage(FormsTitle);
+    }
 
     public static AppHomePage appHomePage() {
         return new AppHomePage(HomeTitle);
