@@ -10,8 +10,8 @@ pipelines:
         services:
           - selenium-hub
           - chrome
-          - chrome-1
-          - chrome-2
+          # - chrome-1
+          # - chrome-2
         script:
           - mvn clean test
 definitions:
@@ -28,18 +28,20 @@ definitions:
       variables:
         SE_EVENT_BUS_HOST: "127.0.0.1"
         SE_EVENT_BUS_PUBLISH_PORT: "4442"
+        NODE_MAX_SESSION: "4"
+        NODE_MAX_INSTANCES: "4"
         SE_EVENT_BUS_SUBSCRIBE_PORT: "4443"
-    chrome-1:
-      image: selenium/node-chrome:4.19.1-20240402
-      memory: 2048
-      variables:
-        SE_EVENT_BUS_HOST: "127.0.0.1"
-        SE_EVENT_BUS_PUBLISH_PORT: "4442"
-        SE_EVENT_BUS_SUBSCRIBE_PORT: "4443"
-    chrome-2:
-      image: selenium/node-chrome:4.19.1-20240402
-      memory: 2048
-      variables:
-        SE_EVENT_BUS_HOST: "127.0.0.1"
-        SE_EVENT_BUS_PUBLISH_PORT: "4442"
-        SE_EVENT_BUS_SUBSCRIBE_PORT: "4443"
+    # chrome-1:
+    #   image: selenium/node-chrome:4.19.1-20240402
+    #   memory: 2048
+    #   variables:
+    #     SE_EVENT_BUS_HOST: "127.0.0.1"
+    #     SE_EVENT_BUS_PUBLISH_PORT: "4442"
+    #     SE_EVENT_BUS_SUBSCRIBE_PORT: "4443"
+    # chrome-2:
+    #   image: selenium/node-chrome:4.19.1-20240402
+    #   memory: 2048
+    #   variables:
+    #     SE_EVENT_BUS_HOST: "127.0.0.1"
+    #     SE_EVENT_BUS_PUBLISH_PORT: "4442"
+    #     SE_EVENT_BUS_SUBSCRIBE_PORT: "4443"
