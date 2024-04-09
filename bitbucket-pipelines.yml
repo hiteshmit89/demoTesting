@@ -7,9 +7,19 @@ pipelines:
         caches:
           - maven
         services:
-          - name: selenium/hub:4.19.1-20240402
-            alias: selenium-hub
-          - name: selenium/node-chrome:4.19.1-20240402
-            alias: chrome
+          - selenium-hub
+          - chrome
         script:
           - mvn clean test
+definitions:
+  services:
+    selenium-hub:
+      image: selenium/hub:4.19.1-20240402
+      variables:
+        SE_EVENT_BUS_HOST: "selenium-hub"
+    chrome:
+      image: selenium/node-chrome:4.19.1-20240402
+      variables:
+        SE_EVENT_BUS_HOST: "selenium-hub"
+        SE_EVENT_BUS_PUBLISH_PORT: "4442"
+        SE_EVENT_BUS_SUBSCRIBE_PORT: "4443"
