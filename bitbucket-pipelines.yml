@@ -15,7 +15,9 @@ pipelines:
             caches:
               - maven
             script:
+              - docker-compose -f docker-compose.yml up
               - mvn clean test
+              - docker-compose -f docker-compose.yml down
             artifacts:
               - target/HtmlReports/**
             services:
