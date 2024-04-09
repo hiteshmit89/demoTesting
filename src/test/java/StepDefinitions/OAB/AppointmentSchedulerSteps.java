@@ -4,6 +4,7 @@ import Framework.Browser;
 import Framework.Root.PbNUIApp;
 import Pages.Modals.AppointmentScheduleModal;
 import Pages.Modals.CreateAppointmentModal;
+import Pages.Modals.PBNModals;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -17,12 +18,12 @@ public class AppointmentSchedulerSteps {
     public void iClickOnScheduleOnFloatingChatboxAndTryToBookAppointmentFromScheduler() {
         PbNUIApp.navigator().ClickOnFloatingButton(Schedule);
         Browser.waitForPageReady();
-        AppointmentScheduleModal.doubleClickOnAppointmentScheduleCalendarFirstProvider();
-        CreateAppointmentModal.clickOnAddNewPatient();
-        CreateAppointmentModal.fillAppointmentBookingDetails();
-        CreateAppointmentModal.selectProvider();
-        CreateAppointmentModal.appointmentType();
-        CreateAppointmentModal.clickOnCreateButton();
+        PBNModals.appointmentScheduleModal().doubleClickOnAppointmentScheduleCalendarFirstProvider();
+        PBNModals.createAppointmentModal().clickOnAddNewPatient();
+        PBNModals.createAppointmentModal().fillAppointmentBookingDetails();
+        PBNModals.createAppointmentModal().selectProvider();
+        PBNModals.createAppointmentModal().appointmentType();
+        PBNModals.createAppointmentModal().clickOnCreateButton();
     }
 
     @Then("I will be able to book appointment from scheduler")

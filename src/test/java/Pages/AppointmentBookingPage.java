@@ -17,9 +17,9 @@ public class AppointmentBookingPage extends BasePage {
     private final List<WebElement> locationFinder = DriverManager.getInstance().Driver.findElements(By.xpath("//*[@id='patient-appointment-booking-page']//div[@class='location-item-name']"));
 
     public void clickOnPickLocation() {
-        Browser.waitForElementToBeClickable(By.xpath("//div[@class='location-item-name'and text()='Romans, Burke and Wagner']"));
-        Browser.waitForElementToBeVisible(By.xpath("//div[@class='location-item-name'and text()='Romans, Burke and Wagner']"));
-        WebElement setLocation = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='location-item-name'and text()='Romans, Burke and Wagner']"));
+        Browser.waitForElementToBeClickable(By.xpath("//div[@class='MuiPaper-root location-item-card card-background-color MuiPaper-elevation1 MuiPaper-rounded']"));
+        Browser.waitForElementToBeVisible(By.xpath("//div[@class='MuiPaper-root location-item-card card-background-color MuiPaper-elevation1 MuiPaper-rounded']"));
+        WebElement setLocation = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='MuiPaper-root location-item-card card-background-color MuiPaper-elevation1 MuiPaper-rounded']"));
         Browser.clickOnElement(setLocation);
     }
 

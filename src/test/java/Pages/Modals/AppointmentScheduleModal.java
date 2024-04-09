@@ -11,11 +11,11 @@ public class AppointmentScheduleModal {
     private WebElement modalTitle = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='chat-box']//p"));
 
     AppointmentScheduleModal() {
-        Browser.waitForElementToBeVisible(modalTitle);
         Browser.waitForPageReady();
+        Browser.waitForElementToBeVisible(modalTitle);
     }
 
-    public static void doubleClickOnAppointmentScheduleCalendarFirstProvider() {
+    public void doubleClickOnAppointmentScheduleCalendarFirstProvider() {
         Browser.waitForPageReady();
         Browser.waitForElementList(By.xpath("//*[@id='chat-box']//div[contains(@class,'rbc-today-off rbc-day-slot')]"));
         List<WebElement> timeSlots = DriverManager.getInstance().Driver.findElements(By.xpath("//*[@id='chat-box']//div[contains(@class,'rbc-today-off rbc-day-slot')]"));
