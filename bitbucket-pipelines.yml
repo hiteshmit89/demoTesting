@@ -12,7 +12,6 @@ pipelines:
           - chrome
           - chrome-1
           - chrome-2
-          - chrome-3
         script:
           - mvn clean test
 definitions:
