@@ -43,19 +43,19 @@ public class Setup {
     }
 
     @After
-//    public void scenarioReport() {
-//        if (scenario.isFailed()) {
-//            byte[] screenshot = ((TakesScreenshot) DriverManager.getInstance().Driver).getScreenshotAs(OutputType.BYTES);
-//            scenario.attach(screenshot, "image/png", "Screenshot");
-//        }
-//
-//        if (!ConfigManager.getInstance().getProperty("browser").equals("firefox")) {
-//            DriverManager.getInstance().closeDriver();
-//        }
-//
-//        DriverManager.getInstance().quitDriver();
-//        DriverManager.getInstance().killSession();
-//    }
+    public void scenarioReport() {
+        if (scenario.isFailed()) {
+            byte[] screenshot = ((TakesScreenshot) DriverManager.getInstance().Driver).getScreenshotAs(OutputType.BYTES);
+            scenario.attach(screenshot, "image/png", "Screenshot");
+        }
+
+        if (!ConfigManager.getInstance().getProperty("browser").equals("firefox")) {
+            DriverManager.getInstance().closeDriver();
+        }
+
+        DriverManager.getInstance().quitDriver();
+        DriverManager.getInstance().killSession();
+    }
 
     @AfterAll
     public static void looseDriverManager() {

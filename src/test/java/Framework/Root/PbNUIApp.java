@@ -62,7 +62,7 @@ public class PbNUIApp {
     public static AppointmentBookingPage appointmentBookingPage() {
         return new AppointmentBookingPage(AppointmentBookingTitle);
     }
-        public static OnlinePaymentPortalPage OnlinePaymentPortalPage () {
-            return new OnlinePaymentPortalPage(OnlinePaymentPortalTitle);
+    public static OnlinePaymentPortalPage OnlinePaymentPortalPage () {
+        return new OnlinePaymentPortalPage(OnlinePaymentPortalTitle);
     }
 }
