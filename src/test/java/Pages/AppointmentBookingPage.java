@@ -88,7 +88,6 @@ public class AppointmentBookingPage extends BasePage {
         WebElement agreeCheckBox = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@type='checkbox']"));
         Browser.scrollToVisibleElement(agreeCheckBox);
         agreeCheckBox.click();
-
     }
 
     public void clickOnNextButton() {
