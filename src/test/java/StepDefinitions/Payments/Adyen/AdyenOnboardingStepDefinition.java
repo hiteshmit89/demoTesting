@@ -1,7 +1,6 @@
 package StepDefinitions.Payments.Adyen;
 
 import Framework.Root.PbNUIApp;
-import Pages.AppHomePage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -9,20 +8,31 @@ import io.cucumber.java.en.When;
 
 public class AdyenOnboardingStepDefinition {
 
+
+    @Given("I enter credentials")
+    public void i_enter_credentials() {
+        PbNUIApp.loginPage().enterEmail(PbNUIApp.userdata().getPractices().getFirst().getUsers().getFirst().getEmail());
+        PbNUIApp.loginPage().enterPassword(PbNUIApp.userdata().getPractices().getFirst().getUsers().getFirst().getPassword());
+    }
+
+    @When("I click login button")
+    public void iClickLoginButton() {
+        PbNUIApp.loginPage().clickOnLoginButton();
+    }
+
+    @Then("I am redirected to home page")
+    public void i_am_redirected_to_home_page() {
+        PbNUIApp.appHomePage().verifyUserHeaderIsDisplayed();
+    }
+
     @And("The user is able to select practice")
     public void theUserIsAbleToSelectPractice() {
         PbNUIApp.appHomePage().clickOnPracticeInPracticeInfoTable(PbNUIApp.userdata().getPractices().getFirst().getPractice_name());
-
     }
 
     @When("The user is able to click on Profile icon")
     public void theUserIsAbleToClickOnProfileIcon() {
         PbNUIApp.practiceHomePage().clickOnUserProfileDropdown();
-    }
-
-    @And("The user is able to select practice")
-    public void theUserIsAbleToSelectPractice() {
-        PbNUIApp.appHomePage().clickOnPracticeInPracticeInfoTable(PbNUIApp.userdata().getPractices().getFirst().getPractice_name());
     }
 
     @Then("The user is able to click on settings")
@@ -34,5 +44,7 @@ public class AdyenOnboardingStepDefinition {
     public void theUserIsAbleToEnableToggleForAdyenFeature() {
         PbNUIApp.settingsPage().clicktoggleButton();
     }
+
+
 }
 
