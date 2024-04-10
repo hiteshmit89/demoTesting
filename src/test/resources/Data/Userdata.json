@@ -28,6 +28,14 @@
           "phone_number": "1234567890",
           "email_id": "test@test.com",
           "birth_date": "01011976"
+        },
+        {
+          "FormType": "AppointmentBooking",
+          "first_name": "Robert",
+          "last_name": "Aguilar",
+          "phone_number": "1234567890",
+          "email_id": "test@test.com",
+          "birth_date": "04192004"
         }
       ],
       "PatientData": [
@@ -40,7 +48,7 @@
     },
     {
       "practice_id": 1,
-      "practice_name": "Romans, Burke and Wagner",
+      "practice_name": "Roman, Burke and Wagner",
       "address": 123,
       "Users": [
         {
