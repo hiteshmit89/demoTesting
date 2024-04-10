@@ -11,6 +11,7 @@ import org.openqa.selenium.WebElement;
 
 import java.sql.Driver;
 import java.util.List;
+import java.util.Random;
 
 public class PaymentsPage extends BasePage {
 
@@ -29,9 +30,10 @@ public class PaymentsPage extends BasePage {
         Browser.clickOnElement(paymentMethodsTab);
     }
 
-    public void clickCardIcon() {
+    public void clickCardIcon(){
+        Browser.waitForElementToBeVisible(By.xpath("(//*[@class='svg-inline--fa fa-credit-card fa-w-18 card-icon'])[1]"));
+        Browser.waitForElementToBeClickable(By.xpath("(//*[@class='svg-inline--fa fa-credit-card fa-w-18 card-icon'])[1]"));
         WebElement cardIcon = DriverManager.getInstance().Driver.findElement(By.xpath("(//*[@class='svg-inline--fa fa-credit-card fa-w-18 card-icon'])[1]"));
-        Browser.waitForElementToBeClickable(cardIcon);
         Browser.clickOnElement(cardIcon);
     }
     public void selectDropdownValue(){
@@ -41,7 +43,9 @@ public class PaymentsPage extends BasePage {
     }
     public void enterAmount(){
         WebElement enterAmountTextBox = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@type='number']"));
-        Browser.enterTextInEditBox(enterAmountTextBox,"100");
+        Random random = new Random();
+        int randomNumber = random.nextInt(10000);
+        Browser.enterTextInEditBox(enterAmountTextBox, String.valueOf(randomNumber));
 
     }
 
@@ -58,14 +62,13 @@ public class PaymentsPage extends BasePage {
 
     }
     public void verifyChargeConfirmationText(){
+        Browser.waitForElementToBeVisible(By.xpath("//span[@class='success' and contains(text(),'Charge Successful for')]"));
         WebElement textChargeSuccessful = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='success' and contains(text(),'Charge Successful for')]"));
         if(Browser.getTextFromElement(textChargeSuccessful).contains("Charge Successful for")){
             logger.info("test verified");
         }else{
             logger.info("Text not matched");
         }
-
-
     }
 
 

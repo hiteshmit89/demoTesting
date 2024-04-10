@@ -1,10 +1,12 @@
 @AdyenTransaction @pbnAll
 Feature: Verify As a user I am able Charge a patient using adyen payment services
 
-  @AdyenTransaction
-  Scenario: Verify user is able to do successful transaction
-    Given The User is able to login into the webapp
-    And The user is able to select practices
+  @AdyenTransaction @PRAC-T3356
+  Scenario: Verify user is able to do successful transaction and verify successful toast
+    Given I enter credentials
+    When I click login button
+    And The user is able to select practice
+    Then I am redirected to home page
     When User is able to click on payments from header nav
     And Click on Payment method from side nav
     And click on any card from payments table to charge patient
