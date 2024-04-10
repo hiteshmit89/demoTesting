@@ -4,8 +4,8 @@ import Framework.Browser;
 
 import java.util.logging.Logger;
 
+import static Framework.Constants.Constants.PageTitle;
 
-import static Framework.Constants.Constants.*;
 
 public class BasePage {
 

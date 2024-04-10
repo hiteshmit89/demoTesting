@@ -72,6 +72,10 @@ public class Browser {
         retry(() -> !table.findElements(By.xpath(".//tr")).isEmpty());
     }
 
+    public static void waitForTableToUnload(WebElement table) {
+        retry(() -> table.findElements(By.xpath(".//tr")).isEmpty());
+    }
+
     public static void waitForTableSizeToBe(WebElement table, int size) {
         retry(() -> table.findElements(By.xpath(".//tr")).size() >= size);
     }
@@ -155,11 +159,12 @@ public class Browser {
     }
 
     public static void clickOnElementUsingJavascript(WebElement element) {
-        JavascriptExecutor js = (JavascriptExecutor) DriverManager.getInstance().Driver;
+        JavascriptExecutor js = (JavascriptExecutor)DriverManager.getInstance().Driver;
         js.executeScript("arguments[0].click();", element);
     }
 
-    private static void retry(BooleanSupplier function) {
+    private static void retry(BooleanSupplier function)
+    {
         int count = 0;
         Exception exception = null;
         String exceptionMessage = "";
@@ -183,5 +188,4 @@ public class Browser {
         System.out.println(exceptionMessage = "Retry Timed Out while trying to execute - " + new Throwable().getStackTrace()[1].getMethodName());
         throw new RuntimeException(exceptionMessage + exception);
     }
-
 }
