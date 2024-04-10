@@ -1,8 +1,9 @@
-package Pages;
+package Pages.Modals;
 
 import Framework.Browser;
 import Framework.Constants.Constants.PageTitle;
 import Framework.Util.DriverManager;
+import Pages.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -10,11 +11,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-public class PatientWindowPage extends BasePage {
-    public PatientWindowPage(PageTitle title) {
-        super(title);
-    }
+public class PatientWindowModal {
 
+    PatientWindowModal() {
+        Browser.waitForPageReady();
+    }
     private String getCurrentDate() {
         return (new SimpleDateFormat("MM/dd/yyyy").format(new Date()));
     }
