@@ -147,6 +147,14 @@ public class Browser {
         JavascriptExecutor js = (JavascriptExecutor) DriverManager.getInstance().Driver;
         js.executeScript("arguments[0].scrollIntoView();", object);
     }
+    public static void scrollToPageDown() {
+        JavascriptExecutor js = (JavascriptExecutor) DriverManager.getInstance().Driver;
+        js.executeScript("window.scrollTo(0,document.body.scrollHeight);");
+    }
+    public static void scrollToPageUp() {
+        JavascriptExecutor js = (JavascriptExecutor) DriverManager.getInstance().Driver;
+        js.executeScript("window.scrollTo(0,0);");
+    }
 
     public static void switchToFrame(WebElement iFrame) {
         waitForElementToDisplay(iFrame);

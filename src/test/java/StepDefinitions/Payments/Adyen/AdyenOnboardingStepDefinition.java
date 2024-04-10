@@ -11,8 +11,8 @@ public class AdyenOnboardingStepDefinition {
 
     @Given("I enter credentials")
     public void i_enter_credentials() {
-        PbNUIApp.loginPage().enterEmail(PbNUIApp.userdata().getPractices().getFirst().getUsers().getFirst().getEmail());
-        PbNUIApp.loginPage().enterPassword(PbNUIApp.userdata().getPractices().getFirst().getUsers().getFirst().getPassword());
+        PbNUIApp.loginPage().enterEmail(PbNUIApp.userdata().getPractices().getFirst().getUsers().get(2).getEmail());
+        PbNUIApp.loginPage().enterPassword(PbNUIApp.userdata().getPractices().getFirst().getUsers().get(2).getPassword());
     }
 
     @When("I click login button")
@@ -27,7 +27,7 @@ public class AdyenOnboardingStepDefinition {
 
     @And("The user is able to select practice")
     public void theUserIsAbleToSelectPractice() {
-        PbNUIApp.appHomePage().clickOnPracticeInPracticeInfoTable(PbNUIApp.userdata().getPractices().getFirst().getPractice_name());
+        PbNUIApp.appHomePage().clickOnPracticeInPracticeInfoTable(PbNUIApp.userdata().getPractices().getFirst().getUsers().get(2).getPractice());
     }
 
     @When("The user is able to click on Profile icon")
@@ -42,7 +42,7 @@ public class AdyenOnboardingStepDefinition {
 
     @Then("The user is able to enable toggle for adyen feature")
     public void theUserIsAbleToEnableToggleForAdyenFeature() {
-        PbNUIApp.settingsPage().clicktoggleButton();
+        PbNUIApp.settingsPage().clickToggleButton();
     }
 
 

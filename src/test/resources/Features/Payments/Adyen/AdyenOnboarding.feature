@@ -1,7 +1,7 @@
 @AdyenFeature
 Feature: Verify As a user I am able to onboard a practice to adyen payment service
 
-  @EnableAdyenToggle
+  @EnableAdyenToggle @PRAC-T3745
   Scenario: Verify user is able to enable toggle for adyen service
     Given I enter credentials
     When I click login button

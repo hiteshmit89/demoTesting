@@ -6,6 +6,8 @@ import Framework.Util.DriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import java.sql.Driver;
+
 public class SettingsPage extends BasePage {
 
 
@@ -16,10 +18,15 @@ public class SettingsPage extends BasePage {
     public WebElement paymentToggleAdyen = DriverManager.getInstance().Driver.findElement(By.xpath("//label[@class='custom-control-label']"));
 
 
-    public void clicktoggleButton() {
+    public void clickToggleButton() {
         Browser.waitForPageReady();
-        Browser.scrollToVisibleElement(paymentToggleAdyen);
-        Browser.clickOnElement(paymentToggleAdyen);
+        Browser.scrollToPageDown();
+        if (paymentToggleAdyen.isEnabled()) {
+            logger.info("toggle is enabled already");
+        } else {
+            logger.info("enabling toggle button");
+            paymentToggleAdyen.click();
+        }
     }
 
 
