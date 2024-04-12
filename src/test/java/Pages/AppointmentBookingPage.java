@@ -57,6 +57,7 @@ public class AppointmentBookingPage extends BasePage {
         enterEmailID(PbNUIApp.userdata().getPractices().getFirst().getFormsData().get(1).getEmail_id());
         enterBirthDate(PbNUIApp.userdata().getPractices().getFirst().getFormsData().get(1).getBirth_date());
     }
+
     public void fillAppointmentBookingFormForPatientWithTags() {
         enterFirstName(PbNUIApp.userdata().getPractices().getFirst().getFormsData().get(2).getFirst_name());
         enterLastName(PbNUIApp.userdata().getPractices().getFirst().getFormsData().get(2).getLast_name());
@@ -140,6 +141,6 @@ public class AppointmentBookingPage extends BasePage {
     public void verifyTextDisplayedMessage() {
         Browser.waitForElementToBeVisible(By.xpath("//div[@class='MuiAlert-message']"));
         WebElement verifyText = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='MuiAlert-message']"));
-        Assert.assertTrue("Unable to book Appointment text is displayed on appointment booking page.", verifyText.isDisplayed());
+        Assert.assertTrue("Unable to book Appointment text is not displayed on appointment booking page.", verifyText.isDisplayed());
     }
 }
