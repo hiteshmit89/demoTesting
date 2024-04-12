@@ -147,10 +147,12 @@ public class Browser {
         JavascriptExecutor js = (JavascriptExecutor) DriverManager.getInstance().Driver;
         js.executeScript("arguments[0].scrollIntoView();", object);
     }
+
     public static void scrollToPageDown() {
         JavascriptExecutor js = (JavascriptExecutor) DriverManager.getInstance().Driver;
         js.executeScript("window.scrollTo(0,document.body.scrollHeight);");
     }
+
     public static void scrollToPageUp() {
         JavascriptExecutor js = (JavascriptExecutor) DriverManager.getInstance().Driver;
         js.executeScript("window.scrollTo(0,0);");
@@ -161,8 +163,9 @@ public class Browser {
         waitForElementToBeClickable(iFrame);
         ((WebDriver) DriverManager.getInstance().Driver).switchTo().frame(0);
     }
-    public static void selectIndexFromDropdown(WebElement ele , int index){
-        Select select = new Select(ele);
+
+    public static void selectIndexFromDropdown(WebElement element , int index){
+        Select select = new Select(element);
         select.selectByIndex(index);
     }
 

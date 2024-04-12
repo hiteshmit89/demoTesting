@@ -1,7 +1,7 @@
 @AdyenTransaction @pbnAll
 Feature: Verify As a user I am able Charge a patient using adyen payment services
 
-  @AdyenTransaction @PRAC-T3356
+  @AdyenTransaction @PRAC-T3356 @pbnAll @PUA-17
   Scenario: Verify user is able to do successful transaction and verify successful toast
     Given I enter credentials
     When I click login button

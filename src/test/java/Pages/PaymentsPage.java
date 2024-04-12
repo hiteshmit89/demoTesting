@@ -19,11 +19,11 @@ public class PaymentsPage extends BasePage {
         super(title);
     }
 
-    WebElement paymentstab = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='payment-page-tab-Payments']"));
-    WebElement paymentMethodsTab = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='payment-page-tab-Payment Methods']"));
+    private final WebElement paymentsTab = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='payment-page-tab-Payments']"));
+    private final WebElement paymentMethodsTab = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='payment-page-tab-Payment Methods']"));
 
     public void clickPaymentsMenu() {
-        Browser.clickOnElement(paymentstab);
+        Browser.clickOnElement(paymentsTab);
     }
 
     public void clickPaymentsMethodsMenu() {
@@ -37,6 +37,8 @@ public class PaymentsPage extends BasePage {
         Browser.clickOnElement(cardIcon);
     }
     public void selectDropdownValue(){
+        Browser.waitForElementToBeVisible(By.xpath("//*[@id='payment-methods-selector']"));
+        Browser.waitForElementToBeClickable(By.xpath("//*[@id='payment-methods-selector']"));
         WebElement dropdownSelectPaymentMethod = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='payment-methods-selector']"));
         Browser.selectIndexFromDropdown(dropdownSelectPaymentMethod, 1);
 
@@ -48,7 +50,6 @@ public class PaymentsPage extends BasePage {
         Browser.enterTextInEditBox(enterAmountTextBox, String.valueOf(randomNumber));
 
     }
-
     public void enterChargeDescription(){
         WebElement enterAmountTextBox = DriverManager.getInstance().Driver.findElement(By.xpath("//textarea[@class='charge-description-input-box form-control']"));
         Browser.enterTextInEditBox(enterAmountTextBox,"Entered Description");

@@ -30,7 +30,7 @@ public class AdyenOnboardingStepDefinition {
         PbNUIApp.appHomePage().clickOnPracticeInPracticeInfoTable(PbNUIApp.userdata().getPractices().getFirst().getUsers().get(2).getPractice());
     }
 
-    @When("The user is able to click on Profile icon")
+    @And("The user is able to click on Profile icon")
     public void theUserIsAbleToClickOnProfileIcon() {
         PbNUIApp.practiceHomePage().clickOnUserProfileDropdown();
     }
