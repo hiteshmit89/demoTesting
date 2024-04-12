@@ -23,5 +23,4 @@ public class BlockPatientsWithTagsFromAppointmentBookingStepDefinition {
     public void iWillNotBeAbleToBookAppointmentWithMessageUnableToBookAppointment() {
         PbNUIApp.appointmentBookingPage().verifyTextDisplayedMessage();
     }
-
 }
