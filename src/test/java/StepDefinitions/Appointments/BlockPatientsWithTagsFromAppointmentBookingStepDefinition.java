@@ -19,8 +19,8 @@ public class BlockPatientsWithTagsFromAppointmentBookingStepDefinition {
         PbNUIApp.appointmentBookingPage().clickOnNextButton();
     }
 
-    @Then("I will not be able to book appointment with message\\(Unable to book Appointment).")
+    @Then("I will not be able to book appointment with message")
     public void iWillNotBeAbleToBookAppointmentWithMessageUnableToBookAppointment() {
-        PbNUIApp.appointmentBookingPage().verifyTextDisplayedMessage();
+        PbNUIApp.appointmentBookingPage().verifyTextDisplayedMessage("Unable to book Appointment text is not displayed on appointment booking page");
     }
 }

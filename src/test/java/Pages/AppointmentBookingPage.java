@@ -138,9 +138,9 @@ public class AppointmentBookingPage extends BasePage {
         Assert.assertTrue("Successful text not displayed on appointment booking page.", successfulText.isDisplayed());
     }
 
-    public void verifyTextDisplayedMessage() {
+    public void verifyTextDisplayedMessage(String message) {
         Browser.waitForElementToBeVisible(By.xpath("//div[@class='MuiAlert-message']"));
         WebElement verifyText = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='MuiAlert-message']"));
-        Assert.assertTrue("Unable to book Appointment text is not displayed on appointment booking page.", verifyText.isDisplayed());
+        Assert.assertTrue(message, verifyText.isDisplayed());
     }
 }
