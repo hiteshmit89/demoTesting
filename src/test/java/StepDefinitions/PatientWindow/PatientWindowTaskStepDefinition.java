@@ -2,6 +2,7 @@ package StepDefinitions.PatientWindow;
 
 import Framework.Constants.Constants;
 import Framework.Root.PbNUIApp;
+import Pages.Modals.PBNModals;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -20,30 +21,31 @@ public class PatientWindowTaskStepDefinition {
     @And("I click on task button & opted {string}")
     public void iClickOnTaskButtonOpted(String taskType) {
         if (taskType.equals(PbNUIApp.userdata().getPractices().getFirst().getPatientData().getFirst().getTask_type())) {
-            PbNUIApp.patientWindowPage().selectTask(taskType);
+            PBNModals.patientWindowModal().selectTask(taskType);
+
         } else {
-            PbNUIApp.patientWindowPage().selectTask(taskType);
+            PBNModals.patientWindowModal().selectTask(taskType);
         }
     }
 
     @And("I added description")
     public void iAddedDescription() {
-        PbNUIApp.patientWindowPage().addTaskDescription(PbNUIApp.userdata().getPractices().getFirst().getPatientData().getFirst().getTask_description());
+        PBNModals.patientWindowModal().addTaskDescription(PbNUIApp.userdata().getPractices().getFirst().getPatientData().getFirst().getTask_description());
     }
 
     @Then("I added task due date")
     public void iAddedTaskDueDate() {
-        PbNUIApp.patientWindowPage().taskDueDate();
+        PBNModals.patientWindowModal().taskDueDate();
     }
 
     @And("I created a task")
     public void iCreatedATask() {
-        PbNUIApp.patientWindowPage().taskCreation();
+        PBNModals.patientWindowModal().taskCreation();
     }
 
     @And("I closed patient Window")
     public void iClosedPatientWindow() {
-        PbNUIApp.patientWindowPage().closePatientWindow();
+        PBNModals.patientWindowModal().closePatientWindow();
     }
 
     @And("I am redirected to the Task Page")
