@@ -1,7 +1,8 @@
 package Pages;
 
 import Framework.Browser;
-import Framework.Constants.*;
+import Framework.Constants.Constants.*;
+
 import Framework.Util.DriverManager;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -11,7 +12,7 @@ import java.util.Random;
 
 public class PaymentsPage extends BasePage {
 
-    public PaymentsPage(Constants.PageTitle title) {
+    public PaymentsPage(PageTitle title) {
         super(title);
     }
 
