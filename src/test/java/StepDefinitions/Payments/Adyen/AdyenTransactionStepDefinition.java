@@ -9,24 +9,27 @@ import io.cucumber.java.en.When;
 import static Framework.Constants.Constants.Destination.*;
 
 public class AdyenTransactionStepDefinition {
-    @When("User is able to click on payments from header nav")
-    public void userIsAbleToClickOnPaymentsFromHeaderNav() {
+    @When("I click on payments from header nav")
+    public void iClickOnPaymentsFromHeaderNav() {
         PbNUIApp.navigator().NavigateTo(Payments);
     }
-    @And("Click on Payment method from side nav")
-    public void clickOnPaymentMethodFromSideNav(){
-    PbNUIApp.paymentsPage().clickPaymentsMethodsMenu();
+    @And("I Click on Payment method from side nav")
+    public void iClickOnPaymentMethodFromSideNav(){
+    PbNUIApp.paymentsPage().clickPaymentsMethodsTab();
     }
-    @And("click on any card from payments table to charge patient")
-    public void clickOnAnyCardFromPaymentsTableToChargePatient() { PbNUIApp.paymentsPage().clickCardIcon();}
+    @And("I click on any card from payments table to charge patient")
+    public void iClickOnAnyCardFromPaymentsTableToChargePatient() {
+        PbNUIApp.paymentsPage().clickCardIcon();
+    }
     @And("Select the payment method, enter amount, description from charge customer modal")
     public void selectThePaymentMethodEnterAmountDescriptionFromChargeCustomerModal() {
         PbNUIApp.paymentsPage().selectDropdownValue();
         PbNUIApp.paymentsPage().enterAmount();
         PbNUIApp.paymentsPage().enterChargeDescription();
     }
-    @Then("Click on Charge button")
-    public void clickOnChargeButton() { PbNUIApp.paymentsPage().clickChargeButtonOnModal();
+    @Then("I Click on Charge button")
+    public void iClickOnChargeButton() {
+        PbNUIApp.paymentsPage().clickChargeButtonOnModal();
     }
 
     @And("Verify Successful toast message")

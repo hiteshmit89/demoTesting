@@ -25,13 +25,13 @@ public class AdyenOnboardingStepDefinition {
         PbNUIApp.appHomePage().verifyUserHeaderIsDisplayed();
     }
 
-    @And("The user is able to select practice")
-    public void theUserIsAbleToSelectPractice() {
+    @And("I am able to select practice")
+    public void iAmAbleToSelectPractice() {
         PbNUIApp.appHomePage().clickOnPracticeInPracticeInfoTable(PbNUIApp.userdata().getPractices().getFirst().getUsers().get(2).getPractice());
     }
 
-    @And("The user is able to click on Profile icon")
-    public void theUserIsAbleToClickOnProfileIcon() {
+    @And("I click on Profile icon")
+    public void iClickOnProfileIcon() {
         PbNUIApp.practiceHomePage().clickOnUserProfileDropdown();
     }
 
@@ -40,8 +40,8 @@ public class AdyenOnboardingStepDefinition {
         PbNUIApp.practiceHomePage().clickOnSettingsMenuItem();
     }
 
-    @Then("The user is able to enable toggle for adyen feature")
-    public void theUserIsAbleToEnableToggleForAdyenFeature() {
+    @Then("I am able to enable toggle for adyen feature")
+    public void iAmAbleToEnableToggleForAdyenFeature() {
         PbNUIApp.settingsPage().clickToggleButton();
     }
 

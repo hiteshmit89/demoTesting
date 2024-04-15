@@ -22,7 +22,7 @@ public class PaymentsPage extends BasePage {
         Browser.clickOnElement(paymentsTab);
     }
 
-    public void clickPaymentsMethodsMenu() {
+    public void clickPaymentsMethodsTab() {
         Browser.clickOnElement(paymentMethodsTab);
     }
 
