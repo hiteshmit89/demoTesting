@@ -58,6 +58,14 @@ public class AppointmentBookingPage extends BasePage {
         enterBirthDate(PbNUIApp.userdata().getPractices().getFirst().getFormsData().get(1).getBirth_date());
     }
 
+    public void fillAppointmentBookingFormForPatientWithTags() {
+        enterFirstName(PbNUIApp.userdata().getPractices().getFirst().getFormsData().get(2).getFirst_name());
+        enterLastName(PbNUIApp.userdata().getPractices().getFirst().getFormsData().get(2).getLast_name());
+        enterPhoneNumber(PbNUIApp.userdata().getPractices().getFirst().getFormsData().get(2).getPhone_number());
+        enterEmailID(PbNUIApp.userdata().getPractices().getFirst().getFormsData().get(2).getEmail_id());
+        enterBirthDate(PbNUIApp.userdata().getPractices().getFirst().getFormsData().get(2).getBirth_date());
+    }
+
     public void enterFirstName(String firstNameData) {
         Browser.waitForElementToBeVisible(By.xpath("//input[@placeholder='Patient First Name']"));
         WebElement firstNameID = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@placeholder='Patient First Name']"));
@@ -130,9 +138,9 @@ public class AppointmentBookingPage extends BasePage {
         Assert.assertTrue("Successful text not displayed on appointment booking page.", successfulText.isDisplayed());
     }
 
-    public void verifyTextDisplayedMessage() {
+    public void verifyTextDisplayedMessage(String message) {
         Browser.waitForElementToBeVisible(By.xpath("//div[@class='MuiAlert-message']"));
         WebElement verifyText = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='MuiAlert-message']"));
-        Assert.assertTrue("Unable to book Appointment text is displayed on appointment booking page.", verifyText.isDisplayed());
+        Assert.assertTrue(message, verifyText.isDisplayed());
     }
 }
