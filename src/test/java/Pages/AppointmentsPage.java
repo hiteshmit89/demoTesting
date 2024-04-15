@@ -4,6 +4,7 @@ import Framework.Browser;
 import Framework.Constants.Constants.PageTitle;
 import Framework.Util.ConfigManager;
 import Framework.Util.DriverManager;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -71,5 +72,18 @@ public class AppointmentsPage extends BasePage {
         WebElement enableCreditCard = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@id='card-setup-toggle']"));
         Browser.scrollToVisibleElement(enableCreditCard);
         Browser.clickOnElementUsingJavascript(enableCreditCard);
+    }
+
+    public void clickOnProviderEditButton() {
+        Browser.waitForElementToBeVisible(By.xpath("(//button[@class='btn btn-sm'and contains(text(),'Edit')])[1]"));
+        WebElement providerEditButton = DriverManager.getInstance().Driver.findElement(By.xpath("(//button[@class='btn btn-sm'and contains(text(),'Edit')])[1]"));
+        Browser.scrollToVisibleElement(providerEditButton);
+        Browser.clickOnElementUsingJavascript(providerEditButton);
+    }
+
+    public void verifyBlockOutTimes() {
+        Browser.waitForElementToBeClickable(By.xpath("//label[text()='Blocked Out Times']"));
+        WebElement blockOutTimes = DriverManager.getInstance().Driver.findElement(By.xpath("//label[text()='Blocked Out Times']"));
+        Assert.assertTrue("Verify block-out times is not displayed", blockOutTimes.isDisplayed());
     }
 }
