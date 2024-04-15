@@ -22,6 +22,6 @@ public class BlockInactivePatientsWithInsuranceFromAppointmentBookingStepDefinit
 
     @Then("I will not be able to book appointment with message\\(Unable to book Appointment)")
     public void iWillNotBeAbleToBookAppointmentWithMessageUnableToBookAppointment() {
-        PbNUIApp.appointmentBookingPage().verifyTextDisplayedMessage();
+        PbNUIApp.appointmentBookingPage().verifyTextDisplayedMessage("Unable to book Appointment text is not displayed on appointment booking page");
     }
 }
