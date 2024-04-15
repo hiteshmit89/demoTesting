@@ -35,8 +35,8 @@ public class AdyenOnboardingStepDefinition {
         PbNUIApp.practiceHomePage().clickOnUserProfileDropdown();
     }
 
-    @Then("The user is able to click on settings")
-    public void theUserIsAbleToClickOnSettings() {
+    @Then("I am able to click on settings")
+    public void iAmAbleToClickOnSettings() {
         PbNUIApp.practiceHomePage().clickOnSettingsMenuItem();
     }
 

@@ -18,8 +18,7 @@ public class AdyenTransactionStepDefinition {
     PbNUIApp.paymentsPage().clickPaymentsMethodsMenu();
     }
     @And("click on any card from payments table to charge patient")
-    public void clickOnAnyCardFromPaymentsTableToChargePatient(){
-        PbNUIApp.paymentsPage().clickCardIcon();}
+    public void clickOnAnyCardFromPaymentsTableToChargePatient() { PbNUIApp.paymentsPage().clickCardIcon();}
     @And("Select the payment method, enter amount, description from charge customer modal")
     public void selectThePaymentMethodEnterAmountDescriptionFromChargeCustomerModal() {
         PbNUIApp.paymentsPage().selectDropdownValue();
@@ -27,8 +26,7 @@ public class AdyenTransactionStepDefinition {
         PbNUIApp.paymentsPage().enterChargeDescription();
     }
     @Then("Click on Charge button")
-    public void clickOnChargeButton() {
-        PbNUIApp.paymentsPage().btnClickCharge();
+    public void clickOnChargeButton() { PbNUIApp.paymentsPage().clickChargeButtonOnModal();
     }
 
     @And("Verify Successful toast message")

@@ -1,16 +1,12 @@
 package Pages;
 
 import Framework.Browser;
-import Framework.Constants.Constants;
+import Framework.Constants.*;
 import Framework.Util.DriverManager;
-import com.sun.source.tree.AssertTree;
 import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Credentials;
 import org.openqa.selenium.WebElement;
 
-import java.sql.Driver;
-import java.util.List;
 import java.util.Random;
 
 public class PaymentsPage extends BasePage {
@@ -55,20 +51,20 @@ public class PaymentsPage extends BasePage {
         Browser.enterTextInEditBox(enterAmountTextBox,"Entered Description");
 
     }
-    public void btnClickCharge(){
-        WebElement btnCharge = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='btn btn-default']//span[text()=' Charge ']"));
-        Browser.clickOnElement(btnCharge);
-        WebElement btnChargeConfirmation = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='btn btn-danger']"));
-        Browser.clickOnElement(btnChargeConfirmation);
+    public void clickChargeButtonOnModal(){
+        WebElement chargeButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='btn btn-default']//span[text()=' Charge ']"));
+        Browser.clickOnElement(chargeButton);
+        WebElement chargeConfirmationPopUp = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='btn btn-danger']"));
+        Browser.clickOnElement(chargeConfirmationPopUp);
 
     }
     public void verifyChargeConfirmationText(){
         Browser.waitForElementToBeVisible(By.xpath("//span[@class='success' and contains(text(),'Charge Successful for')]"));
         WebElement textChargeSuccessful = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='success' and contains(text(),'Charge Successful for')]"));
         if(Browser.getTextFromElement(textChargeSuccessful).contains("Charge Successful for")){
-            logger.info("test verified");
-        }else{
-            logger.info("Text not matched");
+            Assert.assertTrue("Charge Successful for",textChargeSuccessful.isDisplayed());
+        } else {
+            Assert.assertFalse("Charge Successful for",textChargeSuccessful.isDisplayed());
         }
     }
 
