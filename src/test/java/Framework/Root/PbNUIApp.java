@@ -65,4 +65,8 @@ public class PbNUIApp {
     public static AppointmentBookingPage appointmentBookingPage() {
         return new AppointmentBookingPage(AppointmentBookingTitle);
     }
+
+    public static PatientOverviewPage patientOverviewPage() {
+        return new PatientOverviewPage(HomeTitle);
+    }
 }

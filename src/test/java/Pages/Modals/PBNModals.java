@@ -12,6 +12,10 @@ public class PBNModals {
     public static CreateAppointmentModal createAppointmentModal() {
         return new CreateAppointmentModal();
     }
+
+    public static PatientWindowModal patientWindowModal() {
+        return new PatientWindowModal();
+    }
     public static PatientOverviewModal patientOverviewModal() {
         return new PatientOverviewModal();
     }
