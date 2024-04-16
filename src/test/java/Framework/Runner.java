@@ -11,7 +11,7 @@ import org.junit.runner.RunWith;
         plugin = {"pretty","html:target/HtmlReports/testResult.html",
                 "json:target/JSONReports/testResult.json",
                 "junit:target/XMLReports/testResult.xml"},
-       tags = "@PbnAll")
+       tags = "@PUA-35")
 
 public class Runner {
 }

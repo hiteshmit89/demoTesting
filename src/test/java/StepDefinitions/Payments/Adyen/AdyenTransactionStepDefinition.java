@@ -1,12 +1,14 @@
 package StepDefinitions.Payments.Adyen;
 
 import Framework.Root.PbNUIApp;
+import Framework.Util.DriverManager;
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
-import static Framework.Constants.Constants.Destination.*;
+import static Framework.Constants.Constants.Destination.Payments;
 
 public class AdyenTransactionStepDefinition {
     @When("I click on payments from header nav")
@@ -35,5 +37,10 @@ public class AdyenTransactionStepDefinition {
     @And("Verify Successful toast message")
     public void verifySuccessfulToastMessage() {
         PbNUIApp.paymentsPage().verifyChargeConfirmationText();
+    }
+
+    @And("Verify I am able to download Payment receipt")
+    public void verifyIAmAbleToDownloadPaymentReceipt() {
+        WebElement downloadIcon = DriverManager.getInstance().Driver.findElement(By.xpath(""));
     }
 }
