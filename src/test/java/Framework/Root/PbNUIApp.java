@@ -50,10 +50,6 @@ public class PbNUIApp {
         return new Navigator();
     }
 
-    public static PatientWindowPage patientWindowPage() {
-        return new PatientWindowPage(HomeTitle);
-    }
-
     public static AppointmentsPage appointmentsPage() {
         return new AppointmentsPage(AppointmentsTitle);
     }
@@ -64,9 +60,5 @@ public class PbNUIApp {
 
     public static AppointmentBookingPage appointmentBookingPage() {
         return new AppointmentBookingPage(AppointmentBookingTitle);
-    }
-
-    public static PatientOverviewPage patientOverviewPage() {
-        return new PatientOverviewPage(HomeTitle);
     }
 }
