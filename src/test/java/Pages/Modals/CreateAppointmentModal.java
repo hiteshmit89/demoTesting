@@ -46,8 +46,7 @@ public class CreateAppointmentModal {
 
     public void enterBirthDate(String birthDateData) {
         WebElement birthDate = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@placeholder='Date of Birth']"));
-        Browser.clickOnElement(birthDate);
-        Browser.pressEnter();
+        Browser.enterTextInEditBox(birthDate, birthDateData);
     }
 
     public void fillAppointmentBookingDetails() {
