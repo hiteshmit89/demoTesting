@@ -15,12 +15,12 @@ public class CreateAppointmentModal {
 
 
     CreateAppointmentModal() {
-        Browser.waitForElementToBeVisible(modalTitle);
         Browser.waitForPageReady();
     }
 
     public void clickOnAddNewPatient() {
         WebElement addNewPatient = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='pull-right btn btn-default']"));
+        Browser.clickOnElementUsingJavascript(addNewPatient);
         Browser.clickOnElement(addNewPatient);
     }
 
@@ -61,18 +61,16 @@ public class CreateAppointmentModal {
 
     public void selectProvider() {
         WebElement provider = DriverManager.getInstance().Driver.findElement(By.xpath("(//div[@class=' css-1hwfws3'])[4]"));
-        Browser.clickOnElement(provider);
-        Browser.pressEnter();
+        Browser.doubleClickOnElement(provider);
     }
 
     public void appointmentType() {
         WebElement appointmentType = DriverManager.getInstance().Driver.findElement(By.xpath("(//div[@class=' css-1hwfws3'])[5]"));
-        Browser.clickOnElement(appointmentType);
-        Browser.pressEnter();
+        Browser.doubleClickOnElement(appointmentType);
     }
 
     public void clickOnCreateButton() {
-        WebElement appointmentType = DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='Create']"));
-        Browser.clickOnElement(appointmentType);
+        WebElement createButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='Create']"));
+        Browser.clickOnElement(createButton);
     }
 }
