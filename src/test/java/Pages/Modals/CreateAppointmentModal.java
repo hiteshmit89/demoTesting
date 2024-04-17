@@ -10,17 +10,16 @@ import org.openqa.selenium.WebElement;
 import java.util.List;
 
 public class CreateAppointmentModal {
-    private WebElement modalTitle = DriverManager.getInstance().Driver.findElement(By.xpath("/html/body//div/h[@class='modal-title']"));
     private List<WebElement> appointmentCalendar = DriverManager.getInstance().Driver.findElements(By.xpath("//*[@id='chat-box']//div[@class='rbc-events-container']"));
 
 
     CreateAppointmentModal() {
-        Browser.waitForElementToBeVisible(modalTitle);
         Browser.waitForPageReady();
     }
 
     public void clickOnAddNewPatient() {
         WebElement addNewPatient = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='pull-right btn btn-default']"));
+        Browser.clickOnElementUsingJavascript(addNewPatient);
         Browser.clickOnElement(addNewPatient);
     }
 
@@ -47,8 +46,7 @@ public class CreateAppointmentModal {
 
     public void enterBirthDate(String birthDateData) {
         WebElement birthDate = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@placeholder='Date of Birth']"));
-        Browser.clickOnElement(birthDate);
-        Browser.pressEnter();
+        Browser.enterTextInEditBox(birthDate, birthDateData);
     }
 
     public void fillAppointmentBookingDetails() {
@@ -61,18 +59,16 @@ public class CreateAppointmentModal {
 
     public void selectProvider() {
         WebElement provider = DriverManager.getInstance().Driver.findElement(By.xpath("(//div[@class=' css-1hwfws3'])[4]"));
-        Browser.clickOnElement(provider);
-        Browser.pressEnter();
+        Browser.doubleClickOnElement(provider);
     }
 
     public void appointmentType() {
         WebElement appointmentType = DriverManager.getInstance().Driver.findElement(By.xpath("(//div[@class=' css-1hwfws3'])[5]"));
-        Browser.clickOnElement(appointmentType);
-        Browser.pressEnter();
+        Browser.doubleClickOnElement(appointmentType);
     }
 
     public void clickOnCreateButton() {
-        WebElement appointmentType = DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='Create']"));
-        Browser.clickOnElement(appointmentType);
+        WebElement createButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='Create']"));
+        Browser.clickOnElement(createButton);
     }
 }

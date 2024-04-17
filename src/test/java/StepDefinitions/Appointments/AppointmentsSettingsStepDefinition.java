@@ -5,7 +5,7 @@ import Framework.Root.PbNUIApp;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-public class VerificationOfDataAvailabilityAndBlockoutTimes {
+public class AppointmentsSettingsStepDefinition {
 
     @When("I click on appointments Setting tab open provider setting")
     public void iClickOnAppointmentsSettingTabOpenProviderSetting() {

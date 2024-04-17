@@ -1,5 +1,5 @@
 @AppointmentsFeature @pbnAll
-Feature: Appointments
+Feature: Appointments Settings
 
   @appointments @PUA-26 @PRAC-T1626
   Scenario: Verify I can see days and block-out times visibility on appointment booking setting page
