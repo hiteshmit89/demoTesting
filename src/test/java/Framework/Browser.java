@@ -168,6 +168,10 @@ public class Browser {
         Select select = new Select(element);
         select.selectByIndex(index);
     }
+    public static void selectByVisibleTextFromDropdown(WebElement element , String text){
+        Select select = new Select(element);
+        select.selectByVisibleText(text);
+    }
 
     public static void clickOnElementUsingJavascript(WebElement element) {
         JavascriptExecutor js = (JavascriptExecutor)DriverManager.getInstance().Driver;

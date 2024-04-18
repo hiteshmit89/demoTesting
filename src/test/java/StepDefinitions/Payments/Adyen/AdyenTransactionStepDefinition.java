@@ -1,5 +1,6 @@
 package StepDefinitions.Payments.Adyen;
 
+import Framework.Browser;
 import Framework.Root.PbNUIApp;
 import Framework.Util.DriverManager;
 import io.cucumber.java.en.And;
@@ -41,6 +42,6 @@ public class AdyenTransactionStepDefinition {
 
     @And("Verify I am able to download Payment receipt")
     public void verifyIAmAbleToDownloadPaymentReceipt() {
-        WebElement downloadIcon = DriverManager.getInstance().Driver.findElement(By.xpath(""));
+        PbNUIApp.paymentsPage().verifyPaymentReceiptIsDownloaded();
     }
 }

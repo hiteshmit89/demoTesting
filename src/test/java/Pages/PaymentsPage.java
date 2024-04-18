@@ -2,7 +2,10 @@ package Pages;
 
 import Framework.Browser;
 import Framework.Constants.Constants.*;
-
+import java.io.File;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.concurrent.TimeUnit;
 import Framework.Util.DriverManager;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -34,11 +37,10 @@ public class PaymentsPage extends BasePage {
         Browser.clickOnElement(cardIcon);
     }
     public void selectDropdownValue(){
+        Browser.waitForPresenceOfElement(By.xpath("//*[@id='payment-methods-selector']"));
         Browser.waitForElementToBeVisible(By.xpath("//*[@id='payment-methods-selector']"));
-        Browser.waitForElementToBeClickable(By.xpath("//*[@id='payment-methods-selector']"));
         WebElement dropdownSelectPaymentMethod = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='payment-methods-selector']"));
         Browser.selectIndexFromDropdown(dropdownSelectPaymentMethod, 1);
-
     }
     public void enterAmount(){
         WebElement enterAmountTextBox = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@type='number']"));
@@ -67,6 +69,62 @@ public class PaymentsPage extends BasePage {
         } else {
             Assert.assertFalse("Charge Successful for",textChargeSuccessful.isDisplayed());
         }
+    }
+    public void verifyPaymentReceiptIsDownloaded(){
+        WebElement downloadIcon = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@role='button' and @tabindex='0']"));
+        Browser.clickOnElement(downloadIcon);
+        /*String downloadsPath = System.getProperty("user.dir") + "/AdyenPaymentReceipt";
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH_mm_ss");
+        String formattedDateTime = currentDateTime.format(formatter);
+        File downloadedFile = new File(downloadsPath + "/payment_receipt_"+ formattedDateTime+".pdf");
+        int waitTimeInSeconds = 60;
+        long endTime = System.currentTimeMillis() + (waitTimeInSeconds * 1000);
+
+        while (!downloadedFile.exists() && System.currentTimeMillis() < endTime) {
+            try {
+                Thread.sleep(1000); // Check every second
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (downloadedFile.exists()) {
+            System.out.println("PDF downloaded successfully!");
+        } else {
+            System.out.println("PDF download failed or timed out.");
+        }*/
+        // Get the current working directory (project folder)
+
+        String projectDir = System.getProperty("user.dir");
+        // Define the path where you want to save the downloaded file in the project folder
+        String downloadPath = projectDir + "/AdyenPaymentReceipt";
+        // Create the downloads directory if it doesn't exist
+        File downloadsDir = new File(downloadPath);
+        if (!downloadsDir.exists()) {
+            downloadsDir.mkdir();
+        }
+
+        // Check if the PDF file is downloaded
+        File downloadedFile = new File(downloadPath + File.separator + "payment_receipt_2024-04-16_17_49_07.pdf");
+        int waitTimeInSeconds = 60;
+        long endTime = System.currentTimeMillis() + (waitTimeInSeconds * 1000);
+
+       /* while (!downloadedFile.exists() && System.currentTimeMillis() < endTime) {
+            try {
+                Thread.sleep(500); // Check every second
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }*/
+
+        if (downloadedFile.exists()) {
+            System.out.println("PDF downloaded successfully!");
+        } else {
+            System.out.println("PDF download failed or timed out.");
+        }
+
+
     }
 
 
