@@ -60,6 +60,8 @@ public class DriverManager {
         webDriver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(
                 Integer.parseInt(ConfigManager.getInstance().getProperty("Timeout"))));
         webDriver.manage().window().maximize();
+        webDriver.manage().deleteAllCookies();
+
     }
 
     private Wait<WebDriver> fluentwait(){

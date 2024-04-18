@@ -52,6 +52,10 @@ public class PbNUIApp {
         return new AppointmentsPage(AppointmentsTitle);
     }
 
+    public static PaymentsPage paymentsPage() {
+        return new PaymentsPage(PaymentsTitle);
+    }
+
     public static TasksPage tasksPage() {
         return new TasksPage(TasksTitle);
     }

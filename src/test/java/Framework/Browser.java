@@ -4,6 +4,7 @@ import Framework.Constants.Constants.PageTitle;
 import Framework.Util.ConfigManager;
 import Framework.Util.DriverManager;
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
@@ -122,7 +123,6 @@ public class Browser {
         element.clear();
         element.sendKeys(text);
     }
-
     public static void waitForPageReady() {
         DriverManager.getInstance().pageReady();
     }
@@ -148,10 +148,25 @@ public class Browser {
         js.executeScript("arguments[0].scrollIntoView();", object);
     }
 
+    public static void scrollToPageDown() {
+        JavascriptExecutor js = (JavascriptExecutor) DriverManager.getInstance().Driver;
+        js.executeScript("window.scrollTo(0,document.body.scrollHeight);");
+    }
+
+    public static void scrollToPageUp() {
+        JavascriptExecutor js = (JavascriptExecutor) DriverManager.getInstance().Driver;
+        js.executeScript("window.scrollTo(0,0);");
+    }
+
     public static void switchToFrame(WebElement iFrame) {
         waitForElementToDisplay(iFrame);
         waitForElementToBeClickable(iFrame);
         ((WebDriver) DriverManager.getInstance().Driver).switchTo().frame(0);
+    }
+
+    public static void selectIndexFromDropdown(WebElement element , int index){
+        Select select = new Select(element);
+        select.selectByIndex(index);
     }
 
     public static void clickOnElementUsingJavascript(WebElement element) {
