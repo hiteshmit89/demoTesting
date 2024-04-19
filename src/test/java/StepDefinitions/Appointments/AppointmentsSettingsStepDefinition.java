@@ -18,4 +18,15 @@ public class AppointmentsSettingsStepDefinition {
     public void iWillBeAbleToSeeDaysAndBlockOutTimesVisibilityOnAppointmentBookingSettingPage() {
         PbNUIApp.appointmentsPage().verifyBlockOutTimes();
     }
+
+    @When("I click on appointments list page and verify appointment list")
+    public void iClickOnAppointmentsListPageAndVerifyAppointmentList() {
+        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
+        PbNUIApp.appointmentsPage().clickOnAppointmentListTab();
+        PbNUIApp.appointmentsPage().clickOnProviderEditButton();
+    }
+
+    @Then("I will be able to see appointments list page list")
+    public void iWillBeAbleToSeeAppointmentsListPageList() {
+    }
 }

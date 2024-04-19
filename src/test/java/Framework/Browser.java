@@ -59,6 +59,10 @@ public class Browser {
                 .ignoring(ElementNotInteractableException.class);
     }
 
+    public static void waitForElementInvisibility(WebElement element) {
+        retry(() -> !element.isDisplayed());
+    }
+
     public static void waitForAttributeValue(WebElement element, String attribute, String expectedValue) {
         retry(() -> element.getAttribute(attribute).equals(expectedValue));
     }

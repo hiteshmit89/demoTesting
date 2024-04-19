@@ -36,7 +36,13 @@ public class AppointmentsPage extends BasePage {
         Browser.clickOnElement(appointmentSetting);
     }
 
+    public void clickOnAppointmentListTab() {
+        WebElement appointmentList = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='appointment-booking-page-tab-Appointment List']"));
+        Browser.clickOnElement(appointmentList);
+    }
+
     public void clickOnSetupInsurance() {
+        Browser.waitForElementToBeClickable(By.xpath("//button[text()='Setup Insurances']"));
         WebElement setupInsuranceButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='Setup Insurances']"));
         Browser.scrollToVisibleElement(setupInsuranceButton);
         Browser.clickOnElementUsingJavascript(setupInsuranceButton);
