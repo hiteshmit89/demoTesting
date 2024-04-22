@@ -1,14 +1,11 @@
 package Pages;
+
 import Framework.Browser;
 import Framework.Constants.Constants.PageTitle;
 import Framework.Util.DriverManager;
-import Pages.BasePage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
-import java.io.BufferedWriter;
-import java.sql.Driver;
 import java.util.List;
 
 public class FormsPage extends BasePage {
@@ -25,7 +22,7 @@ public class FormsPage extends BasePage {
 
     private List<WebElement> previewIcon = DriverManager.getInstance().Driver.findElements(By.xpath("//table[@class='table table-striped table-hover table-bordered']//*[@data-icon='image']"));
 
-    private List<WebElement> downloadIcon =DriverManager.getInstance().Driver.findElements(By.xpath("//table[@class='table table-striped table-hover table-bordered']//*[@data-icon='download']"));
+    private List<WebElement> downloadIcon = DriverManager.getInstance().Driver.findElements(By.xpath("//table[@class='table table-striped table-hover table-bordered']//*[@data-icon='download']"));
 
     private WebElement searchPatient = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@placeholder ='Search by Patient Name']"));
 
@@ -34,8 +31,7 @@ public class FormsPage extends BasePage {
     private WebElement textNextToCheckNotSyncedForms = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='CompletedFormsTable-container']//label[contains(text(),'Only show completed forms that have not synced')]"));
 
 
-    public void clickCompletedForms()
-    {
+    public void clickCompletedForms() {
         Browser.clickOnElement(completedForms);
     }
 

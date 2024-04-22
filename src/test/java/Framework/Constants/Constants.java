@@ -10,6 +10,7 @@ public class Constants {
         AppointmentBookingTitle("Appointment Booking"),
         CampaignsTitle("Practice by Numbers: communication"),
         SettingsTitle("Practice by Numbers: Settings"),
+        PaymentsTitle("Practice by Numbers: Payment"),
         FormsTitle("Practice by Numbers: online_forms"),
         TasksTitle("Practice by Numbers: Tasks");
         public final String label;

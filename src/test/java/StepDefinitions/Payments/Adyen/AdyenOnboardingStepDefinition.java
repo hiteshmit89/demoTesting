@@ -1,31 +1,50 @@
 package StepDefinitions.Payments.Adyen;
 
 import Framework.Root.PbNUIApp;
-import Pages.AppHomePage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class AdyenOnboardingStepDefinition {
-    @When("The user is able to click on Profile icon")
-    public void theUserIsAbleToClickOnProfileIcon() {
+
+
+    @Given("I enter credentials")
+    public void i_enter_credentials() {
+        PbNUIApp.loginPage().enterEmail(PbNUIApp.userdata().getPractices().getFirst().getUsers().get(2).getEmail());
+        PbNUIApp.loginPage().enterPassword(PbNUIApp.userdata().getPractices().getFirst().getUsers().get(2).getPassword());
+    }
+
+    @When("I click login button")
+    public void iClickLoginButton() {
+        PbNUIApp.loginPage().clickOnLoginButton();
+    }
+
+    @Then("I am redirected to home page")
+    public void i_am_redirected_to_home_page() {
+        PbNUIApp.appHomePage().verifyUserHeaderIsDisplayed();
+    }
+
+    @And("I am able to select practice")
+    public void iAmAbleToSelectPractice() {
+        PbNUIApp.appHomePage().clickOnPracticeInPracticeInfoTable(PbNUIApp.userdata().getPractices().getFirst().getUsers().get(2).getPractice());
+    }
+
+    @And("I click on Profile icon")
+    public void iClickOnProfileIcon() {
         PbNUIApp.practiceHomePage().clickOnUserProfileDropdown();
     }
 
-    @And("The user is able to select practice")
-    public void theUserIsAbleToSelectPractice() {
-        PbNUIApp.appHomePage().clickOnPracticeInPracticeInfoTable(PbNUIApp.userdata().getPractices().getFirst().getPractice_name());
-    }
-
-    @Then("The user is able to click on settings")
-    public void theUserIsAbleToClickOnSettings() {
+    @Then("I am able to click on settings")
+    public void iAmAbleToClickOnSettings() {
         PbNUIApp.practiceHomePage().clickOnSettingsMenuItem();
     }
 
-    @And("The user is able to enable toggle for adyen feature")
-    public void theUserIsAbleToEnableToggleForAdyenFeature() {
-        PbNUIApp.settingsPage().clicktoggleButton();
+    @Then("I am able to enable toggle for adyen feature")
+    public void iAmAbleToEnableToggleForAdyenFeature() {
+        PbNUIApp.settingsPage().clickToggleButton();
     }
+
+
 }
 

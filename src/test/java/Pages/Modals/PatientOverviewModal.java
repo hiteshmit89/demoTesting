@@ -1,9 +1,7 @@
 package Pages.Modals;
 
 import Framework.Browser;
-import Framework.Constants.Constants;
 import Framework.Util.DriverManager;
-import Pages.BasePage;
 import junit.framework.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -11,8 +9,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-public class PatientOverviewPage extends BasePage {
-    public PatientOverviewPage(Constants.PageTitle PageTitle) {super(PageTitle);}
+public class PatientOverviewModal {
+    PatientOverviewModal() {
+        Browser.waitForPageReady();
+    }
 
     private String getCurrentDate() {
         return (new SimpleDateFormat("MM/dd/yyyy").format(new Date()));
@@ -87,5 +87,58 @@ public class PatientOverviewPage extends BasePage {
             }
         }
         Browser.clickOnElement(DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='" + status + "']")));
+    }
+
+    public void clickOnForms() {
+        WebElement Forms = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='patient-window-tabs-id-tab-form']"));
+        Browser.clickOnElement(Forms);
+    }
+
+    public void clickOnGeneralConsentFormsButton(String formsName) {
+        Browser.waitForElementToBeVisible(By.xpath("//*[@data-icon='file-medical']/.."));
+        Browser.waitForElementToBeClickable(By.xpath("//*[@data-icon='file-medical']/.."));
+        WebElement generalConsentForms = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@data-icon='file-medical']/.."));
+        Browser.clickOnElementUsingJavascript(generalConsentForms);
+    }
+
+    public void clickOnPatientSelectedForm() {
+        WebElement patientForm = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='btn btn-primary' and contains(text(),'Form')]"));
+        Browser.clickOnElementUsingJavascript(patientForm);
+    }
+
+    public void clickOnSearchForms(String formName) {
+        WebElement searchForms = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@id='form-search-text-field']"));
+        Browser.enterTextInEditBox(searchForms, formName);
+        Browser.waitForPageReady();
+        Browser.waitForElementToBeVisible(By.xpath("//td[@class='practice-name-column']/div[@class='checkbox']/label"));
+        WebElement listOfForms = DriverManager.getInstance().Driver.findElement(By.xpath("//td[@class='practice-name-column']/div[@class='checkbox']/label"));
+        Browser.clickOnElementUsingJavascript(listOfForms);
+        Browser.clickOnElement(DriverManager.getInstance().Driver.findElement(By.xpath("//*[text()='Add']")));
+    }
+
+    public void checkListOfSelectedForms(String formName) {
+        Browser.waitForElementToBeVisible(By.xpath("//td[@class='practice-name-column']"));
+        List<WebElement> listOfSelectedForms = DriverManager.getInstance().Driver.findElements(By.xpath("//td[@class='practice-name-column']"));
+        for (WebElement element : listOfSelectedForms) {
+            if (element.getText().contains(formName)) {
+                Assert.assertTrue(true);
+                break;
+            }
+        }
+
+        Browser.clickOnElementUsingJavascript(DriverManager.getInstance().Driver.findElement(By.xpath("//label[text()='Send Email']")));
+        Browser.clickOnElementUsingJavascript(DriverManager.getInstance().Driver.findElement(By.xpath("//label[text()='Send Text']")));
+    }
+
+    public void clickOnFormsSendButton() {
+        WebElement sendButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='Send']"));
+        Browser.clickOnElementUsingJavascript(sendButton);
+    }
+
+    public void verifyPendingFormsCheckList(String formName) {
+        Browser.waitForElementToBeVisible(By.xpath("//td[text()='" + formName + "']"));
+        Browser.waitForElementToBeClickable(By.xpath("//td[text()='" + formName + "']"));
+        WebElement isSelectedFormsPresentInPendingFormList = DriverManager.getInstance().Driver.findElement(By.xpath("//td[text()='" + formName + "']"));
+        Assert.assertTrue(isSelectedFormsPresentInPendingFormList.isDisplayed());
     }
 }
