@@ -23,7 +23,8 @@ public class AppointmentsSettingsStepDefinition {
     public void iClickOnAppointmentsListPageAndVerifyAppointmentList() {
         PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
         PbNUIApp.appointmentsPage().clickOnAppointmentListTab();
-        PbNUIApp.appointmentsPage().clickOnProviderEditButton();
+        PbNUIApp.appointmentsPage().enterStartDate("01/01/2024");
+        PbNUIApp.appointmentsPage().enterEndDate("31/12/2024");
     }
 
     @Then("I will be able to see appointments list page list")

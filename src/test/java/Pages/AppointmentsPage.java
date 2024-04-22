@@ -92,4 +92,15 @@ public class AppointmentsPage extends BasePage {
         WebElement blockOutTimes = DriverManager.getInstance().Driver.findElement(By.xpath("//label[text()='Blocked Out Times']"));
         Assert.assertTrue("Verify block-out times is not displayed", blockOutTimes.isDisplayed());
     }
+
+    public void enterStartDate(String startDateData) {
+        WebElement startDate = DriverManager.getInstance().Driver.findElement(By.xpath("(//input[@name='dateStart'])[1]"));
+        Browser.enterTextInEditBox(startDate, startDateData);
+    }
+
+    public void enterEndDate(String endDateData) {
+       
+        WebElement endDate = DriverManager.getInstance().Driver.findElement(By.xpath("(//input[@name='endStart'])[1]"));
+        Browser.enterTextInEditBox(endDate, endDateData);
+    }
 }
