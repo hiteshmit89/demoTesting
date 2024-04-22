@@ -10,13 +10,13 @@ public class PatientWindowStepDefinition {
 
     @When("I create a task {string} in patient window")
     public void iCreateATaskTaskTypeInPatientWindow(String taskType) {
-        PbNUIApp.navigator().findAndSelectPatientByExactMatchOf(PbNUIApp.userdata().getPatientName(0,0));
-        if (taskType.equals(PbNUIApp.userdata().getTaskType(0,0))) {
+        PbNUIApp.navigator().findAndSelectPatientByExactMatchOf(PbNUIApp.userdata().getPatientName(1,1));
+        if (taskType.equals(PbNUIApp.userdata().getTaskType(1,1))) {
             PBNModals.patientOverviewModal().selectTask(taskType);
         } else {
             PBNModals.patientOverviewModal().selectTask(taskType);
         }
-        PBNModals.patientOverviewModal().addTaskDescription(PbNUIApp.userdata().getTaskDescription(0,0));
+        PBNModals.patientOverviewModal().addTaskDescription(PbNUIApp.userdata().getTaskDescription(1,1));
         PBNModals.patientOverviewModal().taskDueDate();
         PBNModals.patientOverviewModal().taskCreation();
     }

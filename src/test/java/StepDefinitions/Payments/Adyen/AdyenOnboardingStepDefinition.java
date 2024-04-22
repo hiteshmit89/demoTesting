@@ -11,8 +11,8 @@ public class AdyenOnboardingStepDefinition {
 
     @Given("I enter credentials")
     public void i_enter_credentials() {
-        PbNUIApp.loginPage().enterEmail(PbNUIApp.userdata().getUserEmail(0,0));
-        PbNUIApp.loginPage().enterPassword(PbNUIApp.userdata().getPassword(0,0));
+        PbNUIApp.loginPage().enterEmail(PbNUIApp.userdata().getUserEmail(1,1));
+        PbNUIApp.loginPage().enterPassword(PbNUIApp.userdata().getPassword(1,1));
     }
 
     @When("I click login button")

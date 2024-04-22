@@ -8,8 +8,8 @@ import io.cucumber.java.en.When;
 public class LoginStepDefinition {
     @Given("I enter user credentials")
     public void i_enter_user_credentials() {
-        PbNUIApp.loginPage().enterEmail(PbNUIApp.userdata().getUserEmail(0,0));
-        PbNUIApp.loginPage().enterPassword(PbNUIApp.userdata().getPassword(0,0));
+        PbNUIApp.loginPage().enterEmail(PbNUIApp.userdata().getUserEmail(1,1));
+        PbNUIApp.loginPage().enterPassword(PbNUIApp.userdata().getPassword(1,1));
     }
     @When("I click on login button")
     public void i_click_on_login_button() {

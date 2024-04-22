@@ -30,7 +30,7 @@ public class UserData {
 
     public User getUser(int practiceId, int userId) {
         User user = null;
-        for (User u: getPractice(0).getUsers()) {
+        for (User u: getPractice(practiceId).getUsers()) {
             if (u.getUser_id() == userId) {
                 user = u;
                 break;
