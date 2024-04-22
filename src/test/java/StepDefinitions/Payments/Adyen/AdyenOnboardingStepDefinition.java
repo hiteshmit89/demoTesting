@@ -11,8 +11,8 @@ public class AdyenOnboardingStepDefinition {
 
     @Given("I enter credentials")
     public void i_enter_credentials() {
-        PbNUIApp.loginPage().enterEmail(PbNUIApp.userdata().getPractices().getFirst().getUsers().get(2).getEmail());
-        PbNUIApp.loginPage().enterPassword(PbNUIApp.userdata().getPractices().getFirst().getUsers().get(2).getPassword());
+        PbNUIApp.loginPage().enterEmail(PbNUIApp.userdata().getUserEmail(0,0));
+        PbNUIApp.loginPage().enterPassword(PbNUIApp.userdata().getPassword(0,0));
     }
 
     @When("I click login button")
@@ -27,7 +27,7 @@ public class AdyenOnboardingStepDefinition {
 
     @And("I am able to select practice")
     public void iAmAbleToSelectPractice() {
-        PbNUIApp.appHomePage().clickOnPracticeInPracticeInfoTable(PbNUIApp.userdata().getPractices().getFirst().getUsers().get(2).getPractice());
+        PbNUIApp.appHomePage().clickOnPracticeInPracticeInfoTable(PbNUIApp.userdata().getPracticeName(2));
     }
 
     @And("I click on Profile icon")

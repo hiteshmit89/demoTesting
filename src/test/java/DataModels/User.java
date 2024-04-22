@@ -3,7 +3,6 @@ package DataModels;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class User {
-     String practice;
 
     @JsonProperty("user_id")
     public int getUser_id() {
@@ -56,13 +55,6 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
-    }
-    @JsonProperty("practice")
-    public String getPractice() {
-        return this.practice;
-    }
-    public void setPractice(String practice) {
-        this.practice = practice;
     }
 
     String role;

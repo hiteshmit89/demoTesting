@@ -10,14 +10,14 @@ import io.cucumber.java.en.When;
 public class HomeStepDefinition {
     @Given("I login to PbN app")
     public void iLoginToPbNApp() {
-        PbNUIApp.loginPage().enterEmail(PbNUIApp.userdata().getPractices().getFirst().getUsers().getFirst().getEmail());
-        PbNUIApp.loginPage().enterPassword(PbNUIApp.userdata().getPractices().getFirst().getUsers().getFirst().getPassword());
+        PbNUIApp.loginPage().enterEmail(PbNUIApp.userdata().getUserEmail(0,0));
+        PbNUIApp.loginPage().enterPassword(PbNUIApp.userdata().getPassword(0,0));
         PbNUIApp.loginPage().clickOnLoginButton();
     }
 
     @When("I click on practice name")
     public void iClickOnPracticeName() {
-        PbNUIApp.appHomePage().clickOnPracticeInPracticeInfoTable(PbNUIApp.userdata().getPractices().getFirst().getPractice_name());
+        PbNUIApp.appHomePage().clickOnPracticeInPracticeInfoTable(PbNUIApp.userdata().getPracticeName(0));
     }
 
     @Then("I will see activity for practice")

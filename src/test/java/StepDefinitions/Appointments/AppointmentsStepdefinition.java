@@ -40,7 +40,7 @@ public class AppointmentsStepdefinition {
     public void iWillBeAbleToSeeCreditCardPageOnAppointmentBookingPage() {
         PbNUIApp.appointmentBookingPage().verifyCreditCardPage();
         Browser.navigateToNewURL(ConfigManager.getInstance().getProperty("URL"));
-        PbNUIApp.appHomePage().clickOnPracticeInPracticeInfoTable(PbNUIApp.userdata().getPractices().getFirst().getPractice_name());
+        PbNUIApp.appHomePage().clickOnPracticeInPracticeInfoTable(PbNUIApp.userdata().getPracticeName(0));
         PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
         PbNUIApp.appointmentsPage().clickOnAppointmentSettingTab();
         PbNUIApp.appointmentsPage().clickOnSetupCreditCard();
@@ -76,7 +76,7 @@ public class AppointmentsStepdefinition {
     public void iWillNotBeAbleToSeeInsurancePageOnAppointmentBookingPage() {
         PbNUIApp.appointmentBookingPage().verifyInsurancePage();
         Browser.navigateToNewURL(ConfigManager.getInstance().getProperty("URL"));
-        PbNUIApp.appHomePage().clickOnPracticeInPracticeInfoTable(PbNUIApp.userdata().getPractices().getFirst().getPractice_name());
+        PbNUIApp.appHomePage().clickOnPracticeInPracticeInfoTable(PbNUIApp.userdata().getPracticeName(0));
         PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
         PbNUIApp.appointmentsPage().clickOnAppointmentSettingTab();
         PbNUIApp.appointmentsPage().clickOnSetupInsurance();
@@ -136,10 +136,10 @@ public class AppointmentsStepdefinition {
 
     @Given("I login to PbN app and select the practice")
     public void iLoginToPbNApp() {
-        PbNUIApp.loginPage().enterEmail(PbNUIApp.userdata().getPractices().getFirst().getUsers().getFirst().getEmail());
-        PbNUIApp.loginPage().enterPassword(PbNUIApp.userdata().getPractices().getFirst().getUsers().getFirst().getPassword());
+        PbNUIApp.loginPage().enterEmail(PbNUIApp.userdata().getUserEmail(0,0));
+        PbNUIApp.loginPage().enterPassword(PbNUIApp.userdata().getPassword(0,0));
         PbNUIApp.loginPage().clickOnLoginButton();
-        PbNUIApp.appHomePage().clickOnPracticeInPracticeInfoTable(PbNUIApp.userdata().getPractices().getFirst().getPractice_name());
+        PbNUIApp.appHomePage().clickOnPracticeInPracticeInfoTable(PbNUIApp.userdata().getPracticeName(0));
     }
 
     @When("I click on appointments tab and try to book appointments for new patient")
