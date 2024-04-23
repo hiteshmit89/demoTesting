@@ -96,11 +96,18 @@ public class AppointmentsPage extends BasePage {
     public void enterStartDate(String startDateData) {
         WebElement startDate = DriverManager.getInstance().Driver.findElement(By.xpath("(//input[@name='dateStart'])[1]"));
         Browser.enterTextInEditBox(startDate, startDateData);
+        Browser.waitForElementEnable(startDate);
     }
 
     public void enterEndDate(String endDateData) {
-       
-        WebElement endDate = DriverManager.getInstance().Driver.findElement(By.xpath("(//input[@name='endStart'])[1]"));
+        WebElement endDate = DriverManager.getInstance().Driver.findElement(By.xpath("(//input[@name='dateEnd'])[1]"));
+        Browser.waitForElementEnable(endDate);
         Browser.enterTextInEditBox(endDate, endDateData);
+        Browser.waitForElementEnable(endDate);
+    }
+
+    public void verifyAppointmentList() {
+        WebElement appointmentList = DriverManager.getInstance().Driver.findElement(By.xpath("(//tr[@class='pointer'])[1]"));
+        Assert.assertTrue("Appointment List is not displayed", appointmentList.isDisplayed());
     }
 }

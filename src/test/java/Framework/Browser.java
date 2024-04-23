@@ -64,6 +64,10 @@ public class Browser {
         retry(() -> !element.isDisplayed());
     }
 
+    public static void waitForElementEnable(WebElement element) {
+        retry(() -> element.isEnabled());
+    }
+
     public static void waitForAttributeValue(WebElement element, String attribute, String expectedValue) {
         retry(() -> element.getAttribute(attribute).equals(expectedValue));
     }

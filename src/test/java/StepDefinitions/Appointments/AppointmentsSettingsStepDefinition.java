@@ -29,5 +29,6 @@ public class AppointmentsSettingsStepDefinition {
 
     @Then("I will be able to see appointments list page list")
     public void iWillBeAbleToSeeAppointmentsListPageList() {
+        PbNUIApp.appointmentsPage().verifyAppointmentList();
     }
 }
