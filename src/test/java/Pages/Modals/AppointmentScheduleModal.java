@@ -20,6 +20,6 @@ public class AppointmentScheduleModal {
         Browser.waitForElementList(By.xpath("//*[@id='chat-box']//div[contains(@class,'rbc-today-off rbc-day-slot')]"));
         List<WebElement> timeSlots = DriverManager.getInstance().Driver.findElements(By.xpath("//*[@id='chat-box']//div[contains(@class,'rbc-today-off rbc-day-slot')]"));
         List<WebElement> appointmentSlots = timeSlots.getFirst().findElements(By.xpath(".//div[@class='rbc-time-slot slotDefault']"));
-        Browser.doubleClickOnElement(timeSlots.get(3));
+        Browser.doubleClickOnElement(timeSlots.getFirst());
     }
 }
