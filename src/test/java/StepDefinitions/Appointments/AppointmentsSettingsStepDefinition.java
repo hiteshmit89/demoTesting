@@ -18,4 +18,17 @@ public class AppointmentsSettingsStepDefinition {
     public void iWillBeAbleToSeeDaysAndBlockOutTimesVisibilityOnAppointmentBookingSettingPage() {
         PbNUIApp.appointmentsPage().verifyBlockOutTimes();
     }
+
+    @When("I click on appointments list page and verify appointment list")
+    public void iClickOnAppointmentsListPageAndVerifyAppointmentList() {
+        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
+        PbNUIApp.appointmentsPage().clickOnAppointmentListTab();
+        PbNUIApp.appointmentsPage().enterStartDate("01/01/2024");
+        PbNUIApp.appointmentsPage().enterEndDate("31/12/2024");
+    }
+
+    @Then("I will be able to see appointments list page list")
+    public void iWillBeAbleToSeeAppointmentsListPageList() {
+        PbNUIApp.appointmentsPage().verifyAppointmentList();
+    }
 }
