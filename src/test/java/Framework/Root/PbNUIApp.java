@@ -2,9 +2,11 @@ package Framework.Root;
 
 import DataModels.UserData;
 import Pages.*;
-import Pages.Modals.PatientOverviewPage;
+import Pages.Modals.PatientOverviewModal;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.io.File;
+
 import static Framework.Constants.Constants.PageTitle.*;
 
 public class PbNUIApp {
@@ -62,9 +64,5 @@ public class PbNUIApp {
 
     public static AppointmentBookingPage appointmentBookingPage() {
         return new AppointmentBookingPage(AppointmentBookingTitle);
-    }
-
-    public static PatientOverviewPage patientOverviewPage() {
-        return new PatientOverviewPage(HomeTitle);
     }
 }
