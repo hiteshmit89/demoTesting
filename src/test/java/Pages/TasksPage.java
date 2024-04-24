@@ -24,10 +24,11 @@ public class TasksPage extends BasePage {
 
     public void selectTaskListCheckbox() {
         Browser.waitForPageReady();
-        WebElement taskListCheckbox = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='col-sm-12']//th[@class='table-task-select sorting_disabled']"));
-        Browser.waitForElementToBeClickable(taskListCheckbox);
+        WebElement interceptElement = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id=\"task-list\"]/div[2]"));
+        Browser.waitForElementInvisibility(interceptElement);
+        WebElement taskListCheckbox = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id=\"DataTables_Table_0\"]/thead//input"));
+        Browser.scrollToVisibleElement(taskListCheckbox);
         Browser.clickOnElement(taskListCheckbox);
-
     }
 
     public void closeSelectedTaskList() {
