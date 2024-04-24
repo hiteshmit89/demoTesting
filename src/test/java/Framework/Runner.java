@@ -11,7 +11,8 @@ import org.junit.runner.RunWith;
         plugin = {"pretty","html:target/HtmlReports/testResult.html",
                 "json:target/JSONReports/testResult.json",
                 "junit:target/XMLReports/testResult.xml"},
-       tags = "@EnableAdyenToggle")
+       //tags = "@pbnAll and not @In-Progress")
+        tags = "@PUA-35")
 
 public class Runner {
 }

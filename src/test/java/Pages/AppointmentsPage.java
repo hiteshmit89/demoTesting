@@ -36,7 +36,13 @@ public class AppointmentsPage extends BasePage {
         Browser.clickOnElement(appointmentSetting);
     }
 
+    public void clickOnAppointmentListTab() {
+        WebElement appointmentList = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='appointment-booking-page-tab-Appointment List']"));
+        Browser.clickOnElement(appointmentList);
+    }
+
     public void clickOnSetupInsurance() {
+        Browser.waitForElementToBeClickable(By.xpath("//button[text()='Setup Insurances']"));
         WebElement setupInsuranceButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='Setup Insurances']"));
         Browser.scrollToVisibleElement(setupInsuranceButton);
         Browser.clickOnElementUsingJavascript(setupInsuranceButton);
@@ -85,5 +91,23 @@ public class AppointmentsPage extends BasePage {
         Browser.waitForElementToBeClickable(By.xpath("//label[text()='Blocked Out Times']"));
         WebElement blockOutTimes = DriverManager.getInstance().Driver.findElement(By.xpath("//label[text()='Blocked Out Times']"));
         Assert.assertTrue("Verify block-out times is not displayed", blockOutTimes.isDisplayed());
+    }
+
+    public void enterStartDate(String startDateData) {
+        WebElement startDate = DriverManager.getInstance().Driver.findElement(By.xpath("(//input[@name='dateStart'])[1]"));
+        Browser.enterTextInEditBox(startDate, startDateData);
+        Browser.waitForElementEnable(startDate);
+    }
+
+    public void enterEndDate(String endDateData) {
+        WebElement endDate = DriverManager.getInstance().Driver.findElement(By.xpath("(//input[@name='dateEnd'])[1]"));
+        Browser.waitForElementEnable(endDate);
+        Browser.enterTextInEditBox(endDate, endDateData);
+        Browser.waitForElementEnable(endDate);
+    }
+
+    public void verifyAppointmentList() {
+        WebElement appointmentList = DriverManager.getInstance().Driver.findElement(By.xpath("(//tr[@class='pointer'])[1]"));
+        Assert.assertTrue("Appointment List is not displayed", appointmentList.isDisplayed());
     }
 }
