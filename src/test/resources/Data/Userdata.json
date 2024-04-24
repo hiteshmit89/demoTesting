@@ -24,8 +24,7 @@
           "user_name": "Vikas Tomar",
           "password": "ppp###2025",
           "email": "vikas.tomar@practicenumbers.com",
-          "role": "super_admin",
-          "practice": "Valley Pathology 2"
+          "role": "super_admin"
         }
       ],
       "FormsData": [
@@ -56,6 +55,7 @@
       ],
       "PatientData": [
         {
+          "patient_id": 1,
           "patient_name": "Sally Walker",
           "task_description": "Automation",
           "task_type": "Treatment"
@@ -63,22 +63,15 @@
       ]
     },
     {
-      "practice_id": 1,
-      "practice_name": "Roman, Burke and Wagner",
+      "practice_id": 2,
+      "practice_name": "Valley Pathology 2",
       "address": 123,
       "Users": [
         {
           "user_id": 1,
-          "user_name": "Chris Lau",
+          "user_name": "Vikas Tomar",
           "password": "ppp###2025",
-          "email": "chris.lau@practicenumbers.com",
-          "role": "super_admin"
-        },
-        {
-          "user_id": 2,
-          "user_name": "Hitesh Lau",
-          "password": "ppp###2025",
-          "email": "Hitesh.lau@practicenumbers.com",
+          "email": "vikas.tomar@practicenumbers.com",
           "role": "super_admin"
         }
       ],
