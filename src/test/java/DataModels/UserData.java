@@ -11,4 +11,62 @@ public class UserData {
     public void setPractices(ArrayList<Practice> practices) {
         this.practices = practices; }
     ArrayList<Practice> practices;
+
+    //####################Do not delete below code when updating models####################
+    public Practice getPractice(int practiceId) {
+        Practice practice = null;
+        for (Practice p: getPractices()) {
+            if (p.practice_id == practiceId) {
+                practice = p;
+                break;
+            }
+        }
+        return practice;
+    }
+
+    public String getPracticeName(int practiceId) {
+        return getPractice(practiceId).getPractice_name();
+    }
+
+    public User getUser(int practiceId, int userId) {
+        User user = null;
+        for (User u: getPractice(practiceId).getUsers()) {
+            if (u.getUser_id() == userId) {
+                user = u;
+                break;
+            }
+        }
+        return user;
+    }
+
+    public String getUserEmail(int practiceId, int userId) {
+        return getUser(practiceId, userId).getEmail();
+    }
+
+    public String getPassword(int practiceId, int userId) {
+        return getUser(practiceId,userId).getPassword();
+    }
+
+    public PatientData getPatientData(int practiceId, int patientId) {
+        PatientData patientData = null;
+        for (PatientData pd: getPractice(practiceId).getPatientData()) {
+            if (pd.getPatient_id() == patientId) {
+                patientData = pd;
+                break;
+            }
+        }
+        return patientData;
+    }
+
+    public String getPatientName(int practiceId, int patientId) {
+        return getPatientData(practiceId,patientId).getPatient_name();
+    }
+
+    public String getTaskType(int practiceId, int patientId) {
+        return getPatientData(practiceId,patientId).getTask_type();
+    }
+
+    public String getTaskDescription(int practiceId, int patientId) {
+        return getPatientData(practiceId,patientId).getTask_description();
+    }
 }
