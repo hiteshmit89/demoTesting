@@ -40,6 +40,7 @@ public class PaymentsPage extends BasePage {
         Browser.waitForElementToBeVisible(By.xpath("//div[@class='payment-section-title']"));
         Browser.waitForPresenceOfElement(By.xpath("//*[@id='payment-methods-selector']"));
         Browser.waitForElementToBeVisible(By.xpath("//*[@id='payment-methods-selector']"));
+        Browser.waitForElementToBeClickable(By.xpath("//*[@id='payment-methods-selector']"));
         WebElement dropdownSelectPaymentMethod = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='payment-methods-selector']"));
         Browser.selectIndexFromDropdown(dropdownSelectPaymentMethod, 1);
     }
