@@ -118,6 +118,7 @@ public class AppointmentsPage extends BasePage {
         Browser.scrollToVisibleElement(providerAdvanceSettingButton);
         Browser.clickOnElement(providerAdvanceSettingButton);
     }
+    
     public void verifyAllowedAge() {
         Browser.waitForElementToBeClickable(By.xpath("//label[text()='Allowed Age']"));
         WebElement allowedAge = DriverManager.getInstance().Driver.findElement(By.xpath("//label[text()='Allowed Age']"));
