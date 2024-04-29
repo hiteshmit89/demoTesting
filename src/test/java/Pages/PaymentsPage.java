@@ -1,11 +1,7 @@
 package Pages;
 
 import Framework.Browser;
-import Framework.Constants.Constants.*;
-import java.io.File;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.concurrent.TimeUnit;
+import Framework.Constants.Constants.PageTitle;
 import Framework.Util.DriverManager;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -36,14 +32,14 @@ public class PaymentsPage extends BasePage {
         WebElement cardIcon = DriverManager.getInstance().Driver.findElement(By.xpath("(//*[@class='svg-inline--fa fa-credit-card fa-w-18 card-icon'])[1]"));
         Browser.clickOnElement(cardIcon);
     }
-    public void selectDropdownValue(){
-        Browser.waitForElementToBeVisible(By.xpath("//div[@class='payment-section-title']"));
-        Browser.waitForPresenceOfElement(By.xpath("//*[@id='payment-methods-selector']"));
-        Browser.waitForElementToBeVisible(By.xpath("//*[@id='payment-methods-selector']"));
-        Browser.waitForElementToBeClickable(By.xpath("//*[@id='payment-methods-selector']"));
+
+    public void selectPaymentMethod(){
         WebElement dropdownSelectPaymentMethod = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='payment-methods-selector']"));
+        Browser.waitForElementChildren(dropdownSelectPaymentMethod, By.xpath("./option"), 1);
+        Browser.waitForElementToDisplay(dropdownSelectPaymentMethod);
         Browser.selectIndexFromDropdown(dropdownSelectPaymentMethod, 1);
     }
+
     public void enterAmount(){
         WebElement enterAmountTextBox = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@type='number']"));
         Random random = new Random();
@@ -51,11 +47,13 @@ public class PaymentsPage extends BasePage {
         Browser.enterTextInEditBox(enterAmountTextBox, String.valueOf(randomNumber));
 
     }
+
     public void enterChargeDescription(){
         WebElement enterAmountTextBox = DriverManager.getInstance().Driver.findElement(By.xpath("//textarea[@class='charge-description-input-box form-control']"));
         Browser.enterTextInEditBox(enterAmountTextBox,"Entered Description");
 
     }
+
     public void clickChargeButtonOnModal(){
         WebElement chargeButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='btn btn-default']//span[text()=' Charge ']"));
         Browser.clickOnElement(chargeButton);
@@ -63,6 +61,7 @@ public class PaymentsPage extends BasePage {
         Browser.clickOnElement(chargeConfirmationPopUp);
 
     }
+
     public void verifyChargeConfirmationText(){
         Browser.waitForElementToBeVisible(By.xpath("//span[@class='success' and contains(text(),'Charge Successful for')]"));
         WebElement textChargeSuccessful = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='success' and contains(text(),'Charge Successful for')]"));
@@ -72,6 +71,7 @@ public class PaymentsPage extends BasePage {
             Assert.assertFalse("Charge Successful for",textChargeSuccessful.isDisplayed());
         }
     }
+
     public void verifyPaymentReceiptIsDownloaded(){
         WebElement downloadIcon = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@role='button' and @tabindex='0']"));
         Browser.clickOnElement(downloadIcon);

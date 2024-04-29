@@ -1,13 +1,9 @@
-package StepDefinitions.Payments.Adyen;
+package StepDefinitions.Payments.Adyen.PaymentMethods;
 
-import Framework.Browser;
 import Framework.Root.PbNUIApp;
-import Framework.Util.DriverManager;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
 import static Framework.Constants.Constants.Destination.Payments;
 
@@ -26,10 +22,11 @@ public class AdyenTransactionStepDefinition {
     }
     @And("Select the payment method, enter amount, description from charge customer modal")
     public void selectThePaymentMethodEnterAmountDescriptionFromChargeCustomerModal() {
-        PbNUIApp.paymentsPage().selectDropdownValue();
+        PbNUIApp.paymentsPage().selectPaymentMethod();
         PbNUIApp.paymentsPage().enterAmount();
         PbNUIApp.paymentsPage().enterChargeDescription();
     }
+
     @Then("I Click on Charge button")
     public void iClickOnChargeButton() {
         PbNUIApp.paymentsPage().clickChargeButtonOnModal();

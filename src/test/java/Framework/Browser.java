@@ -4,17 +4,10 @@ import Framework.Constants.Constants.PageTitle;
 import Framework.Util.ConfigManager;
 import Framework.Util.DriverManager;
 import org.openqa.selenium.*;
-import org.openqa.selenium.support.ui.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-
-import javax.swing.*;
+import org.openqa.selenium.support.ui.Select;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.time.Duration;
@@ -92,8 +85,8 @@ public class Browser {
         retry(() -> table.findElements(By.xpath("./../td/div")).size() >= size);
     }
 
-    public static void waitForElementChildren(WebElement element, By locator) {
-        retry(() -> !element.findElements(locator).isEmpty());
+    public static void waitForElementChildren(WebElement element, By childLocator, int noOfChildrenNeeded) {
+        retry(() -> element.findElements(childLocator).size() > noOfChildrenNeeded);
     }
 
     public static void waitForElementList(By locator) {
@@ -176,7 +169,10 @@ public class Browser {
         Select select = new Select(element);
         select.selectByIndex(index);
     }
+
     public static void selectByVisibleTextFromDropdown(WebElement element , String text){
+        waitForElementToBeVisible(element);
+        waitForElementToBeClickable(element);
         Select select = new Select(element);
         select.selectByVisibleText(text);
     }
