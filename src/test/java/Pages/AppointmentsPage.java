@@ -5,6 +5,7 @@ import Framework.Constants.Constants.PageTitle;
 import Framework.Util.ConfigManager;
 import Framework.Util.DriverManager;
 import org.junit.Assert;
+import org.junit.Before;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -109,5 +110,42 @@ public class AppointmentsPage extends BasePage {
     public void verifyAppointmentList() {
         WebElement appointmentList = DriverManager.getInstance().Driver.findElement(By.xpath("(//tr[@class='pointer'])[1]"));
         Assert.assertTrue("Appointment List is not displayed", appointmentList.isDisplayed());
+    }
+
+    public void clickOnProviderAdvanceSettingButton() {
+        Browser.waitForElementToBeVisible(By.xpath("//div[@class='visit-type-setting-button-container']"));
+        WebElement providerAdvanceSettingButton = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='visit-type-setting-button-container']"));
+        Browser.scrollToVisibleElement(providerAdvanceSettingButton);
+        Browser.clickOnElement(providerAdvanceSettingButton);
+    }
+    public void verifyAllowedAge() {
+        Browser.waitForElementToBeClickable(By.xpath("//label[text()='Allowed Age']"));
+        WebElement allowedAge = DriverManager.getInstance().Driver.findElement(By.xpath("//label[text()='Allowed Age']"));
+        Assert.assertTrue("Allowed age is not displayed", allowedAge.isDisplayed());
+    }
+
+    public void verifyNoProviderSelectionCheckbox() {
+        WebElement noProviderSelection = DriverManager.getInstance().Driver.findElement(By.xpath("//label[text()='No Provider selection']"));
+        Assert.assertTrue("No Provider Selection Checkbox is not displayed", noProviderSelection.isDisplayed());
+    }
+
+    public void verifyCheckRecallDateCheckbox() {
+        WebElement checkRecallDate = DriverManager.getInstance().Driver.findElement(By.xpath("//label[text()='Check Recall date']"));
+        Assert.assertTrue("Check Recall Date Checkbox is not displayed", checkRecallDate.isDisplayed());
+    }
+
+    public void verifyDontAutoSyncCheckbox() {
+        WebElement dontAutoSyncCheckbox = DriverManager.getInstance().Driver.findElement(By.xpath("//label[text()='Check Recall date']"));
+        Assert.assertTrue("Don't Auto Sync Checkbox is not displayed", dontAutoSyncCheckbox.isDisplayed());
+    }
+
+    public void verifySoonestAppointmentAvailable() {
+        WebElement soonestAppointmentAvailable = DriverManager.getInstance().Driver.findElement(By.xpath("//label[text()='Soonest Appointment Available']"));
+        Assert.assertTrue("Soonest Appointment Available is not displayed", soonestAppointmentAvailable.isDisplayed());
+    }
+
+    public void verifyFarthestAppointmentAvailable() {
+        WebElement farthestAppointmentAvailable = DriverManager.getInstance().Driver.findElement(By.xpath("//label[text()='Farthest Appointment Available Month(s)']"));
+        Assert.assertTrue("Farthest Appointment Available is not displayed", farthestAppointmentAvailable.isDisplayed());
     }
 }

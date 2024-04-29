@@ -31,4 +31,21 @@ public class AppointmentsSettingsStepDefinition {
     public void iWillBeAbleToSeeAppointmentsListPageList() {
         PbNUIApp.appointmentsPage().verifyAppointmentList();
     }
+
+    @When("I click on appointments setting page and verify advanced Settings window of provider")
+    public void iClickOnAppointmentsSettingPageAndVerifyAdvancedSettingsWindowOfProvider() {
+        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
+        PbNUIApp.appointmentsPage().clickOnAppointmentSettingTab();
+        PbNUIApp.appointmentsPage().clickOnProviderAdvanceSettingButton();
+    }
+
+    @Then("I will be able to see advanced Settings window of provider")
+    public void iWillBeAbleToSeeAdvancedSettingsWindowOfProvider() {
+        PbNUIApp.appointmentsPage().verifyAllowedAge();
+        PbNUIApp.appointmentsPage().verifyNoProviderSelectionCheckbox();
+        PbNUIApp.appointmentsPage().verifyCheckRecallDateCheckbox();
+        PbNUIApp.appointmentsPage().verifyDontAutoSyncCheckbox();
+        PbNUIApp.appointmentsPage().verifySoonestAppointmentAvailable();
+        PbNUIApp.appointmentsPage().verifyFarthestAppointmentAvailable();
+    }
 }
