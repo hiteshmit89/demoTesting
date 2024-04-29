@@ -5,7 +5,6 @@ import Framework.Constants.Constants.PageTitle;
 import Framework.Util.ConfigManager;
 import Framework.Util.DriverManager;
 import org.junit.Assert;
-import org.junit.Before;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -118,7 +117,7 @@ public class AppointmentsPage extends BasePage {
         Browser.scrollToVisibleElement(providerAdvanceSettingButton);
         Browser.clickOnElement(providerAdvanceSettingButton);
     }
-    
+
     public void verifyAllowedAge() {
         Browser.waitForElementToBeClickable(By.xpath("//label[text()='Allowed Age']"));
         WebElement allowedAge = DriverManager.getInstance().Driver.findElement(By.xpath("//label[text()='Allowed Age']"));
