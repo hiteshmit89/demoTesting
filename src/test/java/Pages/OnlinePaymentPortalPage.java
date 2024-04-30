@@ -45,10 +45,20 @@ public class OnlinePaymentPortalPage extends BasePage {
         Browser.clickOnElement(continueButton);
     }
     public void enterPaymentAmount(String amount) {
-        List<WebElement> paymentAmountDiv = DriverManager.getInstance().Driver.findElements(By.xpath("//*[@id='payment-portal-card-border']//div[contains(@class,'MuiInputBase')]"));
+        //Browser.waitForElementList(By.xpath("//*[@id='payment-portal-card-border']//div[contains(@class,'MuiInputBase')]"));
+        Browser.waitForElementToBeVisible(By.xpath("//*[@id='payment-portal-card-border']//label[text()='Payment Amount']/following-sibling::div/input"));
+        Browser.waitForElementToBeClickable(By.xpath("//*[@id='payment-portal-card-border']//label[text()='Payment Amount']/following-sibling::div/input"));
+        WebElement amountt = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='payment-portal-card-border']//label[text()='Payment Amount']/following-sibling::div/input"));
+        Browser.waitForElementToBeClickable(amountt);
+        Browser.waitForElementToDisplay(amountt);
+        Browser.enterTextInEditBox(amountt, amount);
+        /*List<WebElement> paymentAmountDiv = DriverManager.getInstance().Driver.findElements(By.xpath("//*[@id='payment-portal-card-border']//div[contains(@class,'MuiInputBase')]"));
         Browser.waitForElementToDisplay(paymentAmountDiv.getFirst());
         System.out.println(paymentAmountDiv.getFirst().isDisplayed());
         WebElement paymentAmountEditBox = paymentAmountDiv.getFirst().findElement(By.xpath("./input"));
+        //paymentAmountEditBox.click();
         Browser.enterTextInEditBox(paymentAmountEditBox, amount);
+        Browser.enterTextInEditBox(paymentAmountDiv.get(1).findElement(By.xpath("./input")), "123");
+        Browser.enterTextInEditBox(paymentAmountDiv.get(2).findElement(By.xpath("./input")), "1234567890");*/
     }
 }
