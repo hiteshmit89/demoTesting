@@ -25,5 +25,4 @@ public class SettingsPage extends BasePage {
             Browser.clickOnElement(paymentToggleAdyen);
         }
     }
-
 }
