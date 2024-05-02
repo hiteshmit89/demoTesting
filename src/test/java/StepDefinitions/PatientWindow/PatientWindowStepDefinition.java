@@ -57,9 +57,8 @@ public class PatientWindowStepDefinition {
     }
 
     @And("I click on the Send General and Consent Form Button {string} in patient window")
-    public void iClickOnTheSendGeneralAndConsentFormButton(String formName) {
+    public void iClickOnTheSendGeneralAndConsentFormButton(String formName)  {
         PBNModals.patientOverviewModal().clickOnGeneralConsentFormsButton(formName);
-        PBNModals.patientOverviewModal().clickOnPatientSelectedForm();
         PBNModals.patientOverviewModal().clickOnSearchForms(formName);
         PBNModals.patientOverviewModal().checkListOfSelectedForms(formName);
         PBNModals.patientOverviewModal().clickOnFormsSendButton();
@@ -68,5 +67,25 @@ public class PatientWindowStepDefinition {
     @Then("I Verify check list is getting updated in the Pending Forms Section {string} in patient window")
     public void iVerifyCheckListIsGettingUpdatedInThePendingFormsSection(String formsName) {
         PBNModals.patientOverviewModal().verifyPendingFormsCheckList(formsName);
+    }
+
+    @Then("I click on the send reminder bell icon {string} in patient window")
+    public void iClickOnTheSendReminderBellIconInPatientWindow(String formName) {
+        PBNModals.patientOverviewModal().sendReminderBell(formName);
+    }
+
+    @Then("I cancel form Invite from the pending forms list {string} in patient window")
+    public void iCancelFormInviteFromThePendingFormsListInPatientWindow(String formName) {
+        PBNModals.patientOverviewModal().clickOnCancelFormInvite(formName);
+    }
+
+    @And("I Select the Form and Mark as submitted manually from the Pending Form List {string} in the patient window")
+    public void iSelectTheFormAndMarkAsSubmittedManuallyFromThePendingFormListInThePatientWindow(String formName) {
+        PBNModals.patientOverviewModal().clickOnMarkAsSubmittedManuallyButton(formName);
+    }
+
+    @Then("I verify check list is getting updated in the Completed Forms Section {string} in the patient window")
+    public void iVerifyCheckListIsGettingUpdatedInTheCompletedFormsSectionInThePatientWindow(String formName) {
+        PBNModals.patientOverviewModal().verifyCompletedFormsCheckList(formName);
     }
 }
