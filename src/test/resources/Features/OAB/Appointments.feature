@@ -33,6 +33,12 @@ Feature: Appointments
     And I click on appointments tab and try to book appointment
     Then I will not be able to see insurance page on appointment booking page.
 
+  @appointments @PUA-48 @PRAC-T111
+  Scenario: Verify DOB in insurance page on Appointment booking
+    Given I login to PbN app and select the practice
+    When I click on appointments tab and try to book appointment and select DOB less than Eighteen years on insurance page
+    Then I will not be able to proceed to the next page if the insurance holder age is not less than Eighteen years.
+
   @appointments @PRAC-T1064 @In-Progress
   Scenario: Verify I can Book the appointments for new patient
     Given I login to PbN app and select the practice

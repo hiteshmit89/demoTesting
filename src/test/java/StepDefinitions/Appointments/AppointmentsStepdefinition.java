@@ -164,4 +164,24 @@ public class AppointmentsStepdefinition {
     public void iWillBeAbleToSeeSuccessfulMessageForAppointmentBooking() {
         PbNUIApp.appointmentBookingPage().verifySuccessfulTextDisplayed();
     }
+
+    @When("I click on appointments tab and try to book appointment and select DOB less than Eighteen years on insurance page")
+    public void iClickOnAppointmentsTabAndTryToBookAppointmentAndSelectDOBLessThanEighteenYearsOnInsurancePage() {
+        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
+        PbNUIApp.appointmentsPage().clickOnWidgets();
+        PbNUIApp.appointmentsPage().createAppointmentURLAndNavigate();
+        PbNUIApp.appointmentBookingPage().clickOnPickLocation();
+        PbNUIApp.appointmentBookingPage().clickOnSelectNewPatient();
+        PbNUIApp.appointmentBookingPage().clickOnEmergencyConsult();
+        PbNUIApp.appointmentBookingPage().clickOnEarliest();
+        PbNUIApp.appointmentBookingPage().fillAppointmentBookingFormForValidateInsuranceDob();
+        PbNUIApp.appointmentBookingPage().clickOnCheckBox();
+        PbNUIApp.appointmentBookingPage().clickOnNextButton();
+        PbNUIApp.appointmentBookingPage().enterBirthDateOnInsurancePage(PbNUIApp.userdata().getPractices().getFirst().getFormsData().get(3).getBirth_date());
+    }
+
+    @Then("I will not be able to proceed to the next page if the insurance holder age is not less than Eighteen years.")
+    public void iWillNotBeAbleToProceedToTheNextPageIfTheInsuranceHolderAgeIsNotLessThanEighteenYears() {
+        PbNUIApp.appointmentBookingPage().verifyDateErrorMessage();
+    }
 }
