@@ -69,4 +69,35 @@ public class UserData {
     public String getTaskDescription(int practiceId, int patientId) {
         return getPatientData(practiceId,patientId).getTask_description();
     }
+
+    public FormsData getFormsData(int practiceId, String formsDataId) {
+        FormsData formsData = null;
+        for (FormsData fd: getPractice(practiceId).getFormsData()) {
+            if (fd.getFormType().equals(formsDataId)) {
+                formsData = fd;
+                break;
+            }
+        }
+        return formsData;
+    }
+
+    public String getFirstName(int practiceId, String formsDataId) {
+        return getFormsData(practiceId,formsDataId).getFirst_name();
+    }
+
+    public String getLastName(int practiceId, String formsDataId) {
+        return getFormsData(practiceId,formsDataId).getLast_name();
+    }
+
+    public String getPhoneNumber(int practiceId, String formsDataId) {
+        return getFormsData(practiceId,formsDataId).getPhone_number();
+    }
+
+    public String getEmailId(int practiceId, String formsDataId) {
+        return getFormsData(practiceId,formsDataId).getEmail_id();
+    }
+
+    public String getBirthDate(int practiceId, String formsDataId) {
+        return getFormsData(practiceId,formsDataId).getBirth_date();
+    }
 }

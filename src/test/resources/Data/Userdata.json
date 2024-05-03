@@ -29,7 +29,7 @@
       ],
       "FormsData": [
         {
-          "FormType": "AppointmentBooking",
+          "FormType": "1",
           "first_name": "Test First Name",
           "last_name": "Test Last Name",
           "phone_number": "1234567890",
@@ -37,7 +37,7 @@
           "birth_date": "01/01/1976"
         },
         {
-          "FormType": "AppointmentBooking",
+          "FormType": "2",
           "first_name": "Robert",
           "last_name": "Aguilar",
           "phone_number": "1234567890",
@@ -45,7 +45,7 @@
           "birth_date": "04192004"
         },
         {
-          "FormType": "AppointmentBooking",
+          "FormType": "3",
           "first_name": "Ricky",
           "last_name": "Alexander",
           "phone_number": "1234567890",
@@ -53,7 +53,7 @@
           "birth_date": "12021995"
         },
         {
-          "FormType": "AppointmentBooking",
+          "FormType": "4",
           "first_name": "Nicky",
           "last_name": "Alexander",
           "phone_number": "1234567890",
