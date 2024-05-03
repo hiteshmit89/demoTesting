@@ -107,11 +107,9 @@ public class PatientOverviewModal {
         List<WebElement> listOfSelectedForms = DriverManager.getInstance().Driver.findElements(By.xpath("//td[@class='practice-name-column']"));
         sizeOfSelectedForms = listOfSelectedForms.size();
         boolean flag = false;
-        try {
-            if (DriverManager.getInstance().Driver.findElement(By.xpath("//tbody/tr/td/div/span[text()='" + formName + "']")).isDisplayed()) {
-                flag = true;
-            }
-        } catch (Exception e) {
+        List<WebElement> elements = DriverManager.getInstance().Driver.findElements(By.xpath("//tbody/tr/td/div/span[text()='" + formName + "']"));
+        if (!elements.isEmpty() && elements.get(0).isDisplayed()) {
+            flag = true;
         }
         if (!flag) {
             WebElement patientForm = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='btn btn-primary' and contains(text(),'Form')]"));
