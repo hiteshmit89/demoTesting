@@ -1,8 +1,7 @@
 package Pages;
 
 import Framework.Browser;
-import Framework.Constants.Constants.*;
-
+import Framework.Constants.Constants.PageTitle;
 import Framework.Util.DriverManager;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -27,48 +26,52 @@ public class PaymentsPage extends BasePage {
         Browser.clickOnElement(paymentMethodsTab);
     }
 
-    public void clickCardIcon(){
+    public void clickCardIcon() {
         Browser.waitForElementToBeVisible(By.xpath("(//*[@class='svg-inline--fa fa-credit-card fa-w-18 card-icon'])[1]"));
         Browser.waitForElementToBeClickable(By.xpath("(//*[@class='svg-inline--fa fa-credit-card fa-w-18 card-icon'])[1]"));
         WebElement cardIcon = DriverManager.getInstance().Driver.findElement(By.xpath("(//*[@class='svg-inline--fa fa-credit-card fa-w-18 card-icon'])[1]"));
         Browser.clickOnElement(cardIcon);
     }
-    public void selectDropdownValue(){
-        Browser.waitForElementToBeVisible(By.xpath("//*[@id='payment-methods-selector']"));
-        Browser.waitForElementToBeClickable(By.xpath("//*[@id='payment-methods-selector']"));
-        WebElement dropdownSelectPaymentMethod = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='payment-methods-selector']"));
-        Browser.selectIndexFromDropdown(dropdownSelectPaymentMethod, 1);
 
+    public void selectPaymentMethod() {
+        WebElement dropdownSelectPaymentMethod = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='payment-methods-selector']"));
+        Browser.waitForElementChildren(dropdownSelectPaymentMethod, By.xpath("./option"), 1);
+        Browser.waitForElementToDisplay(dropdownSelectPaymentMethod);
+        Browser.selectIndexFromDropdown(dropdownSelectPaymentMethod, 1);
     }
-    public void enterAmount(){
+
+    public void enterAmount() {
         WebElement enterAmountTextBox = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@type='number']"));
         Random random = new Random();
         int randomNumber = random.nextInt(10000);
         Browser.enterTextInEditBox(enterAmountTextBox, String.valueOf(randomNumber));
-
     }
-    public void enterChargeDescription(){
+
+    public void enterChargeDescription() {
         WebElement enterAmountTextBox = DriverManager.getInstance().Driver.findElement(By.xpath("//textarea[@class='charge-description-input-box form-control']"));
-        Browser.enterTextInEditBox(enterAmountTextBox,"Entered Description");
-
+        Browser.enterTextInEditBox(enterAmountTextBox, "Entered Description");
     }
-    public void clickChargeButtonOnModal(){
+
+    public void clickChargeButtonOnModal() {
         WebElement chargeButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='btn btn-default']//span[text()=' Charge ']"));
         Browser.clickOnElement(chargeButton);
         WebElement chargeConfirmationPopUp = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='btn btn-danger']"));
         Browser.clickOnElement(chargeConfirmationPopUp);
-
     }
-    public void verifyChargeConfirmationText(){
+
+    public void verifyChargeConfirmationText() {
         Browser.waitForElementToBeVisible(By.xpath("//span[@class='success' and contains(text(),'Charge Successful for')]"));
         WebElement textChargeSuccessful = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='success' and contains(text(),'Charge Successful for')]"));
-        if(Browser.getTextFromElement(textChargeSuccessful).contains("Charge Successful for")){
-            Assert.assertTrue("Charge Successful for",textChargeSuccessful.isDisplayed());
+        if (Browser.getTextFromElement(textChargeSuccessful).contains("Charge Successful for")) {
+            Assert.assertTrue("Charge Successful for", textChargeSuccessful.isDisplayed());
         } else {
-            Assert.assertFalse("Charge Successful for",textChargeSuccessful.isDisplayed());
+            Assert.assertFalse("Charge Successful for", textChargeSuccessful.isDisplayed());
         }
     }
 
-
+    public void verifyPaymentReceiptIsDownloaded() {
+        WebElement downloadIcon = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@role='button' and @tabindex='0']"));
+        Browser.clickOnElement(downloadIcon);
+    }
 }
 

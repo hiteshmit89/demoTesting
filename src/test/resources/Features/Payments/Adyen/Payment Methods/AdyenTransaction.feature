@@ -15,7 +15,7 @@ Feature: Verify As a user I am able Charge a patient using adyen payment service
     And Verify Successful toast message
 
   @AdyenTransaction @PRAC-T3496 @pbnAll @PUA-36
-  Scenario: Verify user is able to download receipt
+  Scenario: Verify user is able to download Payment receipt
     Given I enter credentials
     When I click login button
     And I am able to select practice
