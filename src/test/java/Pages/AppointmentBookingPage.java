@@ -66,6 +66,14 @@ public class AppointmentBookingPage extends BasePage {
         enterBirthDate(PbNUIApp.userdata().getPractices().getFirst().getFormsData().get(2).getBirth_date());
     }
 
+    public void fillAppointmentBookingFormForValidateInsuranceDob() {
+        enterFirstName(PbNUIApp.userdata().getFirstName(1,"4"));
+        enterLastName(PbNUIApp.userdata().getLastName(1,"4"));
+        enterPhoneNumber(PbNUIApp.userdata().getPhoneNumber(1,"4"));
+        enterEmailID(PbNUIApp.userdata().getEmailId(1,"4"));
+        enterBirthDate(PbNUIApp.userdata().getBirthDate(1,"4"));
+    }
+
     public void enterFirstName(String firstNameData) {
         Browser.waitForElementToBeVisible(By.xpath("//input[@placeholder='Patient First Name']"));
         WebElement firstNameID = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@placeholder='Patient First Name']"));
@@ -101,6 +109,13 @@ public class AppointmentBookingPage extends BasePage {
     public void clickOnNextButton() {
         WebElement nextButton = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='MuiButton-label' and contains(text(),'Next')]"));
         Browser.clickOnElement(nextButton);
+    }
+
+    public void enterBirthDateOnInsurancePage(String birthDateData) {
+        Browser.waitForElementToBeVisible(By.xpath("//input[@placeholder='MM-DD-YYYY']"));
+        WebElement birthDate = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@placeholder='MM-DD-YYYY']"));
+        Browser.scrollToVisibleElement(birthDate);
+        Browser.enterTextInEditBox(birthDate, birthDateData);
     }
 
     public void clickOnIDoNotHaveInsurance() {
@@ -142,5 +157,11 @@ public class AppointmentBookingPage extends BasePage {
         Browser.waitForElementToBeVisible(By.xpath("//div[@class='MuiAlert-message']"));
         WebElement verifyText = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='MuiAlert-message']"));
         Assert.assertTrue(message, verifyText.isDisplayed());
+    }
+
+    public void verifyDateErrorMessage() {
+        Browser.waitForElementToBeVisible(By.xpath("//div[text()='Age must be greater than 18 years']"));
+        WebElement verifyText = DriverManager.getInstance().Driver.findElement(By.xpath("//div[text()='Age must be greater than 18 years']"));
+        Assert.assertTrue("Age must be greater than 18 years", verifyText.isDisplayed());
     }
 }
