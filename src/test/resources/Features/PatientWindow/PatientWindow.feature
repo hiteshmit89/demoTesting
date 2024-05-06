@@ -1,5 +1,5 @@
 @PatientWindow @pbnAll
-Feature: Functionality of Patient Window
+Feature: Patient Window Feature
 
   @ViewTasks @PUA-7 @PRAC-T3494
   Scenario Outline: User can create All types of tasks from patient window & ViewTasksList Table Displayed
@@ -30,4 +30,41 @@ Feature: Functionality of Patient Window
     Examples:
       | Forms Type              |
       | Dental Insurance Form   |
-      | Clinical Photo Transfer |
+      | Patient Information     |
+
+    @PatientFormsReminder @PUA-50 @PRAC-T975
+    Scenario Outline: User can send the Reminder to the patient
+      Given I login to PbN app and select the practice
+      When I click on the patient finder to open Patient Window
+      And I click on the Forms Tab
+      And I click on the Send General and Consent Form Button "<Forms Type>" in patient window
+      Then I click on the send reminder bell icon "<Forms Type>" in patient window
+      Examples:
+        | Forms Type              |
+        | Dental Insurance Form   |
+        | Patient Information     |
+
+   @patientFormCancelInvite @PUA-50 @PRAC-T975
+   Scenario Outline: User can cancel form invite from the Pending Forms List
+    Given I login to PbN app and select the practice
+    When I click on the patient finder to open Patient Window
+    And I click on the Forms Tab
+    And I click on the Send General and Consent Form Button "<Forms Type>" in patient window
+    Then I cancel form Invite from the pending forms list "<Forms Type>" in patient window
+    Examples:
+      | Forms Type              |
+      | Dental Insurance Form   |
+      | Patient Information     |
+
+  @patientFormsManuallySubmitted @PUA-50 @PRAC-T975
+  Scenario Outline: User can manually complete the forms from the Pending Forms List
+    Given I login to PbN app and select the practice
+    When I click on the patient finder to open Patient Window
+    And I click on the Forms Tab
+    And I click on the Send General and Consent Form Button "<Forms Type>" in patient window
+    And I Select the Form and Mark as submitted manually from the Pending Form List "<Forms Type>" in the patient window
+    Then I verify check list is getting updated in the Completed Forms Section "<Forms Type>" in the patient window
+    Examples:
+      | Forms Type              |
+      | Dental Insurance Form   |
+      | Patient Information     |
