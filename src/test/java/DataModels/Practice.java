@@ -44,4 +44,5 @@ public class Practice {
     @JsonProperty("PatientData")
     public ArrayList<PatientData> setPatientData() {
         return this.patientData; }
+
 }

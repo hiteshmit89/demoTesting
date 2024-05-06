@@ -12,7 +12,7 @@ services:
             - SE_EVENT_BUS_HOST=selenium-hub
             - SE_EVENT_BUS_PUBLISH_PORT=4442
             - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
-
+            - 
     # edge:
     #   image: selenium/node-edge:4.19.1-20240402
     #   shm_size: 2gb
@@ -42,7 +42,7 @@ services:
             - "4444:4444"
 
     test-runner:
-        build: .
+        image:  maven:3.9.6
         volumes:
             - .:/app
         depends_on:

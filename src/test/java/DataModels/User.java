@@ -3,6 +3,7 @@ package DataModels;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class User {
+
     @JsonProperty("user_id")
     public int getUser_id() {
         return this.user_id;

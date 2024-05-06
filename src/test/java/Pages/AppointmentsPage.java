@@ -36,7 +36,13 @@ public class AppointmentsPage extends BasePage {
         Browser.clickOnElement(appointmentSetting);
     }
 
+    public void clickOnAppointmentListTab() {
+        WebElement appointmentList = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='appointment-booking-page-tab-Appointment List']"));
+        Browser.clickOnElement(appointmentList);
+    }
+
     public void clickOnSetupInsurance() {
+        Browser.waitForElementToBeClickable(By.xpath("//button[text()='Setup Insurances']"));
         WebElement setupInsuranceButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='Setup Insurances']"));
         Browser.scrollToVisibleElement(setupInsuranceButton);
         Browser.clickOnElementUsingJavascript(setupInsuranceButton);
@@ -85,5 +91,61 @@ public class AppointmentsPage extends BasePage {
         Browser.waitForElementToBeClickable(By.xpath("//label[text()='Blocked Out Times']"));
         WebElement blockOutTimes = DriverManager.getInstance().Driver.findElement(By.xpath("//label[text()='Blocked Out Times']"));
         Assert.assertTrue("Verify block-out times is not displayed", blockOutTimes.isDisplayed());
+    }
+
+    public void enterStartDate(String startDateData) {
+        WebElement startDate = DriverManager.getInstance().Driver.findElement(By.xpath("(//input[@name='dateStart'])[1]"));
+        Browser.enterTextInEditBox(startDate, startDateData);
+        Browser.waitForElementEnable(startDate);
+    }
+
+    public void enterEndDate(String endDateData) {
+        WebElement endDate = DriverManager.getInstance().Driver.findElement(By.xpath("(//input[@name='dateEnd'])[1]"));
+        Browser.waitForElementEnable(endDate);
+        Browser.enterTextInEditBox(endDate, endDateData);
+        Browser.waitForElementEnable(endDate);
+    }
+
+    public void verifyAppointmentList() {
+        WebElement appointmentList = DriverManager.getInstance().Driver.findElement(By.xpath("(//tr[@class='pointer'])[1]"));
+        Assert.assertTrue("Appointment List is not displayed", appointmentList.isDisplayed());
+    }
+
+    public void clickOnProviderAdvanceSettingButton() {
+        Browser.waitForElementToBeVisible(By.xpath("//div[@class='visit-type-setting-button-container']"));
+        WebElement providerAdvanceSettingButton = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='visit-type-setting-button-container']"));
+        Browser.scrollToVisibleElement(providerAdvanceSettingButton);
+        Browser.clickOnElement(providerAdvanceSettingButton);
+    }
+
+    public void verifyAllowedAge() {
+        Browser.waitForElementToBeClickable(By.xpath("//label[text()='Allowed Age']"));
+        WebElement allowedAge = DriverManager.getInstance().Driver.findElement(By.xpath("//label[text()='Allowed Age']"));
+        Assert.assertTrue("Allowed age is not displayed", allowedAge.isDisplayed());
+    }
+
+    public void verifyNoProviderSelectionCheckbox() {
+        WebElement noProviderSelection = DriverManager.getInstance().Driver.findElement(By.xpath("//label[text()='No Provider selection']"));
+        Assert.assertTrue("No Provider Selection Checkbox is not displayed", noProviderSelection.isDisplayed());
+    }
+
+    public void verifyCheckRecallDateCheckbox() {
+        WebElement checkRecallDate = DriverManager.getInstance().Driver.findElement(By.xpath("//label[text()='Check Recall date']"));
+        Assert.assertTrue("Check Recall Date Checkbox is not displayed", checkRecallDate.isDisplayed());
+    }
+
+    public void verifyDontAutoSyncCheckbox() {
+        WebElement dontAutoSyncCheckbox = DriverManager.getInstance().Driver.findElement(By.xpath("//label[text()='Check Recall date']"));
+        Assert.assertTrue("Don't Auto Sync Checkbox is not displayed", dontAutoSyncCheckbox.isDisplayed());
+    }
+
+    public void verifySoonestAppointmentAvailable() {
+        WebElement soonestAppointmentAvailable = DriverManager.getInstance().Driver.findElement(By.xpath("//label[text()='Soonest Appointment Available']"));
+        Assert.assertTrue("Soonest Appointment Available is not displayed", soonestAppointmentAvailable.isDisplayed());
+    }
+
+    public void verifyFarthestAppointmentAvailable() {
+        WebElement farthestAppointmentAvailable = DriverManager.getInstance().Driver.findElement(By.xpath("//label[text()='Farthest Appointment Available Month(s)']"));
+        Assert.assertTrue("Farthest Appointment Available is not displayed", farthestAppointmentAvailable.isDisplayed());
     }
 }

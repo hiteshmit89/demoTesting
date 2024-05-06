@@ -2,9 +2,11 @@ package Framework.Root;
 
 import DataModels.UserData;
 import Pages.*;
-import Pages.Modals.PatientOverviewPage;
+import Pages.Modals.PatientOverviewModal;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.io.File;
+
 import static Framework.Constants.Constants.PageTitle.*;
 
 public class PbNUIApp {
@@ -43,8 +45,8 @@ public class PbNUIApp {
     public static SettingsPage settingsPage() {
         return new SettingsPage(SettingsTitle);
     }
-        public static PaymentsPage paymentsPage() {
-        return new PaymentsPage(PaymentsTitle); }
+
+    public static PaymentsPage paymentsPage() {return new PaymentsPage(PaymentsTitle); }
 
     public static Navigator navigator() {
         return new Navigator();
@@ -58,15 +60,8 @@ public class PbNUIApp {
         return new TasksPage(TasksTitle);
     }
 
-    public static AppointmentBookingPage appointmentBookingPage() {
-        return new AppointmentBookingPage(AppointmentBookingTitle);
-    }
+    public static AppointmentBookingPage appointmentBookingPage() {return new AppointmentBookingPage(AppointmentBookingTitle);}
 
-    public static PatientOverviewPage patientOverviewPage() {
-        return new PatientOverviewPage(HomeTitle);
-        }
-
-        public static OnlinePaymentPortalPage OnlinePaymentPortalPage () {
-        return new OnlinePaymentPortalPage(OnlinePaymentPortalTitle);
+    public static OnlinePaymentPortalPage OnlinePaymentPortalPage () {return new OnlinePaymentPortalPage(OnlinePaymentPortalTitle);
     }
 }
