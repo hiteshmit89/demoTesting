@@ -68,6 +68,14 @@
           "task_description": "Automation",
           "task_type": "Treatment"
         }
+      ],
+      "CardData": [
+        {
+          "card_number_Adyen": "5454 5454 5454 5454",
+          "month_date": "0330",
+          "cvc": "737",
+          "card_number_Stripe": "4242 4242 4242 4242"
+        }
       ]
     },
     {
@@ -98,6 +106,16 @@
           "patient_name": "Sally Walker",
           "task_description": "Automation",
           "task_type": "Treatment"
+        }
+      ],
+      "CardData": [
+        {
+          "card_number_Adyen": "5454 5454 5454 5454",
+          "month_date": "0330",
+          "cvc": "737",
+          "card_number_Stripe": "4242 4242 4242 4242"
+        }
+      ]
         }
       ]
     }

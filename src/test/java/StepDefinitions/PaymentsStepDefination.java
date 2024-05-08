@@ -37,8 +37,7 @@ public class PaymentsStepDefination {
 
     @And("The user is able to complete the payment")
     public void theUserIsAbleToCompleteThePayment() {
-        PbNUIApp.OnlinePaymentPortalPage().enterCardNumber("5454 5454 5454 5454");
-
+        PbNUIApp.OnlinePaymentPortalPage().enterCardDetails();
     }
 }
 

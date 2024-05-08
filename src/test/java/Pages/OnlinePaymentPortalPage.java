@@ -1,15 +1,12 @@
 package Pages;
 
 import Framework.Browser;
-import Framework.Constants.Constants.*;
+import Framework.Constants.Constants.PageTitle;
 import Framework.Root.PbNUIApp;
 import Framework.Util.DriverManager;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
-import java.security.Key;
-import java.util.List;
 import java.util.Random;
 
 public class OnlinePaymentPortalPage extends BasePage {
@@ -57,17 +54,32 @@ public class OnlinePaymentPortalPage extends BasePage {
         Browser.enterTextInEditBox(paymentTextBox, String.valueOf(amount));
     }
 
-    public void clickOnPayFullAmount(){
+    public void clickOnPayFullAmount() {
         WebElement payFullAmount = DriverManager.getInstance().Driver.findElement(By.xpath("//div[contains(text(),'Pay full amount')]"));
         Browser.clickOnElement(payFullAmount);
     }
 
-    public void enterCardNumber (String cardNumber){
-        //WebElement iframe = DriverManager.getInstance().Driver.findElement(By.xpath("//iframe[@name='__privateStripeFrame4223']"));
-        //Browser.switchToFrame(iframe);
-        Browser.waitForElementToBeVisible(By.xpath("//input[@placeholder='1234 5678 9012 3456']"));
-        WebElement useCardNumber = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@placeholder='1234 5678 9012 3456']"));
-        Browser.enterTextInEditBox(useCardNumber, cardNumber);
+    public void enterCardDetails() {
+        enterCardNumber(PbNUIApp.userdata().getCardNumber(2, "1"));
+        enterCardDate(PbNUIApp.userdata().getCardDate(2, "1"));
+        enterCVC(PbNUIApp.userdata().getCardCVC(2, "1"));
+    }
 
+    public void enterCardNumber(String cardNumber) {
+        Browser.waitForElementToBeVisible(By.xpath("//div[@class='CardNumberField-input-wrapper']"));
+        WebElement cardNumberID = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='CardNumberField-input-wrapper']"));
+        Browser.enterTextInEditBox(cardNumberID, cardNumber);
+    }
+
+    public void enterCardDate(String cardDate) {
+        Browser.waitForElementToBeVisible(By.xpath("//input[@placeholder='MM / YY']"));
+        WebElement cardDateID = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@placeholder='MM / YY']"));
+        Browser.enterTextInEditBox(cardDateID, cardDate);
+    }
+
+    public void enterCVC(String cardCVC) {
+        Browser.waitForElementToBeVisible(By.xpath("//input[@placeholder='CVC']"));
+        WebElement cardCVCID = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@placeholder='CVC']"));
+        Browser.enterTextInEditBox(cardCVCID, cardCVC);
     }
 }
