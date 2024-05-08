@@ -64,4 +64,7 @@ public class PbNUIApp {
 
     public static OnlinePaymentPortalPage OnlinePaymentPortalPage () {return new OnlinePaymentPortalPage(OnlinePaymentPortalTitle);
     }
+
+    public static RevenueIQPage revenueIQPage() {return new RevenueIQPage(RevenueIQTitle);
+    }
 }
