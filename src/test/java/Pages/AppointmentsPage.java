@@ -150,9 +150,9 @@ public class AppointmentsPage extends BasePage {
     }
 
     public void clickOnAddProvidersDropdown() {
-        Browser.waitForElementToBeVisible(By.xpath("//button[@title='Aimee Young (AB)']"));
-        Browser.waitForElementToBeClickable(By.xpath("//button[@title='Aimee Young (AB)']"));
-        WebElement providerDropdown = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@title='Aimee Young (AB)']"));
+        Browser.waitForElementToBeVisible(By.xpath("(//button[@class='multiselect dropdown-toggle btn btn-default'])[7]"));
+        Browser.waitForElementToBeClickable(By.xpath("(//button[@class='multiselect dropdown-toggle btn btn-default'])[7]"));
+        WebElement providerDropdown = DriverManager.getInstance().Driver.findElement(By.xpath("(//button[@class='multiselect dropdown-toggle btn btn-default'])[7]"));
         Browser.scrollToVisibleElement(providerDropdown);
         Browser.clickOnElement(providerDropdown);
         WebElement selectProvider = DriverManager.getInstance().Driver.findElement(By.xpath("//label[text()=' Bryan Jackson (TH2)']"));
