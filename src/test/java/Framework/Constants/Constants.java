@@ -1,5 +1,6 @@
 package Framework.Constants;
 
+import Pages.RevenueIQPage;
 import Pages.SettingsPage;
 
 public class Constants {
@@ -12,7 +13,10 @@ public class Constants {
         SettingsTitle("Practice by Numbers: Settings"),
         PaymentsTitle("Practice by Numbers: Payment"),
         FormsTitle("Practice by Numbers: online_forms"),
-        TasksTitle("Practice by Numbers: Tasks");
+        TasksTitle("Practice by Numbers: Tasks"),
+
+        RevenueIQTitle("Practice by Numbers: RevenueOpportunities");
+
         public final String label;
 
         PageTitle(String label) {

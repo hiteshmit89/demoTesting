@@ -65,4 +65,7 @@ public class PbNUIApp {
     public static AppointmentBookingPage appointmentBookingPage() {
         return new AppointmentBookingPage(AppointmentBookingTitle);
     }
+
+    public static RevenueIQPage revenueIQPage() {return new RevenueIQPage(RevenueIQTitle);
+    }
 }
