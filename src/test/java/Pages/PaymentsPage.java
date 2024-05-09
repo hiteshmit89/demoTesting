@@ -17,6 +17,10 @@ public class PaymentsPage extends BasePage {
 
     private final WebElement paymentsTab = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='payment-page-tab-Payments']"));
     private final WebElement paymentMethodsTab = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='payment-page-tab-Payment Methods']"));
+    private final WebElement widgetsTab = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='payment-page-tab-Widgets']"));
+
+
+
 
     public void clickPaymentsMenu() {
         Browser.clickOnElement(paymentsTab);
@@ -24,6 +28,9 @@ public class PaymentsPage extends BasePage {
 
     public void clickPaymentsMethodsTab() {
         Browser.clickOnElement(paymentMethodsTab);
+    }
+    public void clickWidgetsTab() {
+        Browser.clickOnElement(widgetsTab);
     }
 
     public void clickCardIcon() {
