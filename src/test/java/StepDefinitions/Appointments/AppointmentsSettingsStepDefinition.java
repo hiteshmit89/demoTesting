@@ -48,4 +48,19 @@ public class AppointmentsSettingsStepDefinition {
         PbNUIApp.appointmentsPage().verifySoonestAppointmentAvailable();
         PbNUIApp.appointmentsPage().verifyFarthestAppointmentAvailable();
     }
+
+    @When("I click on appointments setting page and verify add and remove provider list and visit type from appointment setting page")
+    public void iClickOnAppointmentsSettingPageAndVerifyAddAndRemoveProviderListAndVisitTypeFromAppointmentSettingPage() {
+        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
+        PbNUIApp.appointmentsPage().clickOnAppointmentSettingTab();
+    }
+
+    @Then("I will be able to add and remove provider list and visit type from appointment setting page")
+    public void iWillBeAbleToAddAndRemoveProviderListAndVisitTypeFromAppointmentSettingPage() {
+        PbNUIApp.appointmentsPage().clickOnAddProvidersDropdown();
+        PbNUIApp.appointmentsPage().clickOutside();
+        PbNUIApp.appointmentsPage().clickOnAddNewVisitType();
+        PbNUIApp.appointmentsPage().deleteProvider();
+        PbNUIApp.appointmentsPage().deleteVisitType();
+    }
 }

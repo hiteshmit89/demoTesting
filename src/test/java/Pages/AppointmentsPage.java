@@ -148,4 +148,38 @@ public class AppointmentsPage extends BasePage {
         WebElement farthestAppointmentAvailable = DriverManager.getInstance().Driver.findElement(By.xpath("//label[text()='Farthest Appointment Available Month(s)']"));
         Assert.assertTrue("Farthest Appointment Available is not displayed", farthestAppointmentAvailable.isDisplayed());
     }
+
+    public void clickOnAddProvidersDropdown() {
+        Browser.waitForElementToBeVisible(By.xpath("(//button[@class='multiselect dropdown-toggle btn btn-default'])[7]"));
+        Browser.waitForElementToBeClickable(By.xpath("(//button[@class='multiselect dropdown-toggle btn btn-default'])[7]"));
+        WebElement providerDropdown = DriverManager.getInstance().Driver.findElement(By.xpath("(//button[@class='multiselect dropdown-toggle btn btn-default'])[7]"));
+        Browser.scrollToVisibleElement(providerDropdown);
+        Browser.clickOnElement(providerDropdown);
+        WebElement selectProvider = DriverManager.getInstance().Driver.findElement(By.xpath("//label[text()=' Bryan Jackson (TH2)']"));
+        Browser.clickOnElement(selectProvider);
+    }
+
+    public void clickOutside() {
+        WebElement providerHeader = DriverManager.getInstance().Driver.findElement(By.xpath("//h3[text()='Providers']"));
+        Browser.clickOnElement(providerHeader);
+    }
+
+    public void clickOnAddNewVisitType() {
+        WebElement addNewButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='add-button btn btn-default']"));
+        Browser.clickOnElement(addNewButton);
+    }
+
+    public void deleteProvider() {
+        WebElement deleteProviderButton = DriverManager.getInstance().Driver.findElement(By.xpath("(//button[@class='btn btn-sm btn-danger'])[1]"));
+        Browser.clickOnElement(deleteProviderButton);
+        WebElement deleteYesButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='btn btn-danger']"));
+        Browser.clickOnElement(deleteYesButton);
+    }
+
+    public void deleteVisitType() {
+        WebElement deleteVisitTypeButton = DriverManager.getInstance().Driver.findElement(By.xpath("(//button[@class='btn btn-sm btn-danger'])[2]"));
+        Browser.clickOnElement(deleteVisitTypeButton);
+        WebElement deleteYesButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='btn btn-danger']"));
+        Browser.clickOnElement(deleteYesButton);
+    }
 }
