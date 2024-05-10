@@ -63,4 +63,15 @@ public class AppointmentsSettingsStepDefinition {
         PbNUIApp.appointmentsPage().deleteProvider();
         PbNUIApp.appointmentsPage().deleteVisitType();
     }
+
+    @When("I click on appointments setting page and verify fifteen min radio button from appointment setting page")
+    public void iClickOnAppointmentsSettingPageAndVerifyFifteenMinRadioButtonFromAppointmentSettingPage() {
+        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
+        PbNUIApp.appointmentsPage().clickOnAppointmentSettingTab();
+    }
+
+    @Then("I will be able to select fifteen min radio button from appointment setting page")
+    public void iWillBeAbleToSelectFifteenMinRadioButtonFromAppointmentSettingPage() {
+        PbNUIApp.appointmentsPage().select15MinCheckbox();
+    }
 }
