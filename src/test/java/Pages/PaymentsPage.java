@@ -19,9 +19,6 @@ public class PaymentsPage extends BasePage {
     private final WebElement paymentMethodsTab = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='payment-page-tab-Payment Methods']"));
     private final WebElement widgetsTab = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='payment-page-tab-Widgets']"));
 
-
-
-
     public void clickPaymentsMenu() {
         Browser.clickOnElement(paymentsTab);
     }

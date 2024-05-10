@@ -12,5 +12,6 @@ import org.junit.runner.RunWith;
                 "json:target/JSONReports/testResult.json",
                 "junit:target/XMLReports/testResult.xml"},
        tags = "@pbnAll and not @In-Progress")
+
 public class Runner {
 }
