@@ -13,8 +13,8 @@ public class Constants {
         SettingsTitle("Practice by Numbers: Settings"),
         PaymentsTitle("Practice by Numbers: Payment"),
         FormsTitle("Practice by Numbers: online_forms"),
+        OnlinePaymentPortalTitle("Payment Portal"),
         TasksTitle("Practice by Numbers: Tasks"),
-
         RevenueIQTitle("Practice by Numbers: RevenueOpportunities");
 
         public final String label;
@@ -56,7 +56,9 @@ public class Constants {
 
         public final String label;
 
-        userProfileOptions(String label) { this.label = label; }
+        userProfileOptions(String label) {
+            this.label = label;
+        }
     }
 
     public static enum Sections {
