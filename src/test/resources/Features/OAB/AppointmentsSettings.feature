@@ -18,3 +18,9 @@ Feature: Appointments Settings
     Given I login to PbN app and select the practice
     When I click on appointments setting page and verify advanced Settings window of provider
     Then I will be able to see advanced Settings window of provider
+
+  @appointments @PUA-52 @PRAC-T2475
+  Scenario: Verify I can add and remove provider list and visit type from appointment setting page
+    Given I login to PbN app and select the practice
+    When I click on appointments setting page and verify add and remove provider list and visit type from appointment setting page
+    Then I will be able to add and remove provider list and visit type from appointment setting page

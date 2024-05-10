@@ -1,11 +1,16 @@
 package Pages;
 
 import Framework.Browser;
+import Framework.Constants.Constants;
+import Framework.Util.ConfigManager;
 import Framework.Constants.Constants.PageTitle;
 import Framework.Util.DriverManager;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+
+import java.util.Random;
+
 
 import java.util.Random;
 
@@ -18,6 +23,28 @@ public class PaymentsPage extends BasePage {
     private final WebElement paymentsTab = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='payment-page-tab-Payments']"));
     private final WebElement paymentMethodsTab = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='payment-page-tab-Payment Methods']"));
     private final WebElement widgetsTab = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='payment-page-tab-Widgets']"));
+
+    public void clickOnWidgetslink() {
+        WebElement widgetsTab = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='payment-page-tab-Widgets']"));
+        Browser.waitForElementToBeClickable(widgetsTab);
+        Browser.clickOnElement(widgetsTab);
+    }
+
+    public void clickOnWidgets() {
+        Browser.waitForElementToBeVisible((By.xpath("//a[@id='payment-page-tab-Widgets']")));
+        WebElement widgets = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='payment-page-tab-Widgets']"));
+        Browser.clickOnElement(widgets);
+        Browser.waitForElementToBeVisible(By.xpath("//span[contains(text(),'https://www.patientsreach.com/payment/')]"));
+    }
+
+    public void createPaymentURLAndNavigate() {
+        WebElement eLink = DriverManager.getInstance().Driver.findElement(By.xpath("//span[contains(text(),'https://www.patientsreach.com/payment/')]"));
+        String urlText = eLink.getText();
+        String[] arrOfStr = urlText.split("payment");
+        String URL = ConfigManager.getInstance().getProperty("URL");
+        URL = String.join("", URL, "/payment", arrOfStr[1]);
+        Browser.navigateToNewURL(URL);
+    }
 
     public void clickPaymentsMenu() {
         Browser.clickOnElement(paymentsTab);
@@ -37,10 +64,10 @@ public class PaymentsPage extends BasePage {
         Browser.clickOnElement(cardIcon);
     }
 
-    public void selectPaymentMethod() {
+    public void selectDropdownValue() {
+        Browser.waitForElementToBeVisible(By.xpath("//*[@id='payment-methods-selector']"));
+        Browser.waitForElementToBeClickable(By.xpath("//*[@id='payment-methods-selector']"));
         WebElement dropdownSelectPaymentMethod = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='payment-methods-selector']"));
-        Browser.waitForElementChildren(dropdownSelectPaymentMethod, By.xpath("./option"), 1);
-        Browser.waitForElementToDisplay(dropdownSelectPaymentMethod);
         Browser.selectIndexFromDropdown(dropdownSelectPaymentMethod, 1);
     }
 
@@ -77,5 +104,11 @@ public class PaymentsPage extends BasePage {
         WebElement downloadIcon = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@role='button' and @tabindex='0']"));
         Browser.clickOnElement(downloadIcon);
     }
+
 }
+
+
+
+
+
 
