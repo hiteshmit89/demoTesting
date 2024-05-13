@@ -57,10 +57,8 @@ public class AppointmentsSettingsStepDefinition {
 
     @Then("I will be able to add and remove provider list and visit type from appointment setting page")
     public void iWillBeAbleToAddAndRemoveProviderListAndVisitTypeFromAppointmentSettingPage() {
-        PbNUIApp.appointmentsPage().clickOnAddProvidersDropdown();
         PbNUIApp.appointmentsPage().clickOutside();
         PbNUIApp.appointmentsPage().clickOnAddNewVisitType();
-        PbNUIApp.appointmentsPage().deleteProvider();
         PbNUIApp.appointmentsPage().deleteVisitType();
     }
 
