@@ -46,6 +46,8 @@ public class PbNUIApp {
         return new SettingsPage(SettingsTitle);
     }
 
+    public static PaymentsPage paymentsPage() {return new PaymentsPage(PaymentsTitle); }
+
     public static Navigator navigator() {
         return new Navigator();
     }
@@ -54,16 +56,13 @@ public class PbNUIApp {
         return new AppointmentsPage(AppointmentsTitle);
     }
 
-    public static PaymentsPage paymentsPage() {
-        return new PaymentsPage(PaymentsTitle);
-    }
-
     public static TasksPage tasksPage() {
         return new TasksPage(TasksTitle);
     }
 
-    public static AppointmentBookingPage appointmentBookingPage() {
-        return new AppointmentBookingPage(AppointmentBookingTitle);
+    public static AppointmentBookingPage appointmentBookingPage() {return new AppointmentBookingPage(AppointmentBookingTitle);}
+
+    public static OnlinePaymentPortalPage OnlinePaymentPortalPage () {return new OnlinePaymentPortalPage(OnlinePaymentPortalTitle);
     }
 
     public static RevenueIQPage revenueIQPage() {return new RevenueIQPage(RevenueIQTitle);
