@@ -42,6 +42,20 @@ public class AppointmentBookingPage extends BasePage {
         Browser.clickOnElement(selectEarliest);
     }
 
+    public void clickOnSeeMoreOptions() {
+        Browser.waitForElementToBeVisible(By.xpath("//span[@class='MuiButton-label' and contains(text(),'See more options')]"));
+        WebElement selectSeeMoreOptions = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='MuiButton-label' and contains(text(),'See more options')]"));
+        Browser.clickOnElement(selectSeeMoreOptions);
+        WebElement interceptElement = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id=\"patient-appointment-booking-page\"]/div/div[2]/div[1]/div/div[3]/div/div[1]/div[2]/div/div[1]"));
+        Browser.waitForElementInvisibility(interceptElement);
+    }
+
+    public void clickOnRefreshButton() {
+        Browser.waitForElementToBeVisible(By.xpath("(//button[@class='MuiButtonBase-root MuiIconButton-root'])[2]"));
+        WebElement selectSeeMoreOptions = DriverManager.getInstance().Driver.findElement(By.xpath("(//button[@class='MuiButtonBase-root MuiIconButton-root'])[2]"));
+        Browser.clickOnElement(selectSeeMoreOptions);
+    }
+
     public void fillAppointmentBookingForm() {
         enterFirstName(PbNUIApp.userdata().getPractices().getFirst().getFormsData().getFirst().getFirst_name());
         enterLastName(PbNUIApp.userdata().getPractices().getFirst().getFormsData().getFirst().getLast_name());
