@@ -46,8 +46,6 @@ public class AppointmentBookingPage extends BasePage {
         Browser.waitForElementToBeVisible(By.xpath("//span[@class='MuiButton-label' and contains(text(),'See more options')]"));
         WebElement selectSeeMoreOptions = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='MuiButton-label' and contains(text(),'See more options')]"));
         Browser.clickOnElement(selectSeeMoreOptions);
-        WebElement interceptElement = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id=\"patient-appointment-booking-page\"]/div/div[2]/div[1]/div/div[3]/div/div[1]/div[2]/div/div[1]"));
-        Browser.waitForElementInvisibility(interceptElement);
     }
 
     public void clickOnRefreshButton() {
