@@ -4,9 +4,11 @@ import Framework.Browser;
 import Framework.Constants.Constants.PageTitle;
 import Framework.Root.PbNUIApp;
 import Framework.Util.DriverManager;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import java.util.Dictionary;
 import java.util.Random;
 
 public class OnlinePaymentPortalPage extends BasePage {
@@ -60,26 +62,65 @@ public class OnlinePaymentPortalPage extends BasePage {
     }
 
     public void enterCardDetails() {
+        WebElement cardButton =DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='MuiButton-startIcon MuiButton-iconSizeSmall']"));
+        Browser.clickOnElement(cardButton);
+        Browser.waitForFrameToLoad(By.xpath("//iframe[@title='Iframe for card number']"));
         enterCardNumber(PbNUIApp.userdata().getCardNumber(2, "1"));
-        enterCardDate(PbNUIApp.userdata().getCardDate(2, "1"));
+        enterCardDate(PbNUIApp.userdata().getCardMonth(2, "1"));
         enterCVC(PbNUIApp.userdata().getCardCVC(2, "1"));
     }
 
     public void enterCardNumber(String cardNumber) {
-        Browser.waitForElementToBeVisible(By.xpath("//div[@class='CardNumberField-input-wrapper']"));
-        WebElement cardNumberID = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='CardNumberField-input-wrapper']"));
+        Browser.waitForElementPresence(By.xpath("//input[@placeholder='1234 5678 9012 3456']"));
+        Browser.waitForElementToBeVisible(By.xpath("//input[@placeholder='1234 5678 9012 3456']"));
+        WebElement cardNumberID = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@placeholder='1234 5678 9012 3456']"));
         Browser.enterTextInEditBox(cardNumberID, cardNumber);
+        Browser.switchToDefaultContent();
     }
 
     public void enterCardDate(String cardDate) {
-        Browser.waitForElementToBeVisible(By.xpath("//input[@placeholder='MM / YY']"));
-        WebElement cardDateID = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@placeholder='MM / YY']"));
+        Browser.waitForFrameToLoad(By.xpath("//iframe[@title='Iframe for expiry date']"));
+        Browser.waitForElementPresence(By.xpath("//input[@data-fieldtype='encryptedExpiryDate']"));
+        Browser.waitForElementToBeVisible(By.xpath("//input[@data-fieldtype='encryptedExpiryDate']"));
+        WebElement cardDateID = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@data-fieldtype='encryptedExpiryDate']"));
         Browser.enterTextInEditBox(cardDateID, cardDate);
+        Browser.switchToDefaultContent();
     }
 
     public void enterCVC(String cardCVC) {
-        Browser.waitForElementToBeVisible(By.xpath("//input[@placeholder='CVC']"));
-        WebElement cardCVCID = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@placeholder='CVC']"));
+        Browser.waitForFrameToLoad(By.xpath("//iframe[@title='Iframe for security code']"));
+        Browser.waitForElementPresence(By.xpath("//input[@placeholder='3 digits']"));
+        Browser.waitForElementToBeVisible(By.xpath("//input[@placeholder='3 digits']"));
+        WebElement cardCVCID = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@placeholder='3 digits']"));
         Browser.enterTextInEditBox(cardCVCID, cardCVC);
+        Browser.switchToDefaultContent();
+
+    }
+
+    public void enterBillingAddress() {
+        WebElement countryDropdown = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@placeholder='Search...']"));
+        Browser.enterTextInEditBox(countryDropdown,PbNUIApp.userdata().getCountry(2,"1"));
+        Browser.pressEnter();
+        WebElement streetTextBox = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@name='street']"));
+        Browser.enterTextInEditBox(streetTextBox,PbNUIApp.userdata().getStreet(2,"1"));
+        WebElement houseNumberTextBox = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@name='houseNumberOrName']"));
+        Browser.enterTextInEditBox(houseNumberTextBox,PbNUIApp.userdata().getHouseNumber(2,"1"));
+        WebElement postalCodeTextBox = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@name='postalCode']"));
+        Browser.enterTextInEditBox(postalCodeTextBox,PbNUIApp.userdata().getPostalCode(2,"1"));
+        WebElement cityTextBox = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@name='city']"));
+        Browser.enterTextInEditBox(cityTextBox,PbNUIApp.userdata().getCity(2,"1"));
+    }
+
+    public void clickPayNow(){
+        Browser.waitForElementToBeClickable(By.xpath("(//button[@class='MuiButtonBase-root MuiButton-root MuiButton-text'])[2]"));
+        Browser.waitForElementToBeVisible(By.xpath("(//button[@class='MuiButtonBase-root MuiButton-root MuiButton-text'])[2]"));
+        WebElement payNowButton = DriverManager.getInstance().Driver.findElement(By.xpath("(//button[@class='MuiButtonBase-root MuiButton-root MuiButton-text'])[2]"));
+        Browser.clickOnElementUsingJavascript(payNowButton);
+    }
+    public void paymentSuccessfulLabel(){
+        WebElement paymentLabel = DriverManager.getInstance().Driver.findElement(By.xpath("//p[@class='MuiTypography-root card-title MuiTypography-body1' and contains(text(),'Payment Success!')]"));
+        String Label = paymentLabel.getText();
+        Assert.assertEquals(Label,"Payment Success!");
+
     }
 }

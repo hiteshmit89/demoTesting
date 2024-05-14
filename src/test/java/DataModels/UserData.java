@@ -103,10 +103,10 @@ public class UserData {
     }
     //endregion
 
-    public CardData getCardData(int practiceId, String CardDataId) {
+    public CardData getCardData(int practiceId, String cardDataId) {
         CardData cardData = null;
         for (CardData cd : getPractice(practiceId).getCardData()) {
-            if (cd.getMonth_date().equals(CardDataId)) {
+            if (cd.getCard_Id().equals(cardDataId)) {
                 cardData = cd;
                 break;
             }
@@ -119,12 +119,30 @@ public class UserData {
 
     }
 
-    public String getCardDate(int practiceId, String CardDataId) {
+    public String getCardMonth(int practiceId, String CardDataId) {
         return getCardData(practiceId, CardDataId).getMonth_date();
     }
 
     public String getCardCVC(int practiceId, String CardDataId) {
         return getCardData(practiceId, CardDataId).getCvc();
     }
+
+    public String getCountry(int practiceId, String CardDataId) {
+        return getCardData(practiceId, CardDataId).getCountry();
+    }
+    public String getStreet(int practiceId, String CardDataId) {
+        return getCardData(practiceId, CardDataId).getStreet();
+    }
+    public String getHouseNumber(int practiceId, String CardDataId) {
+        return getCardData(practiceId, CardDataId).getHouseNumber();
+    }
+    public String getPostalCode(int practiceId, String CardDataId) {
+        return getCardData(practiceId, CardDataId).getPostalCode();
+    }
+    public String getCity(int practiceId, String CardDataId) {
+        return getCardData(practiceId, CardDataId).getCity();
+    }
+
+
 }
 

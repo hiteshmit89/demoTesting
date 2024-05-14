@@ -52,6 +52,10 @@ public class Browser {
         getFluentWait().until(ExpectedConditions.presenceOfElementLocated(locator));
     }
 
+    public static void waitForFrameToLoad(By locator) {
+        getFluentWait().until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(locator));
+    }
+
     private static FluentWait<WebDriver> getFluentWait() {
         return new FluentWait<WebDriver>((WebDriver) DriverManager.getInstance().Driver)
                 .withTimeout(Duration.ofSeconds(Integer.parseInt(ConfigManager.getInstance().getProperty("Timeout"))))
@@ -122,6 +126,15 @@ public class Browser {
             throw new RuntimeException(e);
         }
     }
+    public static void pressTab() {
+        try {
+            Robot robot = new Robot();
+            robot.keyPress(KeyEvent.VK_TAB);
+            robot.keyRelease(KeyEvent.VK_TAB);
+        } catch (AWTException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public static String getTextFromElement(WebElement element) {
         waitForElementToDisplay(element);
@@ -172,6 +185,9 @@ public class Browser {
         waitForElementToDisplay(iFrame);
         waitForElementToBeClickable(iFrame);
         ((WebDriver) DriverManager.getInstance().Driver).switchTo().frame(0);
+    }
+    public static void switchToDefaultContent() {
+        ((WebDriver) DriverManager.getInstance().Driver).switchTo().defaultContent();
     }
 
     public static void selectIndexFromDropdown(WebElement element , int index){
