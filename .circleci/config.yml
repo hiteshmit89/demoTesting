@@ -9,7 +9,7 @@ jobs:
       - image: cimg/openjdk:21.0.2-browsers
     parallelism: 3
     environment:
-      TAGS: "@pbnAll and not @In-Progress"
+      TAGS: "@pbnAll"
     steps:
       - browser-tools/install-chromedriver
       - checkout
