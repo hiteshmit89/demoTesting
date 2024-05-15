@@ -24,6 +24,7 @@ jobs:
             sleep 10 # Wait for Selenium Server to start
       - run:
           name: Run tests
+          no_output_timeout: 30m
           command: |
             mvn test -T 15C -D"cucumber.filter.tags= ${TAGS}"
       - store_test_results:
