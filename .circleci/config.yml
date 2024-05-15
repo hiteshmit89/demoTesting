@@ -1,0 +1,77 @@
+version: 2.1
+
+orbs:
+  browser-tools: circleci/browser-tools@1.4.8
+
+jobs:
+  test-CampaignsFeature:
+    docker:
+      - image: cimg/openjdk:21.0.2-browsers
+    parallelism: 3
+    environment:
+      TAGS: "@FormsPreviewFeature"
+    steps:
+      - browser-tools/install-chromedriver
+      - checkout
+      - run:
+          name: Install dependencies
+          command: |
+            mvn install -DskipTests
+      - run:
+          name: Start Selenium Server
+          command: |
+            java -jar /usr/local/bin/selenium.jar &
+            sleep 10 # Wait for Selenium Server to start
+      - run:
+          name: Run tests
+          command: |
+            mvn test -T 15C -Dcucumber.options="--tags ${TAGS}"
+      - store_test_results:
+          path: target/surefire-reports
+
+  test:
+    docker:
+      - image: cimg/openjdk:21.0.2-browsers
+    environment:
+      TAGS: "@FormsPreviewFeature"
+    steps:
+      - browser-tools/install-geckodriver
+      - checkout
+      - run:
+          name: Install dependencies
+          command: |
+            mvn install -DskipTests
+      - run:
+          name: Start Selenium Server
+          command: |
+            java -jar /usr/local/bin/selenium.jar &
+            sleep 10 # Wait for Selenium Server to start
+      - run:
+          name: Run tests
+          command: |
+            mvn test -T 15C -Dcucumber.options="--tags ${TAGS}"
+      - store_test_results:
+          path: target/surefire-reports
+      - store_artifacts:
+          path: target
+  update_bitbucket:
+    docker:
+      - image: cimg/openjdk:21.0.2-browsers
+    steps:
+      - checkout
+      - run:
+          name: Update Bitbucket
+          command: |
+            echo $CIRCLE_BUILD_URL
+            ARTIFACT_URL="$CIRCLE_BUILD_URL/$CIRCLE_BUILD_NUM/artifacts/0/target"
+            curl -X POST \
+              -H "Content-Type: application/json" \
+              -H "Authorization: Bearer YOUR_BITBUCKET_API_TOKEN" \
+              -d "{\"content\": \"Tests have completed successfully. :white_check_mark:\\nYou can download artifacts [here](${ARTIFACT_URL}).\"}" \
+              https://api.bitbucket.org/2.0/repositories/practiceintelligence/pbnuiautomation/pullrequests/PULL_REQUEST_ID/comments
+workflows:
+  build-deploy:
+    jobs:
+      - test-CampaignsFeature
+      - test
+      - update_bitbucket
