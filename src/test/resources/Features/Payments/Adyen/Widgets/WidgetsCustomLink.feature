@@ -1,7 +1,7 @@
 @AdyenWidgets @pbnAll @PUA-51
 Feature: Verify user is able to proceed for payment using custom link in payments
 
-  @AdyenWidgets @PRAC-T3754 @In-Progress @PUA-51
+  @AdyenWidgets @PRAC-T3754 @PUA-51
   Scenario: Verify user is able to proceed for payment using custom link in payments
     Given I enter credentials
     When I click login button

@@ -71,9 +71,9 @@ public class OnlinePaymentPortalPage extends BasePage {
     }
 
     public void enterCardNumber(String cardNumber) {
-        Browser.waitForElementPresence(By.xpath("//input[@placeholder='1234 5678 9012 3456']"));
-        Browser.waitForElementToBeVisible(By.xpath("//input[@placeholder='1234 5678 9012 3456']"));
-        WebElement cardNumberID = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@placeholder='1234 5678 9012 3456']"));
+        Browser.waitForElementPresence(By.xpath("//input[@data-fieldtype='encryptedCardNumber']"));
+        Browser.waitForElementToBeVisible(By.xpath("//input[@data-fieldtype='encryptedCardNumber']"));
+        WebElement cardNumberID = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@data-fieldtype='encryptedCardNumber']"));
         Browser.enterTextInEditBox(cardNumberID, cardNumber);
         Browser.switchToDefaultContent();
     }
