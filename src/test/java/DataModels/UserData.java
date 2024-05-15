@@ -118,11 +118,9 @@ public class UserData {
         return getCardData(practiceId, CardDataId).getCard_number_Adyen();
 
     }
-
     public String getCardMonth(int practiceId, String CardDataId) {
         return getCardData(practiceId, CardDataId).getMonth_date();
     }
-
     public String getCardCVC(int practiceId, String CardDataId) {
         return getCardData(practiceId, CardDataId).getCvc();
     }

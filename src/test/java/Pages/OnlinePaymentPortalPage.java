@@ -100,7 +100,8 @@ public class OnlinePaymentPortalPage extends BasePage {
     public void enterBillingAddress() {
         WebElement countryDropdown = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@placeholder='Search...']"));
         Browser.enterTextInEditBox(countryDropdown,PbNUIApp.userdata().getCountry(2,"1"));
-        Browser.pressEnter();
+        WebElement countryOption = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='adyen-checkout__dropdown__element__text' and contains(text(),'"+PbNUIApp.userdata().getCountry(2,"1")+"')]"));
+        Browser.clickOnElement(countryOption);
         WebElement streetTextBox = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@name='street']"));
         Browser.enterTextInEditBox(streetTextBox,PbNUIApp.userdata().getStreet(2,"1"));
         WebElement houseNumberTextBox = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@name='houseNumberOrName']"));
@@ -118,9 +119,12 @@ public class OnlinePaymentPortalPage extends BasePage {
         Browser.clickOnElementUsingJavascript(payNowButton);
     }
     public void paymentSuccessfulLabel(){
+        Browser.waitForElementToBeClickable(By.xpath("//p[@class='MuiTypography-root card-title MuiTypography-body1' and contains(text(),'Payment Success!')]"));
+        Browser.waitForElementToBeVisible(By.xpath("//p[@class='MuiTypography-root card-title MuiTypography-body1' and contains(text(),'Payment Success!')]"));
         WebElement paymentLabel = DriverManager.getInstance().Driver.findElement(By.xpath("//p[@class='MuiTypography-root card-title MuiTypography-body1' and contains(text(),'Payment Success!')]"));
         String Label = paymentLabel.getText();
         Assert.assertEquals(Label,"Payment Success!");
+
 
     }
 }
