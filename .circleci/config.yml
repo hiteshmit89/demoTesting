@@ -9,7 +9,7 @@ jobs:
       - image: cimg/openjdk:21.0.2-browsers
     parallelism: 3
     environment:
-      TAGS: "@FormsPreviewFeature"
+      TAGS: "@pbnAll and not @In-Progress"
     steps:
       - browser-tools/install-chromedriver
       - checkout
@@ -17,34 +17,6 @@ jobs:
           name: Install dependencies
           command: |
             mvn install -DskipTests
-      - run:
-          name: Start Selenium Server
-          command: |
-            java -jar /usr/local/bin/selenium.jar &
-            sleep 10 # Wait for Selenium Server to start
-      - run:
-          name: Run tests
-          command: |
-            mvn test -T 15C -D"cucumber.filter.tags= ${TAGS}"
-      - store_test_results:
-          path: target/surefire-reports
-      - store_artifacts:
-          path: target/HtmlReports
-
-  test-Firefox:
-    docker:
-      - image: cimg/openjdk:21.0.2-browsers
-    environment:
-      TAGS: "@FormsPreviewFeature"
-    steps:
-      - browser-tools/install-geckodriver
-      - checkout
-      - run:
-          name: Install dependencies
-          command: |
-            mvn install -DskipTests
-            firefox --version
-            geckodriver --version
       - run:
           name: Start Selenium Server
           command: |
@@ -77,5 +49,4 @@ workflows:
   build-deploy:
     jobs:
       - test-Chrome
-      - test-Firefox
       - update_bitbucket

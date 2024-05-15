@@ -229,7 +229,7 @@ public class Browser {
                 count++;
             }
         } while (count != retryCount);
-        System.out.println(exceptionMessage = "Retry Timed Out while trying to execute - " + new Throwable().getStackTrace()[1].getMethodName());
+        System.out.println(exceptionMessage = "Retry Timed Out while trying to execute - " + new Throwable().getStackTrace()[1].getMethodName() + " ");
         throw new RuntimeException(exceptionMessage + exception);
     }
 }
