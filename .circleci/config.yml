@@ -74,6 +74,6 @@ jobs:
 workflows:
   build-deploy:
     jobs:
-      - test-CampaignsFeature
-      - test
+      - test-Chrome
+      - test-Firefox
       - update_bitbucket
