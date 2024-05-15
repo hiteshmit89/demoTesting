@@ -1,13 +1,12 @@
-package StepDefinitions;
+package StepDefinitions.Payments.Adyen.Widgets;
 
-import Framework.Browser;
 import Framework.Constants.Constants;
 import Framework.Root.PbNUIApp;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-public class PaymentsStepDefination {
+public class PaymentsStepDefinition {
     @When("The user is able to click on Payments tab")
     public void theUserIsAbleToClickOnPaymentsTab() {
         PbNUIApp.navigator().NavigateTo(Constants.Destination.Payments);
@@ -15,7 +14,7 @@ public class PaymentsStepDefination {
 
     @Then("The user is able to click on widgets tab")
     public void theUserIsAbleToClickOnWidgetsTab() {
-        PbNUIApp.paymentsPage().clickOnWidgets();
+        PbNUIApp.paymentsPage().clickWidgetsTab();
     }
 
     @When("The user is able to copy widget link and navigate to payment screen")
