@@ -24,3 +24,9 @@ Feature: Appointments Settings
     Given I login to PbN app and select the practice
     When I click on appointments setting page and verify add and remove provider list and visit type from appointment setting page
     Then I will be able to add and remove provider list and visit type from appointment setting page
+
+  @appointments @PUA-56 @PRAC-T1610
+  Scenario: Verify I can select 15 min radio button from appointment setting page
+    Given I login to PbN app and select the practice
+    When I click on appointments setting page and verify fifteen min radio button from appointment setting page
+    Then I will be able to select fifteen min radio button from appointment setting page

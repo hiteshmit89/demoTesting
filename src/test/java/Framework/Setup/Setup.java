@@ -27,7 +27,7 @@ public class Setup {
         }
     }
 
-    @Before
+    @Before(order = 0)
     public void scenarioSetup(Scenario scenario) {
         this.scenario = scenario;
         logger.info("\u001B[32m" + "########starting thread: " + Thread.currentThread().getName() + " at " + Time.valueOf(LocalTime.now()) + "\u001B[0m");
@@ -38,7 +38,16 @@ public class Setup {
             e.printStackTrace();
         }
 
+    }
+
+    @Before("not @PatientPortal")
+    public void navigateToPbnUrl() {
         DriverManager.getInstance().navigateToURL(ConfigManager.getInstance().getProperty("URL"));
+    }
+
+    @Before("@PatientPortal")
+    public void navigateToPatientPortalUrl() {
+        DriverManager.getInstance().navigateToURL(ConfigManager.getInstance().getProperty("PatientPortalURL"));
     }
 
     @After

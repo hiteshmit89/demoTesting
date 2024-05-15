@@ -44,3 +44,9 @@ Feature: Appointments
     Given I login to PbN app and select the practice
     When I click on appointments tab and try to book appointments for new patient
     Then I will be able to see successful message for appointment booking.
+
+  @appointments @PUA-57 @PRAC-T109
+  Scenario: Verify I can see the refresh button on provider page during appointment booking
+    Given I login to PbN app and select the practice
+    When I click on appointments tab and try to book appointments and navigate to provider page
+    Then I will be able to see refresh button on provider page during appointment booking
