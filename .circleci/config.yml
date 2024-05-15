@@ -4,7 +4,7 @@ orbs:
   browser-tools: circleci/browser-tools@1.4.8
 
 jobs:
-  test-CampaignsFeature:
+  test-Chrome:
     docker:
       - image: cimg/openjdk:21.0.2-browsers
     parallelism: 3
@@ -28,8 +28,10 @@ jobs:
             mvn test -T 15C -D"cucumber.filter.tags= ${TAGS}"
       - store_test_results:
           path: target/surefire-reports
+      - store_artifacts:
+          path: target/HtmlReports
 
-  test:
+  test-Firefox:
     docker:
       - image: cimg/openjdk:21.0.2-browsers
     environment:
@@ -53,7 +55,7 @@ jobs:
       - store_test_results:
           path: target/surefire-reports
       - store_artifacts:
-          path: target
+          path: target/HtmlReports
   update_bitbucket:
     docker:
       - image: cimg/openjdk:21.0.2-browsers
