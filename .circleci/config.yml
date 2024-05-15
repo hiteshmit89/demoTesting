@@ -43,6 +43,8 @@ jobs:
           name: Install dependencies
           command: |
             mvn install -DskipTests
+            firefox --version
+            geckodriver --version
       - run:
           name: Start Selenium Server
           command: |
