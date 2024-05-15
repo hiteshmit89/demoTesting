@@ -184,4 +184,21 @@ public class AppointmentsStepdefinition {
     public void iWillNotBeAbleToProceedToTheNextPageIfTheInsuranceHolderAgeIsNotLessThanEighteenYears() {
         PbNUIApp.appointmentBookingPage().verifyDateErrorMessage();
     }
+
+    @When("I click on appointments tab and try to book appointments and navigate to provider page")
+    public void iClickOnAppointmentsTabAndTryToBookAppointmentsAndNavigateToProviderPage() {
+        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
+        PbNUIApp.appointmentsPage().clickOnWidgets();
+        PbNUIApp.appointmentsPage().createAppointmentURLAndNavigate();
+        PbNUIApp.appointmentBookingPage().clickOnPickLocation();
+        PbNUIApp.appointmentBookingPage().clickOnSelectNewPatient();
+        PbNUIApp.appointmentBookingPage().clickOnEmergencyConsult();
+        PbNUIApp.appointmentBookingPage().clickOnSeeMoreOptions();
+
+    }
+
+    @Then("I will be able to see refresh button on provider page during appointment booking")
+    public void iWillBeAbleToSeeRefreshButtonOnProviderPageDuringAppointmentBooking() {
+        PbNUIApp.appointmentBookingPage().clickOnRefreshButton();
+    }
 }
