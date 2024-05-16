@@ -93,10 +93,6 @@ public class Browser {
         retry(() -> table.findElements(By.xpath(".//tr")).size() >= size);
     }
 
-    public static void waitForTableRowSizeToBe(WebElement table, int size) {
-        retry(() -> table.findElements(By.xpath("./../td/div")).size() >= size);
-    }
-
     public static void waitForElementChildren(WebElement element, By childLocator, int noOfChildrenNeeded) {
         retry(() -> element.findElements(childLocator).size() > noOfChildrenNeeded);
     }
