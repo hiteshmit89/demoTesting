@@ -37,7 +37,7 @@ public class AdyenOnboardingStepDefinition {
 
     @Then("I am able to click on settings")
     public void iAmAbleToClickOnSettings() {
-        PbNUIApp.practiceHomePage().clickOnSettingsMenuItem();
+        PbNUIApp.practiceHomePage().iClickOn("Settings");
     }
 
     @Then("I am able to enable toggle for adyen feature")

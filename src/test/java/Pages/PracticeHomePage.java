@@ -53,7 +53,4 @@ public class PracticeHomePage extends BasePage {
                 Assert.fail("Unable to find " + dropdownOption + " from userOptionsDropDown.");
         }
     }
-    public void clickOnSettingsMenuItem() {
-        Browser.clickOnElement(settingMenuItem);
-    }
 }

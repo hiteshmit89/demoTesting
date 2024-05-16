@@ -22,18 +22,12 @@ public class PaymentsPage extends BasePage {
 
     private final WebElement paymentsTab = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='payment-page-tab-Payments']"));
     private final WebElement paymentMethodsTab = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='payment-page-tab-Payment Methods']"));
+    private final WebElement widgetsTab = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='payment-page-tab-Widgets']"));
 
     public void clickOnWidgetslink() {
         WebElement widgetsTab = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='payment-page-tab-Widgets']"));
         Browser.waitForElementToBeClickable(widgetsTab);
         Browser.clickOnElement(widgetsTab);
-    }
-
-    public void clickOnWidgets() {
-        Browser.waitForElementToBeVisible((By.xpath("//a[@id='payment-page-tab-Widgets']")));
-        WebElement widgets = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='payment-page-tab-Widgets']"));
-        Browser.clickOnElement(widgets);
-        Browser.waitForElementToBeVisible(By.xpath("//span[contains(text(),'https://www.patientsreach.com/payment/')]"));
     }
 
     public void createPaymentURLAndNavigate() {
@@ -51,6 +45,9 @@ public class PaymentsPage extends BasePage {
 
     public void clickPaymentsMethodsTab() {
         Browser.clickOnElement(paymentMethodsTab);
+    }
+    public void clickWidgetsTab() {
+        Browser.clickOnElement(widgetsTab);
     }
 
     public void clickCardIcon() {
@@ -99,6 +96,21 @@ public class PaymentsPage extends BasePage {
     public void verifyPaymentReceiptIsDownloaded() {
         WebElement downloadIcon = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@role='button' and @tabindex='0']"));
         Browser.clickOnElement(downloadIcon);
+    }
+
+    public void createAndSaveCustomLink(){
+        WebElement customTextBox = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@class='payment-link-input-field form-control']"));
+        Browser.enterTextInEditBox(customTextBox,"TestAutomation");
+        WebElement saveButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='Save']"));
+        Browser.clickOnElement(saveButton);
+    }
+    public void createCustomURLAndNavigate() {
+        WebElement eLink = DriverManager.getInstance().Driver.findElement(By.xpath("(//span[contains(text(),'https://www.patientsreach.com/payment/')])[2]"));
+        String urlText = eLink.getText();
+        String[] arrOfStr = urlText.split("payment");
+        String URL = ConfigManager.getInstance().getProperty("URL");
+        URL = String.join("", URL, "/payment", arrOfStr[1]);
+        Browser.navigateToNewURL(URL);
     }
 
 }

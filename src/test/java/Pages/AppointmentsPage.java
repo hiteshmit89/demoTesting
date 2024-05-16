@@ -182,4 +182,9 @@ public class AppointmentsPage extends BasePage {
         WebElement deleteYesButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='btn btn-danger']"));
         Browser.clickOnElement(deleteYesButton);
     }
+
+    public void select15MinCheckbox() {
+        WebElement select15MinCheckbox = DriverManager.getInstance().Driver.findElement(By.xpath("//span[text()='15 Minutes']"));
+        Browser.clickOnElement(select15MinCheckbox);
+    }
 }

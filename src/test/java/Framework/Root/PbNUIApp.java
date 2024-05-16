@@ -1,6 +1,7 @@
 package Framework.Root;
 
 import DataModels.UserData;
+import Framework.Util.ConfigManager;
 import Pages.*;
 import Pages.Modals.PatientOverviewModal;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -15,7 +16,16 @@ public class PbNUIApp {
     public static UserData userdata() {
         ObjectMapper om = new ObjectMapper();
         try {
-            userdata = om.readValue(new File("src/test/resources/Data/Userdata.json"), UserData.class);
+            switch (ConfigManager.getInstance().getProperty("Environment").toUpperCase()) {
+                case "QA3":
+                    userdata = om.readValue(new File("src/test/resources/Data/QA3Userdata.json"), UserData.class);
+                    break;
+                case "QA2":
+                    userdata = om.readValue(new File("src/test/resources/Data/QA2Userdata.json"), UserData.class);
+                    break;
+                default:
+                    userdata = om.readValue(new File("src/test/resources/Data/QA1Userdata.json"), UserData.class);
+            }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
