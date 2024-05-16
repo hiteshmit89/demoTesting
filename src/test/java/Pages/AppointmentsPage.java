@@ -198,9 +198,6 @@ public class AppointmentsPage extends BasePage {
 
     public void clickOnExistingPatient() {
         List<WebElement> rowElements = DriverManager.getInstance().Driver.findElements(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tr"));
-        //List<WebElement> colElements = DriverManager.getInstance().Driver.findElements(By.xpath("//div[@class='react-bootstrap-table table-responsive']//th"));
-        System.out.println(rowElements.size());
-        //System.out.println(colElements.size());
         int i = 0;
         for (WebElement row : rowElements) {
             if (i==0) {
