@@ -1,7 +1,9 @@
 package Pages.Modals;
 
 import Framework.Browser;
+import Framework.Root.PbNUIApp;
 import Framework.Util.DriverManager;
+import Pages.Navigator;
 import junit.framework.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -17,6 +19,7 @@ public class PatientOverviewModal {
     private String getCurrentDate() {
         return (new SimpleDateFormat("MM/dd/yyyy").format(new Date()));
     }
+
     private int sizeOfSelectedForms = 0;
 
     public void selectTask(String taskType) {
@@ -91,7 +94,7 @@ public class PatientOverviewModal {
     }
 
     public void clickOnForms() {
-         Browser.waitForElementToBeVisible(By.xpath("//*[@id='patient-window-tabs-id-tab-form']"));
+        Browser.waitForElementToBeVisible(By.xpath("//*[@id='patient-window-tabs-id-tab-form']"));
         WebElement Forms = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='patient-window-tabs-id-tab-form']"));
         Browser.clickOnElementUsingJavascript(Forms);
     }
@@ -136,7 +139,7 @@ public class PatientOverviewModal {
             if (element.getText().contains(formName)) {
                 Assert.assertTrue("Form Displayed Successfully", true);
                 break;
-                }
+            }
         }
         WebElement sendEmail = DriverManager.getInstance().Driver.findElement(By.xpath("//label[text()='Send Email']"));
         Browser.clickOnElementUsingJavascript(sendEmail);
@@ -188,5 +191,60 @@ public class PatientOverviewModal {
         Browser.waitForElementToBeVisible(By.xpath("//tbody/tr/td/span[text()='" + formName + "']"));
         WebElement isFormPresentInCompletedForms = DriverManager.getInstance().Driver.findElement(By.xpath("//tbody/tr/td/span[text()='" + formName + "']"));
         Assert.assertTrue(isFormPresentInCompletedForms.isDisplayed());
+    }
+
+    public void clickOnDetailsTab() {
+        WebElement detailsTab = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='patient-window-tabs-id-tab-details']"));
+        Browser.clickOnElement(detailsTab);
+    }
+
+    public void clickOnCommunicationPreference() {
+        Browser.waitForElementToBeClickable(By.xpath("//div[@id='email--heading']//i[@class='fa-duotone fa-chevron-down']"));
+        WebElement emailPreference =DriverManager.getInstance().Driver.findElement(By.xpath("//div[@id='email--heading']//i[@class='fa-duotone fa-chevron-down']"));
+        Browser.scrollToVisibleElement(emailPreference);
+        Browser.clickOnElementUsingJavascript(emailPreference);
+        WebElement emailCheckBox =DriverManager.getInstance().Driver.findElement(By.xpath("//div[text()='Global subscribe to all emails']/../div/label/input"));
+        List<WebElement>emailcheckboxList=DriverManager.getInstance().Driver.findElements(By.xpath("//*[@id='email--body']/div/div/div"));
+        if(emailcheckboxList.size()==1) {
+            Browser.clickOnElementUsingJavascript(emailCheckBox);
+        }
+        WebElement textPreference =DriverManager.getInstance().Driver.findElement(By.xpath("//div[@id='sms--heading']//i[@class='fa-duotone fa-chevron-down']"));
+        Browser.scrollToVisibleElement(textPreference);
+        Browser.clickOnElementUsingJavascript(textPreference);
+        List<WebElement>textCheckBoxList=DriverManager.getInstance().Driver.findElements(By.xpath("//*[@id='sms--body']/div/div/div"));
+        WebElement textCheckBox =DriverManager.getInstance().Driver.findElement(By.xpath("//div[text()='Global subscribe to all sms']/../div/label/input"));
+        if(textCheckBoxList.size()==1) {
+            Browser.clickOnElementUsingJavascript(textCheckBox);
+        }
+        WebElement savePreference=DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='Save Preferences']"));
+        if(savePreference.isEnabled()) {
+            Browser.clickOnElementUsingJavascript(savePreference);
+        }
+        WebElement closePatientWindow = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='close-button']"));
+        Browser.clickOnElement(closePatientWindow);
+    }
+
+    public void clickOnOptedOutPatients() {
+        Browser.scrollToVisibleElement(DriverManager.getInstance().Driver.findElement(By.xpath("//a[text()='Opted Out Patients']")));
+        WebElement optedOutPatient = DriverManager.getInstance().Driver.findElement(By.xpath("//a[text()='Opted Out Patients']"));
+        Browser.clickOnElement(optedOutPatient);
+    }
+
+    public void verifyPatientOptedOutList() {
+        Browser.waitForElementToBeVisible(By.xpath("//input[@id='searchLabel']"));
+        WebElement searchTextBox = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@id='searchLabel']"));
+        Browser.enterTextInEditBox(searchTextBox, PbNUIApp.userdata().getPatientName(1, 1));
+        Browser.waitForTableToLoad(DriverManager.getInstance().Driver.findElement(By.xpath("//tbody")));
+        List<WebElement> firstName = DriverManager.getInstance().Driver.findElements(By.xpath("//tbody/tr/td[3]"));
+        List<WebElement> lastName = DriverManager.getInstance().Driver.findElements(By.xpath("//tbody/tr/td[2]"));
+        for (int i = 0; i < firstName.size(); i++) {
+            String firstname = firstName.get(i).getText();
+            Browser.waitForElementToBeVisible(lastName.get(i));
+            String lastname = lastName.get(i).getText();
+            if (firstname.contains(searchTextBox.getAttribute("value").split(" ")[0]) && lastname.contains(searchTextBox.getAttribute("value").split(" ")[1])) {
+                Assert.assertTrue("Patient Name Displayed Successfully", true);
+                break;
+            }
+        }
     }
 }

@@ -31,6 +31,12 @@ Feature: Appointments Settings
     When I click on appointments setting page and verify fifteen min radio button from appointment setting page
     Then I will be able to select fifteen min radio button from appointment setting page
 
+  @appointments @PUA-59 @PRAC-T102
+  Scenario: Verify I can see appointment details on appointment list page
+    Given I login to PbN app and select the practice
+    When I click on appointments list page and verify appointment details
+    Then I will be able to see appointments details on page list
+
   @appointments @PUA-60 @PRAC-T103
   Scenario: Verify I can see appointment details on appointment list page
     Given I login to PbN app and select the practice
