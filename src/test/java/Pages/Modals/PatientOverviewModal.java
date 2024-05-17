@@ -199,16 +199,17 @@ public class PatientOverviewModal {
     }
 
     public void clickOnCommunicationPreference() {
-        Browser.scrollToVisibleElement(DriverManager.getInstance().Driver.findElement(By.xpath("//div[@id='email--heading']//i[@class='fa-duotone fa-chevron-down']")));
+        Browser.waitForElementToBeClickable(By.xpath("//div[@id='email--heading']//i[@class='fa-duotone fa-chevron-down']"));
         WebElement emailPreference =DriverManager.getInstance().Driver.findElement(By.xpath("//div[@id='email--heading']//i[@class='fa-duotone fa-chevron-down']"));
+        Browser.scrollToVisibleElement(emailPreference);
         Browser.clickOnElementUsingJavascript(emailPreference);
         WebElement emailCheckBox =DriverManager.getInstance().Driver.findElement(By.xpath("//div[text()='Global subscribe to all emails']/../div/label/input"));
         List<WebElement>emailcheckboxList=DriverManager.getInstance().Driver.findElements(By.xpath("//*[@id='email--body']/div/div/div"));
         if(emailcheckboxList.size()==1) {
             Browser.clickOnElementUsingJavascript(emailCheckBox);
         }
-        Browser.scrollToVisibleElement(DriverManager.getInstance().Driver.findElement(By.xpath("//div[@id='sms--heading']//i[@class='fa-duotone fa-chevron-down']")));
         WebElement textPreference =DriverManager.getInstance().Driver.findElement(By.xpath("//div[@id='sms--heading']//i[@class='fa-duotone fa-chevron-down']"));
+        Browser.scrollToVisibleElement(textPreference);
         Browser.clickOnElementUsingJavascript(textPreference);
         List<WebElement>textCheckBoxList=DriverManager.getInstance().Driver.findElements(By.xpath("//*[@id='sms--body']/div/div/div"));
         WebElement textCheckBox =DriverManager.getInstance().Driver.findElement(By.xpath("//div[text()='Global subscribe to all sms']/../div/label/input"));
