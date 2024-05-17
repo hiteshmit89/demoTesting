@@ -1,5 +1,6 @@
 package StepDefinitions.Appointments;
 
+import Framework.Browser;
 import Framework.Constants.Constants;
 import Framework.Root.PbNUIApp;
 import io.cucumber.java.en.Then;
@@ -23,7 +24,8 @@ public class AppointmentsSettingsStepDefinition {
     public void iClickOnAppointmentsListPageAndVerifyAppointmentList() {
         PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
         PbNUIApp.appointmentsPage().clickOnAppointmentListTab();
-        PbNUIApp.appointmentsPage().enterStartDate("01/01/2024");
+        PbNUIApp.appointmentsPage().enterStartDate1("01/01/2024");
+        PbNUIApp.appointmentsPage().enterStartDate2("01/01/2024");
         PbNUIApp.appointmentsPage().enterEndDate("31/12/2024");
     }
 
@@ -71,5 +73,18 @@ public class AppointmentsSettingsStepDefinition {
     @Then("I will be able to select fifteen min radio button from appointment setting page")
     public void iWillBeAbleToSelectFifteenMinRadioButtonFromAppointmentSettingPage() {
         PbNUIApp.appointmentsPage().select15MinCheckbox();
+    }
+
+    @When("I click on appointments list page and verify appointment details")
+    public void iClickOnAppointmentsListPageAndVerifyAppointmentDetails() {
+        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
+        PbNUIApp.appointmentsPage().clickOnAppointmentListTab();
+        PbNUIApp.appointmentsPage().enterStartDate1("01/01/2024");
+        PbNUIApp.appointmentsPage().enterStartDate2("01/01/2024");
+    }
+
+    @Then("I will be able to see appointments details on page list")
+    public void iWillBeAbleToSeeAppointmentsDetailsOnPageList() {
+        PbNUIApp.appointmentsPage().clickOnExistingPatient();
     }
 }
