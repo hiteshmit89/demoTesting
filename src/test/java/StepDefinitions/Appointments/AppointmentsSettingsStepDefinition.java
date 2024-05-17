@@ -23,7 +23,8 @@ public class AppointmentsSettingsStepDefinition {
     public void iClickOnAppointmentsListPageAndVerifyAppointmentList() {
         PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
         PbNUIApp.appointmentsPage().clickOnAppointmentListTab();
-        PbNUIApp.appointmentsPage().enterStartDate("01/01/2024");
+        PbNUIApp.appointmentsPage().enterStartDate1("01/01/2024");
+        PbNUIApp.appointmentsPage().enterStartDate2("01/01/2024");
         PbNUIApp.appointmentsPage().enterEndDate("31/12/2024");
     }
 
@@ -57,7 +58,7 @@ public class AppointmentsSettingsStepDefinition {
 
     @Then("I will be able to add and remove provider list and visit type from appointment setting page")
     public void iWillBeAbleToAddAndRemoveProviderListAndVisitTypeFromAppointmentSettingPage() {
-        PbNUIApp.appointmentsPage().clickOutside();
+        PbNUIApp.appointmentsPage().clickProviderHeader();
         PbNUIApp.appointmentsPage().clickOnAddNewVisitType();
         PbNUIApp.appointmentsPage().deleteVisitType();
     }
@@ -71,5 +72,19 @@ public class AppointmentsSettingsStepDefinition {
     @Then("I will be able to select fifteen min radio button from appointment setting page")
     public void iWillBeAbleToSelectFifteenMinRadioButtonFromAppointmentSettingPage() {
         PbNUIApp.appointmentsPage().select15MinCheckbox();
+    }
+
+    @When("I click on appointments list page and verify patient information")
+    public void iClickOnAppointmentsListPageAndVerifyPatientInformation() {
+        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
+        PbNUIApp.appointmentsPage().clickOnAppointmentListTab();
+        PbNUIApp.appointmentsPage().enterStartDate1("01/01/2024");
+        PbNUIApp.appointmentsPage().enterStartDate2("01/01/2024");
+        PbNUIApp.appointmentsPage().clickOutsideAppointmentList();
+    }
+
+    @Then("I will be able to see patient information on page list")
+    public void iWillBeAbleToSeePatientInformationOnPageList() {
+        PbNUIApp.appointmentsPage().clickOnExistingPatientInformation();
     }
 }
