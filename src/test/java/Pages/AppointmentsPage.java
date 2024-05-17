@@ -8,6 +8,8 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import java.util.List;
+
 public class AppointmentsPage extends BasePage {
 
     public AppointmentsPage(PageTitle title) {
@@ -93,8 +95,14 @@ public class AppointmentsPage extends BasePage {
         Assert.assertTrue("Verify block-out times is not displayed", blockOutTimes.isDisplayed());
     }
 
-    public void enterStartDate(String startDateData) {
+    public void enterStartDate1(String startDateData) {
         WebElement startDate = DriverManager.getInstance().Driver.findElement(By.xpath("(//input[@name='dateStart'])[1]"));
+        Browser.enterTextInEditBox(startDate, startDateData);
+        Browser.waitForElementEnable(startDate);
+    }
+
+    public void enterStartDate2(String startDateData) {
+        WebElement startDate = DriverManager.getInstance().Driver.findElement(By.xpath("(//input[@name='dateStart'])[2]"));
         Browser.enterTextInEditBox(startDate, startDateData);
         Browser.waitForElementEnable(startDate);
     }
@@ -186,5 +194,23 @@ public class AppointmentsPage extends BasePage {
     public void select15MinCheckbox() {
         WebElement select15MinCheckbox = DriverManager.getInstance().Driver.findElement(By.xpath("//span[text()='15 Minutes']"));
         Browser.clickOnElement(select15MinCheckbox);
+    }
+
+    public void clickOnExistingPatient() {
+        List<WebElement> rowElements = DriverManager.getInstance().Driver.findElements(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tr"));
+        int i = 0;
+        for (WebElement row : rowElements) {
+            if (i==0) {
+                i++;
+            }
+            else {
+                WebElement colElement = row.findElement(By.xpath(".//td[7]"));
+                String colName = "Existing";
+                if (Browser.getTextFromElement(colElement).equals(colName)) {
+                    Browser.clickOnElement(colElement);
+                    break;
+                }
+            }
+        }
     }
 }
