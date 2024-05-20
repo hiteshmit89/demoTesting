@@ -48,7 +48,7 @@ public class PatientWindowStepDefinition {
 
     @When("I click on the patient finder to open Patient Window")
     public void iClickOnThePatientFinderToOpenPatientWindow() {
-        PbNUIApp.navigator().findAndSelectPatientByExactMatchOf("Sally Walker");
+        PbNUIApp.navigator().findAndSelectPatientByExactMatchOf(PbNUIApp.userdata().getPatientName(1,1));
     }
 
     @And("I click on the Forms Tab")
