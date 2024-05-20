@@ -21,6 +21,7 @@ public class PatientOverviewModal {
     }
 
     private int sizeOfSelectedForms = 0;
+    String note = "Patient Test Note";
 
     public void selectTask(String taskType) {
         WebElement taskButton = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='patient-actions']//div[@class='action-item']//span[contains(text(),'Task')]/.."));
@@ -243,6 +244,33 @@ public class PatientOverviewModal {
             String lastname = lastName.get(i).getText();
             if (firstname.contains(searchTextBox.getAttribute("value").split(" ")[0]) && lastname.contains(searchTextBox.getAttribute("value").split(" ")[1])) {
                 Assert.assertTrue("Patient Name Displayed Successfully", true);
+                break;
+            }
+        }
+    }
+
+    public void clickOnPatientNote(){
+        WebElement patientNote = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='patient-note-icon']"));
+        Browser.clickOnElementUsingJavascript(patientNote);
+    }
+
+    public void clickOnAddPatientNote(){
+        WebElement enterTextInPatientNote = DriverManager.getInstance().Driver.findElement(By.xpath("//textarea[@class='form-control']"));
+        Browser.enterTextInEditBox(enterTextInPatientNote,note);
+        WebElement addNote = DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='Add Note']"));
+        Browser.clickOnElementUsingJavascript(addNote);
+    }
+
+    public void verifyPatientNoteInActivityTab() {
+        WebElement activityTab = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='patient-window-tabs-id-tab-activity']"));
+        Browser.clickOnElementUsingJavascript(activityTab);
+        Browser.waitForElementToBeClickable(By.xpath(" //div[@class='patient-notes-table container']"));
+        WebElement patientNoteSection = DriverManager.getInstance().Driver.findElement(By.xpath(" //div[@class='patient-notes-table container']"));
+        Browser.scrollToVisibleElement(patientNoteSection);
+        List<WebElement>patientNoteList=DriverManager.getInstance().Driver.findElements(By.xpath("//div[contains(@class,'patient-note col-xs')]"));
+        for (WebElement element : patientNoteList) {
+            if (element.getText().contains(note)) {
+                Assert.assertTrue("Patient Note Present in the List", true);
                 break;
             }
         }
