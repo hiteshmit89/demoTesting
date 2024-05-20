@@ -28,7 +28,7 @@ Feature: Verify As a user I am able to make payment through widget link
     And The user is able to copy widget link and navigate to payment screen
     And The user is able to enter amount in Payment box
 
-  @In-progress
+  @In-Progress
   Scenario: Verify if user is able to checkout
     Given I enter credentials
     When I click login button
