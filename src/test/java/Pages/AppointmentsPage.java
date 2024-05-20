@@ -223,8 +223,6 @@ public class AppointmentsPage extends BasePage {
     }
 
     public void clickOnExistingPatientInformation() {
-        WebElement appointmentTable = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='react-bootstrap-table table-responsive']"));
-        Browser.waitForTableToLoad(appointmentTable);
         List<WebElement> rowElements = DriverManager.getInstance().Driver.findElements(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tr"));
         int i = 0;
         for (WebElement row : rowElements) {
@@ -232,11 +230,11 @@ public class AppointmentsPage extends BasePage {
                 i++;
             }
             else {
-                WebElement colElement = row.findElement(By.xpath(".//td[2]"));
-                WebElement clickColElement = row.findElement(By.xpath(".//td[7]"));
+                WebElement colElement = row.findElement(By.xpath(".//td[7]"));
+                WebElement clickColElement = row.findElement(By.xpath(".//td[2]"));
                 String colName = "Existing";
                 if (Browser.getTextFromElement(colElement).equals(colName)) {
-                    Browser.clickOnElementUsingJavascript(clickColElement);
+                    Browser.clickOnElement(colElement);
                     break;
                 }
             }
