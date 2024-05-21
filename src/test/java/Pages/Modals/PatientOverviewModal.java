@@ -201,24 +201,24 @@ public class PatientOverviewModal {
 
     public void clickOnCommunicationPreference() {
         Browser.waitForElementToBeClickable(By.xpath("//div[@id='email--heading']//i[@class='fa-duotone fa-chevron-down']"));
-        WebElement emailPreference =DriverManager.getInstance().Driver.findElement(By.xpath("//div[@id='email--heading']//i[@class='fa-duotone fa-chevron-down']"));
+        WebElement emailPreference = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@id='email--heading']//i[@class='fa-duotone fa-chevron-down']"));
         Browser.scrollToVisibleElement(emailPreference);
         Browser.clickOnElementUsingJavascript(emailPreference);
-        WebElement emailCheckBox =DriverManager.getInstance().Driver.findElement(By.xpath("//div[text()='Global subscribe to all emails']/../div/label/input"));
-        List<WebElement>emailcheckboxList=DriverManager.getInstance().Driver.findElements(By.xpath("//*[@id='email--body']/div/div/div"));
-        if(emailcheckboxList.size()==1) {
+        WebElement emailCheckBox = DriverManager.getInstance().Driver.findElement(By.xpath("//div[text()='Global subscribe to all emails']/../div/label/input"));
+        List<WebElement> emailcheckboxList = DriverManager.getInstance().Driver.findElements(By.xpath("//*[@id='email--body']/div/div/div"));
+        if (emailcheckboxList.size() == 1) {
             Browser.clickOnElementUsingJavascript(emailCheckBox);
         }
-        WebElement textPreference =DriverManager.getInstance().Driver.findElement(By.xpath("//div[@id='sms--heading']//i[@class='fa-duotone fa-chevron-down']"));
+        WebElement textPreference = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@id='sms--heading']//i[@class='fa-duotone fa-chevron-down']"));
         Browser.scrollToVisibleElement(textPreference);
         Browser.clickOnElementUsingJavascript(textPreference);
-        List<WebElement>textCheckBoxList=DriverManager.getInstance().Driver.findElements(By.xpath("//*[@id='sms--body']/div/div/div"));
-        WebElement textCheckBox =DriverManager.getInstance().Driver.findElement(By.xpath("//div[text()='Global subscribe to all sms']/../div/label/input"));
-        if(textCheckBoxList.size()==1) {
+        List<WebElement> textCheckBoxList = DriverManager.getInstance().Driver.findElements(By.xpath("//*[@id='sms--body']/div/div/div"));
+        WebElement textCheckBox = DriverManager.getInstance().Driver.findElement(By.xpath("//div[text()='Global subscribe to all sms']/../div/label/input"));
+        if (textCheckBoxList.size() == 1) {
             Browser.clickOnElementUsingJavascript(textCheckBox);
         }
-        WebElement savePreference=DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='Save Preferences']"));
-        if(savePreference.isEnabled()) {
+        WebElement savePreference = DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='Save Preferences']"));
+        if (savePreference.isEnabled()) {
             Browser.clickOnElementUsingJavascript(savePreference);
         }
         WebElement closePatientWindow = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='close-button']"));
@@ -249,14 +249,14 @@ public class PatientOverviewModal {
         }
     }
 
-    public void clickOnPatientNote(){
+    public void clickOnPatientNote() {
         WebElement patientNote = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='patient-note-icon']"));
         Browser.clickOnElementUsingJavascript(patientNote);
     }
 
-    public void clickOnAddPatientNote(){
+    public void clickOnAddPatientNote() {
         WebElement enterTextInPatientNote = DriverManager.getInstance().Driver.findElement(By.xpath("//textarea[@class='form-control']"));
-        Browser.enterTextInEditBox(enterTextInPatientNote,note);
+        Browser.enterTextInEditBox(enterTextInPatientNote, note);
         WebElement addNote = DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='Add Note']"));
         Browser.clickOnElementUsingJavascript(addNote);
     }
@@ -267,7 +267,7 @@ public class PatientOverviewModal {
         Browser.waitForElementToBeClickable(By.xpath(" //div[@class='patient-notes-table container']"));
         WebElement patientNoteSection = DriverManager.getInstance().Driver.findElement(By.xpath(" //div[@class='patient-notes-table container']"));
         Browser.scrollToVisibleElement(patientNoteSection);
-        List<WebElement>patientNoteList=DriverManager.getInstance().Driver.findElements(By.xpath("//div[contains(@class,'patient-note col-xs')]"));
+        List<WebElement> patientNoteList = DriverManager.getInstance().Driver.findElements(By.xpath("//div[contains(@class,'patient-note col-xs')]"));
         for (WebElement element : patientNoteList) {
             if (element.getText().contains(note)) {
                 Assert.assertTrue("Patient Note Present in the List", true);
