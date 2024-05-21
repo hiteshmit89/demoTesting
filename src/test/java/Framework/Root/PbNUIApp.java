@@ -3,8 +3,10 @@ package Framework.Root;
 import DataModels.UserData;
 import Framework.Util.ConfigManager;
 import Pages.*;
-import Pages.Modals.PatientOverviewModal;
+import Pages.PatientPortal.PatientPortalDashboardPage;
+import Pages.PatientPortal.PatientPortalLoginPage;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import Pages.PatientPortal.PatientPortalSelectPracticePage;
 
 import java.io.File;
 
@@ -56,7 +58,9 @@ public class PbNUIApp {
         return new SettingsPage(SettingsTitle);
     }
 
-    public static PaymentsPage paymentsPage() {return new PaymentsPage(PaymentsTitle); }
+    public static PaymentsPage paymentsPage() {
+        return new PaymentsPage(PaymentsTitle);
+    }
 
     public static Navigator navigator() {
         return new Navigator();
@@ -70,11 +74,27 @@ public class PbNUIApp {
         return new TasksPage(TasksTitle);
     }
 
-    public static AppointmentBookingPage appointmentBookingPage() {return new AppointmentBookingPage(AppointmentBookingTitle);}
-
-    public static OnlinePaymentPortalPage OnlinePaymentPortalPage () {return new OnlinePaymentPortalPage(OnlinePaymentPortalTitle);
+    public static AppointmentBookingPage appointmentBookingPage() {
+        return new AppointmentBookingPage(AppointmentBookingTitle);
     }
 
-    public static RevenueIQPage revenueIQPage() {return new RevenueIQPage(RevenueIQTitle);
+    public static OnlinePaymentPortalPage OnlinePaymentPortalPage() {
+        return new OnlinePaymentPortalPage(OnlinePaymentPortalTitle);
+    }
+
+    public static RevenueIQPage revenueIQPage() {
+        return new RevenueIQPage(RevenueIQTitle);
+    }
+
+    public static PatientPortalLoginPage patientPortalLoginPage() {
+        return new PatientPortalLoginPage(PatientPortalLoginPageTitle);}
+
+    public static PatientPortalSelectPracticePage patientPortalSelectPracticePage() {
+        return new PatientPortalSelectPracticePage(PatientPortalSelectPracticePageTitle);
+    }
+    public static PatientPortalDashboardPage patientPortalDashboardPage() {
+        return new PatientPortalDashboardPage(PatientPortalDashboardPageTitle);
     }
 }
+
+
