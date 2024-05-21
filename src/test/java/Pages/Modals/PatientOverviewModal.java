@@ -26,8 +26,6 @@ public class PatientOverviewModal {
         WebElement taskButton = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='patient-actions']//div[@class='action-item']//span[contains(text(),'Task')]/.."));
         Browser.clickOnElementUsingJavascript(taskButton);
         Browser.waitForPageReady();
-        Browser.waitForElementToBeVisible(By.xpath("//*[@id='patient-window-tabs-id']//div[@class='col-xs-12']//span[text()='General Task']"));
-        Browser.waitForElementToBeClickable(By.xpath("//*[@id='patient-window-tabs-id']//div[@class='col-xs-12']//span[text()='General Task']"));
         WebElement taskList = DriverManager.getInstance().Driver.findElement(By.xpath("//form[@class='create-task-form']"));
         List<WebElement> taskElements = taskList.findElements(By.xpath(".//label[@title]/span"));
         for (WebElement row : taskElements) {
