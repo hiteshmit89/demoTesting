@@ -16,7 +16,7 @@ jobs:
       - checkout
       - run:
           command: |
-            command: curl -O https://github.com/SeleniumHQ/selenium/releases/download/selenium-4.21.0/selenium-server-4.21.0.jar
+            curl -O https://github.com/SeleniumHQ/selenium/releases/download/selenium-4.21.0/selenium-server-4.21.0.jar
             google-chrome --version
             chromedriver --version
             java -jar /usr/local/bin/selenium.jar --version
