@@ -87,4 +87,16 @@ public class AppointmentsSettingsStepDefinition {
     public void iWillBeAbleToSeeAppointmentsDetailsOnPageList() {
         PbNUIApp.appointmentsPage().clickOnExistingPatient();
     }
+
+    @When("I click on try to filter appointments on appointment list page")
+    public void iClickOnTryToFilterAppointmentsOnAppointmentListPage() {
+        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
+        PbNUIApp.appointmentsPage().clickOnAppointmentListTab();
+    }
+
+    @Then("I will be able to see filtered appointments on page list")
+    public void iWillBeAbleToSeeFilteredAppointmentsOnPageList() {
+        PbNUIApp.appointmentsPage().enterStartDate1("01/01/2024");
+        PbNUIApp.appointmentsPage().enterStartDate2("01/01/2024");
+    }
 }
