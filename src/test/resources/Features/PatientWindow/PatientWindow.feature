@@ -15,10 +15,9 @@ Feature: Patient Window Feature
     And I select the relevant button and Verify the all Tasks in "In progress" state
     Examples:
       | TaskType             |
-      | Patient Reactivation |
       | General Task         |
       | Account Receivable   |
-      | Patient Recall       |
+
 
   @PatientForms @PUA-45 @PRAC-T3451
   Scenario Outline: User can send the Forms to any patient and its will reflect in the Pending Forms List

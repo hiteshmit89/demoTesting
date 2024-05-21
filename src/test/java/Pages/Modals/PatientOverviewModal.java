@@ -277,8 +277,6 @@ public class PatientOverviewModal {
         WebElement enterCardCVC = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@name='cvc']"));
         Browser.enterTextInEditBox(enterCardCVC, PbNUIApp.userdata().getCardCVC(2, "1"));
         Browser.switchToDefaultContent();
-
-
         WebElement enterPostalCode = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@id='postal_code']"));
         Browser.enterTextInEditBox(enterPostalCode, PbNUIApp.userdata().getPostalCode(2, "1"));
     }
