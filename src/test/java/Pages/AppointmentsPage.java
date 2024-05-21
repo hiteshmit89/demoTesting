@@ -167,10 +167,16 @@ public class AppointmentsPage extends BasePage {
         Browser.clickOnElement(selectProvider);
     }
 
-    public void clickOutside() {
+    public void clickProviderHeader() {
         WebElement providerHeader = DriverManager.getInstance().Driver.findElement(By.xpath("//h3[text()='Providers']"));
         Browser.clickOnElement(providerHeader);
     }
+
+    public void clickOutsideAppointmentList() {
+        WebElement outsideAppointmentList = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='custom-table-filter-label col-lg-3 col-md-3 col-sm-3 col-xs-6']"));
+        Browser.clickOnElement(outsideAppointmentList);
+    }
+
 
     public void clickOnAddNewVisitType() {
         WebElement addNewButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='add-button btn btn-default']"));
@@ -197,6 +203,8 @@ public class AppointmentsPage extends BasePage {
     }
 
     public void clickOnExistingPatient() {
+        WebElement appointmentTable = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='react-bootstrap-table table-responsive']"));
+        Browser.waitForTableToLoad(appointmentTable);
         List<WebElement> rowElements = DriverManager.getInstance().Driver.findElements(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tr"));
         int i = 0;
         for (WebElement row : rowElements) {
@@ -205,6 +213,25 @@ public class AppointmentsPage extends BasePage {
             }
             else {
                 WebElement colElement = row.findElement(By.xpath(".//td[7]"));
+                String colName = "Existing";
+                if (Browser.getTextFromElement(colElement).equals(colName)) {
+                    Browser.clickOnElement(colElement);
+                    break;
+                }
+            }
+        }
+    }
+
+    public void clickOnExistingPatientInformation() {
+        List<WebElement> rowElements = DriverManager.getInstance().Driver.findElements(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tr"));
+        int i = 0;
+        for (WebElement row : rowElements) {
+            if (i==0) {
+                i++;
+            }
+            else {
+                WebElement colElement = row.findElement(By.xpath(".//td[7]"));
+                WebElement clickColElement = row.findElement(By.xpath(".//td[2]"));
                 String colName = "Existing";
                 if (Browser.getTextFromElement(colElement).equals(colName)) {
                     Browser.clickOnElement(colElement);

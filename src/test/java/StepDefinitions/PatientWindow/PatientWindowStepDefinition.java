@@ -109,6 +109,21 @@ public class PatientWindowStepDefinition {
         PBNModals.patientOverviewModal().verifyPatientOptedOutList();
     }
 
+    @And("I click on the Patient Note")
+    public void iClickOnThePatientNote() {
+        PBNModals.patientOverviewModal().clickOnPatientNote();
+    }
+
+    @And("I enter the patient note and click on the Add Note Button")
+    public void iEnterThePatientNoteAndClickOnTheAddNoteButton() {
+        PBNModals.patientOverviewModal().clickOnAddPatientNote();
+    }
+
+    @Then("I verify patient note in the Activity Tab")
+    public void iVerifyPatientNoteInTheActivityTab() {
+        PBNModals.patientOverviewModal().verifyPatientNoteInActivityTab();
+    }
+
     @And("I click on the charge Button")
     public void iClickOnTheChargeButton() {
         PBNModals.patientOverviewModal().clickOnChargeButton();

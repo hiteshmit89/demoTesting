@@ -95,6 +95,13 @@
           "password": "ppp###2025",
           "email": "vikas.tomar@practicenumbers.com",
           "role": "super_admin"
+        },
+        {
+          "user_id": 2,
+          "user_name": "Hello New",
+          "password": "123456789",
+          "email": "ritu.arya0118@practicenumbers.com",
+          "role": "super_admin"
         }
       ],
       "FormsData": [
