@@ -12,9 +12,6 @@ jobs:
       TAGS: "@pbnAll and not @In-Progress"
     steps:
       - browser-tools/install-chrome
-      - parameters:
-          replace-existing:
-            default: true
       - browser-tools/install-chromedriver
       - checkout
       - run:
