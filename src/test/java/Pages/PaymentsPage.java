@@ -31,6 +31,8 @@ public class PaymentsPage extends BasePage {
     }
 
     public void createPaymentURLAndNavigate() {
+        Browser.waitForPageReady();
+        Browser.waitForElementToBeVisible(By.xpath("//span[contains(text(),'https://www.patientsreach.com/payment/')]"));
         WebElement eLink = DriverManager.getInstance().Driver.findElement(By.xpath("//span[contains(text(),'https://www.patientsreach.com/payment/')]"));
         String urlText = eLink.getText();
         String[] arrOfStr = urlText.split("payment");

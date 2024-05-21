@@ -9,9 +9,9 @@ public class RevenueIQPage extends BasePage {
     public RevenueIQPage(PageTitle Title) {
         super(Title);
     }
+    WebElement Treatment = DriverManager.getInstance().Driver.findElement(By.xpath("//a[contains(@href,'/Treatment/')]"));
 
     public void clickOnTreatment() {
-        WebElement Treatment = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@href='/revenue_opportunities/1/Treatment/']"));
         Browser.clickOnElement(Treatment);
     }
 

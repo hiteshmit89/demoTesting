@@ -2,28 +2,14 @@
   "Practices": [
     {
       "practice_id": 1,
-      "practice_name": "Romans, Burke and Wagner",
+      "practice_name": "Automation DND",
       "address": 123,
       "Users": [
         {
           "user_id": 1,
-          "user_name": "Chris Lau",
+          "user_name": " Vikas Tomar",
           "password": "ppp###2025",
-          "email": "chris.lau@practicenumbers.com",
-          "role": "super_admin"
-        },
-        {
-          "user_id": 2,
-          "user_name": "Hitesh Lau",
-          "password": "ppp###2025",
-          "email": "Hitesh.lau@practicenumbers.com",
-          "role": "super_admin"
-        },
-        {
-          "user_id": 3,
-          "user_name": "Vikas Tomar",
-          "password": "ppp###2025",
-          "email": "vikas.tomar@practicenumbers.com",
+          "email": "vikas.tomar+qa@practicenumbers.com",
           "role": "super_admin"
         }
       ],
@@ -64,7 +50,7 @@
       "PatientData": [
         {
           "patient_id": 1,
-          "patient_name": "Sally Walker",
+          "patient_name": "Captain America",
           "task_description": "Automation",
           "task_type": "Treatment"
         }
@@ -87,7 +73,7 @@
           "user_id": 1,
           "user_name": "Vikas Tomar",
           "password": "ppp###2025",
-          "email": "vikas.tomar@practicenumbers.com",
+          "email": "vikas.tomar+qa@practicenumbers.com",
           "role": "super_admin"
         }
       ],

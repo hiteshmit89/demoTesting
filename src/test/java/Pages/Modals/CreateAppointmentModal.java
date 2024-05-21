@@ -59,12 +59,18 @@ public class CreateAppointmentModal {
 
     public void selectProvider() {
         WebElement provider = DriverManager.getInstance().Driver.findElement(By.xpath("(//div[@class=' css-1hwfws3'])[4]"));
-        Browser.doubleClickOnElement(provider);
+        Browser.clickOnElement(provider);
+        Browser.waitForElementToBeVisible(By.xpath("//div[@class=' css-26l3qy-menu']//div[contains(@class,'option')]/.."));
+        List<WebElement> providerDropDownOption = DriverManager.getInstance().Driver.findElements(By.xpath("//div[@class=' css-26l3qy-menu']//div[contains(@class,'option')]"));
+        Browser.clickOnElement(providerDropDownOption.getFirst());
     }
 
     public void appointmentType() {
         WebElement appointmentType = DriverManager.getInstance().Driver.findElement(By.xpath("(//div[@class=' css-1hwfws3'])[5]"));
-        Browser.doubleClickOnElement(appointmentType);
+        Browser.clickOnElement(appointmentType);
+        Browser.waitForElementToBeVisible(By.xpath("//div[@class=' css-26l3qy-menu']//div[contains(@class,'option')]/.."));
+        List<WebElement> appointmentDropDownOption = DriverManager.getInstance().Driver.findElements(By.xpath("//div[@class=' css-26l3qy-menu']//div[contains(@class,'option')]"));
+        Browser.clickOnElement(appointmentDropDownOption.getFirst());
     }
 
     public void clickOnCreateButton() {
