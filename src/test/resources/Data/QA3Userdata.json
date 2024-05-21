@@ -1,7 +1,7 @@
 {
   "Practices": [
     {
-      "practice_id": 1,
+      "practice_id": 1, 
       "practice_name": "Automation DND",
       "address": 123,
       "Users": [
