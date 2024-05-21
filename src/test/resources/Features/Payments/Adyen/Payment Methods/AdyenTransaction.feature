@@ -30,9 +30,3 @@ Feature: Verify As a user I am able Charge a patient using adyen payment service
 
 
 
-
-
-
-
-
-
