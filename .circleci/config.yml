@@ -16,7 +16,6 @@ jobs:
       - checkout
       - run:
           command: |
-            curl -O https://github.com/SeleniumHQ/selenium/releases/download/selenium-4.21.0/selenium-server-4.21.0.jar
             google-chrome --version
             chromedriver --version
             java -jar /usr/local/bin/selenium.jar --version
@@ -27,7 +26,7 @@ jobs:
       - run:
           name: Start Selenium Server
           command: |
-            java -jar /usr/local/bin/selenium-server-4.21.0.jar -log test-reports/selenium.log  &
+            java -jar /usr/local/bin/selenium.jar &
             sleep 10 # Wait for Selenium Server to start
       - run:
           name: Run tests
