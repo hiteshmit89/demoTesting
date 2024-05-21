@@ -200,24 +200,24 @@ public class PatientOverviewModal {
 
     public void clickOnCommunicationPreference() {
         Browser.waitForElementToBeClickable(By.xpath("//div[@id='email--heading']//i[@class='fa-duotone fa-chevron-down']"));
-        WebElement emailPreference =DriverManager.getInstance().Driver.findElement(By.xpath("//div[@id='email--heading']//i[@class='fa-duotone fa-chevron-down']"));
+        WebElement emailPreference = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@id='email--heading']//i[@class='fa-duotone fa-chevron-down']"));
         Browser.scrollToVisibleElement(emailPreference);
         Browser.clickOnElementUsingJavascript(emailPreference);
-        WebElement emailCheckBox =DriverManager.getInstance().Driver.findElement(By.xpath("//div[text()='Global subscribe to all emails']/../div/label/input"));
-        List<WebElement>emailcheckboxList=DriverManager.getInstance().Driver.findElements(By.xpath("//*[@id='email--body']/div/div/div"));
-        if(emailcheckboxList.size()==1) {
+        WebElement emailCheckBox = DriverManager.getInstance().Driver.findElement(By.xpath("//div[text()='Global subscribe to all emails']/../div/label/input"));
+        List<WebElement> emailcheckboxList = DriverManager.getInstance().Driver.findElements(By.xpath("//*[@id='email--body']/div/div/div"));
+        if (emailcheckboxList.size() == 1) {
             Browser.clickOnElementUsingJavascript(emailCheckBox);
         }
-        WebElement textPreference =DriverManager.getInstance().Driver.findElement(By.xpath("//div[@id='sms--heading']//i[@class='fa-duotone fa-chevron-down']"));
+        WebElement textPreference = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@id='sms--heading']//i[@class='fa-duotone fa-chevron-down']"));
         Browser.scrollToVisibleElement(textPreference);
         Browser.clickOnElementUsingJavascript(textPreference);
-        List<WebElement>textCheckBoxList=DriverManager.getInstance().Driver.findElements(By.xpath("//*[@id='sms--body']/div/div/div"));
-        WebElement textCheckBox =DriverManager.getInstance().Driver.findElement(By.xpath("//div[text()='Global subscribe to all sms']/../div/label/input"));
-        if(textCheckBoxList.size()==1) {
+        List<WebElement> textCheckBoxList = DriverManager.getInstance().Driver.findElements(By.xpath("//*[@id='sms--body']/div/div/div"));
+        WebElement textCheckBox = DriverManager.getInstance().Driver.findElement(By.xpath("//div[text()='Global subscribe to all sms']/../div/label/input"));
+        if (textCheckBoxList.size() == 1) {
             Browser.clickOnElementUsingJavascript(textCheckBox);
         }
-        WebElement savePreference=DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='Save Preferences']"));
-        if(savePreference.isEnabled()) {
+        WebElement savePreference = DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='Save Preferences']"));
+        if (savePreference.isEnabled()) {
             Browser.clickOnElementUsingJavascript(savePreference);
         }
         WebElement closePatientWindow = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='close-button']"));
@@ -248,17 +248,17 @@ public class PatientOverviewModal {
         }
     }
 
-    public void clickOnChargeButton(){
+    public void clickOnChargeButton() {
         WebElement chargeButton = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='action-item']//span[contains(text(),'Charge')]"));
         Browser.clickOnElementUsingJavascript(chargeButton);
     }
 
-    public void clickOnPaymentMethod(){
+    public void clickOnPaymentMethod() {
         WebElement PaymentMethod = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='charge-pop-window-tabs-id-tab-payment-method']"));
         Browser.clickOnElement(PaymentMethod);
     }
 
-    public void clickAddPaymentMethod(){
+    public void clickAddPaymentMethod() {
         WebElement addPaymentMethod = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='charge-pop-window-tabs-id-tab-payment-method']"));
         Browser.clickOnElementUsingJavascript(addPaymentMethod);
         Browser.waitForPageReady();
@@ -267,23 +267,23 @@ public class PatientOverviewModal {
         Browser.clickOnElementUsingJavascript(addNewPaymentMethod);
         Browser.waitForFrameToLoad(By.xpath("//iframe[@title='Secure card number input frame']"));
         WebElement enterCardNumber = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@data-elements-stable-field-name='cardNumber']"));
-        Browser.enterTextInEditBox(enterCardNumber,PbNUIApp.userdata().getCardNumberStripe(2, "1"));
+        Browser.enterTextInEditBox(enterCardNumber, PbNUIApp.userdata().getCardNumberStripe(2, "1"));
         Browser.switchToDefaultContent();
         Browser.waitForFrameToLoad(By.xpath("//iframe[@title='Secure expiration date input frame']"));
         WebElement enterCardDate = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@name='exp-date']"));
-        Browser.enterTextInEditBox(enterCardDate,PbNUIApp.userdata().getCardMonth(2, "1"));
+        Browser.enterTextInEditBox(enterCardDate, PbNUIApp.userdata().getCardMonth(2, "1"));
         Browser.switchToDefaultContent();
         Browser.waitForFrameToLoad(By.xpath("//iframe[@title='Secure CVC input frame']"));
         WebElement enterCardCVC = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@name='cvc']"));
-        Browser.enterTextInEditBox(enterCardCVC,PbNUIApp.userdata().getCardCVC(2, "1"));
+        Browser.enterTextInEditBox(enterCardCVC, PbNUIApp.userdata().getCardCVC(2, "1"));
         Browser.switchToDefaultContent();
 
 
         WebElement enterPostalCode = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@id='postal_code']"));
-        Browser.enterTextInEditBox(enterPostalCode,PbNUIApp.userdata().getPostalCode(2,"1"));
+        Browser.enterTextInEditBox(enterPostalCode, PbNUIApp.userdata().getPostalCode(2, "1"));
     }
 
-    public void clickOnSaveButton(){
+    public void clickOnSaveButton() {
         WebElement saveButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='payment-button btn btn-primary']"));
         Browser.clickOnElementUsingJavascript(saveButton);
     }
