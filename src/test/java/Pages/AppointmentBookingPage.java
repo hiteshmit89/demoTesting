@@ -31,8 +31,8 @@ public class AppointmentBookingPage extends BasePage {
     }
 
     public void clickOnEmergencyConsult() {
-        Browser.waitForElementToBeVisible(By.xpath("//span[contains(text(),'Emergency Consult')]"));
-        WebElement selectEmergencyConsult = DriverManager.getInstance().Driver.findElement(By.xpath("//button/span[text()='Emergency Consult']"));
+        Browser.waitForElementToBeVisible(By.xpath("//div[text()='What would you like to be seen for?']/following-sibling::div//span[@class='MuiButton-label']"));
+        WebElement selectEmergencyConsult = DriverManager.getInstance().Driver.findElement(By.xpath("//div[text()='What would you like to be seen for?']/following-sibling::div//span[@class='MuiButton-label']"));
         Browser.clickOnElement(selectEmergencyConsult);
     }
 

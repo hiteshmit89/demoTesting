@@ -27,7 +27,7 @@ public class Constants {
     public static enum Destination {
         PracticeIQ("Practice IQ"),
         ReveneueIQ("Revenue IQ"),
-        Tasks("Tasks "),
+        Tasks("Tasks"),
         PhoneIQ("Phone IQ"),
         MarketingIQ("Marketing IQ"),
         Insurance("Insurance"),

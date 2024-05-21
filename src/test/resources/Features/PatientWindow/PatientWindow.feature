@@ -68,3 +68,14 @@ Feature: Patient Window Feature
       | Forms Type              |
       | Dental Insurance Form   |
       | Patient Information     |
+
+  @optedOutPatientList @PRAC-T2492 @PUA-41
+  Scenario: Verify that "Opted Out Patient" section is able to see in the Communication
+    Given I login to PbN app and select the practice
+    When I click on the patient finder to open Patient Window
+    And I click in the Details Tab
+    And I verify Email and Text Preferences
+    When I click on Profile icon
+    And I am able to click on settings
+    And I click on the Opted Out Patients in the Communication Section
+    Then I verify that Patient is available in the opted Out Patients list

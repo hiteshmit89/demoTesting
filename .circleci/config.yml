@@ -4,39 +4,22 @@ orbs:
   browser-tools: circleci/browser-tools@1.4.8
 
 jobs:
-  test-CampaignsFeature:
+  test-Chrome:
     docker:
       - image: cimg/openjdk:21.0.2-browsers
-    parallelism: 3
+    parallelism: 1
     environment:
-      TAGS: "@FormsPreviewFeature"
+      TAGS: "@pbnAll and not @In-Progress"
     steps:
+      - browser-tools/install-chrome
       - browser-tools/install-chromedriver
       - checkout
       - run:
-          name: Install dependencies
           command: |
-            mvn install -DskipTests
-      - run:
-          name: Start Selenium Server
-          command: |
-            java -jar /usr/local/bin/selenium.jar &
-            sleep 10 # Wait for Selenium Server to start
-      - run:
-          name: Run tests
-          command: |
-            mvn test -T 15C -Dcucumber.options="--tags ${TAGS}"
-      - store_test_results:
-          path: target/surefire-reports
-
-  test:
-    docker:
-      - image: cimg/openjdk:21.0.2-browsers
-    environment:
-      TAGS: "@FormsPreviewFeature"
-    steps:
-      - browser-tools/install-geckodriver
-      - checkout
+            curl -O https://github.com/SeleniumHQ/selenium/releases/download/selenium-4.21.0/selenium-server-4.21.0.jar
+            google-chrome --version
+            chromedriver --version
+            java -jar /usr/local/bin/selenium.jar --version
       - run:
           name: Install dependencies
           command: |
@@ -44,16 +27,18 @@ jobs:
       - run:
           name: Start Selenium Server
           command: |
-            java -jar /usr/local/bin/selenium.jar &
+            java -jar /usr/local/bin/selenium-server-4.21.0.jar -log test-reports/selenium.log  &
             sleep 10 # Wait for Selenium Server to start
       - run:
           name: Run tests
+          no_output_timeout: 30m
           command: |
-            mvn test -T 15C -Dcucumber.options="--tags ${TAGS}"
+            mvn test -T 15C -D"cucumber.filter.tags= ${TAGS}"
       - store_test_results:
           path: target/surefire-reports
       - store_artifacts:
-          path: target
+          path: target/HtmlReports
+
   update_bitbucket:
     docker:
       - image: cimg/openjdk:21.0.2-browsers
@@ -72,6 +57,5 @@ jobs:
 workflows:
   build-deploy:
     jobs:
-      - test-CampaignsFeature
-      - test
+      - test-Chrome
       - update_bitbucket

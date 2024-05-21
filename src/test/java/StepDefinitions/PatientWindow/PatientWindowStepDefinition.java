@@ -10,13 +10,13 @@ public class PatientWindowStepDefinition {
 
     @When("I create a task {string} in patient window")
     public void iCreateATaskTaskTypeInPatientWindow(String taskType) {
-        PbNUIApp.navigator().findAndSelectPatientByExactMatchOf(PbNUIApp.userdata().getPatientName(1,1));
-        if (taskType.equals(PbNUIApp.userdata().getTaskType(1,1))) {
+        PbNUIApp.navigator().findAndSelectPatientByExactMatchOf(PbNUIApp.userdata().getPatientName(1, 1));
+        if (taskType.equals(PbNUIApp.userdata().getTaskType(1, 1))) {
             PBNModals.patientOverviewModal().selectTask(taskType);
         } else {
             PBNModals.patientOverviewModal().selectTask(taskType);
         }
-        PBNModals.patientOverviewModal().addTaskDescription(PbNUIApp.userdata().getTaskDescription(1,1));
+        PBNModals.patientOverviewModal().addTaskDescription(PbNUIApp.userdata().getTaskDescription(1, 1));
         PBNModals.patientOverviewModal().taskDueDate();
         PBNModals.patientOverviewModal().taskCreation();
     }
@@ -48,7 +48,7 @@ public class PatientWindowStepDefinition {
 
     @When("I click on the patient finder to open Patient Window")
     public void iClickOnThePatientFinderToOpenPatientWindow() {
-        PbNUIApp.navigator().findAndSelectPatientByExactMatchOf("Sally Walker");
+        PbNUIApp.navigator().findAndSelectPatientByExactMatchOf(PbNUIApp.userdata().getPatientName(1,1));
     }
 
     @And("I click on the Forms Tab")
@@ -57,7 +57,7 @@ public class PatientWindowStepDefinition {
     }
 
     @And("I click on the Send General and Consent Form Button {string} in patient window")
-    public void iClickOnTheSendGeneralAndConsentFormButton(String formName)  {
+    public void iClickOnTheSendGeneralAndConsentFormButton(String formName) {
         PBNModals.patientOverviewModal().clickOnGeneralConsentFormsButton(formName);
         PBNModals.patientOverviewModal().clickOnSearchForms(formName);
         PBNModals.patientOverviewModal().checkListOfSelectedForms(formName);
@@ -87,5 +87,25 @@ public class PatientWindowStepDefinition {
     @Then("I verify check list is getting updated in the Completed Forms Section {string} in the patient window")
     public void iVerifyCheckListIsGettingUpdatedInTheCompletedFormsSectionInThePatientWindow(String formName) {
         PBNModals.patientOverviewModal().verifyCompletedFormsCheckList(formName);
+    }
+
+    @And("I click in the Details Tab")
+    public void iClickInTheDetailsTab() {
+        PBNModals.patientOverviewModal().clickOnDetailsTab();
+    }
+
+    @And("I verify Email and Text Preferences")
+    public void iVerifyEmailAndTextPreferences() {
+        PBNModals.patientOverviewModal().clickOnCommunicationPreference();
+    }
+
+    @And("I click on the Opted Out Patients in the Communication Section")
+    public void iClickOnTheOptedOutPatientsInTheCommunicationSection() {
+        PBNModals.patientOverviewModal().clickOnOptedOutPatients();
+    }
+
+    @Then("I verify that Patient is available in the opted Out Patients list")
+    public void iVerifyThatPatientIsAvailableInTheOptedOutPatientsList() {
+        PBNModals.patientOverviewModal().verifyPatientOptedOutList();
     }
 }
