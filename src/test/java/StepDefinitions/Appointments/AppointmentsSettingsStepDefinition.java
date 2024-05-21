@@ -87,4 +87,17 @@ public class AppointmentsSettingsStepDefinition {
     public void iWillBeAbleToSeeAppointmentsDetailsOnPageList() {
         PbNUIApp.appointmentsPage().clickOnExistingPatient();
     }
+
+    @When("I try to sort columns of Appointment list table on appointment list page")
+    public void iTryToSortColumnsOfAppointmentListTableOnAppointmentListPage() {
+        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
+        PbNUIApp.appointmentsPage().clickOnAppointmentListTab();
+        PbNUIApp.appointmentsPage().enterStartDate1("01/01/2024");
+        PbNUIApp.appointmentsPage().enterStartDate2("01/01/2024");
+    }
+
+    @Then("I will be able to sort columns of Appointment list table on appointment list page")
+    public void iWillBeAbleToSortColumnsOfAppointmentListTableOnAppointmentListPage() {
+        PbNUIApp.appointmentsPage().clickOnSortTableButton();
+    }
 }
