@@ -4,7 +4,7 @@ import Framework.Browser;
 import Framework.Root.PbNUIApp;
 import Framework.Util.DriverManager;
 import Pages.Navigator;
-import junit.framework.Assert;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import java.text.SimpleDateFormat;

@@ -11,8 +11,14 @@ jobs:
     environment:
       TAGS: "@pbnAll and not @In-Progress"
     steps:
+      - browser-tools/install-chrome
       - browser-tools/install-chromedriver
       - checkout
+      - run:
+          command: |
+            google-chrome --version
+            chromedriver --version
+            java -jar /usr/local/bin/selenium.jar --version
       - run:
           name: Install dependencies
           command: |
