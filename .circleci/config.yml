@@ -91,5 +91,6 @@ jobs:
 workflows:
   build-deploy:
     jobs:
-      - test-Chrome
+      - test-Chrome-QA1
+      - test-Chrome-QA3
       - update_bitbucket
