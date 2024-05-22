@@ -69,4 +69,14 @@ public class PatientWindowStepDefinition {
     public void iVerifyCheckListIsGettingUpdatedInThePendingFormsSection(String formsName) {
         PBNModals.patientOverviewModal().verifyPendingFormsCheckList(formsName);
     }
+
+    @When("I search for {string} and open patient window")
+    public void iSearchForAndOpenPatientWindow(String string) {
+        PbNUIApp.navigator().findAndSelectPatientByExactMatchOf(string);
+    }
+
+    @Then("I verify for the SMS number")
+    public void iVerifyForTheSMSNumber() {
+        PBNModals.patientOverviewModal().validateSmsNumberIcon();
+    }
 }

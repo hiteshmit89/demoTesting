@@ -92,6 +92,34 @@
           "task_type": "Treatment"
         }
       ]
+    },
+    {
+      "practice_id": 3,
+      "practice_name": "DND SHARD 01",
+      "address": 123,
+      "Users": [
+        {
+          "user_id": 1,
+          "user_name": "Deepak Nayal",
+          "password": "1qaz!QAZ",
+          "email": "deepak.nayal+dndshrd01@practicenumbers.com",
+          "role": "super_admin"
+        }
+      ]
+    },
+    {
+      "practice_id": 4,
+      "practice_name": "DND UPDATED",
+      "address": 123,
+      "Users": [
+        {
+          "user_id": 1,
+          "user_name": "Deepak Nayal",
+          "password": "ppp###2025",
+          "email": "deepak.nayal+dndupdated@practicenumbers.com",
+          "role": "super_admin"
+        }
+      ]
     }
   ]
 }

@@ -31,3 +31,14 @@ Feature: Functionality of Patient Window
       | Forms Type              |
       | Dental Insurance Form   |
       | Clinical Photo Transfer |
+
+  @SmsValidation @PUA-67 @PRAC-T3791 @InProgress
+  Scenario Outline: Exclamation mark triangle displayed for invalid SMS numbers
+    Given I login to PbN app
+    And I click on practice name
+    When I search for "<Patient>" and open patient window
+    Then I verify for the SMS number
+    Examples:
+      | Patient     |
+      | New Mareez  |
+      | Naya Mareez |

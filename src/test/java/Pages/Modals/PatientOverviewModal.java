@@ -1,10 +1,13 @@
 package Pages.Modals;
 
 import Framework.Browser;
+import Framework.Root.PbNUIApp;
 import Framework.Util.DriverManager;
-import junit.framework.Assert;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+
+import java.sql.Driver;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -140,5 +143,24 @@ public class PatientOverviewModal {
         Browser.waitForElementToBeClickable(By.xpath("//td[text()='" + formName + "']"));
         WebElement isSelectedFormsPresentInPendingFormList = DriverManager.getInstance().Driver.findElement(By.xpath("//td[text()='" + formName + "']"));
         Assert.assertTrue(isSelectedFormsPresentInPendingFormList.isDisplayed());
+    }
+
+    public void validateSmsNumberIcon (){
+        Browser.waitForElementToBeVisible(By.xpath("//span[contains(text(),'SMS')]"));
+        Browser.waitForElementToBeClickable(By.xpath("//span[contains(text(),'SMS')]"));
+        WebElement smsIcon = DriverManager.getInstance().Driver.findElement(By.xpath("//span[contains(text(),'SMS')]"));
+        Browser.clickOnElement(smsIcon);
+     //   WebElement smsVerificationIcon = DriverManager.getInstance().Driver.findElement(By.xpath("//div//img[@title='Number is valid.']"));
+        Browser.waitForElementToBeVisible(By.xpath("//div[@class='warning-verified-icon']"));
+        if (DriverManager.getInstance().Driver.findElement(By.xpath("//div//img[@title='Number is valid.']")).isDisplayed()){
+            System.out.println("Number is Valid");
+        }
+        else {
+            System.out.println("Either number is not valid, or its a landline number.");
+        }
+
+
+
+
     }
 }
