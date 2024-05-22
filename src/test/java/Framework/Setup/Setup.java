@@ -20,14 +20,27 @@ public class Setup {
 
     @BeforeAll
     public static void resolvePropertiesFile() {
-        switch (ConfigManager.getInstance().getProperty("Environment").toUpperCase()) {
-            case "TEST" -> ConfigManager.getInstance().loadAdditionalProperties("Test.properties");
-            case "ACCEPTANCE" -> ConfigManager.getInstance().loadAdditionalProperties("Acceptance.properties");
-            default -> ConfigManager.getInstance().loadAdditionalProperties("Delivery.properties");
+        try {
+            String endpoint = System.getenv("endpoint");
+            if (!endpoint.isEmpty()) {
+                logger.info("\u001B[32m" + "###############Running tests in pipeline on Environment:############# " + endpoint + "\u001B[0m");
+            }
+            switch (endpoint) {
+                case "QA3" -> ConfigManager.getInstance().loadAdditionalProperties("QA3.properties");
+                case "QA2" -> ConfigManager.getInstance().loadAdditionalProperties("QA2.properties");
+                default -> ConfigManager.getInstance().loadAdditionalProperties("QA1.properties");
+            }
+        } catch (NullPointerException e) {
+            logger.info("\u001B[32m" + "###############Running tests locally on Environment:############# " + ConfigManager.getInstance().getProperty("Environment").toUpperCase() + "\u001B[0m");
+            switch (ConfigManager.getInstance().getProperty("Environment").toUpperCase()) {
+                case "QA3" -> ConfigManager.getInstance().loadAdditionalProperties("QA3.properties");
+                case "QA2" -> ConfigManager.getInstance().loadAdditionalProperties("QA2.properties");
+                default -> ConfigManager.getInstance().loadAdditionalProperties("QA1.properties");
+            }
         }
     }
 
-    @Before
+    @Before(order = 0)
     public void scenarioSetup(Scenario scenario) {
         this.scenario = scenario;
         logger.info("\u001B[32m" + "########starting thread: " + Thread.currentThread().getName() + " at " + Time.valueOf(LocalTime.now()) + "\u001B[0m");
@@ -38,7 +51,16 @@ public class Setup {
             e.printStackTrace();
         }
 
+    }
+
+    @Before("not @PatientPortal")
+    public void navigateToPbnUrl() {
         DriverManager.getInstance().navigateToURL(ConfigManager.getInstance().getProperty("URL"));
+    }
+
+    @Before("@PatientPortal")
+    public void navigateToPatientPortalUrl() {
+        DriverManager.getInstance().navigateToURL(ConfigManager.getInstance().getProperty("PatientPortalURL"));
     }
 
     @After

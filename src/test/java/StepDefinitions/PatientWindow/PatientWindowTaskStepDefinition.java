@@ -1,5 +1,6 @@
 package StepDefinitions.PatientWindow;
 
+import Framework.Browser;
 import Framework.Constants.Constants;
 import Framework.Root.PbNUIApp;
 import Pages.Modals.PBNModals;

@@ -164,4 +164,41 @@ public class AppointmentsStepdefinition {
     public void iWillBeAbleToSeeSuccessfulMessageForAppointmentBooking() {
         PbNUIApp.appointmentBookingPage().verifySuccessfulTextDisplayed();
     }
+
+    @When("I click on appointments tab and try to book appointment and select DOB less than Eighteen years on insurance page")
+    public void iClickOnAppointmentsTabAndTryToBookAppointmentAndSelectDOBLessThanEighteenYearsOnInsurancePage() {
+        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
+        PbNUIApp.appointmentsPage().clickOnWidgets();
+        PbNUIApp.appointmentsPage().createAppointmentURLAndNavigate();
+        PbNUIApp.appointmentBookingPage().clickOnPickLocation();
+        PbNUIApp.appointmentBookingPage().clickOnSelectNewPatient();
+        PbNUIApp.appointmentBookingPage().clickOnEmergencyConsult();
+        PbNUIApp.appointmentBookingPage().clickOnEarliest();
+        PbNUIApp.appointmentBookingPage().fillAppointmentBookingFormForValidateInsuranceDob();
+        PbNUIApp.appointmentBookingPage().clickOnCheckBox();
+        PbNUIApp.appointmentBookingPage().clickOnNextButton();
+        PbNUIApp.appointmentBookingPage().enterBirthDateOnInsurancePage(PbNUIApp.userdata().getBirthDate(1,"3"));
+    }
+
+    @Then("I will not be able to proceed to the next page if the insurance holder age is not less than Eighteen years.")
+    public void iWillNotBeAbleToProceedToTheNextPageIfTheInsuranceHolderAgeIsNotLessThanEighteenYears() {
+        PbNUIApp.appointmentBookingPage().verifyDateErrorMessage();
+    }
+
+    @When("I click on appointments tab and try to book appointments and navigate to provider page")
+    public void iClickOnAppointmentsTabAndTryToBookAppointmentsAndNavigateToProviderPage() {
+        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
+        PbNUIApp.appointmentsPage().clickOnWidgets();
+        PbNUIApp.appointmentsPage().createAppointmentURLAndNavigate();
+        PbNUIApp.appointmentBookingPage().clickOnPickLocation();
+        PbNUIApp.appointmentBookingPage().clickOnSelectNewPatient();
+        PbNUIApp.appointmentBookingPage().clickOnEmergencyConsult();
+        PbNUIApp.appointmentBookingPage().clickOnSeeMoreOptions();
+
+    }
+
+    @Then("I will be able to see refresh button on provider page during appointment booking")
+    public void iWillBeAbleToSeeRefreshButtonOnProviderPageDuringAppointmentBooking() {
+        PbNUIApp.appointmentBookingPage().clickOnRefreshButton();
+    }
 }

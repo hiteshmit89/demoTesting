@@ -8,6 +8,8 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import java.util.List;
+
 public class AppointmentsPage extends BasePage {
 
     public AppointmentsPage(PageTitle title) {
@@ -93,8 +95,14 @@ public class AppointmentsPage extends BasePage {
         Assert.assertTrue("Verify block-out times is not displayed", blockOutTimes.isDisplayed());
     }
 
-    public void enterStartDate(String startDateData) {
+    public void enterStartDate1(String startDateData) {
         WebElement startDate = DriverManager.getInstance().Driver.findElement(By.xpath("(//input[@name='dateStart'])[1]"));
+        Browser.enterTextInEditBox(startDate, startDateData);
+        Browser.waitForElementEnable(startDate);
+    }
+
+    public void enterStartDate2(String startDateData) {
+        WebElement startDate = DriverManager.getInstance().Driver.findElement(By.xpath("(//input[@name='dateStart'])[2]"));
         Browser.enterTextInEditBox(startDate, startDateData);
         Browser.waitForElementEnable(startDate);
     }
@@ -147,5 +155,89 @@ public class AppointmentsPage extends BasePage {
     public void verifyFarthestAppointmentAvailable() {
         WebElement farthestAppointmentAvailable = DriverManager.getInstance().Driver.findElement(By.xpath("//label[text()='Farthest Appointment Available Month(s)']"));
         Assert.assertTrue("Farthest Appointment Available is not displayed", farthestAppointmentAvailable.isDisplayed());
+    }
+
+    public void clickOnAddProvidersDropdown() {
+        Browser.waitForElementToBeVisible(By.xpath("(//button[@class='multiselect dropdown-toggle btn btn-default'])[7]"));
+        Browser.waitForElementToBeClickable(By.xpath("(//button[@class='multiselect dropdown-toggle btn btn-default'])[7]"));
+        WebElement providerDropdown = DriverManager.getInstance().Driver.findElement(By.xpath("(//button[@class='multiselect dropdown-toggle btn btn-default'])[7]"));
+        Browser.scrollToVisibleElement(providerDropdown);
+        Browser.clickOnElement(providerDropdown);
+        WebElement selectProvider = DriverManager.getInstance().Driver.findElement(By.xpath("//label[text()=' Bryan Jackson (TH2)']"));
+        Browser.clickOnElement(selectProvider);
+    }
+
+    public void clickProviderHeader() {
+        WebElement providerHeader = DriverManager.getInstance().Driver.findElement(By.xpath("//h3[text()='Providers']"));
+        Browser.clickOnElement(providerHeader);
+    }
+
+    public void clickOutsideAppointmentList() {
+        WebElement outsideAppointmentList = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='custom-table-filter-label col-lg-3 col-md-3 col-sm-3 col-xs-6']"));
+        Browser.clickOnElement(outsideAppointmentList);
+    }
+
+
+    public void clickOnAddNewVisitType() {
+        WebElement addNewButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='add-button btn btn-default']"));
+        Browser.clickOnElement(addNewButton);
+    }
+
+    public void deleteProvider() {
+        WebElement deleteProviderButton = DriverManager.getInstance().Driver.findElement(By.xpath("(//button[@class='btn btn-sm btn-danger'])[1]"));
+        Browser.clickOnElement(deleteProviderButton);
+        WebElement deleteYesButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='btn btn-danger']"));
+        Browser.clickOnElement(deleteYesButton);
+    }
+
+    public void deleteVisitType() {
+        WebElement deleteVisitTypeButton = DriverManager.getInstance().Driver.findElement(By.xpath("(//button[@class='btn btn-sm btn-danger'])[2]"));
+        Browser.clickOnElement(deleteVisitTypeButton);
+        WebElement deleteYesButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='btn btn-danger']"));
+        Browser.clickOnElement(deleteYesButton);
+    }
+
+    public void select15MinCheckbox() {
+        WebElement select15MinCheckbox = DriverManager.getInstance().Driver.findElement(By.xpath("//span[text()='15 Minutes']"));
+        Browser.clickOnElement(select15MinCheckbox);
+    }
+
+    public void clickOnExistingPatient() {
+        WebElement appointmentTable = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='react-bootstrap-table table-responsive']"));
+        Browser.waitForTableToLoad(appointmentTable);
+        List<WebElement> rowElements = DriverManager.getInstance().Driver.findElements(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tr"));
+        int i = 0;
+        for (WebElement row : rowElements) {
+            if (i==0) {
+                i++;
+            }
+            else {
+                WebElement colElement = row.findElement(By.xpath(".//td[7]"));
+                String colName = "Existing";
+                if (Browser.getTextFromElement(colElement).equals(colName)) {
+                    Browser.clickOnElement(colElement);
+                    break;
+                }
+            }
+        }
+    }
+
+    public void clickOnExistingPatientInformation() {
+        List<WebElement> rowElements = DriverManager.getInstance().Driver.findElements(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tr"));
+        int i = 0;
+        for (WebElement row : rowElements) {
+            if (i==0) {
+                i++;
+            }
+            else {
+                WebElement colElement = row.findElement(By.xpath(".//td[7]"));
+                WebElement clickColElement = row.findElement(By.xpath(".//td[2]"));
+                String colName = "Existing";
+                if (Browser.getTextFromElement(colElement).equals(colName)) {
+                    Browser.clickOnElement(colElement);
+                    break;
+                }
+            }
+        }
     }
 }

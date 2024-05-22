@@ -26,8 +26,6 @@ public class FormsPage extends BasePage {
 
     private WebElement searchPatient = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@placeholder ='Search by Patient Name']"));
 
-    private WebElement customDropDown = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='multiselect dropdown-toggle btn btn-default']"));
-
     private WebElement textNextToCheckNotSyncedForms = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='CompletedFormsTable-container']//label[contains(text(),'Only show completed forms that have not synced')]"));
 
 
@@ -57,6 +55,7 @@ public class FormsPage extends BasePage {
     }
 
     public void clickCustomDropDown() {
+        WebElement customDropDown = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='multiselect dropdown-toggle btn btn-default']"));
         Browser.clickOnElement(customDropDown);
         Browser.waitForPageReady();
     }

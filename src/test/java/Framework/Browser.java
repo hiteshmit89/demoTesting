@@ -4,21 +4,22 @@ import Framework.Constants.Constants.PageTitle;
 import Framework.Util.ConfigManager;
 import Framework.Util.DriverManager;
 import org.openqa.selenium.*;
-import org.openqa.selenium.support.ui.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-
-import javax.swing.*;
+import org.openqa.selenium.support.ui.Select;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.time.Duration;
 import java.util.function.BooleanSupplier;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.support.ui.*;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import javax.swing.*;
+
 
 public class Browser {
 
@@ -49,6 +50,10 @@ public class Browser {
 
     public static void waitForElementPresence(By locator) {
         getFluentWait().until(ExpectedConditions.presenceOfElementLocated(locator));
+    }
+
+    public static void waitForFrameToLoad(By locator) {
+        getFluentWait().until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(locator));
     }
 
     private static FluentWait<WebDriver> getFluentWait() {
@@ -88,16 +93,13 @@ public class Browser {
         retry(() -> table.findElements(By.xpath(".//tr")).size() >= size);
     }
 
-    public static void waitForTableRowSizeToBe(WebElement table, int size) {
-        retry(() -> table.findElements(By.xpath("./../td/div")).size() >= size);
-    }
-
-    public static void waitForElementChildren(WebElement element, By locator) {
-        retry(() -> !element.findElements(locator).isEmpty());
+    public static void waitForElementChildren(WebElement element, By childLocator, int noOfChildrenNeeded) {
+        retry(() -> element.findElements(childLocator).size() > noOfChildrenNeeded);
     }
 
     public static void waitForElementList(By locator) {
         retry(() -> !DriverManager.getInstance().Driver.findElements(locator).isEmpty());
+        System.out.println(DriverManager.getInstance().Driver.findElements(locator).size());
     }
 
     public static void clickOnElement(WebElement element) {
@@ -116,6 +118,15 @@ public class Browser {
             Robot robot = new Robot();
             robot.keyPress(KeyEvent.VK_ENTER);
             robot.keyRelease(KeyEvent.VK_ENTER);
+        } catch (AWTException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public static void pressTab() {
+        try {
+            Robot robot = new Robot();
+            robot.keyPress(KeyEvent.VK_TAB);
+            robot.keyRelease(KeyEvent.VK_TAB);
         } catch (AWTException e) {
             throw new RuntimeException(e);
         }
@@ -171,10 +182,20 @@ public class Browser {
         waitForElementToBeClickable(iFrame);
         ((WebDriver) DriverManager.getInstance().Driver).switchTo().frame(0);
     }
+    public static void switchToDefaultContent() {
+        ((WebDriver) DriverManager.getInstance().Driver).switchTo().defaultContent();
+    }
 
     public static void selectIndexFromDropdown(WebElement element , int index){
         Select select = new Select(element);
         select.selectByIndex(index);
+    }
+
+    public static void selectByVisibleTextFromDropdown(WebElement element , String text){
+        waitForElementToBeVisible(element);
+        waitForElementToBeClickable(element);
+        Select select = new Select(element);
+        select.selectByVisibleText(text);
     }
 
     public static void clickOnElementUsingJavascript(WebElement element) {
@@ -204,7 +225,7 @@ public class Browser {
                 count++;
             }
         } while (count != retryCount);
-        System.out.println(exceptionMessage = "Retry Timed Out while trying to execute - " + new Throwable().getStackTrace()[1].getMethodName());
+        System.out.println(exceptionMessage = "Retry Timed Out while trying to execute - " + new Throwable().getStackTrace()[1].getMethodName() + " ");
         throw new RuntimeException(exceptionMessage + exception);
     }
 }

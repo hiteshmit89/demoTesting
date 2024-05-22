@@ -1,4 +1,4 @@
-package StepDefinitions.Payments.Adyen;
+package StepDefinitions.Payments.Adyen.PaymentMethods;
 
 import Framework.Root.PbNUIApp;
 import io.cucumber.java.en.And;
@@ -37,7 +37,7 @@ public class AdyenOnboardingStepDefinition {
 
     @Then("I am able to click on settings")
     public void iAmAbleToClickOnSettings() {
-        PbNUIApp.practiceHomePage().clickOnSettingsMenuItem();
+        PbNUIApp.practiceHomePage().iClickOn("Settings");
     }
 
     @Then("I am able to enable toggle for adyen feature")

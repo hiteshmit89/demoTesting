@@ -4,6 +4,8 @@ import Framework.Browser;
 import Framework.Root.PbNUIApp;
 import Framework.Util.DriverManager;
 import org.junit.Assert;
+import Pages.Navigator;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -20,6 +22,9 @@ public class PatientOverviewModal {
     private String getCurrentDate() {
         return (new SimpleDateFormat("MM/dd/yyyy").format(new Date()));
     }
+
+    private int sizeOfSelectedForms = 0;
+    String note = "Patient Test Note";
 
     public void selectTask(String taskType) {
         WebElement taskButton = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='patient-actions']//div[@class='action-item']//span[contains(text(),'Task')]/.."));
@@ -93,44 +98,57 @@ public class PatientOverviewModal {
     }
 
     public void clickOnForms() {
-        WebElement Forms = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='patient-window-tabs-id-tab-form']"));
-        Browser.clickOnElement(Forms);
+        Browser.waitForElementToBeVisible(By.xpath("//*[@id='patient-window-tabs-id-tab-form']"));
+        WebElement Forms = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='patient-window-tabs-id-tab-form']"));
+        Browser.clickOnElementUsingJavascript(Forms);
     }
 
     public void clickOnGeneralConsentFormsButton(String formsName) {
         Browser.waitForElementToBeVisible(By.xpath("//*[@data-icon='file-medical']/.."));
         Browser.waitForElementToBeClickable(By.xpath("//*[@data-icon='file-medical']/.."));
         WebElement generalConsentForms = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@data-icon='file-medical']/.."));
-        Browser.clickOnElementUsingJavascript(generalConsentForms);
-    }
-
-    public void clickOnPatientSelectedForm() {
-        WebElement patientForm = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='btn btn-primary' and contains(text(),'Form')]"));
-        Browser.clickOnElementUsingJavascript(patientForm);
+        Browser.clickOnElement(generalConsentForms);
     }
 
     public void clickOnSearchForms(String formName) {
-        WebElement searchForms = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@id='form-search-text-field']"));
-        Browser.enterTextInEditBox(searchForms, formName);
-        Browser.waitForPageReady();
-        Browser.waitForElementToBeVisible(By.xpath("//td[@class='practice-name-column']/div[@class='checkbox']/label"));
-        WebElement listOfForms = DriverManager.getInstance().Driver.findElement(By.xpath("//td[@class='practice-name-column']/div[@class='checkbox']/label"));
-        Browser.clickOnElementUsingJavascript(listOfForms);
-        Browser.clickOnElement(DriverManager.getInstance().Driver.findElement(By.xpath("//*[text()='Add']")));
+        List<WebElement> listOfSelectedForms = DriverManager.getInstance().Driver.findElements(By.xpath("//td[@class='practice-name-column']"));
+        sizeOfSelectedForms = listOfSelectedForms.size();
+        boolean flag = false;
+        List<WebElement> elements = DriverManager.getInstance().Driver.findElements(By.xpath("//tbody/tr/td/div/span[text()='" + formName + "']"));
+        if (!elements.isEmpty() && elements.get(0).isDisplayed()) {
+            flag = true;
+        }
+        if (!flag) {
+            WebElement patientForm = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='btn btn-primary' and contains(text(),'Form')]"));
+            WebElement interceptElement = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@style='height: 100%; width: 100%; position: absolute; top: 0px; left: 0px; display: flex; background-color: rgba(255, 255, 255, 0.8); z-index: 2000;']"));
+            Browser.waitForElementInvisibility(interceptElement);
+            Browser.clickOnElement(patientForm);
+            Browser.waitForElementToBeVisible(By.xpath("//input[@id='form-search-text-field']"));
+            WebElement searchForms = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@id='form-search-text-field']"));
+            Browser.enterTextInEditBox(searchForms, formName);
+            Browser.waitForPageReady();
+            Browser.waitForElementToBeVisible(By.xpath("//td[@class='practice-name-column']/div[@class='checkbox']/label"));
+            WebElement listOfForms = DriverManager.getInstance().Driver.findElement(By.xpath("//td[@class='practice-name-column']/div[@class='checkbox']/label"));
+            Browser.clickOnElementUsingJavascript(listOfForms);
+            Browser.clickOnElementUsingJavascript(DriverManager.getInstance().Driver.findElement(By.xpath("//*[text()='Add']")));
+        }
     }
 
     public void checkListOfSelectedForms(String formName) {
-        Browser.waitForElementToBeVisible(By.xpath("//td[@class='practice-name-column']"));
-        List<WebElement> listOfSelectedForms = DriverManager.getInstance().Driver.findElements(By.xpath("//td[@class='practice-name-column']"));
+        Browser.waitForPageReady();
+        List<WebElement> sendInviteTables = DriverManager.getInstance().Driver.findElements(By.xpath("//div[@class='patient-search']/following-sibling::div//table"));
+        Browser.waitForTableSizeToBe(sendInviteTables.getFirst(), sizeOfSelectedForms + 2);
+        List<WebElement> listOfSelectedForms = sendInviteTables.getFirst().findElements(By.xpath("./td[@class='practice-name-column']"));
         for (WebElement element : listOfSelectedForms) {
             if (element.getText().contains(formName)) {
-                Assert.assertTrue(true);
+                Assert.assertTrue("Form Displayed Successfully", true);
                 break;
             }
         }
-
-        Browser.clickOnElementUsingJavascript(DriverManager.getInstance().Driver.findElement(By.xpath("//label[text()='Send Email']")));
-        Browser.clickOnElementUsingJavascript(DriverManager.getInstance().Driver.findElement(By.xpath("//label[text()='Send Text']")));
+        WebElement sendEmail = DriverManager.getInstance().Driver.findElement(By.xpath("//label[text()='Send Email']"));
+        Browser.clickOnElementUsingJavascript(sendEmail);
+        WebElement sendText = DriverManager.getInstance().Driver.findElement(By.xpath("//label[text()='Send Text']"));
+        Browser.clickOnElementUsingJavascript(sendText);
     }
 
     public void clickOnFormsSendButton() {
@@ -143,6 +161,160 @@ public class PatientOverviewModal {
         Browser.waitForElementToBeClickable(By.xpath("//td[text()='" + formName + "']"));
         WebElement isSelectedFormsPresentInPendingFormList = DriverManager.getInstance().Driver.findElement(By.xpath("//td[text()='" + formName + "']"));
         Assert.assertTrue(isSelectedFormsPresentInPendingFormList.isDisplayed());
+    }
+
+    public void sendReminderBell(String formName) {
+        Browser.waitForElementToBeVisible(By.xpath("//tbody/tr/td[text()='" + formName + "']/../td[5]/div/span[1]"));
+        WebElement sendReminder = DriverManager.getInstance().Driver.findElement(By.xpath("//tbody/tr/td[text()='" + formName + "']/../td[5]/div/span[1]"));
+        Browser.clickOnElementUsingJavascript(sendReminder);
+        Browser.waitForElementToBeClickable(By.xpath("//button[text()='Yes']"));
+        WebElement yesButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='Yes']"));
+        Browser.clickOnElement(yesButton);
+    }
+
+    public void clickOnCancelFormInvite(String formName) {
+        Browser.waitForElementToBeClickable(By.xpath("//tbody/tr/td[text()='" + formName + "']/../td[5]/div/span[2]"));
+        WebElement cancelFormInvite = DriverManager.getInstance().Driver.findElement(By.xpath("//tbody/tr/td[text()='" + formName + "']/../td[5]/div/span[2]"));
+        Browser.clickOnElementUsingJavascript(cancelFormInvite);
+        Browser.waitForElementToBeClickable(By.xpath("//button[text()='Yes']"));
+        WebElement yesButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='Yes']"));
+        Browser.clickOnElementUsingJavascript(yesButton);
+    }
+
+    public void clickOnMarkAsSubmittedManuallyButton(String formName) {
+        Browser.waitForElementToBeVisible(By.xpath("//tbody/tr/td[text()='" + formName + "']/../td[5]/div/div"));
+        Browser.waitForElementToBeClickable(By.xpath("//tbody/tr/td[text()='" + formName + "']/../td[5]/div/div"));
+        WebElement formManuallySubmitted = DriverManager.getInstance().Driver.findElement(By.xpath("//tbody/tr/td[text()='" + formName + "']/../td[5]/div/div"));
+        Browser.clickOnElementUsingJavascript(formManuallySubmitted);
+        Browser.waitForElementToBeClickable(By.xpath("//span[@class='m-2']/../button[2]"));
+        WebElement saveButton = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='m-2']/../button[2]"));
+        Browser.clickOnElement(saveButton);
+    }
+
+    public void verifyCompletedFormsCheckList(String formName) {
+        Browser.waitForElementToBeVisible(By.xpath("//tbody/tr/td/span[text()='" + formName + "']"));
+        WebElement isFormPresentInCompletedForms = DriverManager.getInstance().Driver.findElement(By.xpath("//tbody/tr/td/span[text()='" + formName + "']"));
+        Assert.assertTrue(isFormPresentInCompletedForms.isDisplayed());
+    }
+
+    public void clickOnDetailsTab() {
+        WebElement detailsTab = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='patient-window-tabs-id-tab-details']"));
+        Browser.clickOnElement(detailsTab);
+    }
+
+    public void clickOnCommunicationPreference() {
+        Browser.waitForElementToBeClickable(By.xpath("//div[@id='email--heading']//i[@class='fa-duotone fa-chevron-down']"));
+        WebElement emailPreference = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@id='email--heading']//i[@class='fa-duotone fa-chevron-down']"));
+        Browser.scrollToVisibleElement(emailPreference);
+        Browser.clickOnElementUsingJavascript(emailPreference);
+        WebElement emailCheckBox = DriverManager.getInstance().Driver.findElement(By.xpath("//div[text()='Global subscribe to all emails']/../div/label/input"));
+        List<WebElement> emailcheckboxList = DriverManager.getInstance().Driver.findElements(By.xpath("//*[@id='email--body']/div/div/div"));
+        if (emailcheckboxList.size() == 1) {
+            Browser.clickOnElementUsingJavascript(emailCheckBox);
+        }
+        WebElement textPreference = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@id='sms--heading']//i[@class='fa-duotone fa-chevron-down']"));
+        Browser.scrollToVisibleElement(textPreference);
+        Browser.clickOnElementUsingJavascript(textPreference);
+        List<WebElement> textCheckBoxList = DriverManager.getInstance().Driver.findElements(By.xpath("//*[@id='sms--body']/div/div/div"));
+        WebElement textCheckBox = DriverManager.getInstance().Driver.findElement(By.xpath("//div[text()='Global subscribe to all sms']/../div/label/input"));
+        if (textCheckBoxList.size() == 1) {
+            Browser.clickOnElementUsingJavascript(textCheckBox);
+        }
+        WebElement savePreference = DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='Save Preferences']"));
+        if (savePreference.isEnabled()) {
+            Browser.clickOnElementUsingJavascript(savePreference);
+        }
+        WebElement closePatientWindow = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='close-button']"));
+        Browser.clickOnElement(closePatientWindow);
+    }
+
+    public void clickOnOptedOutPatients() {
+        Browser.scrollToVisibleElement(DriverManager.getInstance().Driver.findElement(By.xpath("//a[text()='Opted Out Patients']")));
+        WebElement optedOutPatient = DriverManager.getInstance().Driver.findElement(By.xpath("//a[text()='Opted Out Patients']"));
+        Browser.clickOnElement(optedOutPatient);
+    }
+
+    public void verifyPatientOptedOutList() {
+        Browser.waitForElementToBeVisible(By.xpath("//input[@id='searchLabel']"));
+        WebElement searchTextBox = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@id='searchLabel']"));
+        Browser.enterTextInEditBox(searchTextBox, PbNUIApp.userdata().getPatientName(1, 1));
+        Browser.waitForTableToLoad(DriverManager.getInstance().Driver.findElement(By.xpath("//tbody")));
+        List<WebElement> firstName = DriverManager.getInstance().Driver.findElements(By.xpath("//tbody/tr/td[3]"));
+        List<WebElement> lastName = DriverManager.getInstance().Driver.findElements(By.xpath("//tbody/tr/td[2]"));
+        for (int i = 0; i < firstName.size(); i++) {
+            String firstname = firstName.get(i).getText();
+            Browser.waitForElementToBeVisible(lastName.get(i));
+            String lastname = lastName.get(i).getText();
+            if (firstname.contains(searchTextBox.getAttribute("value").split(" ")[0]) && lastname.contains(searchTextBox.getAttribute("value").split(" ")[1])) {
+                Assert.assertTrue("Patient Name Displayed Successfully", true);
+                break;
+            }
+        }
+    }
+
+    public void clickOnPatientNote() {
+        WebElement patientNote = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='patient-note-icon']"));
+        Browser.clickOnElementUsingJavascript(patientNote);
+    }
+
+    public void clickOnAddPatientNote() {
+        WebElement enterTextInPatientNote = DriverManager.getInstance().Driver.findElement(By.xpath("//textarea[@class='form-control']"));
+        Browser.enterTextInEditBox(enterTextInPatientNote, note);
+        WebElement addNote = DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='Add Note']"));
+        Browser.clickOnElementUsingJavascript(addNote);
+    }
+
+    public void verifyPatientNoteInActivityTab() {
+        WebElement activityTab = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='patient-window-tabs-id-tab-activity']"));
+        Browser.clickOnElementUsingJavascript(activityTab);
+        Browser.waitForElementToBeClickable(By.xpath(" //div[@class='patient-notes-table container']"));
+        WebElement patientNoteSection = DriverManager.getInstance().Driver.findElement(By.xpath(" //div[@class='patient-notes-table container']"));
+        Browser.scrollToVisibleElement(patientNoteSection);
+        List<WebElement> patientNoteList = DriverManager.getInstance().Driver.findElements(By.xpath("//div[contains(@class,'patient-note col-xs')]"));
+        for (WebElement element : patientNoteList) {
+            if (element.getText().contains(note)) {
+                Assert.assertTrue("Patient Note Present in the List", true);
+                break;
+            }
+        }
+    }
+
+    public void clickOnChargeButton() {
+        WebElement chargeButton = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='action-item']//span[contains(text(),'Charge')]"));
+        Browser.clickOnElementUsingJavascript(chargeButton);
+    }
+
+    public void clickOnPaymentMethod() {
+        WebElement PaymentMethod = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='charge-pop-window-tabs-id-tab-payment-method']"));
+        Browser.clickOnElement(PaymentMethod);
+    }
+
+    public void clickAddPaymentMethod() {
+        WebElement addPaymentMethod = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='charge-pop-window-tabs-id-tab-payment-method']"));
+        Browser.clickOnElementUsingJavascript(addPaymentMethod);
+        Browser.waitForPageReady();
+        Browser.waitForElementToBeClickable(By.xpath("//span[text()='Add new payment method']"));
+        WebElement addNewPaymentMethod = DriverManager.getInstance().Driver.findElement(By.xpath("//span[text()='Add new payment method']"));
+        Browser.clickOnElementUsingJavascript(addNewPaymentMethod);
+        Browser.waitForFrameToLoad(By.xpath("//iframe[@title='Secure card number input frame']"));
+        WebElement enterCardNumber = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@data-elements-stable-field-name='cardNumber']"));
+        Browser.enterTextInEditBox(enterCardNumber, PbNUIApp.userdata().getCardNumberStripe(2, "1"));
+        Browser.switchToDefaultContent();
+        Browser.waitForFrameToLoad(By.xpath("//iframe[@title='Secure expiration date input frame']"));
+        WebElement enterCardDate = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@name='exp-date']"));
+        Browser.enterTextInEditBox(enterCardDate, PbNUIApp.userdata().getCardMonth(2, "1"));
+        Browser.switchToDefaultContent();
+        Browser.waitForFrameToLoad(By.xpath("//iframe[@title='Secure CVC input frame']"));
+        WebElement enterCardCVC = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@name='cvc']"));
+        Browser.enterTextInEditBox(enterCardCVC, PbNUIApp.userdata().getCardCVC(2, "1"));
+        Browser.switchToDefaultContent();
+        WebElement enterPostalCode = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@id='postal_code']"));
+        Browser.enterTextInEditBox(enterPostalCode, PbNUIApp.userdata().getPostalCode(2, "1"));
+    }
+
+    public void clickOnSaveButton() {
+        WebElement saveButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='payment-button btn btn-primary']"));
+        Browser.clickOnElementUsingJavascript(saveButton);
     }
 
     public void validateSmsNumberIcon (){

@@ -18,3 +18,27 @@ Feature: Appointments Settings
     Given I login to PbN app and select the practice
     When I click on appointments setting page and verify advanced Settings window of provider
     Then I will be able to see advanced Settings window of provider
+
+  @appointments @PUA-52 @PRAC-T2475
+  Scenario: Verify I can add and remove provider list and visit type from appointment setting page
+    Given I login to PbN app and select the practice
+    When I click on appointments setting page and verify add and remove provider list and visit type from appointment setting page
+    Then I will be able to add and remove provider list and visit type from appointment setting page
+
+  @appointments @PUA-56 @PRAC-T1610
+  Scenario: Verify I can select 15 min radio button from appointment setting page
+    Given I login to PbN app and select the practice
+    When I click on appointments setting page and verify fifteen min radio button from appointment setting page
+    Then I will be able to select fifteen min radio button from appointment setting page
+
+  @appointments @PUA-59 @PRAC-T102
+  Scenario: Verify I can see appointment details on appointment list page
+    Given I login to PbN app and select the practice
+    When I click on appointments list page and verify appointment details
+    Then I will be able to see appointments details on page list
+
+  @appointments @PUA-60 @PRAC-T103
+  Scenario: Verify I can see patient information on appointment list page
+    Given I login to PbN app and select the practice
+    When I click on appointments list page and verify patient information
+    Then I will be able to see patient information on page list

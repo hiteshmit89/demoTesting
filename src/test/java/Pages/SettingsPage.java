@@ -12,16 +12,17 @@ public class SettingsPage extends BasePage {
     public SettingsPage(Constants.PageTitle title) {
         super(title);
     }
+
     public void clickToggleButton() {
-        Browser.waitForPageReady();
-        WebElement paymentToggleAdyen = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@class='custom-control-input']"));
+        Browser.waitForElementToBeVisible(By.xpath("//label[@class='custom-control-label']"));
+        WebElement paymentToggleAdyen = DriverManager.getInstance().Driver.findElement(By.xpath("//label[@class='custom-control-label']"));
         Browser.scrollToVisibleElement(paymentToggleAdyen);
-        if (paymentToggleAdyen.isEnabled()) {
+        String buttonText = paymentToggleAdyen.getText();
+        if (buttonText.contains("Enabled")) {
             logger.info("toggle is enabled already");
         } else {
             logger.info("enabling toggle button");
             Browser.clickOnElement(paymentToggleAdyen);
         }
     }
-
 }
