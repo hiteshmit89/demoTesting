@@ -48,7 +48,7 @@ public class PatientWindowStepDefinition {
 
     @When("I click on the patient finder to open Patient Window")
     public void iClickOnThePatientFinderToOpenPatientWindow() {
-        PbNUIApp.navigator().findAndSelectPatientByExactMatchOf("Sally Walker");
+        PbNUIApp.navigator().findAndSelectPatientByExactMatchOf(PbNUIApp.userdata().getPatientName(1,1));
     }
 
     @And("I click on the Forms Tab")
@@ -107,5 +107,40 @@ public class PatientWindowStepDefinition {
     @Then("I verify that Patient is available in the opted Out Patients list")
     public void iVerifyThatPatientIsAvailableInTheOptedOutPatientsList() {
         PBNModals.patientOverviewModal().verifyPatientOptedOutList();
+    }
+
+    @And("I click on the Patient Note")
+    public void iClickOnThePatientNote() {
+        PBNModals.patientOverviewModal().clickOnPatientNote();
+    }
+
+    @And("I enter the patient note and click on the Add Note Button")
+    public void iEnterThePatientNoteAndClickOnTheAddNoteButton() {
+        PBNModals.patientOverviewModal().clickOnAddPatientNote();
+    }
+
+    @Then("I verify patient note in the Activity Tab")
+    public void iVerifyPatientNoteInTheActivityTab() {
+        PBNModals.patientOverviewModal().verifyPatientNoteInActivityTab();
+    }
+
+    @And("I click on the charge Button")
+    public void iClickOnTheChargeButton() {
+        PBNModals.patientOverviewModal().clickOnChargeButton();
+    }
+
+    @And("I click on the payment method")
+    public void iClickOnThePaymentMethod() {
+        PBNModals.patientOverviewModal().clickOnPaymentMethod();
+    }
+
+    @And("I select Add new payment method and enter the card details")
+    public void iSelectAddNewPaymentMethodAndEnterTheCardDetails() {
+        PBNModals.patientOverviewModal().clickAddPaymentMethod();
+    }
+
+    @And("I click on the save button")
+    public void iClickOnTheSaveButton() {
+        PBNModals.patientOverviewModal().clickOnSaveButton();
     }
 }

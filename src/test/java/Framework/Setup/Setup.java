@@ -20,6 +20,8 @@ public class Setup {
 
     @BeforeAll
     public static void resolvePropertiesFile() {
+        String endpoint = System.getenv("endpoint");
+        logger.info("\u001B[32m" + "###############Test Environment:############# " + endpoint + "\u001B[0m");
         switch (ConfigManager.getInstance().getProperty("Environment").toUpperCase()) {
             case "QA3" -> ConfigManager.getInstance().loadAdditionalProperties("QA3.properties");
             case "QA2" -> ConfigManager.getInstance().loadAdditionalProperties("QA2.properties");

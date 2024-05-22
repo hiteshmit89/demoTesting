@@ -36,3 +36,9 @@ Feature: Appointments Settings
     Given I login to PbN app and select the practice
     When I click on appointments list page and verify appointment details
     Then I will be able to see appointments details on page list
+
+  @appointments @PUA-60 @PRAC-T103
+  Scenario: Verify I can see patient information on appointment list page
+    Given I login to PbN app and select the practice
+    When I click on appointments list page and verify patient information
+    Then I will be able to see patient information on page list

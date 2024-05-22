@@ -12,9 +12,11 @@ import java.util.List;
 
 public class Navigator {
     public void NavigateTo(Destination destination) {
+        Browser.waitForPageReady();
         List<WebElement> mainMenuItems = DriverManager.getInstance().Driver.findElements(By.xpath("//div/ul[contains(@class,'nav navbar-nav navbar-left pn-master-dashboard-nav')]/li/a"));
         for (WebElement item: mainMenuItems) {
             if (Browser.getTextFromElement(item).contains(destination.label)) {
+                Browser.waitForElementToBeClickable(item);
                 Browser.clickOnElement(item);
                 break;
             }
