@@ -10,6 +10,7 @@ jobs:
     parallelism: 1
     environment:
       TAGS: "@pbnAll and not @In-Progress"
+      Environment: QA1
     steps:
       - browser-tools/install-chrome
       - browser-tools/install-chromedriver
