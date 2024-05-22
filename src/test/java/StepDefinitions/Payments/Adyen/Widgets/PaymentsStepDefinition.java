@@ -13,12 +13,10 @@ public class PaymentsStepDefinition {
     }
 
     @Then("The user is able to click on widgets tab")
-    public void theUserIsAbleToClickOnWidgetsTab() {
-        PbNUIApp.paymentsPage().clickWidgetsTab();
-    }
+    public void theUserIsAbleToClickOnWidgetsTab() {PbNUIApp.paymentsPage().clickWidgetsTab();}
 
     @When("The user is able to copy widget link and navigate to payment screen")
-    public void theUserShouldBeAbleToCopyWidgetLink() {
+    public void theUserShouldBeAbleToCopyWidgetLink(){
        PbNUIApp.paymentsPage().createPaymentURLAndNavigate();
     }
 
@@ -37,6 +35,9 @@ public class PaymentsStepDefinition {
     @And("The user is able to complete the payment")
     public void theUserIsAbleToCompleteThePayment() {
         PbNUIApp.OnlinePaymentPortalPage().enterCardDetails();
+        PbNUIApp.OnlinePaymentPortalPage().enterBillingAddress();
+        PbNUIApp.OnlinePaymentPortalPage().clickPayNow();
+        PbNUIApp.OnlinePaymentPortalPage().paymentSuccessfulLabel();
     }
 }
 
