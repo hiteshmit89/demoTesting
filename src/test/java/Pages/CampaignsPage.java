@@ -74,4 +74,23 @@ public class CampaignsPage extends BasePage {
         Assert.assertTrue("Duplicate campaign action item is not visible in campaigns page", duplicateCampaignAction.isDisplayed());
         Assert.assertTrue("Delete campaign action item is not visible in campaigns page", deleteCampaignAction.isDisplayed());
     }
+
+    public void clickOnAppointmentRemindersCampaign() {
+        Browser.waitForElementToBeVisible(By.xpath("//td[text()='Appointment Reminders Campaign']"));
+        WebElement arcLink = DriverManager.getInstance().Driver.findElement(By.xpath("//td[text()='Appointment Reminders Campaign']"));
+        Browser.clickOnElement(arcLink);
+    }
+
+    public void clickOnPrimaryEarlyReminderEditEmailTemplateButton() {
+        Browser.waitForElementToBeVisible(By.xpath("(//button[text()='Edit'])[3]"));
+        WebElement primaryEarlyReminderEditEmailTemplateButton = DriverManager.getInstance().Driver.findElement(By.xpath("(//button[text()='Edit'])[3]"));
+        Browser.clickOnElement(primaryEarlyReminderEditEmailTemplateButton);
+    }
+
+    public void clickOnPreHeaderAndSelectPlaceholder(String preHeaderData) {
+        Browser.waitForElementToBeVisible(By.xpath("(//div[@class='form-control rich-text-editor rdw-editor-main'])[2]"));
+        WebElement preHeader = DriverManager.getInstance().Driver.findElement(By.xpath("(//div[@class='form-control rich-text-editor rdw-editor-main'])[2]"));
+        Browser.clickOnElement(preHeader);
+        Browser.enterTextInEditBox(preHeader, preHeaderData);
+    }
 }
