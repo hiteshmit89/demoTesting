@@ -8,7 +8,6 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import java.util.Dictionary;
 import java.util.Random;
 
 public class OnlinePaymentPortalPage extends BasePage {

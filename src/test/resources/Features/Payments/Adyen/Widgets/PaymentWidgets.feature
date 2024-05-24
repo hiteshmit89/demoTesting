@@ -39,7 +39,3 @@ Feature: Verify As a user I am able to make payment through widget link
     And The user is able to enter amount in Payment box
     And The  user is able to click on Pay full amount button and redirect to checkout screen
     And The user is able to complete the payment
-
-
-
-
