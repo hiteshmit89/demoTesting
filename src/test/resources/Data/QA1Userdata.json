@@ -34,7 +34,7 @@
           "last_name": "Test Last Name",
           "phone_number": "1234567890",
           "email_id": "test@test.com",
-          "birth_date": "01/01/1976"
+          "birth_date": "01/01/1975"
         },
         {
           "FormType": "2",
@@ -94,6 +94,13 @@
           "user_name": "Vikas Tomar",
           "password": "ppp###2025",
           "email": "vikas.tomar@practicenumbers.com",
+          "role": "super_admin"
+        },
+        {
+          "user_id": 2,
+          "user_name": "Hello New",
+          "password": "123456789",
+          "email": "ritu.arya0118@practicenumbers.com",
           "role": "super_admin"
         }
       ],

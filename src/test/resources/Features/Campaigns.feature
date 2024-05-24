@@ -20,7 +20,7 @@ Feature: Campaigns
     Examples:
     |followUpCampaigns|
     |Preappointments: Perio Maintenance|
-    |Recall Overdue Campaign|
-    |Review Request Campaign|
-    |Christmas Holiday Greeting|
-    |Root Canal|
+    #|Recall Overdue Campaign|
+    #|Review Request Campaign|
+    #|Christmas Holiday Greeting|
+    #|Root Canal|

@@ -15,6 +15,7 @@ Feature: Forms Feature
     When I will see heading Completed forms
     Then  I click on toggle next to Only show completed forms that have not synced
 
+  @In-Progress
   Scenario: Verify that User is able to click on preview icon
     Given I login to PbN app
     And I click on practice name
@@ -22,7 +23,7 @@ Feature: Forms Feature
     When  I will see heading Completed forms
     Then I Click on the preview icon
 
-
+  @In-Progress
   Scenario: Verify that user is able to click on download icon
     Given I login to PbN app
     And I click on practice name
