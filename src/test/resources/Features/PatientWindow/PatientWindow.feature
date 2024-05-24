@@ -15,10 +15,9 @@ Feature: Patient Window Feature
     And I select the relevant button and Verify the all Tasks in "In progress" state
     Examples:
       | TaskType             |
-      | Patient Reactivation |
       | General Task         |
       | Account Receivable   |
-      | Patient Recall       |
+
 
   @PatientForms @PUA-45 @PRAC-T3451
   Scenario Outline: User can send the Forms to any patient and its will reflect in the Pending Forms List
@@ -79,3 +78,21 @@ Feature: Patient Window Feature
     And I am able to click on settings
     And I click on the Opted Out Patients in the Communication Section
     Then I verify that Patient is available in the opted Out Patients list
+
+  @patientNote @PUA-62 @PRAC-T948
+  Scenario: Create Patient Note
+    Given I login to PbN app and select the practice
+    When I click on the patient finder to open Patient Window
+    And I click on the Patient Note
+    And I enter the patient note and click on the Add Note Button
+    Then I verify patient note in the Activity Tab
+
+
+  @PaymentCharge @PUA-63 @PRAC-T3473 @InProgress
+  Scenario: The Payment Methods tab in the Charge pop window
+    Given I login to PbN app and select the practice
+    When I click on the patient finder to open Patient Window
+    And I click on the charge Button
+    And I click on the payment method
+    And I select Add new payment method and enter the card details
+    And I click on the save button
