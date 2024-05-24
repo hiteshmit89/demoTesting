@@ -98,18 +98,8 @@ public class OnlinePaymentPortalPage extends BasePage {
     }
 
     public void enterBillingAddress() {
-        WebElement countryDropdown = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@placeholder='Search...']"));
-        Browser.enterTextInEditBox(countryDropdown,PbNUIApp.userdata().getCountry(2,"1"));
-        WebElement countryOption = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='adyen-checkout__dropdown__element__text' and contains(text(),'"+PbNUIApp.userdata().getCountry(2,"1")+"')]"));
-        Browser.clickOnElement(countryOption);
-        WebElement streetTextBox = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@name='street']"));
-        Browser.enterTextInEditBox(streetTextBox,PbNUIApp.userdata().getStreet(2,"1"));
-        WebElement houseNumberTextBox = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@name='houseNumberOrName']"));
-        Browser.enterTextInEditBox(houseNumberTextBox,PbNUIApp.userdata().getHouseNumber(2,"1"));
         WebElement postalCodeTextBox = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@name='postalCode']"));
         Browser.enterTextInEditBox(postalCodeTextBox,PbNUIApp.userdata().getPostalCode(2,"1"));
-        WebElement cityTextBox = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@name='city']"));
-        Browser.enterTextInEditBox(cityTextBox,PbNUIApp.userdata().getCity(2,"1"));
     }
 
     public void clickPayNow(){

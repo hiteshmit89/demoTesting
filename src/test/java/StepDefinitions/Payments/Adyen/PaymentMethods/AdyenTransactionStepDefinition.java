@@ -24,8 +24,8 @@ public class AdyenTransactionStepDefinition {
     }
     @And("Select the payment method, enter amount, description from charge customer modal")
     public void selectThePaymentMethodEnterAmountDescriptionFromChargeCustomerModal() {
-        PbNUIApp.paymentsPage().selectDropdownValue();
         PbNUIApp.paymentsPage().enterAmount();
+        PbNUIApp.paymentsPage().enterCardDetailsOnPaymentModal();
         PbNUIApp.paymentsPage().enterChargeDescription();
     }
     @Then("I Click on Charge button")

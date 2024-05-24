@@ -66,6 +66,7 @@ public class Constants {
         Schedule("schedule-section"),
         Operations("hidden-xs operations-section"),
         TeamMessaging("team-message-section");
+
         public final String label;
 
         Sections(String label) {
