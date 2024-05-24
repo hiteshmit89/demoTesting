@@ -21,11 +21,15 @@ public class CollectPaymentModal {
 
     public void enterPatientName(){
         WebElement patientEditBox = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@class='rbt-input-main form-control rbt-input']"));
-        Browser.enterTextInEditBox(patientEditBox, PbNUIApp.userdata().getPatientName(1,1));
-        WebElement parent = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='charge-now-tabs-id-pane-1']//div[@class='rbt']"));
+        Browser.enterTextInEditBox(patientEditBox, PbNUIApp.userdata().getPatientName(2,1));
+        Browser.waitForElementToBeVisible(By.xpath("//a[@class='dropdown-item patient-search-result-menu-item ']"));
+        WebElement name = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@class='dropdown-item patient-search-result-menu-item ']"));
+        System.out.println(name.getText());
+        Browser.clickOnElement(name);
+        /*WebElement parent = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='charge-now-tabs-id-pane-1']//div[@class='rbt']"));
         Browser.waitForElementChildren(parent, By.xpath(".//div[@id='PatientSearchInput']"),1);
         WebElement child = parent.findElement(By.xpath(".//a[@class='dropdown-item patient-search-result-menu-item ']"));
-        Browser.clickOnElementUsingJavascript(child.findElement(By.xpath("//a[@id='PatientSearchInput-item-0']")));
+        Browser.clickOnElementUsingJavascript(child.findElement(By.xpath("//a[@id='PatientSearchInput-item-0']")));*/
     }
 
     public void enterAmount(){
@@ -39,9 +43,9 @@ public class CollectPaymentModal {
     }
 
     public void selectPaymentMethod(){
-        WebElement paymentMethodRadioButton = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@name='mui-66678']"));
+        WebElement paymentMethodRadioButton = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='MuiIconButton-label']"));
         Browser.clickOnElementUsingJavascript(paymentMethodRadioButton);
-        WebElement chargeNewCard = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='MuiBox-root jss46 pm-new-card-btn']"));
+        WebElement chargeNewCard = DriverManager.getInstance().Driver.findElement(By.xpath("//div[text()='Charge from New Card']"));
         Browser.clickOnElementUsingJavascript(chargeNewCard);
         Browser.waitForPageReady();
         Browser.waitForFrameToLoad(By.xpath("//iframe[@title='Iframe for card number']"));

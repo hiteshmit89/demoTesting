@@ -49,8 +49,8 @@ public class OnlinePaymentPortalPage extends BasePage {
         Browser.waitForElementToBeVisible(By.xpath("//*[@id='payment-portal-card-border']//label[text()='Payment Amount']/following-sibling::div/input"));
         Browser.waitForElementToBeClickable(By.xpath("//*[@id='payment-portal-card-border']//label[text()='Payment Amount']/following-sibling::div/input"));
         WebElement paymentTextBox = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='payment-portal-card-border']//label[text()='Payment Amount']/following-sibling::div/input"));
-        Random randon = new Random();
-        int amount = randon.nextInt(10000);
+        Random random = new Random();
+        int amount = random.nextInt(10000);
         Browser.waitForElementToBeClickable(paymentTextBox);
         Browser.waitForElementToDisplay(paymentTextBox);
         Browser.enterTextInEditBox(paymentTextBox, String.valueOf(amount));
