@@ -245,4 +245,9 @@ public class AppointmentsPage extends BasePage {
             }
         }
     }
+
+    public void clickOnSortTableButton() {
+        WebElement sortProvider = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tr[1]/th[3]"));
+        Browser.clickOnElement(sortProvider);
+    }
 }
