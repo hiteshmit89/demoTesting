@@ -6,6 +6,8 @@ import Framework.Util.DriverManager;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+
+import java.text.BreakIterator;
 import java.util.Random;
 
 import static Framework.Constants.Constants.Sections.Payments;
@@ -36,22 +38,33 @@ public class CollectPaymentModal {
         Browser.waitForElementInvisibility(DriverManager.getInstance().Driver.findElement(By.xpath("//*[@data-icon='spinner']")));
         WebElement amountBox = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@class='form-control requested-amount-input']"));
         Random random = new Random();
-        int amount = random.nextInt(1000);
+        int amount = random.nextInt(100);
+        String amountString = String.valueOf(amount) + ".00";
         Browser.waitForElementToBeClickable(amountBox);
         Browser.waitForElementToBeVisible(amountBox);
-        Browser.enterTextInEditBox(amountBox, String.valueOf(amount));
+        amountBox.clear();
+        Browser.enterTextInEditBox(amountBox, amountString);
+        amountBox.clear();
+        Browser.enterTextInEditBox(amountBox, amountString);
+
+        Browser.clickOnElement(DriverManager.getInstance().Driver.findElement(By.xpath("//div[text()=' Payment Method(s)']")));
     }
 
     public void selectPaymentMethod(){
         WebElement paymentMethodRadioButton = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='MuiIconButton-label']"));
         Browser.clickOnElementUsingJavascript(paymentMethodRadioButton);
+        Browser.waitForElementToBeVisible(By.xpath("//div[text()='Charge from New Card']"));
         WebElement chargeNewCard = DriverManager.getInstance().Driver.findElement(By.xpath("//div[text()='Charge from New Card']"));
         Browser.clickOnElementUsingJavascript(chargeNewCard);
-        Browser.waitForPageReady();
+
+        Browser.waitForElementPresence(By.xpath("//div[@class='adyen-checkout__spinner adyen-checkout__spinner--large']"));
+        Browser.waitForElementInvisibility(DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='adyen-checkout__spinner adyen-checkout__spinner--large']")));
         Browser.waitForFrameToLoad(By.xpath("//iframe[@title='Iframe for card number']"));
         WebElement cardNumber = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@data-fieldtype='encryptedCardNumber']"));
         Browser.enterTextInEditBox(cardNumber,PbNUIApp.userdata().getCardNumber(2, "1"));
         Browser.switchToDefaultContent();
+
+
         Browser.waitForFrameToLoad(By.xpath("//iframe[@title='Iframe for expiry date']"));
         WebElement cardDate = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@data-fieldtype='encryptedExpiryDate']"));
         Browser.enterTextInEditBox(cardDate,PbNUIApp.userdata().getCardMonth(2, "1"));
@@ -70,5 +83,9 @@ public class CollectPaymentModal {
         WebElement paymentLabel = DriverManager.getInstance().Driver.findElement(By.xpath("//p[@class='MuiTypography-root pc-text-success MuiTypography-body1']"));
         String Label = paymentLabel.getText();
         Assert.assertEquals(Label,"Payment Successful!");
+    }
+    public void enterChargeDescription() {
+        WebElement enterAmountTextBox = DriverManager.getInstance().Driver.findElement(By.xpath("//textarea[@class='payment-note-input form-control']"));
+        Browser.enterTextInEditBox(enterAmountTextBox, "Entered Description");
     }
 }

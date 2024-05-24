@@ -23,6 +23,7 @@ public class PaymentCTAStepDefinition {
     @And("I select payment method")
     public void iSelectPaymentMethod() {
         PBNModals.collectPaymentModal().selectPaymentMethod();
+        PBNModals.collectPaymentModal().enterChargeDescription();
     }
 
     /*@And("I click on the initiate payment")

@@ -49,6 +49,7 @@ public class WidgetsCustomLinkStepDefinition {
     @And("I am able to verify payment successfully message")
     public void i_am_able_to_verify_payment_successfully_message() {
         PbNUIApp.OnlinePaymentPortalPage().paymentSuccessfulLabel();
+
     }
 
 }

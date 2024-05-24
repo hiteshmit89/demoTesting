@@ -71,11 +71,11 @@ public class AppointmentBookingPage extends BasePage {
     }
 
     public void fillAppointmentBookingFormForPatientWithTags() {
-        enterFirstName(PbNUIApp.userdata().getPractices().getFirst().getFormsData().get(2).getFirst_name());
-        enterLastName(PbNUIApp.userdata().getPractices().getFirst().getFormsData().get(2).getLast_name());
-        enterPhoneNumber(PbNUIApp.userdata().getPractices().getFirst().getFormsData().get(2).getPhone_number());
-        enterEmailID(PbNUIApp.userdata().getPractices().getFirst().getFormsData().get(2).getEmail_id());
-        enterBirthDate(PbNUIApp.userdata().getPractices().getFirst().getFormsData().get(2).getBirth_date());
+        enterFirstName(PbNUIApp.userdata().getFirstName(1,"2"));
+        enterLastName(PbNUIApp.userdata().getLastName(1,"2"));
+        enterPhoneNumber(PbNUIApp.userdata().getPhoneNumber(1,"2"));
+        enterEmailID(PbNUIApp.userdata().getEmailId(1,"2"));
+        enterBirthDate(PbNUIApp.userdata().getBirthDate(1,"2"));
     }
 
     public void fillAppointmentBookingFormForValidateInsuranceDob() {

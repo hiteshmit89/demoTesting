@@ -20,7 +20,7 @@
           "last_name": "Test Last Name",
           "phone_number": "1234567890",
           "email_id": "test@test.com",
-          "birth_date": "01/01/1976"
+          "birth_date": "01/01/1975"
         },
         {
           "FormType": "2",
@@ -89,7 +89,8 @@
       ],
       "PatientData": [
         {
-          "patient_name": "Sally Walker",
+          "patient_id": 1,
+          "patient_name": "Captain America",
           "task_description": "Automation",
           "task_type": "Treatment"
         }
