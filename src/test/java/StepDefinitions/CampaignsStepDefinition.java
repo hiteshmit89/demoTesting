@@ -28,8 +28,8 @@ public class CampaignsStepDefinition {
         PbNUIApp.campaignsPage().verifyFollowUpPageUiFor(campaignName);
     }
 
-    @When("I try to edit and save email template of primary early reminder without invalid merge tag notification")
-    public void iTryToEditAndSaveEmailTemplateOfPrimaryEarlyReminderWithoutInvalidMergeTagNotification() {
+    @When("I try to edit and save email template of primary early reminder with invalid merge tag notification")
+    public void iTryToEditAndSaveEmailTemplateOfPrimaryEarlyReminderWithInvalidMergeTagNotification() {
         PbNUIApp.campaignsPage().clickOnAppointmentRemindersCampaign();
         PbNUIApp.campaignsPage().clickOnPrimaryEarlyReminderEditEmailTemplateButton();
         PbNUIApp.campaignsPage().clickOnPreHeaderAndSelectPlaceholder("{{ first_appointment_time_of_day }}");
