@@ -126,4 +126,18 @@ public class AppointmentsSettingsStepDefinition {
     public void iWillBeAbleToSortColumnsOfAppointmentListTableOnAppointmentListPage() {
         PbNUIApp.appointmentsPage().clickOnSortTableButton();
     }
+
+    @When("I try to search the patient with patient name on appointment list page")
+    public void iTryToSearchThePatientWithPatientNameOnAppointmentListPage() {
+        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
+        PbNUIApp.appointmentsPage().clickOnAppointmentListTab();
+        PbNUIApp.appointmentsPage().enterStartDate1("01/01/2024");
+        PbNUIApp.appointmentsPage().enterStartDate2("01/01/2024");
+        PbNUIApp.appointmentsPage().clickOutsideAppointmentList();
+    }
+
+    @Then("I will be able to search the patient with patient name on appointment list page")
+    public void iWillBeAbleToSearchThePatientWithPatientNameOnAppointmentListPage() {
+        PbNUIApp.appointmentsPage().enterPatientNameInSearchBox("Jesse Garrett");
+    }
 }
