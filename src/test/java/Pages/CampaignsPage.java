@@ -91,6 +91,18 @@ public class CampaignsPage extends BasePage {
         Browser.waitForElementToBeVisible(By.xpath("(//div[@class='form-control rich-text-editor rdw-editor-main'])[2]"));
         WebElement preHeader = DriverManager.getInstance().Driver.findElement(By.xpath("(//div[@class='form-control rich-text-editor rdw-editor-main'])[2]"));
         Browser.clickOnElement(preHeader);
-        Browser.enterTextInEditBox(preHeader, preHeaderData);
+        WebElement preHeaderDataEnter = DriverManager.getInstance().Driver.findElement(By.xpath("(//div[@class='public-DraftStyleDefault-block public-DraftStyleDefault-ltr'])[3]"));
+        Browser.enterTextInEditBox(preHeaderDataEnter, preHeaderData);
+        WebElement clickSaveButton = DriverManager.getInstance().Driver.findElement(By.xpath("(//button[text()='Save'])[2]"));
+        Browser.clickOnElement(clickSaveButton);
+    }
+
+    public void verifyErrorToastMessageDisplayed() {
+        Browser.waitForElementToBeVisible(By.xpath("//div[@class='react-toast-notifications__toast__content css-1ad3zal']"));
+        WebElement errorMessage = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='react-toast-notifications__toast__content css-1ad3zal']"));
+        String errorMsg = "Invalid Merge Tag: , {Please confirm your upcoming dental appointment at {{ practice_name }";
+        if (errorMsg.equals(errorMessage.getText())) {
+            Assert.assertTrue("Invalid Merge Tag Error Message", errorMessage.isDisplayed());
+        }
     }
 }

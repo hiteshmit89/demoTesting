@@ -58,6 +58,14 @@ public class AppointmentsPage extends BasePage {
         }
     }
 
+    public void clickOnEnableInsurance() {
+        WebElement disableInsurance = DriverManager.getInstance().Driver.findElement(By.id("insurance-active"));
+        Browser.scrollToVisibleElement(disableInsurance);
+        if (!disableInsurance.isSelected()) {
+            Browser.clickOnElementUsingJavascript(disableInsurance);
+        }
+    }
+
     public void clickOnSaveButton() {
         WebElement saveButton = DriverManager.getInstance().Driver.findElement(By.xpath("(//button[text()='Save'])[5]"));
         Browser.scrollToVisibleElement(saveButton);
@@ -83,6 +91,15 @@ public class AppointmentsPage extends BasePage {
         Browser.waitForElementToBeVisible(enableCreditCard.findElement(By.xpath("./..")));
         Browser.scrollToVisibleElement(enableCreditCard);
         if (!enableCreditCard.isSelected()) {
+            Browser.clickOnElementUsingJavascript(enableCreditCard);
+        }
+    }
+
+    public void clickOnDisableCreditCard() {
+        WebElement enableCreditCard = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@id='card-setup-toggle']"));
+        Browser.waitForElementToBeVisible(enableCreditCard.findElement(By.xpath("./..")));
+        Browser.scrollToVisibleElement(enableCreditCard);
+        if (enableCreditCard.isSelected()) {
             Browser.clickOnElementUsingJavascript(enableCreditCard);
         }
     }

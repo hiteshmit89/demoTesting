@@ -37,5 +37,6 @@ public class CampaignsStepDefinition {
 
     @Then("I will be able to edit and save email template of primary early reminder invalid merge tag notification")
     public void iWillBeAbleToEditAndSaveEmailTemplateOfPrimaryEarlyReminderInvalidMergeTagNotification() {
+        PbNUIApp.campaignsPage().verifyErrorToastMessageDisplayed();
     }
 }
