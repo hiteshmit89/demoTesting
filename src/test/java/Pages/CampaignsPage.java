@@ -102,8 +102,6 @@ public class CampaignsPage extends BasePage {
         Browser.waitForElementToBeVisible(By.xpath("//div[@class='react-toast-notifications__toast__content css-1ad3zal']"));
         WebElement errorMessage = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='react-toast-notifications__toast__content css-1ad3zal']"));
         String errorMsg = "Invalid Merge Tag: , {Please confirm your upcoming dental appointment at {{ practice_name }";
-        if (errorMsg.equals(errorMessage.getText())) {
-            Assert.assertTrue("Invalid Merge Tag Error Message", errorMessage.isDisplayed());
-        }
+        Assert.assertEquals("Invalid Merge Tag Error Message", errorMsg, errorMessage.getText());
     }
 }
