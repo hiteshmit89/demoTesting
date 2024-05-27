@@ -88,7 +88,6 @@ public class CampaignsPage extends BasePage {
     }
 
     public void clickOnPreHeaderAndSelectPlaceholder(String preHeaderData) {
-       // Browser.waitForElementToBeVisible(By.xpath("(//div[@class='form-control rich-text-editor rdw-editor-main'])[2]"));
         Browser.waitForElementToBeClickable(By.xpath("(//div[@class='form-control rich-text-editor rdw-editor-main'])[2]"));
         WebElement preHeader = DriverManager.getInstance().Driver.findElement(By.xpath("(//div[@class='form-control rich-text-editor rdw-editor-main'])[2]"));
         Browser.clickOnElement(preHeader);
