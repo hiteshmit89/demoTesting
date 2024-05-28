@@ -8,6 +8,7 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import java.security.KeyStore;
 import java.util.List;
 
 public class AppointmentsPage extends BasePage {
@@ -254,5 +255,20 @@ public class AppointmentsPage extends BasePage {
     public void enterPatientNameInSearchBox(String patientName) {
         WebElement searchBox = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@placeholder='Search by Patient Name']"));
         Browser.enterTextInEditBox(searchBox, patientName);
+    }
+
+    public void verifyPatientNameInAppointmentList() {
+        WebElement spinner = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='text-center']"));
+        Browser.waitForElementInvisibility(spinner);
+        List<WebElement> verifyPatientName= DriverManager.getInstance().Driver.findElements(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tr//td//div//span"));
+        for(WebElement element : verifyPatientName){
+            if (element.getText().equals("Jesse Garrett")) {
+                Assert.assertTrue("Patient Found", element.isDisplayed());
+                System.out.println(element.getText());
+                break;
+            }
+
+        }
+
     }
 }
