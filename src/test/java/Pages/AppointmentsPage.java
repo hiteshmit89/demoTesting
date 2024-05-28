@@ -2,13 +2,13 @@ package Pages;
 
 import Framework.Browser;
 import Framework.Constants.Constants.PageTitle;
+import Framework.Root.PbNUIApp;
 import Framework.Util.ConfigManager;
 import Framework.Util.DriverManager;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import java.security.KeyStore;
 import java.util.List;
 
 public class AppointmentsPage extends BasePage {
@@ -19,6 +19,7 @@ public class AppointmentsPage extends BasePage {
 
     private WebElement header = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='appointment-booking']//span[text()='Online Appointment Booking']"));
     private WebElement eUrl = DriverManager.getInstance().Driver.findElement(By.xpath("(//span[contains(text(),'https://www.patientsreach.com/schedule/')])[1]"));
+    private final WebElement spinnerWrapper = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id=\"appointment-booking-page-pane-Appointment List\"]//div[contains(@class,'_loading_overlay_wrapper')]"));
 
     public void clickOnWidgets() {
         WebElement widgetsTab = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='appointment-booking-page-tab-Widgets']"));
@@ -59,6 +60,14 @@ public class AppointmentsPage extends BasePage {
         }
     }
 
+    public void clickOnEnableInsurance() {
+        WebElement disableInsurance = DriverManager.getInstance().Driver.findElement(By.id("insurance-active"));
+        Browser.scrollToVisibleElement(disableInsurance);
+        if (!disableInsurance.isSelected()) {
+            Browser.clickOnElementUsingJavascript(disableInsurance);
+        }
+    }
+
     public void clickOnSaveButton() {
         WebElement saveButton = DriverManager.getInstance().Driver.findElement(By.xpath("(//button[text()='Save'])[5]"));
         Browser.scrollToVisibleElement(saveButton);
@@ -84,6 +93,15 @@ public class AppointmentsPage extends BasePage {
         Browser.waitForElementToBeVisible(enableCreditCard.findElement(By.xpath("./..")));
         Browser.scrollToVisibleElement(enableCreditCard);
         if (!enableCreditCard.isSelected()) {
+            Browser.clickOnElementUsingJavascript(enableCreditCard);
+        }
+    }
+
+    public void clickOnDisableCreditCard() {
+        WebElement enableCreditCard = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@id='card-setup-toggle']"));
+        Browser.waitForElementToBeVisible(enableCreditCard.findElement(By.xpath("./..")));
+        Browser.scrollToVisibleElement(enableCreditCard);
+        if (enableCreditCard.isSelected()) {
             Browser.clickOnElementUsingJavascript(enableCreditCard);
         }
     }
@@ -214,10 +232,9 @@ public class AppointmentsPage extends BasePage {
         List<WebElement> rowElements = DriverManager.getInstance().Driver.findElements(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tr"));
         int i = 0;
         for (WebElement row : rowElements) {
-            if (i==0) {
+            if (i == 0) {
                 i++;
-            }
-            else {
+            } else {
                 WebElement colElement = row.findElement(By.xpath(".//td[7]"));
                 String colName = "Existing";
                 if (Browser.getTextFromElement(colElement).equals(colName)) {
@@ -232,10 +249,9 @@ public class AppointmentsPage extends BasePage {
         List<WebElement> rowElements = DriverManager.getInstance().Driver.findElements(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tr"));
         int i = 0;
         for (WebElement row : rowElements) {
-            if (i==0) {
+            if (i == 0) {
                 i++;
-            }
-            else {
+            } else {
                 WebElement colElement = row.findElement(By.xpath(".//td[7]"));
                 WebElement clickColElement = row.findElement(By.xpath(".//td[2]"));
                 String colName = "Existing";
@@ -258,17 +274,11 @@ public class AppointmentsPage extends BasePage {
     }
 
     public void verifyPatientNameInAppointmentList() {
-        WebElement spinner = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='text-center']"));
-        Browser.waitForElementInvisibility(spinner);
-        List<WebElement> verifyPatientName= DriverManager.getInstance().Driver.findElements(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tr//td//div//span"));
-        for(WebElement element : verifyPatientName){
-            if (element.getText().equals("Jesse Garrett")) {
-                Assert.assertTrue("Patient Found", element.isDisplayed());
-                System.out.println(element.getText());
-                break;
-            }
-
+        Browser.waitForTableToFinishShrinking(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tr"));
+        List<WebElement> verifyPatientName = DriverManager.getInstance().Driver.findElements(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tr//td//div//span"));
+        for (WebElement element : verifyPatientName) {
+            Assert.assertEquals("Patient Found", PbNUIApp.userdata().getFirstName(1,"5"), element.getText());
+            break;
         }
-
     }
 }

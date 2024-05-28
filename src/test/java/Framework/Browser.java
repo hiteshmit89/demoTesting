@@ -12,13 +12,11 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.time.Duration;
 import java.util.function.BooleanSupplier;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.support.ui.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import javax.swing.*;
 
 
 public class Browser {
@@ -93,13 +91,38 @@ public class Browser {
         retry(() -> table.findElements(By.xpath(".//tr")).size() >= size);
     }
 
+    public static void waitForTableToFinishShrinking(By locator) {
+        int count = 0;
+        int currSize = DriverManager.getInstance().Driver.findElements(locator).size();
+        int timeOut = Integer.parseInt(ConfigManager.getInstance().getProperty("Timeout"));
+        int retryInterval = Integer.parseInt(ConfigManager.getInstance().getProperty("Polling"));
+        float temp = ((float) retryInterval / 1000) % 60;
+        int retryCount = (int) (timeOut / temp);
+        int newSize = 0;
+        do {
+            try {
+                Thread.sleep(retryInterval);
+                newSize = DriverManager.getInstance().Driver.findElements(locator).size();
+                count++;
+                if (count >= retryCount) {
+                    break;
+                }
+            } catch (Exception ignored) {
+            }
+        } while (currSize == newSize);
+    }
+
+
     public static void waitForElementChildren(WebElement element, By childLocator, int noOfChildrenNeeded) {
         retry(() -> element.findElements(childLocator).size() > noOfChildrenNeeded);
     }
 
+    public static void waitForChildToDisappear(WebElement parent, By childLocator) {
+        retry(() -> parent.findElements(childLocator).isEmpty());
+    }
+
     public static void waitForElementList(By locator) {
         retry(() -> !DriverManager.getInstance().Driver.findElements(locator).isEmpty());
-        System.out.println(DriverManager.getInstance().Driver.findElements(locator).size());
     }
 
     public static void clickOnElement(WebElement element) {

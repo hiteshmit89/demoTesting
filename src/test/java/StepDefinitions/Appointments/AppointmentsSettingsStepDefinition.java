@@ -138,7 +138,7 @@ public class AppointmentsSettingsStepDefinition {
 
     @Then("I will be able to search the patient with patient name on appointment list page")
     public void iWillBeAbleToSearchThePatientWithPatientNameOnAppointmentListPage() {
-        PbNUIApp.appointmentsPage().enterPatientNameInSearchBox("Jesse Garrett");
+        PbNUIApp.appointmentsPage().enterPatientNameInSearchBox(PbNUIApp.userdata().getFirstName(1,"5"));
         PbNUIApp.appointmentsPage().verifyPatientNameInAppointmentList();
 
     }
