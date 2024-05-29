@@ -38,7 +38,6 @@ public class CollectPaymentModal {
         Browser.clickOnElement(chargeNewCard);
     }
 
-
     public void enterCardDetails() {
         Browser.waitForElementPresence(By.xpath("//div[@class='adyen-checkout__spinner adyen-checkout__spinner--large']"));
         Browser.waitForElementInvisibility(DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='adyen-checkout__spinner adyen-checkout__spinner--large']")));
