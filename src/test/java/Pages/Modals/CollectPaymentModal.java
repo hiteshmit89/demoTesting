@@ -31,11 +31,11 @@ public class CollectPaymentModal {
         WebElement paymentMethodRadioButton = DriverManager.getInstance().Driver.findElement(By.xpath("//span[text()='Credit / Debit Card']"));
         Browser.waitForElementToBeVisible(paymentMethodRadioButton);
         Browser.waitForElementToBeClickable(paymentMethodRadioButton);
-        Browser.clickOnElementUsingJavascript(paymentMethodRadioButton);
+        Browser.clickOnElement(paymentMethodRadioButton);
         Browser.waitForElementToBeVisible(By.xpath("//*[text()='Charge from New Card']"));
         WebElement chargeNewCard = DriverManager.getInstance().Driver.findElement(By.xpath("//*[text()='Charge from New Card']"));
         Browser.waitForElementToBeClickable(chargeNewCard);
-        Browser.clickOnElementUsingJavascript(chargeNewCard);
+        Browser.clickOnElement(chargeNewCard);
     }
 
 
@@ -103,9 +103,8 @@ public class CollectPaymentModal {
     public void verifyPaymentSuccess() {
         Browser.waitForPresenceOfElement(By.xpath("//p[@class='MuiTypography-root pc-text-success MuiTypography-body1']"));
         WebElement paymentLabel = DriverManager.getInstance().Driver.findElement(By.xpath("//p[@class='MuiTypography-root pc-text-success MuiTypography-body1']"));
-        String Label = paymentLabel.getText();
         Browser.waitForPresenceOfElement(By.xpath("//p[@class='MuiTypography-root pc-text-success MuiTypography-body1']"));
-        Assert.assertEquals(Label, "Payment Successful!");
+        Assert.assertEquals(paymentLabel.getText(), "Payment Successful!");
     }
 
     public void downloadPaymentReciept(){
