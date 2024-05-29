@@ -1,15 +1,16 @@
-Feature:
+@PaymentModal @pbnAll
+Feature: Charge a patient via Card through Payments showing in CTA menu and verify the result in Payments
 
-  @test
-  Scenario: Verify user is able to enable toggle for adyen service
+  @PRAC-T3664 @PUA-68 @In-Progress
+  Scenario: Verify user is able to download the payment receipt for a Patient already added cards
     Given I enter credentials
     When I click login button
     And I am able to select practice
     Then I am redirected to home page
     And I click on the Floating Payment CTA
     And I enter the Patient Name
-    And I select payment method and enter card details
     And I enter the Amount
+    And I select payment method and enter card details
     And I enter the charge description
     And I Click on Charge button on collect payment modal
     And I verify the payment successful modal

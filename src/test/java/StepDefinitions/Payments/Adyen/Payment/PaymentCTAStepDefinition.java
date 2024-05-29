@@ -15,40 +15,35 @@ public class PaymentCTAStepDefinition {
         PBNModals.collectPaymentModal().enterPatientName();
     }
 
+    @And("I enter the Amount")
+    public void iEnterTheAmount() {
+        PBNModals.collectPaymentModal().enterAmount();
+    }
+
     @And("I select payment method and enter card details")
     public void iSelectPaymentMethodAndEnterCardDetails() {
         PBNModals.collectPaymentModal().selectPaymentMethod();
         PBNModals.collectPaymentModal().enterCardDetails();
-
-    }
-
-    @And("I enter the Amount")
-    public void iEnterTheAmount() {
-        PBNModals.collectPaymentModal().enterAmount();
-
     }
 
     @And("I enter the charge description")
     public void iEnterTheChargeDescription() {
         PBNModals.collectPaymentModal().enterChargeDescription();
-
     }
 
     @And("I Click on Charge button on collect payment modal")
     public void iClickOnChargeButtonOnCollectPaymentModal() {
         PBNModals.collectPaymentModal().clickOnChargeButton();
-
     }
-
 
     @And("I verify the payment successful modal")
     public void iVerifyThePaymentSuccessfulModal() {
         PBNModals.collectPaymentModal().verifyPaymentSuccess();
     }
 
-
     @And("I am Able to download the payment receipt")
     public void iAmAbleToDownloadThePaymentReceipt() {
+        PBNModals.collectPaymentModal().downloadPaymentReciept();
 
     }
 

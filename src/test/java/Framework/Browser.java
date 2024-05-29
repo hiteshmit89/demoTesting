@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.Select;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.time.Duration;
+import java.util.Arrays;
 import java.util.function.BooleanSupplier;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.By;
@@ -141,7 +142,10 @@ public class Browser {
         waitForElementToDisplay(element);
         element.clear();
         element.sendKeys(text);
+        ((JavascriptExecutor) DriverManager.getInstance().Driver).executeScript("arguments[0].onchange",
+                Arrays.asList(element));
     }
+
     public static void waitForPageReady() {
         DriverManager.getInstance().pageReady();
     }

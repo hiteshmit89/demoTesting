@@ -31,11 +31,11 @@ public class CollectPaymentModal {
         WebElement paymentMethodRadioButton = DriverManager.getInstance().Driver.findElement(By.xpath("//span[text()='Credit / Debit Card']"));
         Browser.waitForElementToBeVisible(paymentMethodRadioButton);
         Browser.waitForElementToBeClickable(paymentMethodRadioButton);
-        Browser.clickOnElement(paymentMethodRadioButton);
-        Browser.waitForElementToBeVisible(By.xpath("//div[text()='Charge from New Card']"));
-        WebElement chargeNewCard = DriverManager.getInstance().Driver.findElement(By.xpath("//div[text()='Charge from New Card']"));
+        Browser.clickOnElementUsingJavascript(paymentMethodRadioButton);
+        Browser.waitForElementToBeVisible(By.xpath("//*[text()='Charge from New Card']"));
+        WebElement chargeNewCard = DriverManager.getInstance().Driver.findElement(By.xpath("//*[text()='Charge from New Card']"));
         Browser.waitForElementToBeClickable(chargeNewCard);
-        Browser.clickOnElement(chargeNewCard);
+        Browser.clickOnElementUsingJavascript(chargeNewCard);
     }
 
 
@@ -73,20 +73,26 @@ public class CollectPaymentModal {
     public void enterAmount() {
         Browser.waitForElementInvisibility(DriverManager.getInstance().Driver.findElement(By.xpath("//*[@data-icon='spinner']")));
         WebElement amountBox = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@class='form-control requested-amount-input']"));
+        WebElement mutedText = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='charge-now-tabs-id-pane-1']//span[@class='text-muted']"));
         Random random = new Random();
-        int amount = random.nextInt(100);
-        String amountString = String.valueOf(amount);
+        double randomValue = 1 + (100 - 1) * random.nextDouble();
+        String amountString = String.format("%.2f", randomValue);
         Browser.waitForElementToBeClickable(amountBox);
-        Browser.enterTextInEditBox(amountBox, amountString);
+        amountBox.clear();
+        Browser.clickOnElement(mutedText);
+        Browser.waitForAttributeValue(amountBox,"value","");
+        amountBox.sendKeys(amountString);
+        Browser.doubleClickOnElement(mutedText);
+        Browser.waitForAttributeValue(amountBox,"value",amountString);
     }
 
     public void clickOnChargeButton() {
+        Browser.waitForElementToBeVisible(By.xpath("//button[text()='Charge']"));
         WebElement charge = DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='Charge']"));
         Browser.clickOnElement(charge);
         WebElement confirmYes = DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='Yes']"));
         Browser.clickOnElement(confirmYes);
         Browser.waitForElementInvisibility(DriverManager.getInstance().Driver.findElement(By.xpath("//*[@class='svg-inline--fa fa-spinner fa-w-16 fa-spin fa-3x ']")));
-
     }
 
     public void enterChargeDescription() {
@@ -95,9 +101,18 @@ public class CollectPaymentModal {
     }
 
     public void verifyPaymentSuccess() {
+        Browser.waitForPresenceOfElement(By.xpath("//p[@class='MuiTypography-root pc-text-success MuiTypography-body1']"));
         WebElement paymentLabel = DriverManager.getInstance().Driver.findElement(By.xpath("//p[@class='MuiTypography-root pc-text-success MuiTypography-body1']"));
         String Label = paymentLabel.getText();
+        Browser.waitForPresenceOfElement(By.xpath("//p[@class='MuiTypography-root pc-text-success MuiTypography-body1']"));
+
         Assert.assertEquals(Label, "Payment Successful!");
-        System.out.println(paymentLabel.getText());
+    }
+
+    public void downloadPaymentReciept(){
+        Browser.waitForElementToBeVisible(By.xpath("//button[@class='btn btn-default' and contains(text(),'Download Receipt')]"));
+        WebElement downloadButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='btn btn-default' and contains(text(),'Download Receipt')]"));
+        Browser.clickOnElement(downloadButton);
+
     }
 }
