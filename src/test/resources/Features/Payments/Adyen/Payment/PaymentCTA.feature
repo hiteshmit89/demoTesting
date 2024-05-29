@@ -2,7 +2,7 @@
 Feature: Charge a patient via Card through Payments showing in CTA menu and verify the result in Payments
 
   @PRAC-T3664 @PUA-68 @In-Progress
-  Scenario: Verify user is able to download the payment receipt for a Patient already added cards
+  Scenario: Verify user is able to download the payment receipt for a patient already added cards
     Given I enter credentials
     When I click login button
     And I am able to select practice

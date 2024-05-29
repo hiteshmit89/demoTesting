@@ -142,8 +142,6 @@ public class Browser {
         waitForElementToDisplay(element);
         element.clear();
         element.sendKeys(text);
-        ((JavascriptExecutor) DriverManager.getInstance().Driver).executeScript("arguments[0].onchange",
-                Arrays.asList(element));
     }
 
     public static void waitForPageReady() {

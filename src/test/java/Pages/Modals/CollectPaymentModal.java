@@ -105,7 +105,6 @@ public class CollectPaymentModal {
         WebElement paymentLabel = DriverManager.getInstance().Driver.findElement(By.xpath("//p[@class='MuiTypography-root pc-text-success MuiTypography-body1']"));
         String Label = paymentLabel.getText();
         Browser.waitForPresenceOfElement(By.xpath("//p[@class='MuiTypography-root pc-text-success MuiTypography-body1']"));
-
         Assert.assertEquals(Label, "Payment Successful!");
     }
 
@@ -113,6 +112,5 @@ public class CollectPaymentModal {
         Browser.waitForElementToBeVisible(By.xpath("//button[@class='btn btn-default' and contains(text(),'Download Receipt')]"));
         WebElement downloadButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='btn btn-default' and contains(text(),'Download Receipt')]"));
         Browser.clickOnElement(downloadButton);
-
     }
 }

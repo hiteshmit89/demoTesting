@@ -44,9 +44,5 @@ public class PaymentCTAStepDefinition {
     @And("I am Able to download the payment receipt")
     public void iAmAbleToDownloadThePaymentReceipt() {
         PBNModals.collectPaymentModal().downloadPaymentReciept();
-
     }
-
 }
-
-
