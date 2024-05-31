@@ -24,7 +24,7 @@ public class PatientOverviewModal {
     String note = "Patient Test Note";
 
     public void selectTask(String taskType) {
-        WebElement taskButton = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='patient-actions']//div[@class='action-item']//span[contains(text(),'Task')]/.."));
+        WebElement taskButton = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='action-item']//span[contains(text(),'Tasks')]"));
         Browser.clickOnElementUsingJavascript(taskButton);
         Browser.waitForPageReady();
         Browser.waitForPresenceOfElement(By.xpath("//*[@id='patient-window-tabs-id']//div[@class='col-xs-12']//span[text()='General Task']"));
@@ -308,7 +308,6 @@ public class PatientOverviewModal {
         WebElement enterPostalCode = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@id='postal_code']"));
         Browser.enterTextInEditBox(enterPostalCode, PbNUIApp.userdata().getPostalCode(2, "1"));
     }
-
     public void clickOnSaveButton() {
         WebElement saveButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='payment-button btn btn-primary']"));
         Browser.clickOnElementUsingJavascript(saveButton);
