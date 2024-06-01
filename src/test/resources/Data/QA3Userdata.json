@@ -89,7 +89,8 @@
       ],
       "PatientData": [
         {
-          "patient_name": "Sally Walker",
+          "patient_id": 1,
+          "patient_name": "Captain America",
           "task_description": "Automation",
           "task_type": "Treatment"
         }
@@ -104,7 +105,7 @@
           "country": "United States Minor",
           "street": "Downing Street",
           "houseNumber": "14457",
-          "postalCode": "95014",
+          "postalCode": "12345",
           "city": "California"
         }
       ]

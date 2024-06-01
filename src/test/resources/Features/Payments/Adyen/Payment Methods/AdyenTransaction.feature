@@ -27,12 +27,3 @@ Feature: Verify As a user I am able Charge a patient using adyen payment service
     Then I Click on Charge button
     And Verify Successful toast message
     And Verify I am able to download Payment receipt
-
-
-
-
-
-
-
-
-
