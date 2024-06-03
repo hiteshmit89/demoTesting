@@ -11,12 +11,15 @@ import org.openqa.selenium.support.ui.Select;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.time.Duration;
+import java.util.Arrays;
 import java.util.function.BooleanSupplier;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.support.ui.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import javax.swing.*;
 
 
 public class Browser {
@@ -115,6 +118,8 @@ public class Browser {
 
     public static void waitForElementChildren(WebElement element, By childLocator, int noOfChildrenNeeded) {
         retry(() -> element.findElements(childLocator).size() > noOfChildrenNeeded);
+    public static void waitForElementChildren(WebElement parent, By childLocator, int minimumNumberOfChildrenNeeded) {
+        retry(() -> parent.findElements(childLocator).size() > minimumNumberOfChildrenNeeded);
     }
 
     public static void waitForChildToDisappear(WebElement parent, By childLocator) {
@@ -123,6 +128,7 @@ public class Browser {
 
     public static void waitForElementList(By locator) {
         retry(() -> !DriverManager.getInstance().Driver.findElements(locator).isEmpty());
+        System.out.println(DriverManager.getInstance().Driver.findElements(locator).size());
     }
 
     public static void clickOnElement(WebElement element) {
@@ -165,6 +171,7 @@ public class Browser {
         element.clear();
         element.sendKeys(text);
     }
+
     public static void waitForPageReady() {
         DriverManager.getInstance().pageReady();
     }
