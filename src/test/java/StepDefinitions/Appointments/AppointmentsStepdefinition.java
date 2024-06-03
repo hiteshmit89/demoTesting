@@ -143,9 +143,9 @@ public class AppointmentsStepdefinition {
     }
 
     @Given("I login to PbN app with user id {int} and select the practice")
-    public void iLoginToPbNAppWithUserIdAndSelectThePractice(int arg0) {
-        PbNUIApp.loginPage().enterEmail(PbNUIApp.userdata().getUserEmail(1, arg0));
-        PbNUIApp.loginPage().enterPassword(PbNUIApp.userdata().getPassword(1, arg0));
+    public void iLoginToPbNAppWithUserIdAndSelectThePractice(int userID) {
+        PbNUIApp.loginPage().enterEmail(PbNUIApp.userdata().getUserEmail(1, userID));
+        PbNUIApp.loginPage().enterPassword(PbNUIApp.userdata().getPassword(1, userID));
         PbNUIApp.loginPage().clickOnLoginButton();
         PbNUIApp.appHomePage().clickOnPracticeInPracticeInfoTable(PbNUIApp.userdata().getPracticeName(1));
     }

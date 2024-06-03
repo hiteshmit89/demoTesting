@@ -104,12 +104,13 @@ public class Browser {
         int newSize = 0;
         do {
             try {
-                Thread.sleep(retryInterval);
-                newSize = DriverManager.getInstance().Driver.findElements(locator).size();
                 count++;
                 if (count >= retryCount) {
                     break;
                 }
+                Thread.sleep(retryInterval);
+                newSize = DriverManager.getInstance().Driver.findElements(locator).size();
+
             } catch (Exception ignored) {
             }
         } while (currSize == newSize);
@@ -118,7 +119,9 @@ public class Browser {
 
     public static void waitForElementChildren(WebElement element, By childLocator, int noOfChildrenNeeded) {
         retry(() -> element.findElements(childLocator).size() > noOfChildrenNeeded);
-    public static void waitForElementChildren(WebElement parent, By childLocator, int minimumNumberOfChildrenNeeded) {
+    }
+
+    public static void waitForElementChildren1(WebElement parent, By childLocator, int minimumNumberOfChildrenNeeded) {
         retry(() -> parent.findElements(childLocator).size() > minimumNumberOfChildrenNeeded);
     }
 
