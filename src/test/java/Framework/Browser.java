@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.Select;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.time.Duration;
+import java.util.Arrays;
 import java.util.function.BooleanSupplier;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.By;
@@ -93,8 +94,8 @@ public class Browser {
         retry(() -> table.findElements(By.xpath(".//tr")).size() >= size);
     }
 
-    public static void waitForElementChildren(WebElement element, By childLocator, int noOfChildrenNeeded) {
-        retry(() -> element.findElements(childLocator).size() > noOfChildrenNeeded);
+    public static void waitForElementChildren(WebElement parent, By childLocator, int minimumNumberOfChildrenNeeded) {
+        retry(() -> parent.findElements(childLocator).size() > minimumNumberOfChildrenNeeded);
     }
 
     public static void waitForElementList(By locator) {
@@ -142,6 +143,7 @@ public class Browser {
         element.clear();
         element.sendKeys(text);
     }
+
     public static void waitForPageReady() {
         DriverManager.getInstance().pageReady();
     }

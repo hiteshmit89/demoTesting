@@ -36,8 +36,8 @@ public class CampaignsPage extends BasePage {
         Browser.waitForTableSizeToBe(patientFollowUpTable.get(1), 3);
         Browser.waitForTableSizeToBe(patientFollowUpTable.get(2), 3);
         Browser.waitForTableSizeToBe(patientFollowUpTable.get(3), 3);
-        Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='table-responsive']//td[contains(text(),'"+campaignName+"')]")));
-        WebElement campaignTitle = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='table-responsive']//td[contains(text(),'"+campaignName+"')]"));
+        Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='table-responsive']//td[contains(text(),'" + campaignName + "')]")));
+        WebElement campaignTitle = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='table-responsive']//td[contains(text(),'" + campaignName + "')]"));
         Browser.scrollToVisibleElement(campaignTitle);
         List<WebElement> gridCells = campaignTitle.findElements(By.xpath("./following-sibling::td"));
         if (gridCells.size() == 1) {

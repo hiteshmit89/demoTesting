@@ -30,14 +30,15 @@ public class PaymentsPage extends BasePage {
         Browser.clickOnElement(widgetsTab);
     }
 
-    public void createPaymentURLAndNavigate() {
-        Browser.waitForPageReady();
-        Browser.waitForElementToBeVisible(By.xpath("//span[contains(text(),'https://www.patientsreach.com/payment/')]"));
-        WebElement eLink = DriverManager.getInstance().Driver.findElement(By.xpath("//span[contains(text(),'https://www.patientsreach.com/payment/')]"));
+    public void createPaymentURLAndNavigate(){
+        Browser.waitForElementPresence(By.xpath("(//span[contains(text(),'https://www.patientsreach.com/payment/portal/')])[1]"));
+        Browser.waitForElementToBeVisible(By.xpath("(//span[contains(text(),'https://www.patientsreach.com/payment/portal/')])[1]"));
+        WebElement eLink = DriverManager.getInstance().Driver.findElement(By.xpath("(//span[contains(text(),'https://www.patientsreach.com/payment/portal/')])[1]"));
         String urlText = eLink.getText();
-        String[] arrOfStr = urlText.split("payment");
+        System.out.println(urlText);
+        String[] arrOfStr = urlText.split("payment/portal");
         String URL = ConfigManager.getInstance().getProperty("URL");
-        URL = String.join("", URL, "/payment", arrOfStr[1]);
+        URL = String.join("", URL, "/payment/portal", arrOfStr[1]);
         Browser.navigateToNewURL(URL);
     }
 

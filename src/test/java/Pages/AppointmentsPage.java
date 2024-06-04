@@ -51,9 +51,11 @@ public class AppointmentsPage extends BasePage {
     }
 
     public void clickOnDisableInsurance() {
-        WebElement disableInsurance = DriverManager.getInstance().Driver.findElement(By.xpath("//label[text()='Ask Patients for their insurance Information']"));
+        WebElement disableInsurance = DriverManager.getInstance().Driver.findElement(By.id("insurance-active"));
         Browser.scrollToVisibleElement(disableInsurance);
-        Browser.clickOnElementUsingJavascript(disableInsurance);
+        if (disableInsurance.isSelected()) {
+            Browser.clickOnElementUsingJavascript(disableInsurance);
+        }
     }
 
     public void clickOnSaveButton() {
@@ -78,8 +80,11 @@ public class AppointmentsPage extends BasePage {
 
     public void clickOnEnableCreditCard() {
         WebElement enableCreditCard = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@id='card-setup-toggle']"));
+        Browser.waitForElementToBeVisible(enableCreditCard.findElement(By.xpath("./..")));
         Browser.scrollToVisibleElement(enableCreditCard);
-        Browser.clickOnElementUsingJavascript(enableCreditCard);
+        if (!enableCreditCard.isSelected()) {
+            Browser.clickOnElementUsingJavascript(enableCreditCard);
+        }
     }
 
     public void clickOnProviderEditButton() {
@@ -239,5 +244,10 @@ public class AppointmentsPage extends BasePage {
                 }
             }
         }
+    }
+
+    public void clickOnSortTableButton() {
+        WebElement sortProvider = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tr[1]/th[3]"));
+        Browser.clickOnElement(sortProvider);
     }
 }
