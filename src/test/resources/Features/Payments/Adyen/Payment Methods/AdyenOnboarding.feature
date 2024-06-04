@@ -2,7 +2,7 @@
 Feature: Verify As a user I am able to onboard a practice to adyen payment service
 
   @EnableAdyenToggle @PRAC-T3745 @PUA-12
-  Scenario: Verify user is able to enable toggle for adyen service
+  Scenario: Charge a patient via Card through Payments showing in CTA menu and verify the result in Payments
     Given I enter credentials
     When I click login button
     And I am able to select practice
@@ -10,9 +10,3 @@ Feature: Verify As a user I am able to onboard a practice to adyen payment servi
     And I click on Profile icon
     Then  I am able to click on settings
     And I am able to enable toggle for adyen feature
-
-
-
-
-
-
