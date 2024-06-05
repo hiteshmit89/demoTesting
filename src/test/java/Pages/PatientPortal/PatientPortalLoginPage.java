@@ -32,7 +32,7 @@ public class PatientPortalLoginPage extends BasePage {
     public void verifyErrorMessageDisplayed() {
         Browser.waitForElementToBeVisible(By.xpath("//div[@class='Toastify__progress-bar Toastify__progress-bar--animated Toastify__progress-bar-theme--colored Toastify__progress-bar--error']"));
         WebElement ErrorMessage = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='Toastify__progress-bar Toastify__progress-bar--animated Toastify__progress-bar-theme--colored Toastify__progress-bar--error']"));
-        Assert.assertTrue("You don't have permission to login", ErrorMessage.isDisplayed());
+        Assert.assertTrue("Error message did not display as expected.", ErrorMessage.isDisplayed());
     }
 }
 

@@ -15,8 +15,8 @@ public class PatientPortalLoginStepDefinition {
 
     @Given("I enter user credential")
     public void iEnterUserCredential() {
-        patientPortalLoginPage().enterEmail(PbNUIApp.userdata().getUserEmail(2, 2));
-        patientPortalLoginPage().enterPassword(PbNUIApp.userdata().getPassword(2, 2));}
+        patientPortalLoginPage().enterEmail(PbNUIApp.userdata().getUserEmail(2, 1));
+        patientPortalLoginPage().enterPassword(PbNUIApp.userdata().getPassword(2, 1));}
 
     @Then("I am navigated to Dashboard")
     public void IAmNavigatedToDashboard() {
@@ -35,8 +35,8 @@ public class PatientPortalLoginStepDefinition {
     @Given("I enter Invalid user credential")
     public void iEnterInvalidUserCredential()
     {
-        patientPortalLoginPage().enterEmail(PbNUIApp.userdata().getUserEmail(2, 1));
-        patientPortalLoginPage().enterPassword(PbNUIApp.userdata().getPassword(2, 1));
+        patientPortalLoginPage().enterEmail(PbNUIApp.userdata().getUserEmail(2, 2));
+        patientPortalLoginPage().enterPassword(PbNUIApp.userdata().getPassword(2, 2));
     }
     @Then("I will see Error Message")
     public void iWillSeeErrorMessage() {
