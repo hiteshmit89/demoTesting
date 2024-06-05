@@ -54,3 +54,9 @@ Feature: Appointments Settings
     Given I login to PbN app and select the practice
     When I try to sort columns of Appointment list table on appointment list page
     Then I will be able to sort columns of Appointment list table on appointment list page
+
+  @appointments @PUA-84 @PRAC-T118
+  Scenario: Verify I can click on the provider time availability checkbox on appointment settings page
+    Given I login to PbN app and select the practice
+    When I try to click on the provider time availability checkbox on appointment settings page
+    Then I will be able to click on the provider time availability checkbox on appointment settings page

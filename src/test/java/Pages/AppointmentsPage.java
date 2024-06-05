@@ -250,4 +250,16 @@ public class AppointmentsPage extends BasePage {
         WebElement sortProvider = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tr[1]/th[3]"));
         Browser.clickOnElement(sortProvider);
     }
+
+    public void clickOnProviderTimeAvailabilityCheckbox() {
+        Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Provider Time Availability')]/input[@type='checkbox']")));
+        WebElement providerTimeAvailabilityChkBox = DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Provider Time Availability')]/input[@type='checkbox']"));
+        Browser.scrollToVisibleElement(providerTimeAvailabilityChkBox);
+        if (!providerTimeAvailabilityChkBox.isSelected()) {
+            Browser.clickOnElementUsingJavascript(providerTimeAvailabilityChkBox);
+        }
+        if (!providerTimeAvailabilityChkBox.isSelected()) {
+            Assert.assertFalse("Provider Time Availability is not selected", providerTimeAvailabilityChkBox.isSelected());
+        }
+    }
 }
