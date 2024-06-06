@@ -15,15 +15,15 @@ public class CommCenterStepDefination {
     }
 
     @And("I click on three dots of patient Avatar")
-    public void iClickOnThreeDotsOfPatientAvatar() {PBNModals.messageModal().patientAvatarThreeDots();
+    public void iClickOnThreeDotsOfPatientAvatar() {PBNModals.messageModal().clickOnPatientAvatarThreeDots();
     }
 
     @And("I click on Charge")
-    public void iClickOnCharge() {PBNModals.messageModal().chargeOption();
+    public void iClickOnCharge() {PBNModals.messageModal().clickOnChargeOption();
     }
 
     @And("I click on Request payment")
-    public void iClickOnRequestPayment() {PBNModals.messageModal().requestPaymentOption();
+    public void iClickOnRequestPayment() {PBNModals.messageModal().clickOnRequestOption();
     }
 
     @And("I am able to see {string} floating button")
