@@ -34,7 +34,7 @@
           "last_name": "Test Last Name",
           "phone_number": "1234567890",
           "email_id": "test@test.com",
-          "birth_date": "01/01/1975"
+          "birth_date": "01/01/1967"
         },
         {
           "FormType": "2",
@@ -54,7 +54,7 @@
         },
         {
           "FormType": "4",
-          "first_name": "Nicky",
+          "first_name": "NickyP",
           "last_name": "Alexander",
           "phone_number": "1234567890",
           "email_id": "test@test.com",
@@ -98,9 +98,9 @@
         },
         {
           "user_id": 2,
-          "user_name": "Hello New",
-          "password": "123456789",
-          "email": "ritu.arya0118@practicenumbers.com",
+          "user_name": "Sohna Road",
+          "password": "ppp###2025",
+          "email": "pbn.india.testmail@gmail.com",
           "role": "super_admin"
         }
       ],
