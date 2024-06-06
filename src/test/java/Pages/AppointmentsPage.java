@@ -51,9 +51,11 @@ public class AppointmentsPage extends BasePage {
     }
 
     public void clickOnDisableInsurance() {
-        WebElement disableInsurance = DriverManager.getInstance().Driver.findElement(By.xpath("//label[text()='Ask Patients for their insurance Information']"));
+        WebElement disableInsurance = DriverManager.getInstance().Driver.findElement(By.id("insurance-active"));
         Browser.scrollToVisibleElement(disableInsurance);
-        Browser.clickOnElementUsingJavascript(disableInsurance);
+        if (disableInsurance.isSelected()) {
+            Browser.clickOnElementUsingJavascript(disableInsurance);
+        }
     }
 
     public void clickOnSaveButton() {
@@ -78,8 +80,11 @@ public class AppointmentsPage extends BasePage {
 
     public void clickOnEnableCreditCard() {
         WebElement enableCreditCard = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@id='card-setup-toggle']"));
+        Browser.waitForElementToBeVisible(enableCreditCard.findElement(By.xpath("./..")));
         Browser.scrollToVisibleElement(enableCreditCard);
-        Browser.clickOnElementUsingJavascript(enableCreditCard);
+        if (!enableCreditCard.isSelected()) {
+            Browser.clickOnElementUsingJavascript(enableCreditCard);
+        }
     }
 
     public void clickOnProviderEditButton() {
@@ -167,10 +172,16 @@ public class AppointmentsPage extends BasePage {
         Browser.clickOnElement(selectProvider);
     }
 
-    public void clickOutside() {
+    public void clickProviderHeader() {
         WebElement providerHeader = DriverManager.getInstance().Driver.findElement(By.xpath("//h3[text()='Providers']"));
         Browser.clickOnElement(providerHeader);
     }
+
+    public void clickOutsideAppointmentList() {
+        WebElement outsideAppointmentList = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='custom-table-filter-label col-lg-3 col-md-3 col-sm-3 col-xs-6']"));
+        Browser.clickOnElement(outsideAppointmentList);
+    }
+
 
     public void clickOnAddNewVisitType() {
         WebElement addNewButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='add-button btn btn-default']"));
@@ -197,6 +208,8 @@ public class AppointmentsPage extends BasePage {
     }
 
     public void clickOnExistingPatient() {
+        WebElement appointmentTable = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='react-bootstrap-table table-responsive']"));
+        Browser.waitForTableToLoad(appointmentTable);
         List<WebElement> rowElements = DriverManager.getInstance().Driver.findElements(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tr"));
         int i = 0;
         for (WebElement row : rowElements) {
@@ -212,5 +225,29 @@ public class AppointmentsPage extends BasePage {
                 }
             }
         }
+    }
+
+    public void clickOnExistingPatientInformation() {
+        List<WebElement> rowElements = DriverManager.getInstance().Driver.findElements(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tr"));
+        int i = 0;
+        for (WebElement row : rowElements) {
+            if (i==0) {
+                i++;
+            }
+            else {
+                WebElement colElement = row.findElement(By.xpath(".//td[7]"));
+                WebElement clickColElement = row.findElement(By.xpath(".//td[2]"));
+                String colName = "Existing";
+                if (Browser.getTextFromElement(colElement).equals(colName)) {
+                    Browser.clickOnElement(colElement);
+                    break;
+                }
+            }
+        }
+    }
+
+    public void clickOnSortTableButton() {
+        WebElement sortProvider = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tr[1]/th[3]"));
+        Browser.clickOnElement(sortProvider);
     }
 }

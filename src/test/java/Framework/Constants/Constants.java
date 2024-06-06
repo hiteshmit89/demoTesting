@@ -15,7 +15,15 @@ public class Constants {
         FormsTitle("Practice by Numbers: online_forms"),
         OnlinePaymentPortalTitle("Payment Portal"),
         TasksTitle("Practice by Numbers: Tasks"),
-        RevenueIQTitle("Practice by Numbers: RevenueOpportunities");
+        RevenueIQTitle("Practice by Numbers: RevenueOpportunities"),
+
+        PatientPortalLoginPageTitle("Patient Portal: Login"),
+
+        PatientPortalSelectPracticePageTitle("Patient Portal: Select Practice"),
+
+        PatientPortalDashboardPageTitle("Patient Portal: Dashboard");
+
+
 
         public final String label;
 
@@ -65,6 +73,7 @@ public class Constants {
         CommCenter("message-section"),
         Schedule("schedule-section"),
         Operations("hidden-xs operations-section"),
+        Payments("payments-section"),
         TeamMessaging("team-message-section");
 
         public final String label;

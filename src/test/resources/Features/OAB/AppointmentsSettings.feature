@@ -36,3 +36,21 @@ Feature: Appointments Settings
     Given I login to PbN app and select the practice
     When I click on appointments list page and verify appointment details
     Then I will be able to see appointments details on page list
+
+  @appointments @PUA-64 @PRAC-T106
+  Scenario: Verify I can filter appointments on appointment list page
+    Given I login to PbN app and select the practice
+    When I click on try to filter appointments on appointment list page
+    Then I will be able to see filtered appointments on page list
+
+  @appointments @PUA-60 @PRAC-T103
+  Scenario: Verify I can see patient information on appointment list page
+    Given I login to PbN app and select the practice
+    When I click on appointments list page and verify patient information
+    Then I will be able to see patient information on page list
+
+  @appointments @PUA-65 @PRAC-T104
+  Scenario: Verify I can sort columns of Appointment list table on appointment list page
+    Given I login to PbN app and select the practice
+    When I try to sort columns of Appointment list table on appointment list page
+    Then I will be able to sort columns of Appointment list table on appointment list page

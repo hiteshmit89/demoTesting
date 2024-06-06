@@ -116,9 +116,11 @@ public class UserData {
 
     public String getCardNumber(int practiceId, String CardDataId) {
         return getCardData(practiceId, CardDataId).getCard_number_Adyen();
-
     }
     public String getCardNumberStripe(int practiceId, String CardDataId) {
+        return getCardData(practiceId, CardDataId).getCard_number_Stripe();
+    }
+    public String setCardNumberStripe(int practiceId, String CardDataId) {
         return getCardData(practiceId, CardDataId).getCard_number_Stripe();
 
     }

@@ -8,7 +8,6 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import java.util.Dictionary;
 import java.util.Random;
 
 public class OnlinePaymentPortalPage extends BasePage {
@@ -49,8 +48,8 @@ public class OnlinePaymentPortalPage extends BasePage {
         Browser.waitForElementToBeVisible(By.xpath("//*[@id='payment-portal-card-border']//label[text()='Payment Amount']/following-sibling::div/input"));
         Browser.waitForElementToBeClickable(By.xpath("//*[@id='payment-portal-card-border']//label[text()='Payment Amount']/following-sibling::div/input"));
         WebElement paymentTextBox = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='payment-portal-card-border']//label[text()='Payment Amount']/following-sibling::div/input"));
-        Random randon = new Random();
-        int amount = randon.nextInt(10000);
+        Random random = new Random();
+        int amount = random.nextInt(10000);
         Browser.waitForElementToBeClickable(paymentTextBox);
         Browser.waitForElementToDisplay(paymentTextBox);
         Browser.enterTextInEditBox(paymentTextBox, String.valueOf(amount));
@@ -94,7 +93,6 @@ public class OnlinePaymentPortalPage extends BasePage {
         WebElement cardCVCID = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@placeholder='3 digits']"));
         Browser.enterTextInEditBox(cardCVCID, cardCVC);
         Browser.switchToDefaultContent();
-
     }
 
     public void enterBillingAddress() {
@@ -114,7 +112,5 @@ public class OnlinePaymentPortalPage extends BasePage {
         WebElement paymentLabel = DriverManager.getInstance().Driver.findElement(By.xpath("//p[@class='MuiTypography-root card-title MuiTypography-body1' and contains(text(),'Payment Success!')]"));
         String Label = paymentLabel.getText();
         Assert.assertEquals(Label,"Payment Success!");
-
-
     }
 }
