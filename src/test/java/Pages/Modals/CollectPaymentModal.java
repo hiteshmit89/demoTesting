@@ -49,6 +49,19 @@ public class CollectPaymentModal {
         enterCVC();
         enterPostalCode();
     }
+    public void enterAndValidateCardDetailsWithIncorrectCvc() {
+        Browser.waitForElementPresence(By.xpath("//div[@class='adyen-checkout__spinner adyen-checkout__spinner--large']"));
+        Browser.waitForElementInvisibility(DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='adyen-checkout__spinner adyen-checkout__spinner--large']")));
+        Browser.waitForFrameToLoad(By.xpath("//iframe[@title='Iframe for card number']"));
+        WebElement cardNumber = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@data-fieldtype='encryptedCardNumber']"));
+        Browser.enterTextInEditBox(cardNumber, PbNUIApp.userdata().getCardNumber(2, "1"));
+        Browser.switchToDefaultContent();
+        enterCardDate();
+        enterIncorrectCvc();
+        enterPostalCode();
+        WebElement cvcValidationMessage = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='adyen-checkout__error-text' and contains(text(),'Enter the complete security code')]"));
+        Assert.assertEquals("Enter the complete security code",cvcValidationMessage.getText() );
+    }
 
     public void enterCardDate() {
         Browser.waitForFrameToLoad(By.xpath("//iframe[@title='Iframe for expiry date']"));
@@ -61,6 +74,12 @@ public class CollectPaymentModal {
         Browser.waitForFrameToLoad(By.xpath("//iframe[@title='Iframe for security code']"));
         WebElement CVC = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@data-fieldtype='encryptedSecurityCode']"));
         Browser.enterTextInEditBox(CVC, PbNUIApp.userdata().getCardCVC(2, "1"));
+        Browser.switchToDefaultContent();
+    }
+    public void enterIncorrectCvc() {
+        Browser.waitForFrameToLoad(By.xpath("//iframe[@title='Iframe for security code']"));
+        WebElement CVC = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@data-fieldtype='encryptedSecurityCode']"));
+        Browser.enterTextInEditBox(CVC, PbNUIApp.userdata().getIncorrect_cvc(2, "1"));
         Browser.switchToDefaultContent();
     }
 

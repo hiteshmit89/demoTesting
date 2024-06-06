@@ -146,6 +146,9 @@ public class UserData {
     public String getCity(int practiceId, String CardDataId) {
         return getCardData(practiceId, CardDataId).getCity();
     }
+    public String getIncorrect_cvc(int practiceId, String CardDataId) {
+        return getCardData(practiceId, CardDataId).getIncorrect_cvc();
+    }
 
 
 }
