@@ -1,6 +1,5 @@
 package StepDefinitions.PatientPortal;
 import Framework.Root.PbNUIApp;
-import Pages.Modals.PBNModals;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -28,5 +27,16 @@ public class PatientPortalLoginStepDefinition {
     @And("I am able to select practices")
     public void iAmAbleToSelectPractices() {
         PbNUIApp.patientPortalSelectPracticePage().clickOnSelectPractice();
+    }
+
+    @Given("I enter Invalid user credential")
+    public void iEnterInvalidUserCredential()
+    {
+        patientPortalLoginPage().enterEmail(PbNUIApp.userdata().getUserEmail(2, 1));
+        patientPortalLoginPage().enterPassword(PbNUIApp.userdata().getPassword(2, 1));
+    }
+    @Then("I will see Error Message")
+    public void iWillSeeErrorMessage() {
+        PbNUIApp.patientPortalLoginPage().verifyErrorMessageDisplayed();
     }
 }
