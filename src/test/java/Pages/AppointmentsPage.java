@@ -213,10 +213,9 @@ public class AppointmentsPage extends BasePage {
         List<WebElement> rowElements = DriverManager.getInstance().Driver.findElements(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tr"));
         int i = 0;
         for (WebElement row : rowElements) {
-            if (i==0) {
+            if (i == 0) {
                 i++;
-            }
-            else {
+            } else {
                 WebElement colElement = row.findElement(By.xpath(".//td[7]"));
                 String colName = "Existing";
                 if (Browser.getTextFromElement(colElement).equals(colName)) {
@@ -231,10 +230,9 @@ public class AppointmentsPage extends BasePage {
         List<WebElement> rowElements = DriverManager.getInstance().Driver.findElements(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tr"));
         int i = 0;
         for (WebElement row : rowElements) {
-            if (i==0) {
+            if (i == 0) {
                 i++;
-            }
-            else {
+            } else {
                 WebElement colElement = row.findElement(By.xpath(".//td[7]"));
                 WebElement clickColElement = row.findElement(By.xpath(".//td[2]"));
                 String colName = "Existing";
