@@ -267,18 +267,6 @@ public class AppointmentsPage extends BasePage {
         Browser.clickOnElement(sortProvider);
     }
 
-    public void clickOnProviderTimeAvailabilityCheckbox() {
-        Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Provider Time Availability')]/input[@type='checkbox']")));
-        WebElement providerTimeAvailabilityChkBox = DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Provider Time Availability')]/input[@type='checkbox']"));
-        Browser.scrollToVisibleElement(providerTimeAvailabilityChkBox);
-        if (!providerTimeAvailabilityChkBox.isSelected()) {
-            Browser.clickOnElementUsingJavascript(providerTimeAvailabilityChkBox);
-        }
-        if (!providerTimeAvailabilityChkBox.isSelected()) {
-            Assert.assertFalse("Provider Time Availability is not selected", providerTimeAvailabilityChkBox.isSelected());
-        }
-    }
-
     public void enterPatientNameInSearchBox(String patientName) {
         WebElement searchBox = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@placeholder='Search by Patient Name']"));
         Browser.enterTextInEditBox(searchBox, patientName);
@@ -291,5 +279,16 @@ public class AppointmentsPage extends BasePage {
             Assert.assertEquals("Patient Found", PbNUIApp.userdata().getFirstName(1,"5"), element.getText());
             break;
         }
+    }
+
+    public void clickOnProviderTimeAvailabilityCheckbox() {
+        Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Provider Time Availability')]/input[@type='checkbox']")));
+        WebElement providerTimeAvailabilityChkBox = DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Provider Time Availability')]/input[@type='checkbox']"));
+        Browser.scrollToVisibleElement(providerTimeAvailabilityChkBox);
+        if (!providerTimeAvailabilityChkBox.isSelected()) {
+            Browser.clickOnElementUsingJavascript(providerTimeAvailabilityChkBox);
+        }
+        Assert.assertTrue("Provider Time Availability is not selected", providerTimeAvailabilityChkBox.isSelected());
+
     }
 }
