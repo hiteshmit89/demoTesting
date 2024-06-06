@@ -88,10 +88,8 @@ public class CampaignsPage extends BasePage {
     }
 
     public void clickOnPreHeaderAndSelectPlaceholder(String preHeaderData) {
-        Browser.waitForElementToBeVisible(By.xpath("(//div[@class='form-control rich-text-editor rdw-editor-main'])[2]"));
-        Browser.waitForElementToBeClickable(By.xpath("(//div[@class='form-control rich-text-editor rdw-editor-main'])[2]"));
-        //WebElement preHeader = DriverManager.getInstance().Driver.findElement(By.xpath("(//div[@class='form-control rich-text-editor rdw-editor-main'])[2]"));
-        //Browser.clickOnElement(preHeader);
+        Browser.waitForElementToBeVisible(By.xpath("//label[text()='Preheader:']/following-sibling::div//div[@data-editor]/div"));
+        Browser.waitForElementToBeClickable(By.xpath("//label[text()='Preheader:']/following-sibling::div//div[@data-editor]/div"));
         List<WebElement> preHeaderDataEnter = DriverManager.getInstance().Driver.findElements(By.xpath("//label[text()='Preheader:']/following-sibling::div//div[@data-editor]/div"));
         Browser.enterTextInEditBox(preHeaderDataEnter.get(1), preHeaderData);
         WebElement clickSaveButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='Cancel']/following-sibling::button"));
