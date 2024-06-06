@@ -54,3 +54,9 @@ Feature: Appointments Settings
     Given I login to PbN app and select the practice
     When I try to sort columns of Appointment list table on appointment list page
     Then I will be able to sort columns of Appointment list table on appointment list page
+
+  @appointments @PUA-66 @PRAC-T105
+  Scenario: Verify I can search the patient with patient name on appointment list page
+    Given I login to PbN app with user id 1 and select the practice
+    When I try to search the patient with patient name on appointment list page
+    Then I will be able to search the patient with patient name on appointment list page
