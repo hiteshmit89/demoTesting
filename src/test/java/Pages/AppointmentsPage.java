@@ -283,12 +283,12 @@ public class AppointmentsPage extends BasePage {
 
     public void clickOnProviderTimeAvailabilityCheckbox() {
         Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Provider Time Availability')]/input[@type='checkbox']")));
-        WebElement providerTimeAvailabilityChkBox = DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Provider Time Availability')]/input[@type='checkbox']"));
-        Browser.scrollToVisibleElement(providerTimeAvailabilityChkBox);
-        if (!providerTimeAvailabilityChkBox.isSelected()) {
-            Browser.clickOnElementUsingJavascript(providerTimeAvailabilityChkBox);
+        WebElement providerTimeAvailabilityCheckBox = DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Provider Time Availability')]/input[@type='checkbox']"));
+        Browser.scrollToVisibleElement(providerTimeAvailabilityCheckBox);
+        if (!providerTimeAvailabilityCheckBox.isSelected()) {
+            Browser.clickOnElement(providerTimeAvailabilityCheckBox);
         }
-        Assert.assertTrue("Provider Time Availability is not selected", providerTimeAvailabilityChkBox.isSelected());
+        Assert.assertTrue("Provider Time Availability is not selected", providerTimeAvailabilityCheckBox.isSelected());
 
     }
 }
