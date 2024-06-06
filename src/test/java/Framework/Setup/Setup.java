@@ -70,7 +70,7 @@ public class Setup {
             scenario.attach(screenshot, "image/png", "Screenshot");
         }
 
-        if (!ConfigManager.getInstance().getProperty("browser").equals("firefox")) {
+       if (!ConfigManager.getInstance().getProperty("browser").equals("firefox")) {
             DriverManager.getInstance().closeDriver();
         }
 

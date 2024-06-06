@@ -44,7 +44,7 @@ public class AppointmentsStepdefinition {
         PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
         PbNUIApp.appointmentsPage().clickOnAppointmentSettingTab();
         PbNUIApp.appointmentsPage().clickOnSetupCreditCard();
-        PbNUIApp.appointmentsPage().clickOnEnableCreditCard();
+        PbNUIApp.appointmentsPage().clickOnDisableCreditCard();
         PbNUIApp.appointmentsPage().clickOnSaveButton();
         PbNUIApp.appointmentsPage().clickOnSettingSaveButton();
     }
@@ -80,7 +80,7 @@ public class AppointmentsStepdefinition {
         PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
         PbNUIApp.appointmentsPage().clickOnAppointmentSettingTab();
         PbNUIApp.appointmentsPage().clickOnSetupInsurance();
-        PbNUIApp.appointmentsPage().clickOnDisableInsurance();
+        PbNUIApp.appointmentsPage().clickOnEnableInsurance();
         PbNUIApp.appointmentsPage().clickOnSaveButton();
         PbNUIApp.appointmentsPage().clickOnSettingSaveButton();
     }
