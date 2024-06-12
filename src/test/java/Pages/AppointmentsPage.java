@@ -288,10 +288,10 @@ public class AppointmentsPage extends BasePage {
 
     public void clickOnBlockedPatientToggleButton() {
         Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//h4[text()='Blocked Patient']")));
-        WebElement blockPatientToggle = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@id='card-setup-toggle']"));
+        WebElement blockPatientToggle = DriverManager.getInstance().Driver.findElement(By.xpath("//label[@class='custom-control-label']/following-sibling::label[@for='template-toggle-blocked_patient']"));
         Browser.scrollToVisibleElement(blockPatientToggle);
-        if (!blockPatientToggle.isSelected()) {
-            Browser.clickOnElementUsingJavascript(blockPatientToggle);
+        if (blockPatientToggle.isEnabled()) {
+            Browser.clickOnElement(blockPatientToggle);
         }
     }
 }
