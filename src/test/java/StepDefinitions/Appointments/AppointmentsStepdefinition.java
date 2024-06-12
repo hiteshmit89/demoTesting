@@ -142,6 +142,14 @@ public class AppointmentsStepdefinition {
         PbNUIApp.appHomePage().clickOnPracticeInPracticeInfoTable(PbNUIApp.userdata().getPracticeName(1));
     }
 
+    @Given("I login to PbN app with user id {int} and select the practice")
+    public void iLoginToPbNAppWithUserIdAndSelectThePractice(int userID) {
+        PbNUIApp.loginPage().enterEmail(PbNUIApp.userdata().getUserEmail(1, userID));
+        PbNUIApp.loginPage().enterPassword(PbNUIApp.userdata().getPassword(1, userID));
+        PbNUIApp.loginPage().clickOnLoginButton();
+        PbNUIApp.appHomePage().clickOnPracticeInPracticeInfoTable(PbNUIApp.userdata().getPracticeName(1));
+    }
+
     @When("I click on appointments tab and try to book appointments for new patient")
     public void iClickOnAppointmentsAndTryToBookAppointmentsForNewPatient() {
         PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
