@@ -142,4 +142,15 @@ public class AppointmentsSettingsStepDefinition {
         PbNUIApp.appointmentsPage().verifyPatientNameInAppointmentList();
 
     }
+
+    @When("I try to click on and disable automatic messages on appointment template page")
+    public void iTryToClickOnAndDisableAutomaticMessagesOnAppointmentTemplatePage() {
+        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
+        PbNUIApp.appointmentsPage().clickOnAppointmentTemplateTab();
+    }
+
+    @Then("I will be able to click and disable automatic messages on appointment template page")
+    public void iWillBeAbleToClickAndDisableAutomaticMessagesOnAppointmentTemplatePage() {
+        PbNUIApp.appointmentsPage().clickOnBlockedPatientToggleButton();
+    }
 }

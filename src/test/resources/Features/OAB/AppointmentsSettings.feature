@@ -60,3 +60,9 @@ Feature: Appointments Settings
     Given I login to PbN app with user id 1 and select the practice
     When I try to search the patient with patient name on appointment list page
     Then I will be able to search the patient with patient name on appointment list page
+
+  @appointments @PUA-88 @PRAC-T3842
+  Scenario: Verify I can disable automatic messages on appointment template page
+    Given I login to PbN app and select the practice
+    When I try to click on and disable automatic messages on appointment template page
+    Then I will be able to click and disable automatic messages on appointment template page

@@ -44,6 +44,11 @@ public class AppointmentsPage extends BasePage {
         Browser.clickOnElement(appointmentList);
     }
 
+    public void clickOnAppointmentTemplateTab() {
+        WebElement appointmentTemplate = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='appointment-booking-page-tab-Templates']"));
+        Browser.clickOnElement(appointmentTemplate);
+    }
+
     public void clickOnSetupInsurance() {
         Browser.waitForElementToBeClickable(By.xpath("//button[text()='Setup Insurances']"));
         WebElement setupInsuranceButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='Setup Insurances']"));
@@ -278,6 +283,15 @@ public class AppointmentsPage extends BasePage {
         for (WebElement element : verifyPatientName) {
             Assert.assertEquals("Patient Found", PbNUIApp.userdata().getFirstName(1,"5"), element.getText());
             break;
+        }
+    }
+
+    public void clickOnBlockedPatientToggleButton() {
+        Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//h4[text()='Blocked Patient']")));
+        WebElement blockPatientToggle = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@id='card-setup-toggle']"));
+        Browser.scrollToVisibleElement(blockPatientToggle);
+        if (!blockPatientToggle.isSelected()) {
+            Browser.clickOnElementUsingJavascript(blockPatientToggle);
         }
     }
 }
