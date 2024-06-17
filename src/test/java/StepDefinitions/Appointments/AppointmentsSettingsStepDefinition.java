@@ -142,4 +142,15 @@ public class AppointmentsSettingsStepDefinition {
         PbNUIApp.appointmentsPage().verifyPatientNameInAppointmentList();
 
     }
+
+    @When("I try to click on the provider time availability checkbox on appointment settings page")
+    public void iTryToClickOnTheProviderTimeAvailabilityCheckboxOnAppointmentSettingsPage() {
+        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
+        PbNUIApp.appointmentsPage().clickOnAppointmentSettingTab();
+    }
+
+    @Then("I will be able to click on the provider time availability checkbox on appointment settings page")
+    public void iWillBeAbleToClickOnTheProviderTimeAvailabilityCheckboxOnAppointmentSettingsPage() {
+        PbNUIApp.appointmentsPage().clickOnProviderTimeAvailabilityCheckbox();
+    }
 }
