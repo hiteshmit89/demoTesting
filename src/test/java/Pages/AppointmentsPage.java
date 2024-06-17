@@ -303,7 +303,7 @@ public class AppointmentsPage extends BasePage {
         if (blockPatientToggle.isEnabled()) {
             Browser.clickOnElement(blockPatientToggle);
         }
-        Assert.assertTrue("Blocked Patient Toggle Button is not disabled", blockPatientToggle.isEnabled());
+        Assert.assertFalse("Blocked Patient Toggle Button is not disabled", blockPatientToggle.isEnabled());
     }
 
     public void clickOnConflictedAppointmentToggleButton() {
@@ -312,7 +312,7 @@ public class AppointmentsPage extends BasePage {
         if (conflictedAppointmentToggle.isEnabled()) {
             Browser.clickOnElement(conflictedAppointmentToggle);
         }
-        Assert.assertTrue("Conflicted Appointment Toggle Button is not disabled", conflictedAppointmentToggle.isEnabled());
+        Assert.assertFalse("Conflicted Appointment Toggle Button is not disabled", conflictedAppointmentToggle.isEnabled());
     }
 
     public void clickOnExistingPatientBookedAppointmentToggleButton() {
@@ -321,7 +321,7 @@ public class AppointmentsPage extends BasePage {
         if (existingPatientBookedAppointmentToggle.isEnabled()) {
             Browser.clickOnElement(existingPatientBookedAppointmentToggle);
         }
-        Assert.assertTrue("Existing Patient Booked Appointment Toggle Button is not disabled", existingPatientBookedAppointmentToggle.isEnabled());
+        Assert.assertFalse("Existing Patient Booked Appointment Toggle Button is not disabled", existingPatientBookedAppointmentToggle.isEnabled());
     }
 
     public void clickOnNewPatientBookedAppointmentToggleButton() {
@@ -330,6 +330,6 @@ public class AppointmentsPage extends BasePage {
         if (newPatientBookedAppointmentToggle.isEnabled()) {
             Browser.clickOnElement(newPatientBookedAppointmentToggle);
         }
-        Assert.assertTrue("New Patient Booked Appointment Toggle Button is not disabled", newPatientBookedAppointmentToggle.isEnabled());
+        Assert.assertFalse("New Patient Booked Appointment Toggle Button is not disabled", newPatientBookedAppointmentToggle.isEnabled());
     }
 }
