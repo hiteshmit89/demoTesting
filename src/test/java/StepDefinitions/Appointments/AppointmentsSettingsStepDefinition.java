@@ -163,5 +163,8 @@ public class AppointmentsSettingsStepDefinition {
     @Then("I will be able to click and disable automatic messages on appointment template page")
     public void iWillBeAbleToClickAndDisableAutomaticMessagesOnAppointmentTemplatePage() {
         PbNUIApp.appointmentsPage().clickOnBlockedPatientToggleButton();
+        PbNUIApp.appointmentsPage().clickOnConflictedAppointmentToggleButton();
+        PbNUIApp.appointmentsPage().clickOnExistingPatientBookedAppointmentToggleButton();
+        PbNUIApp.appointmentsPage().clickOnNewPatientBookedAppointmentToggleButton();
     }
 }
