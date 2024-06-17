@@ -143,6 +143,17 @@ public class AppointmentsSettingsStepDefinition {
 
     }
 
+    @When("I try to click on the provider time availability checkbox on appointment settings page")
+    public void iTryToClickOnTheProviderTimeAvailabilityCheckboxOnAppointmentSettingsPage() {
+        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
+        PbNUIApp.appointmentsPage().clickOnAppointmentSettingTab();
+    }
+
+    @Then("I will be able to click on the provider time availability checkbox on appointment settings page")
+    public void iWillBeAbleToClickOnTheProviderTimeAvailabilityCheckboxOnAppointmentSettingsPage() {
+        PbNUIApp.appointmentsPage().clickOnProviderTimeAvailabilityCheckbox();
+    }
+
     @When("I try to click on and disable automatic messages on appointment template page")
     public void iTryToClickOnAndDisableAutomaticMessagesOnAppointmentTemplatePage() {
         PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);

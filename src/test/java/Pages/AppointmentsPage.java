@@ -286,6 +286,16 @@ public class AppointmentsPage extends BasePage {
         }
     }
 
+    public void clickOnProviderTimeAvailabilityCheckbox() {
+        Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Provider Time Availability')]/input[@type='checkbox']")));
+        WebElement providerTimeAvailabilityCheckBox = DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Provider Time Availability')]/input[@type='checkbox']"));
+        Browser.scrollToVisibleElement(providerTimeAvailabilityCheckBox);
+        if (!providerTimeAvailabilityCheckBox.isSelected()) {
+            Browser.clickOnElement(providerTimeAvailabilityCheckBox);
+        }
+        Assert.assertTrue("Provider Time Availability is not selected", providerTimeAvailabilityCheckBox.isSelected());
+    }
+
     public void clickOnBlockedPatientToggleButton() {
         Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//h4[text()='Blocked Patient']")));
         WebElement blockPatientToggle = DriverManager.getInstance().Driver.findElement(By.xpath("//label[@class='custom-control-label']/following-sibling::label[@for='template-toggle-blocked_patient']"));
