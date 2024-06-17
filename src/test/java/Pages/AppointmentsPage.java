@@ -44,11 +44,6 @@ public class AppointmentsPage extends BasePage {
         Browser.clickOnElement(appointmentList);
     }
 
-    public void clickOnAppointmentTemplateTab() {
-        WebElement appointmentTemplate = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='appointment-booking-page-tab-Templates']"));
-        Browser.clickOnElement(appointmentTemplate);
-    }
-
     public void clickOnSetupInsurance() {
         Browser.waitForElementToBeClickable(By.xpath("//button[text()='Setup Insurances']"));
         WebElement setupInsuranceButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='Setup Insurances']"));
@@ -62,6 +57,8 @@ public class AppointmentsPage extends BasePage {
         if (disableInsurance.isSelected()) {
             Browser.clickOnElementUsingJavascript(disableInsurance);
         }
+
+
     }
 
     public void clickOnEnableInsurance() {
@@ -78,11 +75,6 @@ public class AppointmentsPage extends BasePage {
         Browser.waitForElementToBeClickable(saveButton);
         Browser.clickOnElementUsingJavascript(saveButton);
     }
-    public void clickOnDisableCreditCard() {
-        WebElement enableCreditCard = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@id='card-setup-toggle']"));
-    }
-        public void clickOnEnableInsurance() {
-        WebElement disableInsurance = DriverManager.getInstance().Driver.findElement(By.id("insurance-active"));}
 
     public void clickOnSettingSaveButton() {
         WebElement saveButton = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='bottom-buttons-row']//button[text()='Save']"));
@@ -209,14 +201,9 @@ public class AppointmentsPage extends BasePage {
         WebElement outsideAppointmentList = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='custom-table-filter-label col-lg-3 col-md-3 col-sm-3 col-xs-6']"));
         Browser.clickOnElement(outsideAppointmentList);
     }
-    public void enterPatientNameInSearchBox(String patientName) {
-        WebElement searchBox = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@placeholder='Search by Patient Name']"));
-    }
-    public void verifyPatientNameInAppointmentList() {
-        Browser.waitForTableToFinishShrinking(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tr"));
-    }
 
-        public void clickOnAddNewVisitType() {
+
+    public void clickOnAddNewVisitType() {
         WebElement addNewButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='add-button btn btn-default']"));
         Browser.clickOnElement(addNewButton);
     }
@@ -295,7 +282,6 @@ public class AppointmentsPage extends BasePage {
             break;
         }
     }
-
     public void clickOnProviderTimeAvailabilityCheckbox() {
         Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Provider Time Availability')]/input[@type='checkbox']")));
         WebElement providerTimeAvailabilityCheckBox = DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Provider Time Availability')]/input[@type='checkbox']"));
