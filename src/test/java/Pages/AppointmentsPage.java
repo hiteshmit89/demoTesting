@@ -298,38 +298,38 @@ public class AppointmentsPage extends BasePage {
 
     public void clickOnBlockedPatientToggleButton() {
         Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//h4[text()='Blocked Patient']")));
-        WebElement blockPatientToggle = DriverManager.getInstance().Driver.findElement(By.xpath("//label[@class='custom-control-label']/following-sibling::label[@for='template-toggle-blocked_patient']"));
+        WebElement blockPatientToggle = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='template-toggle-blocked_patient']"));
         Browser.scrollToVisibleElement(blockPatientToggle);
-        if (blockPatientToggle.isEnabled()) {
-            Browser.clickOnElement(blockPatientToggle);
+        if (blockPatientToggle.isSelected()) {
+            Browser.clickOnElementUsingJavascript(blockPatientToggle);
         }
-        Assert.assertFalse("Blocked Patient Toggle Button is not disabled", blockPatientToggle.isEnabled());
+        Assert.assertFalse("Blocked Patient Toggle Button is not disabled", blockPatientToggle.isSelected());
     }
 
     public void clickOnConflictedAppointmentToggleButton() {
-        WebElement conflictedAppointmentToggle = DriverManager.getInstance().Driver.findElement(By.xpath("//label[@class='custom-control-label']/following-sibling::label[@for='template-toggle-conflicted_appointment_email']"));
+        WebElement conflictedAppointmentToggle = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='template-toggle-conflicted_appointment_email']"));
         Browser.scrollToVisibleElement(conflictedAppointmentToggle);
-        if (conflictedAppointmentToggle.isEnabled()) {
-            Browser.clickOnElement(conflictedAppointmentToggle);
+        if (conflictedAppointmentToggle.isSelected()) {
+            Browser.clickOnElementUsingJavascript(conflictedAppointmentToggle);
         }
-        Assert.assertFalse("Conflicted Appointment Toggle Button is not disabled", conflictedAppointmentToggle.isEnabled());
+        Assert.assertFalse("Conflicted Appointment Toggle Button is not disabled", conflictedAppointmentToggle.isSelected());
     }
 
     public void clickOnExistingPatientBookedAppointmentToggleButton() {
-        WebElement existingPatientBookedAppointmentToggle = DriverManager.getInstance().Driver.findElement(By.xpath("//label[@class='custom-control-label']/following-sibling::label[@for='template-toggle-existing_patient_booked_appointment']"));
+        WebElement existingPatientBookedAppointmentToggle = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='template-toggle-existing_patient_booked_appointment']"));
         Browser.scrollToVisibleElement(existingPatientBookedAppointmentToggle);
-        if (existingPatientBookedAppointmentToggle.isEnabled()) {
-            Browser.clickOnElement(existingPatientBookedAppointmentToggle);
+        if (existingPatientBookedAppointmentToggle.isSelected()) {
+            Browser.clickOnElementUsingJavascript(existingPatientBookedAppointmentToggle);
         }
-        Assert.assertFalse("Existing Patient Booked Appointment Toggle Button is not disabled", existingPatientBookedAppointmentToggle.isEnabled());
+        Assert.assertFalse("Existing Patient Booked Appointment Toggle Button is not disabled", existingPatientBookedAppointmentToggle.isSelected());
     }
 
     public void clickOnNewPatientBookedAppointmentToggleButton() {
-        WebElement newPatientBookedAppointmentToggle = DriverManager.getInstance().Driver.findElement(By.xpath("//label[@class='custom-control-label']/following-sibling::label[@for='template-toggle-new_patient_booked_appointment']"));
+        WebElement newPatientBookedAppointmentToggle = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='template-toggle-new_patient_booked_appointment']"));
         Browser.scrollToVisibleElement(newPatientBookedAppointmentToggle);
-        if (newPatientBookedAppointmentToggle.isEnabled()) {
-            Browser.clickOnElement(newPatientBookedAppointmentToggle);
+        if (newPatientBookedAppointmentToggle.isSelected()) {
+            Browser.clickOnElementUsingJavascript(newPatientBookedAppointmentToggle);
         }
-        Assert.assertFalse("New Patient Booked Appointment Toggle Button is not disabled", newPatientBookedAppointmentToggle.isEnabled());
+        Assert.assertFalse("New Patient Booked Appointment Toggle Button is not disabled", newPatientBookedAppointmentToggle.isSelected());
     }
 }
