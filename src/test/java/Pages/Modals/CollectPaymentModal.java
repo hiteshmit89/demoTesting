@@ -19,6 +19,7 @@ public class CollectPaymentModal {
     }
 
     public void enterPatientName() {
+        Browser.waitForElementToBeClickable(By.xpath("//input[@class='rbt-input-main form-control rbt-input']"));
         WebElement patientEditBox = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@class='rbt-input-main form-control rbt-input']"));
         Browser.enterTextInEditBox(patientEditBox, PbNUIApp.userdata().getPatientName(2, 1));
         Browser.waitForElementToBeVisible(By.xpath("//a[@class='dropdown-item patient-search-result-menu-item ']"));
