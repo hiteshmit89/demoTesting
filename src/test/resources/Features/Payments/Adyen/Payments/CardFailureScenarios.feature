@@ -8,4 +8,6 @@ Feature: Charge a patient via Card through Payments showing in CTA menu and veri
         And I am able to select practice
         Then I am redirected to home page
         And I click on the Floating Payment CTA
+        And I enter the Patient Name
+        And I enter the Amount
         And I select payment method and enter card details with incorrect cvc and verify incorrect cvv error message
