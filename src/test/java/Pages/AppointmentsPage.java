@@ -295,4 +295,29 @@ public class AppointmentsPage extends BasePage {
         }
         Assert.assertTrue("Provider Time Availability is not selected", providerTimeAvailabilityCheckBox.isSelected());
     }
+
+    public void clickOnSettingIconButton() {
+        Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='btn btn-default']//i[@class='fa fa-cog']")));
+        WebElement settingIconButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='btn btn-default']//i[@class='fa fa-cog']"));
+        Browser.clickOnElement(settingIconButton);
+    }
+
+    public void clickOnLanguageTab() {
+        Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='communication-settings-modal-side-bar-tab-open_languages_block']")));
+        WebElement languageTab = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='communication-settings-modal-side-bar-tab-open_languages_block']"));
+        Browser.clickOnElement(languageTab);
+    }
+
+    public void clickOnSpanishLanguageToggleButton() {
+       // Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//input[@id='language-Spanish-2']")));
+        WebElement spanishLanguageToggleButton = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@id='language-Spanish-2']"));
+        if (spanishLanguageToggleButton.isSelected()) {
+            Browser.clickOnElement(spanishLanguageToggleButton);
+        }
+        Assert.assertFalse("Spanish Language Toggle Button is selected", spanishLanguageToggleButton.isSelected());
+        if (!spanishLanguageToggleButton.isSelected()) {
+            Browser.clickOnElement(spanishLanguageToggleButton);
+        }
+        Assert.assertTrue("Spanish Language Toggle Button is not selected", spanishLanguageToggleButton.isSelected());
+    }
 }
