@@ -62,6 +62,7 @@ public class CardData {
     public void setCity(String city) {
         this.city = city; }
     String city;
+
     @JsonProperty("incorrect_cvc")
     public String getIncorrect_cvc() {
         return this.incorrect_cvc; }

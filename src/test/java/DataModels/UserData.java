@@ -117,16 +117,19 @@ public class UserData {
     public String getCardNumber(int practiceId, String CardDataId) {
         return getCardData(practiceId, CardDataId).getCard_number_Adyen();
     }
+
     public String getCardNumberStripe(int practiceId, String CardDataId) {
         return getCardData(practiceId, CardDataId).getCard_number_Stripe();
     }
+
     public String setCardNumberStripe(int practiceId, String CardDataId) {
         return getCardData(practiceId, CardDataId).getCard_number_Stripe();
-
     }
+
     public String getCardMonth(int practiceId, String CardDataId) {
         return getCardData(practiceId, CardDataId).getMonth_date();
     }
+
     public String getCardCVC(int practiceId, String CardDataId) {
         return getCardData(practiceId, CardDataId).getCvc();
     }
@@ -134,21 +137,24 @@ public class UserData {
     public String getCountry(int practiceId, String CardDataId) {
         return getCardData(practiceId, CardDataId).getCountry();
     }
+
     public String getStreet(int practiceId, String CardDataId) {
         return getCardData(practiceId, CardDataId).getStreet();
     }
+
     public String getHouseNumber(int practiceId, String CardDataId) {
         return getCardData(practiceId, CardDataId).getHouseNumber();
     }
+
     public String getPostalCode(int practiceId, String CardDataId) {
         return getCardData(practiceId, CardDataId).getPostalCode();
     }
+
     public String getCity(int practiceId, String CardDataId) {
         return getCardData(practiceId, CardDataId).getCity();
     }
     public String getIncorrect_cvc(int practiceId, String CardDataId) {
         return getCardData(practiceId, CardDataId).getIncorrect_cvc();
     }
-
 
 }

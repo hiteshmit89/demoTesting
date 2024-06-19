@@ -50,6 +50,7 @@ public class CollectPaymentModal {
         enterCVC();
         enterPostalCode();
     }
+
     public void enterAndValidateCardDetailsWithIncorrectCvc() {
         Browser.waitForElementPresence(By.xpath("//div[@class='adyen-checkout__spinner adyen-checkout__spinner--large']"));
         Browser.waitForElementInvisibility(DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='adyen-checkout__spinner adyen-checkout__spinner--large']")));
@@ -77,6 +78,7 @@ public class CollectPaymentModal {
         Browser.enterTextInEditBox(CVC, PbNUIApp.userdata().getCardCVC(2, "1"));
         Browser.switchToDefaultContent();
     }
+
     public void enterIncorrectCvc() {
         Browser.waitForFrameToLoad(By.xpath("//iframe[@title='Iframe for security code']"));
         WebElement CVC = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@data-fieldtype='encryptedSecurityCode']"));
