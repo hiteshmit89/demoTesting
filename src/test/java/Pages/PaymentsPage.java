@@ -2,6 +2,7 @@ package Pages;
 
 import Framework.Browser;
 import Framework.Constants.Constants;
+import Framework.Root.PbNUIApp;
 import Framework.Util.ConfigManager;
 import Framework.Constants.Constants.PageTitle;
 import Framework.Util.DriverManager;
@@ -60,17 +61,46 @@ public class PaymentsPage extends BasePage {
         Browser.clickOnElement(cardIcon);
     }
 
-    public void selectDropdownValue() {
-        Browser.waitForElementToBeVisible(By.xpath("//*[@id='payment-methods-selector']"));
-        Browser.waitForElementToBeClickable(By.xpath("//*[@id='payment-methods-selector']"));
-        WebElement dropdownSelectPaymentMethod = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='payment-methods-selector']"));
-        Browser.selectIndexFromDropdown(dropdownSelectPaymentMethod, 1);
+    public void enterCardDetailsOnPaymentModal() {
+        WebElement cardButton =DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='MuiButton-startIcon MuiButton-iconSizeSmall']"));
+        Browser.clickOnElement(cardButton);
+        Browser.waitForFrameToLoad(By.xpath("//iframe[@title='Iframe for card number']"));
+        enterCardNumber(PbNUIApp.userdata().getCardNumber(2, "1"));
+        enterCardDate(PbNUIApp.userdata().getCardMonth(2, "1"));
+        enterCVC(PbNUIApp.userdata().getCardCVC(2, "1"));
+    }
+
+    public void enterCardNumber(String cardNumber) {
+        Browser.waitForElementPresence(By.xpath("//input[@data-fieldtype='encryptedCardNumber']"));
+        Browser.waitForElementToBeVisible(By.xpath("//input[@data-fieldtype='encryptedCardNumber']"));
+        WebElement cardNumberID = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@data-fieldtype='encryptedCardNumber']"));
+        Browser.enterTextInEditBox(cardNumberID, cardNumber);
+        Browser.switchToDefaultContent();
+    }
+
+    public void enterCardDate(String cardDate) {
+        Browser.waitForFrameToLoad(By.xpath("//iframe[@title='Iframe for expiry date']"));
+        Browser.waitForElementPresence(By.xpath("//input[@data-fieldtype='encryptedExpiryDate']"));
+        Browser.waitForElementToBeVisible(By.xpath("//input[@data-fieldtype='encryptedExpiryDate']"));
+        WebElement cardDateID = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@data-fieldtype='encryptedExpiryDate']"));
+        Browser.enterTextInEditBox(cardDateID, cardDate);
+        Browser.switchToDefaultContent();
+    }
+
+    public void enterCVC(String cardCVC) {
+        Browser.waitForFrameToLoad(By.xpath("//iframe[@title='Iframe for security code']"));
+        Browser.waitForElementPresence(By.xpath("//input[@placeholder='3 digits']"));
+        Browser.waitForElementToBeVisible(By.xpath("//input[@placeholder='3 digits']"));
+        WebElement cardCVCID = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@placeholder='3 digits']"));
+        Browser.enterTextInEditBox(cardCVCID, cardCVC);
+        Browser.switchToDefaultContent();
+
     }
 
     public void enterAmount() {
         WebElement enterAmountTextBox = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@type='number']"));
         Random random = new Random();
-        int randomNumber = random.nextInt(10000);
+        int randomNumber = random.nextInt(1000);
         Browser.enterTextInEditBox(enterAmountTextBox, String.valueOf(randomNumber));
     }
 
