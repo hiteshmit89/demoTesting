@@ -126,4 +126,31 @@ public class AppointmentsSettingsStepDefinition {
     public void iWillBeAbleToSortColumnsOfAppointmentListTableOnAppointmentListPage() {
         PbNUIApp.appointmentsPage().clickOnSortTableButton();
     }
+
+    @When("I try to search the patient with patient name on appointment list page")
+    public void iTryToSearchThePatientWithPatientNameOnAppointmentListPage() {
+        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
+        PbNUIApp.appointmentsPage().clickOnAppointmentListTab();
+        PbNUIApp.appointmentsPage().enterStartDate1("01/01/2024");
+        PbNUIApp.appointmentsPage().enterStartDate2("01/01/2024");
+        PbNUIApp.appointmentsPage().clickOutsideAppointmentList();
+    }
+
+    @Then("I will be able to search the patient with patient name on appointment list page")
+    public void iWillBeAbleToSearchThePatientWithPatientNameOnAppointmentListPage() {
+        PbNUIApp.appointmentsPage().enterPatientNameInSearchBox(PbNUIApp.userdata().getFirstName(1,"5"));
+        PbNUIApp.appointmentsPage().verifyPatientNameInAppointmentList();
+
+    }
+
+    @When("I try to click on the provider time availability checkbox on appointment settings page")
+    public void iTryToClickOnTheProviderTimeAvailabilityCheckboxOnAppointmentSettingsPage() {
+        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
+        PbNUIApp.appointmentsPage().clickOnAppointmentSettingTab();
+    }
+
+    @Then("I will be able to click on the provider time availability checkbox on appointment settings page")
+    public void iWillBeAbleToClickOnTheProviderTimeAvailabilityCheckboxOnAppointmentSettingsPage() {
+        PbNUIApp.appointmentsPage().clickOnProviderTimeAvailabilityCheckbox();
+    }
 }

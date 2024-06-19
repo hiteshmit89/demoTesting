@@ -4,6 +4,7 @@ import Framework.Browser;
 import Framework.Constants.Constants;
 import Framework.Util.DriverManager;
 import Pages.BasePage;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -26,6 +27,12 @@ public class PatientPortalLoginPage extends BasePage {
 
     public void clickOnSignInButton() {
         Browser.clickOnElement(SignInButton);
+    }
+
+    public void verifyErrorMessageDisplayed() {
+        Browser.waitForElementToBeVisible(By.xpath("//div[@class='Toastify__progress-bar Toastify__progress-bar--animated Toastify__progress-bar-theme--colored Toastify__progress-bar--error']"));
+        WebElement ErrorMessage = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='Toastify__progress-bar Toastify__progress-bar--animated Toastify__progress-bar-theme--colored Toastify__progress-bar--error']"));
+        Assert.assertTrue("Error message did not display as expected.", ErrorMessage.isDisplayed());
     }
 }
 

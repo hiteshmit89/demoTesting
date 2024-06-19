@@ -74,4 +74,32 @@ public class CampaignsPage extends BasePage {
         Assert.assertTrue("Duplicate campaign action item is not visible in campaigns page", duplicateCampaignAction.isDisplayed());
         Assert.assertTrue("Delete campaign action item is not visible in campaigns page", deleteCampaignAction.isDisplayed());
     }
+
+    public void clickOnAppointmentRemindersCampaign() {
+        Browser.waitForElementToBeVisible(By.xpath("//td[text()='Appointment Reminders Campaign']"));
+        WebElement arcLink = DriverManager.getInstance().Driver.findElement(By.xpath("//td[text()='Appointment Reminders Campaign']"));
+        Browser.clickOnElement(arcLink);
+    }
+
+    public void clickOnPrimaryEarlyReminderEditEmailTemplateButton() {
+        Browser.waitForElementToBeVisible(By.xpath("(//button[text()='Edit'])[3]"));
+        WebElement primaryEarlyReminderEditEmailTemplateButton = DriverManager.getInstance().Driver.findElement(By.xpath("(//button[text()='Edit'])[3]"));
+        Browser.clickOnElement(primaryEarlyReminderEditEmailTemplateButton);
+    }
+
+    public void clickOnPreHeaderAndSelectPlaceholder(String preHeaderData) {
+        Browser.waitForElementToBeVisible(By.xpath("//label[text()='Preheader:']/following-sibling::div//div[@data-editor]/div"));
+        Browser.waitForElementToBeClickable(By.xpath("//label[text()='Preheader:']/following-sibling::div//div[@data-editor]/div"));
+        List<WebElement> preHeaderDataEnter = DriverManager.getInstance().Driver.findElements(By.xpath("//label[text()='Preheader:']/following-sibling::div//div[@data-editor]/div"));
+        Browser.enterTextInEditBox(preHeaderDataEnter.get(1), preHeaderData);
+        WebElement clickSaveButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='Cancel']/following-sibling::button"));
+        Browser.clickOnElement(clickSaveButton);
+    }
+
+    public void verifyErrorToastMessageDisplayed() {
+        Browser.waitForElementToBeVisible(By.xpath("//div[@class='react-toast-notifications__toast__content css-1ad3zal']"));
+        WebElement errorMessage = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='react-toast-notifications__toast__content css-1ad3zal']"));
+        String errorMsg = "Invalid Merge Tag: , {Please confirm your upcoming dental appointment at {{ practice_name }";
+        Assert.assertEquals("Invalid Merge Tag Error Message", errorMsg, errorMessage.getText());
+    }
 }

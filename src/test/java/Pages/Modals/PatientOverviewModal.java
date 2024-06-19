@@ -278,7 +278,7 @@ public class PatientOverviewModal {
 
     public void clickOnChargeButton() {
         WebElement chargeButton = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='action-item']//span[contains(text(),'Charge')]"));
-        Browser.clickOnElementUsingJavascript(chargeButton);
+        Browser.clickOnElement(chargeButton);
     }
 
     public void clickOnPaymentMethod() {
@@ -286,28 +286,6 @@ public class PatientOverviewModal {
         Browser.clickOnElement(PaymentMethod);
     }
 
-    public void clickAddPaymentMethod() {
-        WebElement addPaymentMethod = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='charge-pop-window-tabs-id-tab-payment-method']"));
-        Browser.clickOnElementUsingJavascript(addPaymentMethod);
-        Browser.waitForPageReady();
-        Browser.waitForElementToBeClickable(By.xpath("//span[text()='Add new payment method']"));
-        WebElement addNewPaymentMethod = DriverManager.getInstance().Driver.findElement(By.xpath("//span[text()='Add new payment method']"));
-        Browser.clickOnElementUsingJavascript(addNewPaymentMethod);
-        Browser.waitForFrameToLoad(By.xpath("//iframe[@title='Secure card number input frame']"));
-        WebElement enterCardNumber = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@data-elements-stable-field-name='cardNumber']"));
-        Browser.enterTextInEditBox(enterCardNumber, PbNUIApp.userdata().getCardNumberStripe(2, "1"));
-        Browser.switchToDefaultContent();
-        Browser.waitForFrameToLoad(By.xpath("//iframe[@title='Secure expiration date input frame']"));
-        WebElement enterCardDate = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@name='exp-date']"));
-        Browser.enterTextInEditBox(enterCardDate, PbNUIApp.userdata().getCardMonth(2, "1"));
-        Browser.switchToDefaultContent();
-        Browser.waitForFrameToLoad(By.xpath("//iframe[@title='Secure CVC input frame']"));
-        WebElement enterCardCVC = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@name='cvc']"));
-        Browser.enterTextInEditBox(enterCardCVC, PbNUIApp.userdata().getCardCVC(2, "1"));
-        Browser.switchToDefaultContent();
-        WebElement enterPostalCode = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@id='postal_code']"));
-        Browser.enterTextInEditBox(enterPostalCode, PbNUIApp.userdata().getPostalCode(2, "1"));
-    }
     public void clickOnSaveButton() {
         WebElement saveButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='payment-button btn btn-primary']"));
         Browser.clickOnElementUsingJavascript(saveButton);
