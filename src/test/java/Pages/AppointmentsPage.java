@@ -306,8 +306,6 @@ public class AppointmentsPage extends BasePage {
     }
 
     public void clickOnSpanishLanguageToggleButton() {
-        //Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//input[@id='language-Spanish-2']")));
-        WebElement table = DriverManager.getInstance().Driver.findElement(By.xpath("//table[@class='table table-striped table-hover table-bordered']"));
         Browser.waitForPresenceOfElement(By.xpath("//*[@id='communication-settings-modal-side-bar-pane-open_languages_block']//div[@class='custom-control custom-switch ']/input"));
         WebElement spanishLanguageToggleButton = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='communication-settings-modal-side-bar-pane-open_languages_block']"));
         Browser.clickOnElementUsingJavascript(spanishLanguageToggleButton.findElement(By.xpath(".//div[@class='custom-control custom-switch ']/input")));
