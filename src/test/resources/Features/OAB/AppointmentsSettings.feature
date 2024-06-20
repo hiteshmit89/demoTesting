@@ -72,3 +72,9 @@ Feature: Appointments Settings
     Given I login to PbN app and select the practice
     When I try to click on and disable automatic messages on appointment template page
     Then I will be able to click and disable automatic messages on appointment template page
+
+  @appointments @PUA-90 @PRAC-T98
+  Scenario: Verify I can click on the cluster appointments checkbox on appointment settings page
+    Given I login to PbN app and select the practice
+    When I try to click on the cluster appointments checkbox on appointment settings page
+    Then I will be able to click on the cluster appointments checkbox on appointment settings page
