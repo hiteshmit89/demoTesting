@@ -57,8 +57,6 @@ public class AppointmentsPage extends BasePage {
         if (disableInsurance.isSelected()) {
             Browser.clickOnElementUsingJavascript(disableInsurance);
         }
-
-
     }
 
     public void clickOnEnableInsurance() {
