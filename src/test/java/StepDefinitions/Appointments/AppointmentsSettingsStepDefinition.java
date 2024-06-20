@@ -160,6 +160,14 @@ public class AppointmentsSettingsStepDefinition {
         PbNUIApp.appointmentsPage().clickOnAppointmentTemplateTab();
     }
 
+    @Then("I will be able to click and disable automatic messages on appointment template page")
+    public void iWillBeAbleToClickAndDisableAutomaticMessagesOnAppointmentTemplatePage() {
+        PbNUIApp.appointmentsPage().clickOnBlockedPatientToggleButton();
+        PbNUIApp.appointmentsPage().clickOnConflictedAppointmentToggleButton();
+        PbNUIApp.appointmentsPage().clickOnExistingPatientBookedAppointmentToggleButton();
+        PbNUIApp.appointmentsPage().clickOnNewPatientBookedAppointmentToggleButton();
+    }
+
     @When("I try to click on the cluster appointments checkbox on appointment settings page")
     public void iTryToClickOnTheClusterAppointmentsCheckboxOnAppointmentSettingsPage() {
         PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
@@ -168,5 +176,6 @@ public class AppointmentsSettingsStepDefinition {
 
     @Then("I will be able to click on the cluster appointments checkbox on appointment settings page")
     public void iWillBeAbleToClickOnTheClusterAppointmentsCheckboxOnAppointmentSettingsPage() {
+        PbNUIApp.appointmentsPage().clickOnClusterAppointmentsCheckbox();
     }
 }
