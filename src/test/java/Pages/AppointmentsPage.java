@@ -285,7 +285,7 @@ public class AppointmentsPage extends BasePage {
                 break;
             }            
         }
-        Assert.assertTrue("Patient Not Found", check);
+        Assert.assertTrue("Patient Not Found", check);  
     }
 
     public void clickOnProviderTimeAvailabilityCheckbox() {
