@@ -291,4 +291,14 @@ public class AppointmentsPage extends BasePage {
         }
         Assert.assertTrue("Provider Time Availability is not selected", providerTimeAvailabilityCheckBox.isSelected());
     }
+
+    public void clickOnClusterAppointmentsCheckbox() {
+        Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Cluster Appointments')]/input[@type='checkbox']")));
+        WebElement clusterAppointmentsCheckBox = DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Cluster Appointments')]/input[@type='checkbox']"));
+        Browser.scrollToVisibleElement(clusterAppointmentsCheckBox);
+        if (!clusterAppointmentsCheckBox.isSelected()) {
+            Browser.clickOnElement(clusterAppointmentsCheckBox);
+        }
+        Assert.assertTrue("Cluster Appointments checkbox is not selected", clusterAppointmentsCheckBox.isSelected());
+    }
 }
