@@ -1,7 +1,7 @@
 @AdyenTransaction @pbnAll @PUA-17
 Feature: Verify As a user I am able Charge a patient using adyen payment services
 
-  @AdyenTransaction @PRAC-T3356 @PUA-35
+  @AdyenTransaction @PRAC-T3356 @PUA-35 @In-Progress
   Scenario: Verify user is able to do successful transaction and verify successful toast
     Given I enter credentials
     When I click login button
@@ -14,7 +14,7 @@ Feature: Verify As a user I am able Charge a patient using adyen payment service
     Then I Click on Charge button
     And Verify Successful toast message
 
-  @AdyenTransaction @PRAC-T3496 @PUA-36
+  @AdyenTransaction @PRAC-T3496 @PUA-36 @In-Progress
   Scenario: Verify user is able to download Payment receipt
     Given I enter credentials
     When I click login button
@@ -27,3 +27,12 @@ Feature: Verify As a user I am able Charge a patient using adyen payment service
     Then I Click on Charge button
     And Verify Successful toast message
     And Verify I am able to download Payment receipt
+
+
+
+
+
+
+
+
+
