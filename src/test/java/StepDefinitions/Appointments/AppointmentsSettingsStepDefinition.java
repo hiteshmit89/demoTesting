@@ -178,4 +178,17 @@ public class AppointmentsSettingsStepDefinition {
     public void iWillBeAbleToClickOnTheClusterAppointmentsCheckboxOnAppointmentSettingsPage() {
         PbNUIApp.appointmentsPage().clickOnClusterAppointmentsCheckbox();
     }
+
+    @When("I try to select the language on the practice specific configuration popup on appointment settings page")
+    public void iTryToSelectTheLanguageOnThePracticeSpecificConfigurationPopupOnAppointmentSettingsPage() {
+        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
+        PbNUIApp.appointmentsPage().clickOnSettingIconButton();
+        PbNUIApp.appointmentsPage().clickOnLanguageTab();
+
+    }
+
+    @Then("I will be able to select the language on the practice specific configuration popup on appointment settings page")
+    public void iWillBeAbleToSelectTheLanguageOnThePracticeSpecificConfigurationPopupOnAppointmentSettingsPage() {
+        PbNUIApp.appointmentsPage().clickOnSpanishLanguageToggleButton();
+    }
 }
