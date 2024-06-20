@@ -275,13 +275,19 @@ public class AppointmentsPage extends BasePage {
     }
 
     public void verifyPatientNameInAppointmentList() {
+        boolean check = false;
         Browser.waitForTableToFinishShrinking(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tr"));
         List<WebElement> verifyPatientName = DriverManager.getInstance().Driver.findElements(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tr//td//div//span"));
         for (WebElement element : verifyPatientName) {
-            Assert.assertEquals("Patient Found", PbNUIApp.userdata().getFirstName(1,"5"), element.getText());
-            break;
+            if (PbNUIApp.userdata().getFirstName(1,"5").equals(element.getText()) ) {
+                Assert.assertEquals("Patient Found", PbNUIApp.userdata().getFirstName(1,"5"), element.getText());
+                check = true;
+                break;
+            }
         }
+        Assert.assertTrue("Patient Not Found", check);
     }
+
     public void clickOnProviderTimeAvailabilityCheckbox() {
         Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Provider Time Availability')]/input[@type='checkbox']")));
         WebElement providerTimeAvailabilityCheckBox = DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Provider Time Availability')]/input[@type='checkbox']"));
@@ -300,5 +306,27 @@ public class AppointmentsPage extends BasePage {
             Browser.clickOnElement(clusterAppointmentsCheckBox);
         }
         Assert.assertTrue("Cluster Appointments checkbox is not selected", clusterAppointmentsCheckBox.isSelected());
+    }
+
+    public void clickOnSettingIconButton() {
+        Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='btn btn-default']//i[@class='fa fa-cog']")));
+        WebElement settingIconButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='btn btn-default']//i[@class='fa fa-cog']"));
+        Browser.clickOnElement(settingIconButton);
+    }
+
+    public void clickOnLanguageTab() {
+        Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='communication-settings-modal-side-bar-tab-open_languages_block']")));
+        WebElement languageTab = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='communication-settings-modal-side-bar-tab-open_languages_block']"));
+        Browser.clickOnElement(languageTab);
+    }
+
+    public void clickOnSpanishLanguageToggleButton() {
+        Browser.waitForPresenceOfElement(By.xpath("//*[@id='communication-settings-modal-side-bar-pane-open_languages_block']//div[@class='custom-control custom-switch ']/input"));
+        WebElement spanishLanguageToggleButton = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='communication-settings-modal-side-bar-pane-open_languages_block']"));
+        Browser.clickOnElementUsingJavascript(spanishLanguageToggleButton.findElement(By.xpath(".//div[@class='custom-control custom-switch ']/input")));
+        Browser.waitForElementToBeVisible(By.xpath("//div[@class='react-toast-notifications__toast__content css-1ad3zal']"));
+        WebElement successMessage = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='react-toast-notifications__toast__content css-1ad3zal']"));
+        String successMsg = "Language settings updated";
+        Assert.assertEquals("Language settings successfully updated", successMsg, successMessage.getText());
     }
 }
