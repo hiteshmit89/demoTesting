@@ -45,4 +45,10 @@ public class PaymentCTAStepDefinition {
     public void iAmAbleToDownloadThePaymentReceipt() {
         PBNModals.collectPaymentModal().downloadPaymentReciept();
     }
+
+    @And("I select payment method and enter card details with incorrect cvc and verify incorrect cvv error message")
+    public void iSelectPaymentMethodAndEnterCardDetailsWithIncorrectCvc() {
+        PBNModals.collectPaymentModal().selectPaymentMethod();
+        PBNModals.collectPaymentModal().enterAndValidateCardDetailsWithIncorrectCvc();
+    }
 }
