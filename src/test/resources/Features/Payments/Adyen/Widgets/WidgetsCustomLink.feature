@@ -1,4 +1,4 @@
-@AdyenWidgets @pbnAll @PUA-51
+@AdyenWidgets @pbnAll
 Feature: Verify user is able to proceed for payment using custom link in payments
 
   @AdyenWidgets @PRAC-T3754 @PUA-51

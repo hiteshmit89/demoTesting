@@ -9,7 +9,7 @@ jobs:
       - image: cimg/openjdk:21.0.2-browsers
     parallelism: 1
     environment:
-      TAGS: "@pbnAll and not @In-Progress"
+      TAGS: "@pbnAll and not @In-Progress and not @QA1Only"
       endpoint: "QA1"
     steps:
       - browser-tools/install-chrome
