@@ -278,7 +278,7 @@ public class AppointmentsPage extends BasePage {
         Browser.waitForTableToFinishShrinking(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tr"));
         List<WebElement> verifyPatientName = DriverManager.getInstance().Driver.findElements(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tr//td//div//span"));
         for (WebElement element : verifyPatientName) {
-            Assert.assertEquals("Patient Found", PbNUIApp.userdata().getFirstName(1, "5"), element.getText());
+            Assert.assertEquals("Patient Found", PbNUIApp.userdata().getFirstName(1,"5"), element.getText());
             break;
         }
     }
