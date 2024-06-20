@@ -11,7 +11,7 @@ import org.junit.runner.RunWith;
         plugin = {"pretty","html:target/HtmlReports/testResult.html",
                 "json:target/JSONReports/testResult.json",
                 "junit:target/XMLReports/testResult.xml"},
-       tags = "@pbnAll and @QA1 and @QA3 and not @In-Progress")
+       tags = "@pbnAll and not @In-Progress")
 
 
 public class Runner {
