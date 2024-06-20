@@ -275,12 +275,17 @@ public class AppointmentsPage extends BasePage {
     }
 
     public void verifyPatientNameInAppointmentList() {
+        boolean check = false;
         Browser.waitForTableToFinishShrinking(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tr"));
         List<WebElement> verifyPatientName = DriverManager.getInstance().Driver.findElements(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tr//td//div//span"));
         for (WebElement element : verifyPatientName) {
-            Assert.assertEquals("Patient Found", PbNUIApp.userdata().getFirstName(1,"5"), element.getText());
-            break;
+            if (PbNUIApp.userdata().getFirstName(1,"5").equals(element.getText()) ) {
+                Assert.assertEquals("Patient Found", PbNUIApp.userdata().getFirstName(1,"5"), element.getText());
+                check = true;
+                break;
+            }            
         }
+        Assert.assertTrue("Patient Not Found", check);
     }
 
     public void clickOnProviderTimeAvailabilityCheckbox() {
