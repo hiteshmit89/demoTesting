@@ -278,10 +278,11 @@ public class AppointmentsPage extends BasePage {
         Browser.waitForTableToFinishShrinking(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tr"));
         List<WebElement> verifyPatientName = DriverManager.getInstance().Driver.findElements(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tr//td//div//span"));
         for (WebElement element : verifyPatientName) {
-            Assert.assertEquals("Patient Found", PbNUIApp.userdata().getFirstName(1,"5"), element.getText());
+            Assert.assertEquals("Patient Found", PbNUIApp.userdata().getFirstName(1, "5"), element.getText());
             break;
         }
     }
+
     public void clickOnProviderTimeAvailabilityCheckbox() {
         Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Provider Time Availability')]/input[@type='checkbox']")));
         WebElement providerTimeAvailabilityCheckBox = DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Provider Time Availability')]/input[@type='checkbox']"));
@@ -305,15 +306,14 @@ public class AppointmentsPage extends BasePage {
     }
 
     public void clickOnSpanishLanguageToggleButton() {
-       // Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//input[@id='language-Spanish-2']")));
-        WebElement spanishLanguageToggleButton = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@id='language-Spanish-2']"));
-        if (spanishLanguageToggleButton.isSelected()) {
-            Browser.clickOnElement(spanishLanguageToggleButton);
-        }
-        Assert.assertFalse("Spanish Language Toggle Button is selected", spanishLanguageToggleButton.isSelected());
-        if (!spanishLanguageToggleButton.isSelected()) {
-            Browser.clickOnElement(spanishLanguageToggleButton);
-        }
-        Assert.assertTrue("Spanish Language Toggle Button is not selected", spanishLanguageToggleButton.isSelected());
+        //Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//input[@id='language-Spanish-2']")));
+        WebElement table = DriverManager.getInstance().Driver.findElement(By.xpath("//table[@class='table table-striped table-hover table-bordered']"));
+        Browser.waitForPresenceOfElement(By.xpath("//*[@id='communication-settings-modal-side-bar-pane-open_languages_block']//div[@class='custom-control custom-switch ']/input"));
+        WebElement spanishLanguageToggleButton = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='communication-settings-modal-side-bar-pane-open_languages_block']"));
+        Browser.clickOnElementUsingJavascript(spanishLanguageToggleButton.findElement(By.xpath(".//div[@class='custom-control custom-switch ']/input")));
+        Browser.waitForElementToBeVisible(By.xpath("//div[@class='react-toast-notifications__toast__content css-1ad3zal']"));
+        WebElement successMessage = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='react-toast-notifications__toast__content css-1ad3zal']"));
+        String successMsg = "Language settings updated";
+        Assert.assertEquals("Language settings successfully updated", successMsg, successMessage.getText());
     }
 }
