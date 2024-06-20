@@ -283,9 +283,9 @@ public class AppointmentsPage extends BasePage {
                 Assert.assertEquals("Patient Found", PbNUIApp.userdata().getFirstName(1,"5"), element.getText());
                 check = true;
                 break;
-            }            
+            }
         }
-        Assert.assertTrue("Patient Not Found", check);  
+        Assert.assertTrue("Patient Not Found", check);
     }
 
     public void clickOnProviderTimeAvailabilityCheckbox() {
@@ -296,6 +296,16 @@ public class AppointmentsPage extends BasePage {
             Browser.clickOnElement(providerTimeAvailabilityCheckBox);
         }
         Assert.assertTrue("Provider Time Availability is not selected", providerTimeAvailabilityCheckBox.isSelected());
+    }
+
+    public void clickOnClusterAppointmentsCheckbox() {
+        Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Cluster Appointments')]/input[@type='checkbox']")));
+        WebElement clusterAppointmentsCheckBox = DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Cluster Appointments')]/input[@type='checkbox']"));
+        Browser.scrollToVisibleElement(clusterAppointmentsCheckBox);
+        if (!clusterAppointmentsCheckBox.isSelected()) {
+            Browser.clickOnElement(clusterAppointmentsCheckBox);
+        }
+        Assert.assertTrue("Cluster Appointments checkbox is not selected", clusterAppointmentsCheckBox.isSelected());
     }
 
     public void clickOnSettingIconButton() {
