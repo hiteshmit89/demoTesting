@@ -19,13 +19,13 @@ public class AppointmentBookingPage extends BasePage {
     public void clickOnPickLocation() {
         Browser.waitForElementToBeVisible(By.xpath("//p[@class='MuiTypography-root jss8 MuiTypography-body1' and contains(text(),'Book Your Appointment')]"));
         boolean present = false;
+        WebElement setLocation = null;
         try {
-            WebElement setLocation = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='MuiPaper-root location-item-card card-background-color MuiPaper-elevation1 MuiPaper-rounded']"));
+            setLocation = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='MuiPaper-root location-item-card card-background-color MuiPaper-elevation1 MuiPaper-rounded']"));
             present = true;
         } catch (NoSuchElementException ignored) {
         }
         if (present) {
-            WebElement setLocation = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='MuiPaper-root location-item-card card-background-color MuiPaper-elevation1 MuiPaper-rounded']"));
             Browser.clickOnElement(setLocation);
         }
     }
