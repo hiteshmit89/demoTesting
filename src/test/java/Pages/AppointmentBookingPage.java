@@ -17,10 +17,17 @@ public class AppointmentBookingPage extends BasePage {
     private final List<WebElement> locationFinder = DriverManager.getInstance().Driver.findElements(By.xpath("//*[@id='patient-appointment-booking-page']//div[@class='location-item-name']"));
 
     public void clickOnPickLocation() {
-        Browser.waitForElementToBeClickable(By.xpath("//div[@class='MuiPaper-root location-item-card card-background-color MuiPaper-elevation1 MuiPaper-rounded']"));
-        Browser.waitForElementToBeVisible(By.xpath("//div[@class='MuiPaper-root location-item-card card-background-color MuiPaper-elevation1 MuiPaper-rounded']"));
-        WebElement setLocation = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='MuiPaper-root location-item-card card-background-color MuiPaper-elevation1 MuiPaper-rounded']"));
-        Browser.clickOnElement(setLocation);
+        Browser.waitForElementToBeVisible(By.xpath("//p[@class='MuiTypography-root jss8 MuiTypography-body1' and contains(text(),'Book Your Appointment')]"));
+        boolean present = false;
+        try {
+            WebElement setLocation = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='MuiPaper-root location-item-card card-background-color MuiPaper-elevation1 MuiPaper-rounded']"));
+            present = true;
+        } catch (NoSuchElementException ignored) {
+        }
+        if (present) {
+            WebElement setLocation = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='MuiPaper-root location-item-card card-background-color MuiPaper-elevation1 MuiPaper-rounded']"));
+            Browser.clickOnElement(setLocation);
+        }
     }
 
     public void clickOnSelectNewPatient() {
@@ -40,6 +47,22 @@ public class AppointmentBookingPage extends BasePage {
         Browser.waitForElementToBeVisible(By.xpath("//span[@class='MuiButton-label' and contains(text(),'Earliest: ')]"));
         WebElement selectEarliest = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='MuiButton-label' and contains(text(),'Earliest: ')]"));
         Browser.clickOnElement(selectEarliest);
+        boolean present = false;
+        try {
+            Browser.waitForElementToBeVisible(By.xpath("//div[@class='react-toast-notifications__toast__content css-1ad3zal' and contains(text(),'Error occured while checking for slot availability')]"));
+            WebElement toastMessage = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='react-toast-notifications__toast__content css-1ad3zal' and contains(text(),'Error occured while checking for slot availability')]"));
+            present = true;
+        } catch (Exception ignored) {
+        }
+        if (present) {
+            Browser.waitForElementToBeVisible(By.xpath("//span[@class='MuiButton-label' and contains(text(),'See more options')]"));
+            WebElement selectSeeMoreOptions = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='MuiButton-label' and contains(text(),'See more options')]"));
+            Browser.clickOnElement(selectSeeMoreOptions);
+            Browser.waitForElementToBeVisible(By.xpath("//button[@class='MuiButtonBase-root MuiIconButton-root' and @style] "));
+            Browser.waitForPresenceOfElement(By.xpath("//table[@class='timeslots-table']//tr[3]//td[5]"));
+            WebElement selectTimeSlot = DriverManager.getInstance().Driver.findElement(By.xpath("//table[@class='timeslots-table']//tr[3]//td[5]"));
+            Browser.clickOnElement(selectTimeSlot);
+        }
     }
 
     public void clickOnSeeMoreOptions() {
@@ -63,27 +86,35 @@ public class AppointmentBookingPage extends BasePage {
     }
 
     public void fillAppointmentBookingFormForInactivePatient() {
-        enterFirstName(PbNUIApp.userdata().getFirstName(1,"3"));
-        enterLastName(PbNUIApp.userdata().getLastName(1,"3"));
-        enterPhoneNumber(PbNUIApp.userdata().getPhoneNumber(1,"3"));
-        enterEmailID(PbNUIApp.userdata().getEmailId(1,"3"));
-        enterBirthDate(PbNUIApp.userdata().getBirthDate(1,"3"));
+        enterFirstName(PbNUIApp.userdata().getFirstName(1, "3"));
+        enterLastName(PbNUIApp.userdata().getLastName(1, "3"));
+        enterPhoneNumber(PbNUIApp.userdata().getPhoneNumber(1, "3"));
+        enterEmailID(PbNUIApp.userdata().getEmailId(1, "3"));
+        enterBirthDate(PbNUIApp.userdata().getBirthDate(1, "3"));
     }
 
     public void fillAppointmentBookingFormForPatientWithTags() {
-        enterFirstName(PbNUIApp.userdata().getFirstName(1,"2"));
-        enterLastName(PbNUIApp.userdata().getLastName(1,"2"));
-        enterPhoneNumber(PbNUIApp.userdata().getPhoneNumber(1,"2"));
-        enterEmailID(PbNUIApp.userdata().getEmailId(1,"2"));
-        enterBirthDate(PbNUIApp.userdata().getBirthDate(1,"2"));
+        enterFirstName(PbNUIApp.userdata().getFirstName(1, "2"));
+        enterLastName(PbNUIApp.userdata().getLastName(1, "2"));
+        enterPhoneNumber(PbNUIApp.userdata().getPhoneNumber(1, "2"));
+        enterEmailID(PbNUIApp.userdata().getEmailId(1, "2"));
+        enterBirthDate(PbNUIApp.userdata().getBirthDate(1, "2"));
     }
 
     public void fillAppointmentBookingFormForValidateInsuranceDob() {
-        enterFirstName(PbNUIApp.userdata().getFirstName(1,"4"));
-        enterLastName(PbNUIApp.userdata().getLastName(1,"4"));
-        enterPhoneNumber(PbNUIApp.userdata().getPhoneNumber(1,"4"));
-        enterEmailID(PbNUIApp.userdata().getEmailId(1,"4"));
-        enterBirthDate(PbNUIApp.userdata().getBirthDate(1,"4"));
+        enterFirstName(PbNUIApp.userdata().getFirstName(1, "4"));
+        enterLastName(PbNUIApp.userdata().getLastName(1, "4"));
+        enterPhoneNumber(PbNUIApp.userdata().getPhoneNumber(1, "4"));
+        enterEmailID(PbNUIApp.userdata().getEmailId(1, "4"));
+        enterBirthDate(PbNUIApp.userdata().getBirthDate(1, "4"));
+    }
+
+    public void fillAppointmentBookingFormForValidatePatientDob() {
+        enterFirstName(PbNUIApp.userdata().getFirstName(1, "5"));
+        enterLastName(PbNUIApp.userdata().getLastName(1, "5"));
+        enterPhoneNumber(PbNUIApp.userdata().getPhoneNumber(1, "5"));
+        enterEmailID(PbNUIApp.userdata().getEmailId(1, "5"));
+        enterBirthDate(PbNUIApp.userdata().getBirthDate(1, "5"));
     }
 
     public void enterFirstName(String firstNameData) {
@@ -175,5 +206,11 @@ public class AppointmentBookingPage extends BasePage {
         Browser.waitForElementToBeVisible(By.xpath("//div[text()='Age must be greater than 18 years']"));
         WebElement verifyText = DriverManager.getInstance().Driver.findElement(By.xpath("//div[text()='Age must be greater than 18 years']"));
         Assert.assertTrue("Age must be greater than 18 years", verifyText.isDisplayed());
+    }
+
+    public void verifyDateConfirmationMessage() {
+        Browser.waitForElementToBeVisible(By.xpath("//p[@class='MuiTypography-root MuiTypography-body1']"));
+        WebElement verifyText = DriverManager.getInstance().Driver.findElement(By.xpath("//p[@class='MuiTypography-root MuiTypography-body1']"));
+        Assert.assertTrue("Can you please confirm that the patient's DOB is correct?", verifyText.isDisplayed());
     }
 }

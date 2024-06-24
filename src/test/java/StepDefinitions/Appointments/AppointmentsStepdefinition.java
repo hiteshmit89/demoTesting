@@ -209,4 +209,23 @@ public class AppointmentsStepdefinition {
     public void iWillBeAbleToSeeRefreshButtonOnProviderPageDuringAppointmentBooking() {
         PbNUIApp.appointmentBookingPage().clickOnRefreshButton();
     }
+
+    @When("I click on appointments tab and try to book appointment and select DOB less than one year from current date on book myself page")
+    public void iClickOnAppointmentsTabAndTryToBookAppointmentAndSelectDOBLessThanOneYearFromCurrentDateOnBookMyselfPage() {
+        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
+        PbNUIApp.appointmentsPage().clickOnWidgets();
+        PbNUIApp.appointmentsPage().createAppointmentURLAndNavigate();
+        PbNUIApp.appointmentBookingPage().clickOnPickLocation();
+        PbNUIApp.appointmentBookingPage().clickOnSelectNewPatient();
+        PbNUIApp.appointmentBookingPage().clickOnEmergencyConsult();
+        PbNUIApp.appointmentBookingPage().clickOnEarliest();
+        PbNUIApp.appointmentBookingPage().fillAppointmentBookingFormForValidatePatientDob();
+        PbNUIApp.appointmentBookingPage().clickOnCheckBox();
+        PbNUIApp.appointmentBookingPage().clickOnNextButton();
+    }
+
+    @Then("I will see a pop up appears asking for the patient's confirmation to proceed to the next page if the age is less than one years.")
+    public void iWillSeeAPopUpAppearsAskingForThePatientSConfirmationToProceedToTheNextPageIfTheAgeIsLessThanOneYears() {
+        PbNUIApp.appointmentBookingPage().verifyDateConfirmationMessage();
+    }
 }
