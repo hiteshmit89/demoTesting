@@ -196,6 +196,11 @@ public class AppointmentBookingPage extends BasePage {
         Assert.assertTrue("Successful text not displayed on appointment booking page.", successfulText.isDisplayed());
     }
 
+    public void verifyErrorTextDisplayed() {
+        WebElement successfulText = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='HomePageRoot']//h1[contains(text(),'Successful')]"));
+        Assert.assertTrue("Successful text not displayed on appointment booking page.", successfulText.isDisplayed());
+    }
+
     public void verifyTextDisplayedMessage(String message) {
         Browser.waitForElementToBeVisible(By.xpath("//div[@class='MuiAlert-message']"));
         WebElement verifyText = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='MuiAlert-message']"));

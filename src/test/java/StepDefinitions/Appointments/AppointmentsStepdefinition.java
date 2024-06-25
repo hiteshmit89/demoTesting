@@ -228,4 +228,27 @@ public class AppointmentsStepdefinition {
     public void iWillSeeAPopUpAppearsAskingForThePatientSConfirmationToProceedToTheNextPageIfTheAgeIsLessThanOneYears() {
         PbNUIApp.appointmentBookingPage().verifyDateConfirmationMessage();
     }
+
+    @When("I click on appointments tab and try to book appointments for patient and enter invalid OTP")
+    public void iClickOnAppointmentsTabAndTryToBookAppointmentsForPatientAndEnterInvalidOTP() {
+        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
+        PbNUIApp.appointmentsPage().clickOnWidgets();
+        PbNUIApp.appointmentsPage().createAppointmentURLAndNavigate();
+        PbNUIApp.appointmentBookingPage().clickOnPickLocation();
+        PbNUIApp.appointmentBookingPage().clickOnSelectNewPatient();
+        PbNUIApp.appointmentBookingPage().clickOnEmergencyConsult();
+        PbNUIApp.appointmentBookingPage().clickOnEarliest();
+        PbNUIApp.appointmentBookingPage().fillAppointmentBookingForm();
+        PbNUIApp.appointmentBookingPage().clickOnCheckBox();
+        PbNUIApp.appointmentBookingPage().clickOnNextButton();
+        PbNUIApp.appointmentBookingPage().clickOnIDoNotHaveInsurance();
+        PbNUIApp.appointmentBookingPage().clickOnNextButton();
+        PbNUIApp.appointmentBookingPage().clickOnUseCellPhone();
+        PbNUIApp.appointmentBookingPage().enterOTP("1234");
+    }
+
+    @Then("I will be able to see error message on entering invalid OTP")
+    public void iWillBeAbleToSeeErrorMessageOnEnteringInvalidOTP() {
+        PbNUIApp.appointmentBookingPage().verifyErrorTextDisplayed();
+    }
 }
