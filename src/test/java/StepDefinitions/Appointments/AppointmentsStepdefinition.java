@@ -44,7 +44,7 @@ public class AppointmentsStepdefinition {
         PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
         PbNUIApp.appointmentsPage().clickOnAppointmentSettingTab();
         PbNUIApp.appointmentsPage().clickOnSetupCreditCard();
-        PbNUIApp.appointmentsPage().clickOnEnableCreditCard();
+        PbNUIApp.appointmentsPage().clickOnDisableCreditCard();
         PbNUIApp.appointmentsPage().clickOnSaveButton();
         PbNUIApp.appointmentsPage().clickOnSettingSaveButton();
     }
@@ -80,7 +80,7 @@ public class AppointmentsStepdefinition {
         PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
         PbNUIApp.appointmentsPage().clickOnAppointmentSettingTab();
         PbNUIApp.appointmentsPage().clickOnSetupInsurance();
-        PbNUIApp.appointmentsPage().clickOnDisableInsurance();
+        PbNUIApp.appointmentsPage().clickOnEnableInsurance();
         PbNUIApp.appointmentsPage().clickOnSaveButton();
         PbNUIApp.appointmentsPage().clickOnSettingSaveButton();
     }
@@ -138,6 +138,14 @@ public class AppointmentsStepdefinition {
     public void iLoginToPbNApp() {
         PbNUIApp.loginPage().enterEmail(PbNUIApp.userdata().getUserEmail(1,1));
         PbNUIApp.loginPage().enterPassword(PbNUIApp.userdata().getPassword(1,1));
+        PbNUIApp.loginPage().clickOnLoginButton();
+        PbNUIApp.appHomePage().clickOnPracticeInPracticeInfoTable(PbNUIApp.userdata().getPracticeName(1));
+    }
+
+    @Given("I login to PbN app with user id {int} and select the practice")
+    public void iLoginToPbNAppWithUserIdAndSelectThePractice(int userID) {
+        PbNUIApp.loginPage().enterEmail(PbNUIApp.userdata().getUserEmail(1, userID));
+        PbNUIApp.loginPage().enterPassword(PbNUIApp.userdata().getPassword(1, userID));
         PbNUIApp.loginPage().clickOnLoginButton();
         PbNUIApp.appHomePage().clickOnPracticeInPracticeInfoTable(PbNUIApp.userdata().getPracticeName(1));
     }

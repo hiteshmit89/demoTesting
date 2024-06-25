@@ -19,4 +19,6 @@ public class PBNModals {
     public static PatientOverviewModal patientOverviewModal() {
         return new PatientOverviewModal();
     }
+
+    public static CollectPaymentModal collectPaymentModal(){return new CollectPaymentModal();}
 }

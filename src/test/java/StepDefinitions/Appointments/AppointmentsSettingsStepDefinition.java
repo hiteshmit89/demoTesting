@@ -101,4 +101,94 @@ public class AppointmentsSettingsStepDefinition {
     public void iWillBeAbleToSeePatientInformationOnPageList() {
         PbNUIApp.appointmentsPage().clickOnExistingPatientInformation();
     }
+
+    @When("I click on try to filter appointments on appointment list page")
+    public void iClickOnTryToFilterAppointmentsOnAppointmentListPage() {
+        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
+        PbNUIApp.appointmentsPage().clickOnAppointmentListTab();
+    }
+
+    @Then("I will be able to see filtered appointments on page list")
+    public void iWillBeAbleToSeeFilteredAppointmentsOnPageList() {
+        PbNUIApp.appointmentsPage().enterStartDate1("01/01/2024");
+        PbNUIApp.appointmentsPage().enterStartDate2("01/01/2024");
+    }
+
+    @When("I try to sort columns of Appointment list table on appointment list page")
+    public void iTryToSortColumnsOfAppointmentListTableOnAppointmentListPage() {
+        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
+        PbNUIApp.appointmentsPage().clickOnAppointmentListTab();
+        PbNUIApp.appointmentsPage().enterStartDate1("01/01/2024");
+        PbNUIApp.appointmentsPage().enterStartDate2("01/01/2024");
+    }
+
+    @Then("I will be able to sort columns of Appointment list table on appointment list page")
+    public void iWillBeAbleToSortColumnsOfAppointmentListTableOnAppointmentListPage() {
+        PbNUIApp.appointmentsPage().clickOnSortTableButton();
+    }
+
+    @When("I try to search the patient with patient name on appointment list page")
+    public void iTryToSearchThePatientWithPatientNameOnAppointmentListPage() {
+        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
+        PbNUIApp.appointmentsPage().clickOnAppointmentListTab();
+        PbNUIApp.appointmentsPage().enterStartDate1("01/01/2024");
+        PbNUIApp.appointmentsPage().enterStartDate2("01/01/2024");
+        PbNUIApp.appointmentsPage().clickOutsideAppointmentList();
+    }
+
+    @Then("I will be able to search the patient with patient name on appointment list page")
+    public void iWillBeAbleToSearchThePatientWithPatientNameOnAppointmentListPage() {
+        PbNUIApp.appointmentsPage().enterPatientNameInSearchBox(PbNUIApp.userdata().getFirstName(1,"5"));
+        PbNUIApp.appointmentsPage().verifyPatientNameInAppointmentList();
+
+    }
+
+    @When("I try to click on the provider time availability checkbox on appointment settings page")
+    public void iTryToClickOnTheProviderTimeAvailabilityCheckboxOnAppointmentSettingsPage() {
+        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
+        PbNUIApp.appointmentsPage().clickOnAppointmentSettingTab();
+    }
+
+    @Then("I will be able to click on the provider time availability checkbox on appointment settings page")
+    public void iWillBeAbleToClickOnTheProviderTimeAvailabilityCheckboxOnAppointmentSettingsPage() {
+        PbNUIApp.appointmentsPage().clickOnProviderTimeAvailabilityCheckbox();
+    }
+
+    @When("I try to click on and disable automatic messages on appointment template page")
+    public void iTryToClickOnAndDisableAutomaticMessagesOnAppointmentTemplatePage() {
+        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
+        PbNUIApp.appointmentsPage().clickOnAppointmentTemplateTab();
+    }
+
+    @Then("I will be able to click and disable automatic messages on appointment template page")
+    public void iWillBeAbleToClickAndDisableAutomaticMessagesOnAppointmentTemplatePage() {
+        PbNUIApp.appointmentsPage().clickOnBlockedPatientToggleButton();
+        PbNUIApp.appointmentsPage().clickOnConflictedAppointmentToggleButton();
+        PbNUIApp.appointmentsPage().clickOnExistingPatientBookedAppointmentToggleButton();
+        PbNUIApp.appointmentsPage().clickOnNewPatientBookedAppointmentToggleButton();
+    }
+
+    @When("I try to click on the cluster appointments checkbox on appointment settings page")
+    public void iTryToClickOnTheClusterAppointmentsCheckboxOnAppointmentSettingsPage() {
+        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
+        PbNUIApp.appointmentsPage().clickOnAppointmentSettingTab();
+    }
+
+    @Then("I will be able to click on the cluster appointments checkbox on appointment settings page")
+    public void iWillBeAbleToClickOnTheClusterAppointmentsCheckboxOnAppointmentSettingsPage() {
+        PbNUIApp.appointmentsPage().clickOnClusterAppointmentsCheckbox();
+    }
+
+    @When("I try to select the language on the practice specific configuration popup on appointment settings page")
+    public void iTryToSelectTheLanguageOnThePracticeSpecificConfigurationPopupOnAppointmentSettingsPage() {
+        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
+        PbNUIApp.appointmentsPage().clickOnSettingIconButton();
+        PbNUIApp.appointmentsPage().clickOnLanguageTab();
+
+    }
+
+    @Then("I will be able to select the language on the practice specific configuration popup on appointment settings page")
+    public void iWillBeAbleToSelectTheLanguageOnThePracticeSpecificConfigurationPopupOnAppointmentSettingsPage() {
+        PbNUIApp.appointmentsPage().clickOnSpanishLanguageToggleButton();
+    }
 }

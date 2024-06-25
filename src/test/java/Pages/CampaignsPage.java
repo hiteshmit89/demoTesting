@@ -36,8 +36,8 @@ public class CampaignsPage extends BasePage {
         Browser.waitForTableSizeToBe(patientFollowUpTable.get(1), 3);
         Browser.waitForTableSizeToBe(patientFollowUpTable.get(2), 3);
         Browser.waitForTableSizeToBe(patientFollowUpTable.get(3), 3);
-        Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='table-responsive']//td[contains(text(),'"+campaignName+"')]")));
-        WebElement campaignTitle = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='table-responsive']//td[contains(text(),'"+campaignName+"')]"));
+        Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='table-responsive']//td[contains(text(),'" + campaignName + "')]")));
+        WebElement campaignTitle = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='table-responsive']//td[contains(text(),'" + campaignName + "')]"));
         Browser.scrollToVisibleElement(campaignTitle);
         List<WebElement> gridCells = campaignTitle.findElements(By.xpath("./following-sibling::td"));
         if (gridCells.size() == 1) {
@@ -73,5 +73,33 @@ public class CampaignsPage extends BasePage {
         Assert.assertTrue("Create new campaign action item is not visible in campaigns page", createNewCampaignAction.isDisplayed());
         Assert.assertTrue("Duplicate campaign action item is not visible in campaigns page", duplicateCampaignAction.isDisplayed());
         Assert.assertTrue("Delete campaign action item is not visible in campaigns page", deleteCampaignAction.isDisplayed());
+    }
+
+    public void clickOnAppointmentRemindersCampaign() {
+        Browser.waitForElementToBeVisible(By.xpath("//td[text()='Appointment Reminders Campaign']"));
+        WebElement arcLink = DriverManager.getInstance().Driver.findElement(By.xpath("//td[text()='Appointment Reminders Campaign']"));
+        Browser.clickOnElement(arcLink);
+    }
+
+    public void clickOnPrimaryEarlyReminderEditEmailTemplateButton() {
+        Browser.waitForElementToBeVisible(By.xpath("(//button[text()='Edit'])[3]"));
+        WebElement primaryEarlyReminderEditEmailTemplateButton = DriverManager.getInstance().Driver.findElement(By.xpath("(//button[text()='Edit'])[3]"));
+        Browser.clickOnElement(primaryEarlyReminderEditEmailTemplateButton);
+    }
+
+    public void clickOnPreHeaderAndSelectPlaceholder(String preHeaderData) {
+        Browser.waitForElementToBeVisible(By.xpath("//label[text()='Preheader:']/following-sibling::div//div[@data-editor]/div"));
+        Browser.waitForElementToBeClickable(By.xpath("//label[text()='Preheader:']/following-sibling::div//div[@data-editor]/div"));
+        List<WebElement> preHeaderDataEnter = DriverManager.getInstance().Driver.findElements(By.xpath("//label[text()='Preheader:']/following-sibling::div//div[@data-editor]/div"));
+        Browser.enterTextInEditBox(preHeaderDataEnter.get(1), preHeaderData);
+        WebElement clickSaveButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='Cancel']/following-sibling::button"));
+        Browser.clickOnElement(clickSaveButton);
+    }
+
+    public void verifyErrorToastMessageDisplayed() {
+        Browser.waitForElementToBeVisible(By.xpath("//div[@class='react-toast-notifications__toast__content css-1ad3zal']"));
+        WebElement errorMessage = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='react-toast-notifications__toast__content css-1ad3zal']"));
+        String errorMsg = "Invalid Merge Tag: , {Please confirm your upcoming dental appointment at {{ practice_name }";
+        Assert.assertEquals("Invalid Merge Tag Error Message", errorMsg, errorMessage.getText());
     }
 }

@@ -29,7 +29,7 @@
       ],
       "FormsData": [
         {
-          "FormType": "AppointmentBooking",
+          "FormType": "1",
           "first_name": "Test First Name",
           "last_name": "Test Last Name",
           "phone_number": "1234567890",
@@ -37,7 +37,7 @@
           "birth_date": "01/01/1976"
         },
         {
-          "FormType": "AppointmentBooking",
+          "FormType": "2",
           "first_name": "Robert",
           "last_name": "Aguilar",
           "phone_number": "1234567890",
@@ -45,12 +45,20 @@
           "birth_date": "04192004"
         },
         {
-          "FormType": "AppointmentBooking",
+          "FormType": "3",
           "first_name": "Ricky",
           "last_name": "Alexander",
           "phone_number": "1234567890",
           "email_id": "test@test.com",
           "birth_date": "12021995"
+        },
+        {
+          "FormType": "4",
+          "first_name": "Nicky",
+          "last_name": "Alexander",
+          "phone_number": "1234567890",
+          "email_id": "test@test.com",
+          "birth_date": "12022020"
         }
       ],
       "PatientData": [
@@ -60,11 +68,26 @@
           "task_description": "Automation",
           "task_type": "Treatment"
         }
+      ],
+      "CardData": [
+        {
+          "card_Id": "1",
+          "card_number_Adyen": "5454 5454 5454 5454",
+          "month_date": "0330",
+          "cvc": "737",
+          "incorrect_cvc": "73",
+          "card_number_Stripe": "4242 4242 4242 4242",
+          "country": "United States",
+          "street": "Downing Street",
+          "houseNumber": "14457,st. Louie's Road",
+          "postalCode": "95014",
+          "city": "California"
+        }
       ]
     },
     {
       "practice_id": 2,
-      "practice_name": "Valley Pathology 2",
+      "practice_name": "Automation DND",
       "address": 123,
       "Users": [
         {
@@ -94,10 +117,17 @@
       ],
       "CardData": [
         {
+          "card_Id": "1",
           "card_number_Adyen": "5454 5454 5454 5454",
           "month_date": "0330",
           "cvc": "737",
-          "card_number_Stripe": "4242 4242 4242 4242"
+          "incorrect_cvc": "73",
+          "card_number_Stripe": "4242 4242 4242 4242",
+          "country": "United States Minor",
+          "street": "Downing Street",
+          "houseNumber": "14457",
+          "postalCode": "95014",
+          "city": "California"
         }
       ]
     },

@@ -73,7 +73,9 @@ public class Constants {
         CommCenter("message-section"),
         Schedule("schedule-section"),
         Operations("hidden-xs operations-section"),
+        Payments("payments-section"),
         TeamMessaging("team-message-section");
+
         public final String label;
 
         Sections(String label) {
