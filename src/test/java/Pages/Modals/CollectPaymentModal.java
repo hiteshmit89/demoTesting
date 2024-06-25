@@ -27,16 +27,19 @@ public class CollectPaymentModal {
         Browser.clickOnElement(name);
     }
 
-    public void selectPaymentMethod() {
+    public void selectPaymentMethodAsAddNewCard() {
         Browser.waitForPageReady();
         WebElement paymentMethodRadioButton = DriverManager.getInstance().Driver.findElement(By.xpath("//span[text()='Credit / Debit Card']"));
         Browser.waitForElementToBeVisible(paymentMethodRadioButton);
         Browser.waitForElementToBeClickable(paymentMethodRadioButton);
         Browser.clickOnElement(paymentMethodRadioButton);
+        WebElement chargeNewCardButton = DriverManager.getInstance().Driver.findElement(By.xpath("//*[text()='Charge from New Card']"));
+        Browser.scrollToVisibleElement(chargeNewCardButton);
         Browser.waitForElementToBeVisible(By.xpath("//*[text()='Charge from New Card']"));
         WebElement chargeNewCard = DriverManager.getInstance().Driver.findElement(By.xpath("//*[text()='Charge from New Card']"));
         Browser.waitForElementToBeClickable(chargeNewCard);
-        Browser.clickOnElement(chargeNewCard);
+        Browser.waitForElementToBeVisible(chargeNewCard);
+        Browser.clickOnElementUsingJavascript(chargeNewCard);
     }
 
     public void enterCardDetails() {
