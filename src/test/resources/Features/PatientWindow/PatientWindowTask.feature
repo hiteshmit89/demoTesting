@@ -24,10 +24,9 @@ Feature: Patient Window Task Creation
       | Patient Recall       |
 
   @testSectionIntegrationWithPatientWindow @PRAC-T3763 @In-Progress
-  Scenario : Patient Task Table Opening from Task Section
+  Scenario: Patient Task Table Opening from Task Section
     Given I login to PbN app
     And I click on practice name
     And I am redirected to the Task Page
     When I selected a task from task list
     Then Task section will open for that patient
-
