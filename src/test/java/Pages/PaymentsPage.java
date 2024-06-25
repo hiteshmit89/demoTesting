@@ -158,7 +158,7 @@ public class PaymentsPage extends BasePage {
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy ");
         Date date = new Date();
         String expectedDate = dateFormat.format(date);
-        WebElement actualDate = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='payment-campaign-pages-pane-payments']/div/div/div/div[1]/div/table/tbody/tr[1]/td[10]"));
+        WebElement actualDate = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@class='table table-striped table-hover']//tbody//tr[1]//td[10]"));
         Assert.assertEquals(actualDate.getText(),expectedDate);
     }
 
