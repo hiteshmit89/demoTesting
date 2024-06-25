@@ -2,7 +2,7 @@
 Feature: Patient Window Task Creation
   Description : Creating Tasks from patient window.
 
-  @createPatientWindowTasks @PRAC-T
+  @createPatientWindowTasks @PRAC-T4049 @PRAC-T4050  @PRAC-T4051 @PRAC-T4052 @PRAC-T4053
   Scenario Outline: Verify User can create "<TaskType>" of tasks from patient window & close them from Task Page
     Given I login to PbN app
     And I click on practice name
@@ -22,3 +22,12 @@ Feature: Patient Window Task Creation
       | General Task         |
       | Account Receivable   |
       | Patient Recall       |
+
+  @testSectionIntegrationWithPatientWindow @PRAC-T3763
+  Scenario Outline: Patient Task Table Opening from Task Section
+    Given I login to PbN app
+    And I click on practice name
+    And I am redirected to the Task Page
+    When I selected a task from task list
+    Then Task section will open for that patient
+

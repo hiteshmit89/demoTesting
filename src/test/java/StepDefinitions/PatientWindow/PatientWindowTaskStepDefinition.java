@@ -68,4 +68,5 @@ public class PatientWindowTaskStepDefinition {
     public void iClosedTheCreatedTasks() {
         PbNUIApp.tasksPage().closeSelectedTaskList();
     }
+
 }

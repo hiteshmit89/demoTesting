@@ -40,4 +40,16 @@ public class TasksPage extends BasePage {
         Browser.waitForElementToBeClickable(updateTaskStatus);
         Browser.clickOnElementUsingJavascript(updateTaskStatus);
     }
+
+    public void selectTaskFromTaskList ()
+    {
+     WebElement taskList = DriverManager.getInstance().Driver.findElement(By.xpath("//table[@class='table table-hover avatar-table dataTable no-footer dtr-inline']//tbody//tr[@role='row'][2]"));
+        Browser.clickOnElementUsingJavascript(taskList);
+    }
+
+    public void closePatientWindow ()
+    {
+        WebElement closePatientWindow = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='close-button']"));
+        Browser.clickOnElement(closePatientWindow);
+    }
 }
