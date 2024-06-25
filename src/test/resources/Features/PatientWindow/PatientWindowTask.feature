@@ -23,8 +23,8 @@ Feature: Patient Window Task Creation
       | Account Receivable   |
       | Patient Recall       |
 
-  @testSectionIntegrationWithPatientWindow @PRAC-T3763
-  Scenario Outline: Patient Task Table Opening from Task Section
+  @testSectionIntegrationWithPatientWindow @PRAC-T3763 @In-Progress
+  Scenario : Patient Task Table Opening from Task Section
     Given I login to PbN app
     And I click on practice name
     And I am redirected to the Task Page
