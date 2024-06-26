@@ -28,7 +28,7 @@ public class AppointmentsStepdefinition {
     @And("I click on appointment tab and try to book appointment")
     public void iClickOnAppointmentTabAndTryToBookAppointment() {
         PbNUIApp.appointmentBookingPage().clickOnPickLocation();
-        PbNUIApp.appointmentBookingPage().clickOnSelectNewPatient();
+        PbNUIApp.appointmentBookingPage().clickOnSelectExistingPatient();
         PbNUIApp.appointmentBookingPage().clickOnEmergencyConsult();
         PbNUIApp.appointmentBookingPage().clickOnEarliest();
         PbNUIApp.appointmentBookingPage().fillAppointmentBookingForm();
@@ -64,7 +64,7 @@ public class AppointmentsStepdefinition {
     @And("I click on appointments tab and try to book appointment")
     public void iClickOnAppointmentsTabAndTryToBookAppointment() {
         PbNUIApp.appointmentBookingPage().clickOnPickLocation();
-        PbNUIApp.appointmentBookingPage().clickOnSelectNewPatient();
+        PbNUIApp.appointmentBookingPage().clickOnSelectExistingPatient();
         PbNUIApp.appointmentBookingPage().clickOnEmergencyConsult();
         PbNUIApp.appointmentBookingPage().clickOnEarliest();
         PbNUIApp.appointmentBookingPage().fillAppointmentBookingForm();
@@ -91,7 +91,7 @@ public class AppointmentsStepdefinition {
         PbNUIApp.appointmentsPage().clickOnWidgets();
         PbNUIApp.appointmentsPage().createAppointmentURLAndNavigate();
         PbNUIApp.appointmentBookingPage().clickOnPickLocation();
-        PbNUIApp.appointmentBookingPage().clickOnSelectNewPatient();
+        PbNUIApp.appointmentBookingPage().clickOnSelectExistingPatient();
         PbNUIApp.appointmentBookingPage().clickOnEmergencyConsult();
         PbNUIApp.appointmentBookingPage().clickOnEarliest();
         PbNUIApp.appointmentBookingPage().fillAppointmentBookingFormForInactivePatient();
@@ -105,7 +105,7 @@ public class AppointmentsStepdefinition {
         PbNUIApp.appointmentsPage().clickOnWidgets();
         PbNUIApp.appointmentsPage().createAppointmentURLAndNavigate();
         PbNUIApp.appointmentBookingPage().clickOnPickLocation();
-        PbNUIApp.appointmentBookingPage().clickOnSelectNewPatient();
+        PbNUIApp.appointmentBookingPage().clickOnSelectExistingPatient();
         PbNUIApp.appointmentBookingPage().clickOnEmergencyConsult();
         PbNUIApp.appointmentBookingPage().clickOnEarliest();
         PbNUIApp.appointmentBookingPage().fillAppointmentBookingFormForPatientWithTags();
@@ -235,14 +235,14 @@ public class AppointmentsStepdefinition {
         PbNUIApp.appointmentsPage().clickOnWidgets();
         PbNUIApp.appointmentsPage().createAppointmentURLAndNavigate();
         PbNUIApp.appointmentBookingPage().clickOnPickLocation();
-        PbNUIApp.appointmentBookingPage().clickOnSelectNewPatient();
+        PbNUIApp.appointmentBookingPage().clickOnSelectExistingPatient();
         PbNUIApp.appointmentBookingPage().clickOnEmergencyConsult();
         PbNUIApp.appointmentBookingPage().clickOnEarliest();
         PbNUIApp.appointmentBookingPage().fillAppointmentBookingForm();
         PbNUIApp.appointmentBookingPage().clickOnCheckBox();
         PbNUIApp.appointmentBookingPage().clickOnNextButton();
-        PbNUIApp.appointmentBookingPage().clickOnIDoNotHaveInsurance();
-        PbNUIApp.appointmentBookingPage().goToNextAvailability();
+        PbNUIApp.appointmentBookingPage().insuranceUnchanged();
+        PbNUIApp.appointmentBookingPage().clickOnNextButton();
         PbNUIApp.appointmentBookingPage().clickOnUseCellPhone();
         PbNUIApp.appointmentBookingPage().enterOTP("1234");
         PbNUIApp.appointmentBookingPage().clickOnVerifyAndSchedule();

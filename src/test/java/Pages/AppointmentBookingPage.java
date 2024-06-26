@@ -37,6 +37,13 @@ public class AppointmentBookingPage extends BasePage {
         Browser.clickOnElement(selectNewPatient);
     }
 
+    public void clickOnSelectExistingPatient() {
+        Browser.waitForElementToBeVisible(By.xpath("//button/span[text()='Returning Patient']"));
+        WebElement selectExistingPatient = DriverManager.getInstance().Driver.findElement(By.xpath("//button/span[text()='Returning Patient']"));
+        Browser.waitForElementToDisplay(selectExistingPatient);
+        Browser.clickOnElement(selectExistingPatient);
+    }
+
     public void clickOnEmergencyConsult() {
         Browser.waitForElementToBeVisible(By.xpath("//div[text()='What would you like to be seen for?']/following-sibling::div//span[@class='MuiButton-label']"));
         WebElement selectEmergencyConsult = DriverManager.getInstance().Driver.findElement(By.xpath("//div[text()='What would you like to be seen for?']/following-sibling::div//span[@class='MuiButton-label']"));
@@ -62,11 +69,11 @@ public class AppointmentBookingPage extends BasePage {
     }
 
     public void fillAppointmentBookingForm() {
-        enterFirstName(PbNUIApp.userdata().getPractices().getFirst().getFormsData().getFirst().getFirst_name());
-        enterLastName(PbNUIApp.userdata().getPractices().getFirst().getFormsData().getFirst().getLast_name());
-        enterPhoneNumber(PbNUIApp.userdata().getPractices().getFirst().getFormsData().getFirst().getPhone_number());
-        enterEmailID(PbNUIApp.userdata().getPractices().getFirst().getFormsData().getFirst().getEmail_id());
-        enterBirthDate(PbNUIApp.userdata().getPractices().getFirst().getFormsData().getFirst().getBirth_date());
+        enterFirstName(PbNUIApp.userdata().getFirstName(1, "1"));
+        enterLastName(PbNUIApp.userdata().getLastName(1, "1"));
+        enterPhoneNumber(PbNUIApp.userdata().getPhoneNumber(1, "1"));
+        enterEmailID(PbNUIApp.userdata().getEmailId(1, "1"));
+        enterBirthDate(PbNUIApp.userdata().getBirthDate(1, "1"));
     }
 
     public void fillAppointmentBookingFormForInactivePatient() {
@@ -159,6 +166,12 @@ public class AppointmentBookingPage extends BasePage {
             Browser.clickOnElementUsingJavascript(iDoNotHaveInsuranceButton);
             clickOnNextButton();
         }
+    }
+
+    public void insuranceUnchanged() {
+        Browser.waitForElementToBeVisible(By.xpath("//span[@class='MuiButton-label' and contains(text(),'Insurance Unchanged')]"));
+        WebElement insuranceUnchangedButton = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='MuiButton-label' and contains(text(),'Insurance Unchanged')]"));
+        Browser.clickOnElementUsingJavascript(insuranceUnchangedButton);
     }
 
     public void goToNextAvailability() {
