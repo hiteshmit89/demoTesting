@@ -8,17 +8,20 @@ import io.cucumber.java.en.When;
 
 public class TasksStepDefinitaion {
 
-/*
+
     @And("I am redirected to the Tasks Page")
     public void iAmRedirectedToTheTasksPage() {
         PbNUIApp.navigator().NavigateTo(Constants.Destination.Tasks);
-    }*/
+    }
 
     @When("I selected a task from task list")
     public void iSelectedATaskFromTaskList() {
         PbNUIApp.tasksPage().selectTaskFromTaskList();
     }
-
+    @And("Verified task Section is opened")
+    public void verifiedTaskSectionIsOpened() {
+        PbNUIApp.tasksPage().verifyTaskListHeader();
+    }
     @Then("Task section will open for that patient")
     public void taskSectionWillOpenForThatPatient() {
         PbNUIApp.tasksPage().closePatientWindow();
