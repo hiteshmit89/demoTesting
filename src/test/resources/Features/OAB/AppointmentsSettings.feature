@@ -66,3 +66,21 @@ Feature: Appointments Settings
     Given I login to PbN app and select the practice
     When I try to click on the provider time availability checkbox on appointment settings page
     Then I will be able to click on the provider time availability checkbox on appointment settings page
+
+  @appointments @PUA-88 @PRAC-T3842 @QA3
+  Scenario: Verify I can disable automatic messages on appointment template page
+    Given I login to PbN app and select the practice
+    When I try to click on and disable automatic messages on appointment template page
+    Then I will be able to click and disable automatic messages on appointment template page
+
+  @appointments @PUA-90 @PRAC-T98
+  Scenario: Verify I can click on the cluster appointments checkbox on appointment settings page
+    Given I login to PbN app and select the practice
+    When I try to click on the cluster appointments checkbox on appointment settings page
+    Then I will be able to click on the cluster appointments checkbox on appointment settings page
+
+  @appointments @PUA-91 @PRAC-T3830
+  Scenario: Verify I can select the language on the practice specific configuration popup on appointment settings page
+    Given I login to PbN app and select the practice
+    When I try to select the language on the practice specific configuration popup on appointment settings page
+    Then I will be able to select the language on the practice specific configuration popup on appointment settings page
