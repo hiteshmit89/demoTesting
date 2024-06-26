@@ -242,9 +242,9 @@ public class AppointmentsStepdefinition {
         PbNUIApp.appointmentBookingPage().clickOnCheckBox();
         PbNUIApp.appointmentBookingPage().clickOnNextButton();
         PbNUIApp.appointmentBookingPage().clickOnIDoNotHaveInsurance();
-        PbNUIApp.appointmentBookingPage().clickOnNextButton();
         PbNUIApp.appointmentBookingPage().clickOnUseCellPhone();
         PbNUIApp.appointmentBookingPage().enterOTP("1234");
+        PbNUIApp.appointmentBookingPage().clickOnVerifyAndSchedule();
     }
 
     @Then("I will be able to see error message on entering invalid OTP")

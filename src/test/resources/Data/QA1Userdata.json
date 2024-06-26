@@ -2,28 +2,28 @@
   "Practices": [
     {
       "practice_id": 1,
-      "practice_name": "Roman, Burke and Wagner",
+      "practice_name": "Automation DND",
       "address": 123,
       "Users": [
         {
           "user_id": 1,
+          "user_name": "Vikas Tomar",
+          "password": "ppp###2025",
+          "email": "vikas.tomar@practicenumbers.com",
+          "role": "super_admin"
+        },
+        {
+          "user_id": 2,
           "user_name": "Chris Lau",
           "password": "ppp###2025",
           "email": "chris.lau@practicenumbers.com",
           "role": "super_admin"
         },
         {
-          "user_id": 2,
+          "user_id": 3,
           "user_name": "Hitesh Lau",
           "password": "ppp###2025",
           "email": "Hitesh.lau@practicenumbers.com",
-          "role": "super_admin"
-        },
-        {
-          "user_id": 3,
-          "user_name": "Vikas Tomar",
-          "password": "ppp###2025",
-          "email": "vikas.tomar@practicenumbers.com",
           "role": "super_admin"
         }
       ],
@@ -34,7 +34,7 @@
           "last_name": "Test Last Name",
           "phone_number": "1234567890",
           "email_id": "test@test.com",
-          "birth_date": "01/01/1967"
+          "birth_date": "01/01/1983"
         },
         {
           "FormType": "2",
@@ -115,12 +115,12 @@
       ],
       "FormsData": [
         {
-          "FormType": "AppointmentBooking",
+          "FormType": "1",
           "first_name": "Test First Name",
           "last_name": "Test Last Name",
           "phone_number": "1234567890",
           "email_id": "test@test.com",
-          "birth_date": "01011976"
+          "birth_date": "01/01/1967"
         }
       ],
       "PatientData": [

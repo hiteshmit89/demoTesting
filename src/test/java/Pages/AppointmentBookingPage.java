@@ -17,11 +17,11 @@ public class AppointmentBookingPage extends BasePage {
     private final List<WebElement> locationFinder = DriverManager.getInstance().Driver.findElements(By.xpath("//*[@id='patient-appointment-booking-page']//div[@class='location-item-name']"));
 
     public void clickOnPickLocation() {
-        Browser.waitForElementToBeVisible(By.xpath("//p[@class='MuiTypography-root jss8 MuiTypography-body1' and contains(text(),'Book Your Appointment')]"));
+        Browser.waitForElementToBeVisible(By.xpath("(//div[@class='location-item-name'])[1]"));
         boolean present = false;
         WebElement setLocation = null;
         try {
-            setLocation = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='MuiPaper-root location-item-card card-background-color MuiPaper-elevation1 MuiPaper-rounded']"));
+            setLocation = DriverManager.getInstance().Driver.findElement(By.xpath("(//div[@class='location-item-name'])[1]"));
             present = true;
         } catch (NoSuchElementException ignored) {
         }
@@ -47,22 +47,6 @@ public class AppointmentBookingPage extends BasePage {
         Browser.waitForElementToBeVisible(By.xpath("//span[@class='MuiButton-label' and contains(text(),'Earliest: ')]"));
         WebElement selectEarliest = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='MuiButton-label' and contains(text(),'Earliest: ')]"));
         Browser.clickOnElement(selectEarliest);
-        boolean present = false;
-        try {
-            Browser.waitForElementToBeVisible(By.xpath("//div[@class='react-toast-notifications__toast__content css-1ad3zal' and contains(text(),'Error occured while checking for slot availability')]"));
-            WebElement toastMessage = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='react-toast-notifications__toast__content css-1ad3zal' and contains(text(),'Error occured while checking for slot availability')]"));
-            present = true;
-        } catch (Exception ignored) {
-        }
-        if (present) {
-            Browser.waitForElementToBeVisible(By.xpath("//span[@class='MuiButton-label' and contains(text(),'See more options')]"));
-            WebElement selectSeeMoreOptions = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='MuiButton-label' and contains(text(),'See more options')]"));
-            Browser.clickOnElement(selectSeeMoreOptions);
-            Browser.waitForElementToBeVisible(By.xpath("//button[@class='MuiButtonBase-root MuiIconButton-root' and @style] "));
-            Browser.waitForPresenceOfElement(By.xpath("//table[@class='timeslots-table']//tr[3]//td[5]"));
-            WebElement selectTimeSlot = DriverManager.getInstance().Driver.findElement(By.xpath("//table[@class='timeslots-table']//tr[3]//td[5]"));
-            Browser.clickOnElement(selectTimeSlot);
-        }
     }
 
     public void clickOnSeeMoreOptions() {
@@ -151,7 +135,7 @@ public class AppointmentBookingPage extends BasePage {
 
     public void clickOnNextButton() {
         WebElement nextButton = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='MuiButton-label' and contains(text(),'Next')]"));
-        Browser.clickOnElement(nextButton);
+        Browser.clickOnElementUsingJavascript(nextButton);
     }
 
     public void enterBirthDateOnInsurancePage(String birthDateData) {
@@ -162,8 +146,18 @@ public class AppointmentBookingPage extends BasePage {
     }
 
     public void clickOnIDoNotHaveInsurance() {
-        WebElement iDoNotHaveInsuranceButton = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='MuiButton-label' and contains(text(),'I do')]"));
-        Browser.clickOnElementUsingJavascript(iDoNotHaveInsuranceButton);
+        Browser.waitForElementToBeVisible(By.xpath("//span[@class='MuiButton-label' and contains(text(),'I do')]"));
+        boolean present = false;
+        WebElement iDoNotHaveInsuranceButton = null;
+        try {
+            iDoNotHaveInsuranceButton = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='MuiButton-label' and contains(text(),'I do')]"));
+            present = true;
+        } catch (NoSuchElementException ignored) {
+        }
+        if (present) {
+            Browser.clickOnElementUsingJavascript(iDoNotHaveInsuranceButton);
+            clickOnNextButton();
+        }
     }
 
     public void verifyInsurancePage() {
@@ -191,20 +185,26 @@ public class AppointmentBookingPage extends BasePage {
         Browser.enterTextInEditBox(varOTP, OTP);
     }
 
+    public void clickOnVerifyAndSchedule() {
+        WebElement verifyAndScheduleButton = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='MuiButton-label' and contains(text(),'Verify & Schedule')]"));
+        Browser.clickOnElement(verifyAndScheduleButton);
+    }
+
     public void verifySuccessfulTextDisplayed() {
         WebElement successfulText = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='HomePageRoot']//h1[contains(text(),'Successful')]"));
         Assert.assertTrue("Successful text not displayed on appointment booking page.", successfulText.isDisplayed());
     }
 
     public void verifyErrorTextDisplayed() {
-        WebElement successfulText = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='HomePageRoot']//h1[contains(text(),'Successful')]"));
-        Assert.assertTrue("Successful text not displayed on appointment booking page.", successfulText.isDisplayed());
+        Browser.waitForElementToBeVisible(By.xpath("//div[@class='react-toast-notifications__toast__content css-1ad3zal']"));
+        WebElement errorMessage = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='react-toast-notifications__toast__content css-1ad3zal']"));
+        String errorMsg = "Error! Could not verify otp.";
+        Assert.assertEquals("Error toast message displayed", errorMsg, errorMessage.getText());
     }
 
     public void verifyTextDisplayedMessage(String message) {
-        Browser.waitForElementToBeVisible(By.xpath("//div[@class='MuiAlert-message']"));
-        WebElement verifyText = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='MuiAlert-message']"));
-        Assert.assertTrue(message, verifyText.isDisplayed());
+        WebElement successfulText = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='HomePageRoot']//h1[contains(text(),'Successful')]"));
+        Assert.assertTrue("Successful text not displayed on appointment booking page.", successfulText.isDisplayed());
     }
 
     public void verifyDateErrorMessage() {
