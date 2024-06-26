@@ -2,7 +2,7 @@
 Feature: Patient Window Task Creation
   Description : Creating Tasks from patient window.
 
-  @createPatientWindowTasks @PRAC-T
+  @createPatientWindowTasks @PUA-46 @PRAC-T4049 @PRAC-T4050  @PRAC-T4051 @PRAC-T4052 @PRAC-T4053
   Scenario Outline: Verify User can create "<TaskType>" of tasks from patient window & close them from Task Page
     Given I login to PbN app
     And I click on practice name

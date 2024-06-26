@@ -1,7 +1,7 @@
 @PatientWindow @pbnAll
 Feature: Patient Window Feature
 
-  @ViewTasks @PUA-7 @PRAC-T3494
+  @ViewTasks @PUA-7 @PRAC-T3494 @PRAC-T3501
   Scenario Outline: User can create All types of tasks from patient window & ViewTasksList Table Displayed
     Given I login to PbN app
     And I click on practice name
@@ -43,7 +43,7 @@ Feature: Patient Window Feature
         | Dental Insurance Form   |
         | Patient Information     |
 
-   @patientFormCancelInvite @PUA-50 @PRAC-T975
+   @patientFormCancelInvite @PUA-50 @PRAC-T4054
    Scenario Outline: User can cancel form invite from the Pending Forms List
     Given I login to PbN app and select the practice
     When I click on the patient finder to open Patient Window
@@ -55,7 +55,7 @@ Feature: Patient Window Feature
       | Dental Insurance Form   |
       | Patient Information     |
 
-  @patientFormsManuallySubmitted @PUA-50 @PRAC-T975
+  @patientFormsManuallySubmitted @PUA-50 @PRAC-T4055
   Scenario Outline: User can manually complete the forms from the Pending Forms List
     Given I login to PbN app and select the practice
     When I click on the patient finder to open Patient Window
