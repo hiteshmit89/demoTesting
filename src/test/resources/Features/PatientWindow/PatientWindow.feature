@@ -5,7 +5,7 @@ Feature: Patient Window Feature
   Scenario Outline: User can create All types of tasks from patient window & ViewTasksList Table Displayed
     Given I login to PbN app
     And I click on practice name
-    And I click on patient finder & open Patient Window
+    When I click on the patient finder to open Patient Window
     When I create a task "<TaskType>" in patient window
     And I select the View Tasks
     And I select the open Button
