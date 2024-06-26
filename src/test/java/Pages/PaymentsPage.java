@@ -161,6 +161,7 @@ public class PaymentsPage extends BasePage {
     }
 
     public void setSelectPaginationNumber() {
+        Browser.waitForElementToBeVisible(By.xpath("//div[@class='content-section']//div//button[@id='pageDropDown']"));
         Browser.waitForElementToBeClickable(By.xpath("//div[@class='content-section']//div//button[@id='pageDropDown']"));
         WebElement pagination = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='content-section']//div//button[@id='pageDropDown']"));
         Browser.clickOnElementUsingJavascript(pagination);
