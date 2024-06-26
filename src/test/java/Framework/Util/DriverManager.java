@@ -2,6 +2,7 @@ package Framework.Util;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -15,7 +16,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class DriverManager {
     private WebDriver webDriver = null;
@@ -52,7 +55,11 @@ public class DriverManager {
                     setDriver(new RemoteWebDriver(new URL(ConfigManager.getInstance().getProperty("DOCKERHUB")), capabilities));
                 }
                 else {
-                    setDriver(new ChromeDriver());
+                    Map<String, Object> preference = new HashMap<String, Object>();
+                    preference.put("profile.default_content_setting_values.notifications", 1);
+                    ChromeOptions options = new ChromeOptions();
+                    options.setExperimentalOption("prefs", preference);
+                    setDriver(new ChromeDriver(options));
                 }
                 break;
         }

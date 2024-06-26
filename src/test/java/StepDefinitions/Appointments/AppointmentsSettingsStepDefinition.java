@@ -142,4 +142,53 @@ public class AppointmentsSettingsStepDefinition {
         PbNUIApp.appointmentsPage().verifyPatientNameInAppointmentList();
 
     }
+
+    @When("I try to click on the provider time availability checkbox on appointment settings page")
+    public void iTryToClickOnTheProviderTimeAvailabilityCheckboxOnAppointmentSettingsPage() {
+        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
+        PbNUIApp.appointmentsPage().clickOnAppointmentSettingTab();
+    }
+
+    @Then("I will be able to click on the provider time availability checkbox on appointment settings page")
+    public void iWillBeAbleToClickOnTheProviderTimeAvailabilityCheckboxOnAppointmentSettingsPage() {
+        PbNUIApp.appointmentsPage().clickOnProviderTimeAvailabilityCheckbox();
+    }
+
+    @When("I try to click on and disable automatic messages on appointment template page")
+    public void iTryToClickOnAndDisableAutomaticMessagesOnAppointmentTemplatePage() {
+        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
+        PbNUIApp.appointmentsPage().clickOnAppointmentTemplateTab();
+    }
+
+    @Then("I will be able to click and disable automatic messages on appointment template page")
+    public void iWillBeAbleToClickAndDisableAutomaticMessagesOnAppointmentTemplatePage() {
+        PbNUIApp.appointmentsPage().clickOnBlockedPatientToggleButton();
+        PbNUIApp.appointmentsPage().clickOnConflictedAppointmentToggleButton();
+        PbNUIApp.appointmentsPage().clickOnExistingPatientBookedAppointmentToggleButton();
+        PbNUIApp.appointmentsPage().clickOnNewPatientBookedAppointmentToggleButton();
+    }
+
+    @When("I try to click on the cluster appointments checkbox on appointment settings page")
+    public void iTryToClickOnTheClusterAppointmentsCheckboxOnAppointmentSettingsPage() {
+        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
+        PbNUIApp.appointmentsPage().clickOnAppointmentSettingTab();
+    }
+
+    @Then("I will be able to click on the cluster appointments checkbox on appointment settings page")
+    public void iWillBeAbleToClickOnTheClusterAppointmentsCheckboxOnAppointmentSettingsPage() {
+        PbNUIApp.appointmentsPage().clickOnClusterAppointmentsCheckbox();
+    }
+
+    @When("I try to select the language on the practice specific configuration popup on appointment settings page")
+    public void iTryToSelectTheLanguageOnThePracticeSpecificConfigurationPopupOnAppointmentSettingsPage() {
+        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
+        PbNUIApp.appointmentsPage().clickOnSettingIconButton();
+        PbNUIApp.appointmentsPage().clickOnLanguageTab();
+
+    }
+
+    @Then("I will be able to select the language on the practice specific configuration popup on appointment settings page")
+    public void iWillBeAbleToSelectTheLanguageOnThePracticeSpecificConfigurationPopupOnAppointmentSettingsPage() {
+        PbNUIApp.appointmentsPage().clickOnSpanishLanguageToggleButton();
+    }
 }
