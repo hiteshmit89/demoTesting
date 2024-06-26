@@ -22,7 +22,7 @@ public class PaymentCTAStepDefinition {
 
     @And("I select payment method and enter card details")
     public void iSelectPaymentMethodAndEnterCardDetails() {
-        PBNModals.collectPaymentModal().selectPaymentMethod();
+        PBNModals.collectPaymentModal().selectPaymentMethodAsAddNewCard();
         PBNModals.collectPaymentModal().enterCardDetails();
     }
 
@@ -48,7 +48,7 @@ public class PaymentCTAStepDefinition {
 
     @And("I select payment method and enter card details with incorrect cvc and verify incorrect cvv error message")
     public void iSelectPaymentMethodAndEnterCardDetailsWithIncorrectCvc() {
-        PBNModals.collectPaymentModal().selectPaymentMethod();
+        PBNModals.collectPaymentModal().selectPaymentMethodAsAddNewCard();
         PBNModals.collectPaymentModal().enterAndValidateCardDetailsWithIncorrectCvc();
     }
 }
