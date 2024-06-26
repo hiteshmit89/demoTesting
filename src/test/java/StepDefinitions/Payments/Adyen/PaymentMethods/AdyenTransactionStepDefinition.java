@@ -42,4 +42,19 @@ public class AdyenTransactionStepDefinition {
     public void verifyIAmAbleToDownloadPaymentReceipt() {
         PbNUIApp.paymentsPage().verifyPaymentReceiptIsDownloaded();
     }
+
+    @And("I enter the Patient Name in payment methods")
+    public void iEnterThePatientNameInPaymentMethods() {
+        PbNUIApp.paymentsPage().searchPatientInPaymentMethod();
+    }
+
+    @And("I able to see all adyen card present in the table using pagination")
+    public void iAbleToSeeAllAdyenCardPresentInTheTableUsingPagination() {
+        PbNUIApp.paymentsPage().setSelectPaginationNumber();
+    }
+
+    @Then("i verify the adyen card with Patient")
+    public void iVerifyTheAdyenCardWithPatient() {
+        PbNUIApp.paymentsPage().AddAdyenCardWithPatient();
+    }
 }
