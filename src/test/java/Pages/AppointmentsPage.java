@@ -18,15 +18,16 @@ public class AppointmentsPage extends BasePage {
     }
 
     private WebElement header = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='appointment-booking']//span[text()='Online Appointment Booking']"));
-    //private WebElement eUrl = DriverManager.getInstance().Driver.findElement(By.xpath("(//span[contains(text(),'https://www.patientsreach.com/schedule/')])[1]"));
 
     public void clickOnWidgets() {
         WebElement widgetsTab = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='appointment-booking-page-tab-Widgets']"));
         Browser.clickOnElement(widgetsTab);
-        Browser.waitForElementToDisplay(widgetsTab);
+        WebElement colourScheme = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@style='display: inline-block; margin-right: 40px; padding: 4px;']"));
+        Browser.waitForElementToDisplay(colourScheme);
     }
 
     public void createAppointmentURLAndNavigate() {
+        Browser.waitForElementToBeVisible(By.xpath("//span[contains(text(),'https://www.patientsreach.com/schedule/qwerty')]"));
         WebElement eUrl = DriverManager.getInstance().Driver.findElement(By.xpath("(//span[contains(text(),'https://www.patientsreach.com/schedule/')])[1]"));
         String urlText = eUrl.getText();
         String[] arrOfStr = urlText.split("schedule");

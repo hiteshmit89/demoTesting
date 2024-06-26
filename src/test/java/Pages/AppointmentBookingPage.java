@@ -134,6 +134,7 @@ public class AppointmentBookingPage extends BasePage {
     }
 
     public void clickOnNextButton() {
+        Browser.waitForElementToBeVisible(By.xpath("//span[@class='MuiButton-label' and contains(text(),'Next')]"));
         WebElement nextButton = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='MuiButton-label' and contains(text(),'Next')]"));
         Browser.clickOnElementUsingJavascript(nextButton);
     }
@@ -157,6 +158,23 @@ public class AppointmentBookingPage extends BasePage {
         if (present) {
             Browser.clickOnElementUsingJavascript(iDoNotHaveInsuranceButton);
             clickOnNextButton();
+        }
+    }
+
+    public void goToNextAvailability() {
+        Browser.waitForElementToBeVisible(By.xpath("//span[@class='MuiButton-label' and contains(text(),'go to next availability')]"));
+        boolean present = false;
+        WebElement goToNextAvailabilityButton = null;
+        try {
+            goToNextAvailabilityButton = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='MuiButton-label' and contains(text(),'go to next availability')]"));
+            present = true;
+        } catch (NoSuchElementException ignored) {
+        }
+        if (present) {
+            Browser.clickOnElement(goToNextAvailabilityButton);
+            clickOnEarliest();
+            clickOnNextButton();
+            clickOnIDoNotHaveInsurance();
         }
     }
 
