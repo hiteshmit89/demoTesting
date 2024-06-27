@@ -191,4 +191,15 @@ public class AppointmentsSettingsStepDefinition {
     public void iWillBeAbleToSelectTheLanguageOnThePracticeSpecificConfigurationPopupOnAppointmentSettingsPage() {
         PbNUIApp.appointmentsPage().clickOnSpanishLanguageToggleButton();
     }
+
+    @When("I try to uncheck on the provider time availability checkbox on appointment settings page")
+    public void iTryToUncheckOnTheProviderTimeAvailabilityCheckboxOnAppointmentSettingsPage() {
+        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
+        PbNUIApp.appointmentsPage().clickOnAppointmentSettingTab();
+    }
+
+    @Then("I will be able to uncheck on the provider time availability checkbox on appointment settings page")
+    public void iWillBeAbleToUncheckOnTheProviderTimeAvailabilityCheckboxOnAppointmentSettingsPage() {
+        PbNUIApp.appointmentsPage().uncheckOnProviderTimeAvailabilityCheckbox();
+    }
 }
