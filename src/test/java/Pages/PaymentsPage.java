@@ -25,7 +25,6 @@ public class PaymentsPage extends BasePage {
     private final WebElement widgetsTab = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='payment-page-tab-Widgets']"));
 
     String SelectPaginationNumber = "100";
-
     int initialTableSize = 0;
 
     public void clickOnWidgetslink() {

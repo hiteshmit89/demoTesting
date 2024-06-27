@@ -77,8 +77,8 @@ public class AdyenTransactionStepDefinition {
         PbNUIApp.paymentsPage().setSelectPaginationNumber();
     }
 
-    @Then("i verify the adyen card with Patient")
-    public void iVerifyTheAdyenCardWithPatient() {
+    @Then("I verify the adyen card with Patient")
+    public void IVerifyTheAdyenCardWithPatient() {
         PbNUIApp.paymentsPage().AddAdyenCardWithPatient();
     }
 }
