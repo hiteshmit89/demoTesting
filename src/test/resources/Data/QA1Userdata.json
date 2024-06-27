@@ -146,7 +146,100 @@
           "city": "California"
         }
       ]
+        },
+    {
+      "practice_id": 3,
+      "practice_name": "Roman, Burke and Wagner",
+      "address": 123,
+      "Users": [
+        {
+          "user_id": 1,
+          "user_name": "Vikas Tomar",
+          "password": "ppp###2025",
+          "email": "vikas.tomar@practicenumbers.com",
+          "role": "super_admin"
+        },
+        {
+          "user_id": 2,
+          "user_name": "Chris Lau",
+          "password": "ppp###2025",
+          "email": "chris.lau@practicenumbers.com",
+          "role": "super_admin"
+        },
+        {
+          "user_id": 3,
+          "user_name": "Hitesh Lau",
+          "password": "ppp###2025",
+          "email": "Hitesh.lau@practicenumbers.com",
+          "role": "super_admin"
+        }
+      ],
+      "FormsData": [
+        {
+          "FormType": "1",
+          "first_name": "Mark",
+          "last_name": "Castro",
+          "phone_number": "1234567890",
+          "email_id": "mohit.chandravanshi@practicenumbers.com",
+          "birth_date": "01/01/2000"
+        },
+        {
+          "FormType": "2",
+          "first_name": "Robert",
+          "last_name": "Aguilar",
+          "phone_number": "1234567890",
+          "email_id": "test@test.com",
+          "birth_date": "04192004"
+        },
+        {
+          "FormType": "3",
+          "first_name": "Ricky",
+          "last_name": "Alexander",
+          "phone_number": "1234567890",
+          "email_id": "test@test.com",
+          "birth_date": "12021995"
+        },
+        {
+          "FormType": "4",
+          "first_name": "NickyP",
+          "last_name": "Alexander",
+          "phone_number": "1234567890",
+          "email_id": "test@test.com",
+          "birth_date": "12022020"
+        },
+        {
+          "FormType": "5",
+          "first_name": "Jesse Garrett",
+          "last_name": "Alexander",
+          "phone_number": "1234567890",
+          "email_id": "test@test.com",
+          "birth_date": "06252024"
+        }
+      ],
+      "PatientData": [
+        {
+          "patient_id": 1,
+          "patient_name": "Sally Walker",
+          "task_description": "Automation",
+          "task_type": "Treatment"
+        }
+      ],
+      "CardData": [
+        {
+          "card_Id": "1",
+          "card_number_Adyen": "5454 5454 5454 5454",
+          "month_date": "0330",
+          "cvc": "737",
+          "incorrect_cvc": "73",
+          "card_number_Stripe": "4242 4242 4242 4242",
+          "country": "United States",
+          "street": "Downing Street",
+          "houseNumber": "14457,st. Louie's Road",
+          "postalCode": "95014",
+          "city": "California"
         }
       ]
+    }
+  ]
 }
 
