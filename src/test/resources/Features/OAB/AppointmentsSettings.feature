@@ -67,7 +67,7 @@ Feature: Appointments Settings
     When I try to click on the provider time availability checkbox on appointment settings page
     Then I will be able to click on the provider time availability checkbox on appointment settings page
 
-  @appointments @PUA-88 @PRAC-T3842 @QA3
+  @appointments @PUA-88 @PRAC-T3842
   Scenario: Verify I can disable automatic messages on appointment template page
     Given I login to PbN app and select the practice
     When I try to click on and disable automatic messages on appointment template page
@@ -90,3 +90,9 @@ Feature: Appointments Settings
     Given I login to PbN app and select the practice
     When I try to uncheck on the provider time availability checkbox on appointment settings page
     Then I will be able to uncheck on the provider time availability checkbox on appointment settings page
+
+  @appointments @PUA-99 @PRAC-T141
+  Scenario: Verify I can click on reset button on appointment template page
+    Given I login to PbN app with super user and select the practice
+    When I try to click on reset button on appointment template page
+    Then I will be able to click reset button on appointment template
