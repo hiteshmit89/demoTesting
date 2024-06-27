@@ -75,7 +75,7 @@ public class AppointmentsPage extends BasePage {
     }
 
     public void clickOnSaveButton() {
-        WebElement saveButton = DriverManager.getInstance().Driver.findElement(By.xpath("(//button[text()='Save'])[5]"));
+        WebElement saveButton = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='modal-footer']/button[@class='btn btn-primary']"));
         Browser.scrollToVisibleElement(saveButton);
         Browser.waitForElementToBeClickable(saveButton);
         Browser.clickOnElementUsingJavascript(saveButton);
