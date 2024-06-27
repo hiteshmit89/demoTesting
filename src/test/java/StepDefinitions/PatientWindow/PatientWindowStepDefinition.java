@@ -134,11 +134,6 @@ public class PatientWindowStepDefinition {
         PBNModals.patientOverviewModal().clickOnPaymentMethod();
     }
 
-    @And("I select Add new payment method and enter the card details")
-    public void iSelectAddNewPaymentMethodAndEnterTheCardDetails() {
-        PBNModals.patientOverviewModal().clickAddPaymentMethod();
-    }
-
     @And("I click on the save button")
     public void iClickOnTheSaveButton() {
         PBNModals.patientOverviewModal().clickOnSaveButton();

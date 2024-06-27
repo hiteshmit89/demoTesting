@@ -239,6 +239,27 @@
           "city": "California"
         }
       ]
+    },
+    {
+      "practice_id": 4,
+      "practice_name": "Roman, Burke and Wagner",
+      "address": 123,
+      "Users": [
+        {
+          "user_id": 1,
+          "user_name": "Deepak Nayal",
+          "password": "1qaz!QAZ",
+          "email": "deepak.nayal+dnd68@practicenumbers.com",
+          "role": "super_admin"
+        },
+        {
+          "user_id": 2,
+          "user_name": "Chris Lau",
+          "password": "ppp###2025",
+          "email": "chris.lau@practicenumbers.com",
+          "role": "super_admin"
+        }
+      ]
     }
   ]
 }
