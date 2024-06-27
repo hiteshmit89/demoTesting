@@ -124,21 +124,6 @@ public class PatientWindowStepDefinition {
         PBNModals.patientOverviewModal().verifyPatientNoteInActivityTab();
     }
 
-    @And("I click on the charge Button")
-    public void iClickOnTheChargeButton() {
-        PBNModals.patientOverviewModal().clickOnChargeButton();
-    }
-
-    @And("I click on the payment method")
-    public void iClickOnThePaymentMethod() {
-        PBNModals.patientOverviewModal().clickOnPaymentMethod();
-    }
-
-    @And("I click on the save button")
-    public void iClickOnTheSaveButton() {
-        PBNModals.patientOverviewModal().clickOnSaveButton();
-    }
-
     @When("I search for {string} and open patient window")
     public void iSearchForAndOpenPatientWindow(String string) {
         PbNUIApp.navigator().findAndSelectPatientByExactMatchOf(string);

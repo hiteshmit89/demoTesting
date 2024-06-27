@@ -279,21 +279,6 @@ public class PatientOverviewModal {
         }
     }
 
-    public void clickOnChargeButton() {
-        WebElement chargeButton = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='action-item']//span[contains(text(),'Charge')]"));
-        Browser.clickOnElement(chargeButton);
-    }
-
-    public void clickOnPaymentMethod() {
-        WebElement PaymentMethod = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='charge-pop-window-tabs-id-tab-payment-method']"));
-        Browser.clickOnElement(PaymentMethod);
-    }
-
-    public void clickOnSaveButton() {
-        WebElement saveButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='payment-button btn btn-primary']"));
-        Browser.clickOnElementUsingJavascript(saveButton);
-    }
-
     public void validateSmsNumberIcon (){
         Browser.waitForElementToBeVisible(By.xpath("//span[contains(text(),'SMS')]"));
         Browser.waitForElementToBeClickable(By.xpath("//span[contains(text(),'SMS')]"));

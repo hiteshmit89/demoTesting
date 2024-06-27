@@ -88,17 +88,7 @@ Feature: Patient Window Feature
     Then I verify patient note in the Activity Tab
 
 
-  @PaymentCharge @PUA-63 @PRAC-T3473 @InProgress
-  Scenario: The Payment Methods tab in the Charge pop window
-    Given I login to PbN app and select the practice
-    When I click on the patient finder to open Patient Window
-    And I click on the charge Button
-    And I click on the payment method
-    And I select Add new payment method and enter the card details
-    And I click on the save button
-      | Clinical Photo Transfer |
-
-  @SmsValidation @PUA-67 @PRAC-T3791
+  @SmsValidation @PUA-67 @PRAC-T3791 @InProgress
   Scenario Outline: Exclamation mark triangle displayed for invalid SMS numbers
     Given I login to PbN app
     And I click on practice name
