@@ -307,9 +307,5 @@ public class PatientOverviewModal {
         else {
             System.out.println("Either number is not valid, or its a landline number.");
         }
-
-
-
-
     }
 }

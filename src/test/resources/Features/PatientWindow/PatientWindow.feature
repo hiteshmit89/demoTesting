@@ -98,7 +98,7 @@ Feature: Patient Window Feature
     And I click on the save button
       | Clinical Photo Transfer |
 
-  @SmsValidation @PUA-67 @PRAC-T3791 @InProgress
+  @SmsValidation @PUA-67 @PRAC-T3791
   Scenario Outline: Exclamation mark triangle displayed for invalid SMS numbers
     Given I login to PbN app
     And I click on practice name
@@ -106,5 +106,4 @@ Feature: Patient Window Feature
     Then I verify for the SMS number
     Examples:
       | Patient     |
-      | New Mareez  |
-      | Naya Mareez |
+      | Sally Walker |

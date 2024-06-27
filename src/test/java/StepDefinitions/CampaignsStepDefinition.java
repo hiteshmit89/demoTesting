@@ -14,7 +14,7 @@ public class CampaignsStepDefinition {
         PbNUIApp.loginPage().enterPassword(PbNUIApp.userdata().getPassword(4,1));
         PbNUIApp.loginPage().clickOnLoginButton();
     }
-    
+
     @Given("I click on profile dropdown")
     public void iClickOnProfileDropdown() {
         PbNUIApp.practiceHomePage().clickOnUserProfileDropdown();
