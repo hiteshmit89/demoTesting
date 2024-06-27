@@ -389,5 +389,13 @@ public class AppointmentsPage extends BasePage {
             Browser.clickOnElement(resetButton);
         }
         Assert.assertTrue("Reset button is not displayed", resetButton.isDisplayed());
+        Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='btn btn-danger']")));
+        WebElement yesButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='btn btn-danger']"));
+        Browser.clickOnElement(yesButton);
+        Browser.waitForElementToBeVisible(By.xpath("//div[@class='react-toast-notifications__toast__content css-1ad3zal']"));
+        WebElement successMessage = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='react-toast-notifications__toast__content css-1ad3zal']"));
+        String successMsg = "Template reset successful";
+        Assert.assertEquals("Template reset successful", successMsg, successMessage.getText());
+
     }
 }
