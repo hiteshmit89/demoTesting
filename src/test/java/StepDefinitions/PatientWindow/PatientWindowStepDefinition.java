@@ -3,19 +3,28 @@ package StepDefinitions.PatientWindow;
 import Framework.Root.PbNUIApp;
 import Pages.Modals.PBNModals;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class PatientWindowStepDefinition {
 
+    @Given("I login to PbN app for patient window and select the practice")
+    public void iLoginToPbNAppForPatientWindowAndSelectThePractice() {
+        PbNUIApp.loginPage().enterEmail(PbNUIApp.userdata().getUserEmail(3,2));
+        PbNUIApp.loginPage().enterPassword(PbNUIApp.userdata().getPassword(3,2));
+        PbNUIApp.loginPage().clickOnLoginButton();
+        PbNUIApp.appHomePage().clickOnPracticeInPracticeInfoTable(PbNUIApp.userdata().getPracticeName(3));
+    }
+
     @When("I create a task {string} in patient window")
     public void iCreateATaskTaskTypeInPatientWindow(String taskType) {
-        if (taskType.equals(PbNUIApp.userdata().getTaskType(1, 1))) {
+        if (taskType.equals(PbNUIApp.userdata().getTaskType(3, 1))) {
             PBNModals.patientOverviewModal().selectTask(taskType);
         } else {
             PBNModals.patientOverviewModal().selectTask(taskType);
         }
-        PBNModals.patientOverviewModal().addTaskDescription(PbNUIApp.userdata().getTaskDescription(1, 1));
+        PBNModals.patientOverviewModal().addTaskDescription(PbNUIApp.userdata().getTaskDescription(3, 1));
         PBNModals.patientOverviewModal().taskDueDate();
         PBNModals.patientOverviewModal().taskCreation();
     }
@@ -47,7 +56,7 @@ public class PatientWindowStepDefinition {
 
     @When("I click on the patient finder to open Patient Window")
     public void iClickOnThePatientFinderToOpenPatientWindow() {
-        PbNUIApp.navigator().findAndSelectPatientByExactMatchOf(PbNUIApp.userdata().getPatientName(1,1));
+        PbNUIApp.navigator().findAndSelectPatientByExactMatchOf(PbNUIApp.userdata().getPatientName(3,1));
     }
 
     @And("I click on the Forms Tab")
