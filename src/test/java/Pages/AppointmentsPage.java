@@ -371,4 +371,13 @@ public class AppointmentsPage extends BasePage {
         String successMsg = "Language settings updated";
         Assert.assertEquals("Language settings successfully updated", successMsg, successMessage.getText());
     }
+
+    public void clickOnResetButton() {
+        Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='btn btn-default']//span")));
+        WebElement resetButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='btn btn-default']//span"));
+        if (resetButton.isDisplayed()) {
+            Browser.clickOnElement(resetButton);
+        }
+        Assert.assertTrue("Reset button is not displayed", resetButton.isDisplayed());
+    }
 }
