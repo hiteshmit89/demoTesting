@@ -234,6 +234,7 @@ public class AppointmentBookingPage extends BasePage {
     }
 
     public void verifyTextDisplayedMessage(String message) {
+        Browser.waitForElementToBeVisible(By.xpath("//div[@class='MuiTypography-root MuiAlertTitle-root MuiTypography-body1 MuiTypography-gutterBottom']"));
         WebElement successfulText = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='MuiTypography-root MuiAlertTitle-root MuiTypography-body1 MuiTypography-gutterBottom']"));
         Assert.assertTrue("Successful text not displayed on appointment booking page.", successfulText.isDisplayed());
     }
