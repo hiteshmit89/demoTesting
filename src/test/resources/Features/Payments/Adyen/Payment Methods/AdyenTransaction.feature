@@ -40,7 +40,7 @@ Feature: Verify As a user I am able Charge a patient using adyen payment service
     And Select the payment method, enter amount, description from charge customer modal
     Then I Click on Charge button
 
-  @AdyenTransaction @PRAC-T3495 @PUA-38
+  @AdyenTransaction @PRAC-T3495 @PUA-38 @In-Progress
   Scenario: Verify user is able to see payment details in the payments section
     Given I enter credentials
     When I click login button
