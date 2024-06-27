@@ -84,3 +84,9 @@ Feature: Appointments Settings
     Given I login to PbN app and select the practice
     When I try to select the language on the practice specific configuration popup on appointment settings page
     Then I will be able to select the language on the practice specific configuration popup on appointment settings page
+
+  @appointments @PUA-98 @PRAC-T121
+  Scenario: Verify I can uncheck on the provider time availability checkbox on appointment settings page
+    Given I login to PbN app and select the practice
+    When I try to uncheck on the provider time availability checkbox on appointment settings page
+    Then I will be able to uncheck on the provider time availability checkbox on appointment settings page

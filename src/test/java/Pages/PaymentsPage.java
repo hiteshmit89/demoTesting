@@ -161,11 +161,4 @@ public class PaymentsPage extends BasePage {
         WebElement actualDate = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@class='table table-striped table-hover']//tbody//tr[1]//td[10]"));
         Assert.assertEquals(actualDate.getText(),expectedDate);
     }
-
 }
-
-
-
-
-
-
