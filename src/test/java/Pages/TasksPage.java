@@ -2,10 +2,14 @@ package Pages;
 
 import Framework.Browser;
 import Framework.Constants.Constants;
+import Framework.Root.PbNUIApp;
 import Framework.Util.DriverManager;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+
+import java.security.PublicKey;
+import java.util.List;
 
 
 public class TasksPage extends BasePage {
@@ -42,15 +46,22 @@ public class TasksPage extends BasePage {
         Browser.clickOnElementUsingJavascript(updateTaskStatus);
     }
 
+    public void searchTaskViaPatientName() {
+        WebElement taskSearchBox = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@type='search']"));
+        Browser.enterTextInEditBox(taskSearchBox, PbNUIApp.userdata().getPatientName(1, 2));
+    }
+
     public void selectTaskFromTaskList() {
         Browser.waitForPageReady();
         WebElement interceptElement = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id=\"task-list\"]/div[2]"));
         Browser.waitForElementInvisibility(interceptElement);
-        WebElement taskList = DriverManager.getInstance().Driver.findElement(By.xpath("//table[@class='table table-hover avatar-table dataTable no-footer dtr-inline']//tbody//tr[@role='row'][2]"));
-        Browser.waitForTableToLoad(taskList);
-        Browser.waitForElementToBeVisible(taskList);
-        Browser.waitForElementToBeClickable(taskList);
-        Browser.clickOnElementUsingJavascript(taskList);
+        WebElement table = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='DataTables_Table_0']/tbody"));
+        Browser.waitForTableToLoad(table);
+        List<WebElement> taskList = table.findElements(By.xpath("(//tr)"));
+        if (!taskList.isEmpty()) {
+            Browser.waitForElementToBeClickable(taskList.get(2));
+            Browser.clickOnElement(taskList.get(2));
+        }
     }
 
     public void closePatientWindow() {
@@ -61,12 +72,21 @@ public class TasksPage extends BasePage {
 
     public void verifyTaskListHeader() {
         WebElement verifyTaskListHeader = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='task-list-header']//span[@class='task-list-title']"));
-
-        if (verifyTaskListHeader.isDisplayed()) {
+        if (!verifyTaskListHeader.isDisplayed()) {
             WebElement closeButton = DriverManager.getInstance().Driver.findElement(By.xpath("(//*[name()='svg'][@role='button'])[1]"));
-            closeButton.click();
-        } else {
-            Assert.assertTrue("\"Task Window didn't open\"", Boolean.parseBoolean("true"));
+            Browser.clickOnElement(closeButton);
         }
+    }
+
+    public void closeTaskListInPatientWindow() {
+        Browser.waitForElementToBeClickable(By.xpath("//div[@class='pop-window-close-btn']//*[name()='svg']"));
+        Browser.waitForElementToBeClickable(By.xpath("//div[@class='pop-window-close-btn']//*[name()='svg']"));
+        WebElement closeTaskList = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='pop-window-close-btn']//*[name()='svg']"));
+        Browser.clickOnElement(closeTaskList);
+    }
+
+    public void verifyPatientWindowForSelectedPatient() {
+        WebElement patientNameInPatientWindow = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='full-name' and contains(text(),'" + PbNUIApp.userdata().getPatientName(1, 2) + "')]"));
+        Assert.assertEquals(patientNameInPatientWindow.getText(), PbNUIApp.userdata().getPatientName(1, 2));
     }
 }

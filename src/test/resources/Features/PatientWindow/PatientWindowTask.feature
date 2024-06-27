@@ -23,11 +23,13 @@ Feature: Patient Window Task Creation
       | Account Receivable   |
       | Patient Recall       |
 
-  @testSectionIntegrationWithPatientWindow @PRAC-T3763 @In-Progress
+  @testSectionIntegrationWithPatientWindow @PRAC-T3763 @In-Progress @pbnAll
   Scenario: Patient Task Table Opening from Task Section
     Given I login to PbN app
     And I click on practice name
     And I am redirected to the Task Page
-    When I selected a task from task list
+    When I search for created task through patient name
+    And I selected a task from task list
     And Verified task Section is opened
-    Then I closed patient Window
+    Then I verified patient window open for the selected patient
+    And I closed patient Window

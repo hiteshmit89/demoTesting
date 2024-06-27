@@ -9,7 +9,8 @@ import org.openqa.selenium.*;
 
 import java.util.List;
 
-public class AppointmentBookingPage extends BasePage {
+public class
+AppointmentBookingPage extends BasePage {
     public AppointmentBookingPage(PageTitle title) {
         super(title);
     }
