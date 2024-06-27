@@ -68,12 +68,3 @@ Feature: Verify As a user I am able Charge a patient using adyen payment service
     And I click on Payment menu
     And I click on sort icon to sort the transaction via date
     And I Verify the payment details in Payments Table
-
-
-
-
-
-
-
-
-

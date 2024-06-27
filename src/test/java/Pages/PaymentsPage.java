@@ -1,7 +1,6 @@
 package Pages;
 
 import Framework.Browser;
-import Framework.Constants.Constants;
 import Framework.Root.PbNUIApp;
 import Framework.Util.ConfigManager;
 import Framework.Constants.Constants.PageTitle;
@@ -10,13 +9,9 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import java.util.List;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Random;
-
-
 import java.util.Random;
 
 public class PaymentsPage extends BasePage {
@@ -146,6 +141,7 @@ public class PaymentsPage extends BasePage {
         WebElement saveButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='Save']"));
         Browser.clickOnElement(saveButton);
     }
+
     public void createCustomURLAndNavigate() {
         WebElement eLink = DriverManager.getInstance().Driver.findElement(By.xpath("(//span[contains(text(),'https://www.patientsreach.com/payment/')])[2]"));
         String urlText = eLink.getText();
@@ -155,16 +151,6 @@ public class PaymentsPage extends BasePage {
         Browser.navigateToNewURL(URL);
     }
 
-    public void searchPatientInPaymentMethod() {
-        Browser.waitForElementToBeVisible(By.xpath("//input[@class='patient-search-box ']"));
-        Browser.waitForElementToBeClickable(By.xpath("//input[@class='patient-search-box ']"));
-        WebElement searchTextBox = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@class='patient-search-box ']"));
-        Browser.enterTextInEditBox(searchTextBox, PbNUIApp.userdata().getPatientName(2, 1));
-        Browser.waitForElementList(By.xpath("//div[@class='patient-row patient-row-enabled  row']"));
-        Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='fade in patient-popover popover bottom']//div[@class='patient-row patient-row-enabled  row']")));
-        WebElement patientName = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='fade in patient-popover popover bottom']//div[@class='patient-row patient-row-enabled  row']"));
-        Browser.clickOnElement(patientName);
-    }
     public void ClickOnSortIconForPaymentTableViaDate(){
         WebElement sortIconPaymentDate = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@class='sortable' and contains(text(),'Payment Date')]"));
         Browser.clickOnElement(sortIconPaymentDate);
@@ -178,7 +164,16 @@ public class PaymentsPage extends BasePage {
         Assert.assertEquals(actualDate.getText(),expectedDate);
     }
 
-}
+    public void searchPatientInPaymentMethod() {
+        Browser.waitForElementToBeVisible(By.xpath("//input[@class='patient-search-box ']"));
+        Browser.waitForElementToBeClickable(By.xpath("//input[@class='patient-search-box ']"));
+        WebElement searchTextBox = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@class='patient-search-box ']"));
+        Browser.enterTextInEditBox(searchTextBox, PbNUIApp.userdata().getPatientName(2, 1));
+        Browser.waitForElementList(By.xpath("//div[@class='patient-row patient-row-enabled  row']"));
+        Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='fade in patient-popover popover bottom']//div[@class='patient-row patient-row-enabled  row']")));
+        WebElement patientName = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='fade in patient-popover popover bottom']//div[@class='patient-row patient-row-enabled  row']"));
+        Browser.clickOnElement(patientName);
+    }
 
     public void setSelectPaginationNumber() {
         Browser.waitForElementPresence(By.xpath("//div[@class='content-section']//div//button[@id='pageDropDown']"));
