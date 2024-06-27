@@ -1,6 +1,9 @@
 package StepDefinitions.Payments.Adyen.PaymentMethods;
 
+import Framework.Browser;
 import Framework.Root.PbNUIApp;
+import Framework.Util.DriverManager;
+import Pages.Modals.PBNModals;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -24,22 +27,45 @@ public class AdyenTransactionStepDefinition {
     }
     @And("Select the payment method, enter amount, description from charge customer modal")
     public void selectThePaymentMethodEnterAmountDescriptionFromChargeCustomerModal() {
-        PbNUIApp.paymentsPage().selectDropdownValue();
-        PbNUIApp.paymentsPage().enterAmount();
-        PbNUIApp.paymentsPage().enterChargeDescription();
+        PBNModals.collectPaymentModal().enterAmount();
+        PBNModals.collectPaymentModal().selectPaymentMethodAsAddNewCard();
+        PBNModals.collectPaymentModal().enterCardDetails();
+        PBNModals.collectPaymentModal().clickOnChargeButton();
     }
     @Then("I Click on Charge button")
     public void iClickOnChargeButton() {
-        PbNUIApp.paymentsPage().clickChargeButtonOnModal();
+        PBNModals.collectPaymentModal().clickOnChargeButton();
     }
 
     @And("Verify Successful toast message")
     public void verifySuccessfulToastMessage() {
-        PbNUIApp.paymentsPage().verifyChargeConfirmationText();
+        PBNModals.collectPaymentModal().verifyPaymentSuccess();
     }
 
     @And("Verify I am able to download Payment receipt")
     public void verifyIAmAbleToDownloadPaymentReceipt() {
-        PbNUIApp.paymentsPage().verifyPaymentReceiptIsDownloaded();
+        PBNModals.collectPaymentModal().downloadPaymentReciept();
     }
+
+    @And("I click on disable Payment Confirmation Modal")
+    public void iClickOnDisablePaymentConfirmationModal() {
+        PBNModals.collectPaymentModal().dismissPaymentConfirmationModal();
+    }
+
+    @And("I click on Payment menu")
+    public void iClickOnPaymentMenu() {
+        PbNUIApp.paymentsPage().clickPaymentsMenu();
+    }
+
+    @And("I click on sort icon to sort the transaction via date")
+    public void iClickOnSortIconToSortTheTransactionViaDate() {
+        PbNUIApp.paymentsPage().ClickOnSortIconForPaymentTableViaDate();
+    }
+
+    @And("I Verify the payment details in Payments Table")
+    public void iVerifyThePaymentDetailsInPaymentsTable() {
+        PbNUIApp.paymentsPage().paymentDetailsInPaymentTable();
+    }
+
+
 }

@@ -19,6 +19,7 @@ public class CollectPaymentModal {
     }
 
     public void enterPatientName() {
+        Browser.waitForElementToBeClickable(By.xpath("//input[@class='rbt-input-main form-control rbt-input']"));
         WebElement patientEditBox = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@class='rbt-input-main form-control rbt-input']"));
         Browser.enterTextInEditBox(patientEditBox, PbNUIApp.userdata().getPatientName(2, 1));
         Browser.waitForElementToBeVisible(By.xpath("//a[@class='dropdown-item patient-search-result-menu-item ']"));
@@ -26,16 +27,19 @@ public class CollectPaymentModal {
         Browser.clickOnElement(name);
     }
 
-    public void selectPaymentMethod() {
+    public void selectPaymentMethodAsAddNewCard() {
         Browser.waitForPageReady();
         WebElement paymentMethodRadioButton = DriverManager.getInstance().Driver.findElement(By.xpath("//span[text()='Credit / Debit Card']"));
         Browser.waitForElementToBeVisible(paymentMethodRadioButton);
         Browser.waitForElementToBeClickable(paymentMethodRadioButton);
         Browser.clickOnElement(paymentMethodRadioButton);
+        WebElement chargeNewCardButton = DriverManager.getInstance().Driver.findElement(By.xpath("//*[text()='Charge from New Card']"));
+        Browser.scrollToVisibleElement(chargeNewCardButton);
         Browser.waitForElementToBeVisible(By.xpath("//*[text()='Charge from New Card']"));
         WebElement chargeNewCard = DriverManager.getInstance().Driver.findElement(By.xpath("//*[text()='Charge from New Card']"));
         Browser.waitForElementToBeClickable(chargeNewCard);
-        Browser.clickOnElement(chargeNewCard);
+        Browser.waitForElementToBeVisible(chargeNewCard);
+        Browser.clickOnElementUsingJavascript(chargeNewCard);
     }
 
     public void enterCardDetails() {
@@ -50,6 +54,20 @@ public class CollectPaymentModal {
         enterPostalCode();
     }
 
+    public void enterAndValidateCardDetailsWithIncorrectCvc() {
+        Browser.waitForElementPresence(By.xpath("//div[@class='adyen-checkout__spinner adyen-checkout__spinner--large']"));
+        Browser.waitForElementInvisibility(DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='adyen-checkout__spinner adyen-checkout__spinner--large']")));
+        Browser.waitForFrameToLoad(By.xpath("//iframe[@title='Iframe for card number']"));
+        WebElement cardNumber = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@data-fieldtype='encryptedCardNumber']"));
+        Browser.enterTextInEditBox(cardNumber, PbNUIApp.userdata().getCardNumber(2, "1"));
+        Browser.switchToDefaultContent();
+        enterCardDate();
+        enterIncorrectCvc();
+        enterPostalCode();
+        WebElement cvcValidationMessage = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='adyen-checkout__error-text' and contains(text(),'Enter the complete security code')]"));
+        Assert.assertEquals("Enter the complete security code",cvcValidationMessage.getText() );
+    }
+
     public void enterCardDate() {
         Browser.waitForFrameToLoad(By.xpath("//iframe[@title='Iframe for expiry date']"));
         WebElement cardDate = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@data-fieldtype='encryptedExpiryDate']"));
@@ -61,6 +79,13 @@ public class CollectPaymentModal {
         Browser.waitForFrameToLoad(By.xpath("//iframe[@title='Iframe for security code']"));
         WebElement CVC = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@data-fieldtype='encryptedSecurityCode']"));
         Browser.enterTextInEditBox(CVC, PbNUIApp.userdata().getCardCVC(2, "1"));
+        Browser.switchToDefaultContent();
+    }
+
+    public void enterIncorrectCvc() {
+        Browser.waitForFrameToLoad(By.xpath("//iframe[@title='Iframe for security code']"));
+        WebElement CVC = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@data-fieldtype='encryptedSecurityCode']"));
+        Browser.enterTextInEditBox(CVC, PbNUIApp.userdata().getIncorrect_cvc(2, "1"));
         Browser.switchToDefaultContent();
     }
 
@@ -110,5 +135,10 @@ public class CollectPaymentModal {
         Browser.waitForElementToBeVisible(By.xpath("//button[@class='btn btn-default' and contains(text(),'Download Receipt')]"));
         WebElement downloadButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='btn btn-default' and contains(text(),'Download Receipt')]"));
         Browser.clickOnElement(downloadButton);
+    }
+
+    public void dismissPaymentConfirmationModal(){
+        WebElement crossIcon = DriverManager.getInstance().Driver.findElement(By.xpath("//*[name()='svg' and @class='MuiSvgIcon-root close-confirmation-window']"));
+        Browser.clickOnElement(crossIcon);
     }
 }

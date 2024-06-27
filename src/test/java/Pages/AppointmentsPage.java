@@ -18,15 +18,17 @@ public class AppointmentsPage extends BasePage {
     }
 
     private WebElement header = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='appointment-booking']//span[text()='Online Appointment Booking']"));
-    private WebElement eUrl = DriverManager.getInstance().Driver.findElement(By.xpath("(//span[contains(text(),'https://www.patientsreach.com/schedule/')])[1]"));
 
     public void clickOnWidgets() {
         WebElement widgetsTab = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='appointment-booking-page-tab-Widgets']"));
         Browser.clickOnElement(widgetsTab);
-        Browser.waitForElementToDisplay(widgetsTab);
+        WebElement colourScheme = DriverManager.getInstance().Driver.findElement(By.xpath("//*[text()='Color Scheme:']"));
+        Browser.waitForElementToDisplay(colourScheme);
     }
 
     public void createAppointmentURLAndNavigate() {
+        Browser.waitForElementToBeVisible(By.xpath("//span[contains(text(),'https://www.patientsreach.com/schedule/qwerty')]"));
+        WebElement eUrl = DriverManager.getInstance().Driver.findElement(By.xpath("(//span[contains(text(),'https://www.patientsreach.com/schedule/')])[1]"));
         String urlText = eUrl.getText();
         String[] arrOfStr = urlText.split("schedule");
         String URL = ConfigManager.getInstance().getProperty("URL");
@@ -41,6 +43,11 @@ public class AppointmentsPage extends BasePage {
 
     public void clickOnAppointmentListTab() {
         WebElement appointmentList = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='appointment-booking-page-tab-Appointment List']"));
+        Browser.clickOnElement(appointmentList);
+    }
+
+    public void clickOnAppointmentTemplateTab() {
+        WebElement appointmentList = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='appointment-booking-page-tab-Templates']"));
         Browser.clickOnElement(appointmentList);
     }
 
@@ -273,11 +280,122 @@ public class AppointmentsPage extends BasePage {
     }
 
     public void verifyPatientNameInAppointmentList() {
+        boolean check = false;
         Browser.waitForTableToFinishShrinking(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tr"));
         List<WebElement> verifyPatientName = DriverManager.getInstance().Driver.findElements(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tr//td//div//span"));
         for (WebElement element : verifyPatientName) {
-            Assert.assertEquals("Patient Found", PbNUIApp.userdata().getFirstName(1,"5"), element.getText());
-            break;
+            if (PbNUIApp.userdata().getFirstName(1,"5").equals(element.getText()) ) {
+                Assert.assertEquals("Patient Found", PbNUIApp.userdata().getFirstName(1,"5"), element.getText());
+                check = true;
+                break;
+            }
         }
+        Assert.assertTrue("Patient Not Found", check);
+    }
+
+    public void clickOnProviderTimeAvailabilityCheckbox() {
+        Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Provider Time Availability')]/input[@type='checkbox']")));
+        WebElement providerTimeAvailabilityCheckBox = DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Provider Time Availability')]/input[@type='checkbox']"));
+        Browser.scrollToVisibleElement(providerTimeAvailabilityCheckBox);
+        if (!providerTimeAvailabilityCheckBox.isSelected()) {
+            Browser.clickOnElement(providerTimeAvailabilityCheckBox);
+        }
+        Assert.assertTrue("Provider Time Availability is not selected", providerTimeAvailabilityCheckBox.isSelected());
+    }
+
+    public void uncheckOnProviderTimeAvailabilityCheckbox() {
+        Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Provider Time Availability')]/input[@type='checkbox']")));
+        WebElement providerTimeAvailabilityCheckBox = DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Provider Time Availability')]/input[@type='checkbox']"));
+        Browser.scrollToVisibleElement(providerTimeAvailabilityCheckBox);
+        if (providerTimeAvailabilityCheckBox.isSelected()) {
+            Browser.clickOnElement(providerTimeAvailabilityCheckBox);
+        }
+        Assert.assertFalse("Provider Time Availability is selected", providerTimeAvailabilityCheckBox.isSelected());
+    }
+
+    public void clickOnBlockedPatientToggleButton() {
+        Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//h4[text()='Blocked Patient']")));
+        WebElement blockPatientToggle = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='template-toggle-blocked_patient']"));
+        Browser.scrollToVisibleElement(blockPatientToggle);
+        if (blockPatientToggle.isSelected()) {
+            Browser.clickOnElementUsingJavascript(blockPatientToggle);
+        }
+        Assert.assertFalse("Blocked Patient Toggle Button is not disabled", blockPatientToggle.isSelected());
+    }
+
+    public void clickOnConflictedAppointmentToggleButton() {
+        WebElement conflictedAppointmentToggle = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='template-toggle-conflicted_appointment_email']"));
+        Browser.scrollToVisibleElement(conflictedAppointmentToggle);
+        if (conflictedAppointmentToggle.isSelected()) {
+            Browser.clickOnElementUsingJavascript(conflictedAppointmentToggle);
+        }
+        Assert.assertFalse("Conflicted Appointment Toggle Button is not disabled", conflictedAppointmentToggle.isSelected());
+    }
+
+    public void clickOnExistingPatientBookedAppointmentToggleButton() {
+        WebElement existingPatientBookedAppointmentToggle = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='template-toggle-existing_patient_booked_appointment']"));
+        Browser.scrollToVisibleElement(existingPatientBookedAppointmentToggle);
+        if (existingPatientBookedAppointmentToggle.isSelected()) {
+            Browser.clickOnElementUsingJavascript(existingPatientBookedAppointmentToggle);
+        }
+        Assert.assertFalse("Existing Patient Booked Appointment Toggle Button is not disabled", existingPatientBookedAppointmentToggle.isSelected());
+    }
+
+    public void clickOnNewPatientBookedAppointmentToggleButton() {
+        WebElement newPatientBookedAppointmentToggle = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='template-toggle-new_patient_booked_appointment']"));
+        Browser.scrollToVisibleElement(newPatientBookedAppointmentToggle);
+        if (newPatientBookedAppointmentToggle.isSelected()) {
+            Browser.clickOnElementUsingJavascript(newPatientBookedAppointmentToggle);
+        }
+        Assert.assertFalse("New Patient Booked Appointment Toggle Button is not disabled", newPatientBookedAppointmentToggle.isSelected());
+    }
+
+    public void clickOnClusterAppointmentsCheckbox() {
+        Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Cluster Appointments')]/input[@type='checkbox']")));
+        WebElement clusterAppointmentsCheckBox = DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Cluster Appointments')]/input[@type='checkbox']"));
+        Browser.scrollToVisibleElement(clusterAppointmentsCheckBox);
+        if (!clusterAppointmentsCheckBox.isSelected()) {
+            Browser.clickOnElement(clusterAppointmentsCheckBox);
+        }
+        Assert.assertTrue("Cluster Appointments checkbox is not selected", clusterAppointmentsCheckBox.isSelected());
+    }
+
+    public void clickOnSettingIconButton() {
+        Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='btn btn-default']//i[@class='fa fa-cog']")));
+        WebElement settingIconButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='btn btn-default']//i[@class='fa fa-cog']"));
+        Browser.clickOnElement(settingIconButton);
+    }
+
+    public void clickOnLanguageTab() {
+        Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='communication-settings-modal-side-bar-tab-open_languages_block']")));
+        WebElement languageTab = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='communication-settings-modal-side-bar-tab-open_languages_block']"));
+        Browser.clickOnElement(languageTab);
+    }
+
+    public void clickOnSpanishLanguageToggleButton() {
+        Browser.waitForPresenceOfElement(By.xpath("//*[@id='communication-settings-modal-side-bar-pane-open_languages_block']//div[@class='custom-control custom-switch ']/input"));
+        WebElement spanishLanguageToggleButton = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='communication-settings-modal-side-bar-pane-open_languages_block']"));
+        Browser.clickOnElementUsingJavascript(spanishLanguageToggleButton.findElement(By.xpath(".//div[@class='custom-control custom-switch ']/input")));
+        Browser.waitForElementToBeVisible(By.xpath("//div[@class='react-toast-notifications__toast__content css-1ad3zal']"));
+        WebElement successMessage = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='react-toast-notifications__toast__content css-1ad3zal']"));
+        String successMsg = "Language settings updated";
+        Assert.assertEquals("Language settings successfully updated", successMsg, successMessage.getText());
+    }
+
+    public void clickOnResetButton() {
+        Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='btn btn-default']//span")));
+        WebElement resetButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='btn btn-default']//span"));
+        if (resetButton.isDisplayed()) {
+            Browser.clickOnElement(resetButton);
+        }
+        Assert.assertTrue("Reset button is not displayed", resetButton.isDisplayed());
+        Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='btn btn-danger']")));
+        WebElement yesButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='btn btn-danger']"));
+        Browser.clickOnElement(yesButton);
+        Browser.waitForElementToBeVisible(By.xpath("//div[@class='react-toast-notifications__toast__content css-1ad3zal']"));
+        WebElement successMessage = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='react-toast-notifications__toast__content css-1ad3zal']"));
+        String successMsg = "Template reset successful";
+        Assert.assertEquals("Template reset successful", successMsg, successMessage.getText());
+
     }
 }
