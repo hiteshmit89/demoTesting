@@ -198,7 +198,9 @@ public class AppointmentsPage extends BasePage {
     }
 
     public void clickProviderHeader() {
+        Browser.waitForElementToBeVisible(By.xpath("//h3[text()='Providers']"));
         WebElement providerHeader = DriverManager.getInstance().Driver.findElement(By.xpath("//h3[text()='Providers']"));
+        Browser.scrollToVisibleElement(providerHeader);
         Browser.clickOnElement(providerHeader);
     }
 
@@ -228,6 +230,7 @@ public class AppointmentsPage extends BasePage {
     }
 
     public void select15MinCheckbox() {
+        Browser.waitForElementToBeVisible(By.xpath("//span[text()='15 Minutes']"));
         WebElement select15MinCheckbox = DriverManager.getInstance().Driver.findElement(By.xpath("//span[text()='15 Minutes']"));
         Browser.clickOnElement(select15MinCheckbox);
     }
