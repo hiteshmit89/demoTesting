@@ -28,7 +28,7 @@ public class AppointmentsStepdefinition {
     @And("I click on appointment tab and try to book appointment")
     public void iClickOnAppointmentTabAndTryToBookAppointment() {
         PbNUIApp.appointmentBookingPage().clickOnPickLocation();
-        PbNUIApp.appointmentBookingPage().clickOnSelectNewPatient();
+        PbNUIApp.appointmentBookingPage().clickOnSelectExistingPatient();
         PbNUIApp.appointmentBookingPage().clickOnEmergencyConsult();
         PbNUIApp.appointmentBookingPage().clickOnEarliest();
         PbNUIApp.appointmentBookingPage().fillAppointmentBookingForm();
@@ -64,7 +64,7 @@ public class AppointmentsStepdefinition {
     @And("I click on appointments tab and try to book appointment")
     public void iClickOnAppointmentsTabAndTryToBookAppointment() {
         PbNUIApp.appointmentBookingPage().clickOnPickLocation();
-        PbNUIApp.appointmentBookingPage().clickOnSelectNewPatient();
+        PbNUIApp.appointmentBookingPage().clickOnSelectExistingPatient();
         PbNUIApp.appointmentBookingPage().clickOnEmergencyConsult();
         PbNUIApp.appointmentBookingPage().clickOnEarliest();
         PbNUIApp.appointmentBookingPage().fillAppointmentBookingForm();
@@ -91,7 +91,7 @@ public class AppointmentsStepdefinition {
         PbNUIApp.appointmentsPage().clickOnWidgets();
         PbNUIApp.appointmentsPage().createAppointmentURLAndNavigate();
         PbNUIApp.appointmentBookingPage().clickOnPickLocation();
-        PbNUIApp.appointmentBookingPage().clickOnSelectNewPatient();
+        PbNUIApp.appointmentBookingPage().clickOnSelectExistingPatient();
         PbNUIApp.appointmentBookingPage().clickOnEmergencyConsult();
         PbNUIApp.appointmentBookingPage().clickOnEarliest();
         PbNUIApp.appointmentBookingPage().fillAppointmentBookingFormForInactivePatient();
@@ -105,7 +105,7 @@ public class AppointmentsStepdefinition {
         PbNUIApp.appointmentsPage().clickOnWidgets();
         PbNUIApp.appointmentsPage().createAppointmentURLAndNavigate();
         PbNUIApp.appointmentBookingPage().clickOnPickLocation();
-        PbNUIApp.appointmentBookingPage().clickOnSelectNewPatient();
+        PbNUIApp.appointmentBookingPage().clickOnSelectExistingPatient();
         PbNUIApp.appointmentBookingPage().clickOnEmergencyConsult();
         PbNUIApp.appointmentBookingPage().clickOnEarliest();
         PbNUIApp.appointmentBookingPage().fillAppointmentBookingFormForPatientWithTags();
@@ -208,5 +208,48 @@ public class AppointmentsStepdefinition {
     @Then("I will be able to see refresh button on provider page during appointment booking")
     public void iWillBeAbleToSeeRefreshButtonOnProviderPageDuringAppointmentBooking() {
         PbNUIApp.appointmentBookingPage().clickOnRefreshButton();
+    }
+
+    @When("I click on appointments tab and try to book appointment and select DOB less than one year from current date on book myself page")
+    public void iClickOnAppointmentsTabAndTryToBookAppointmentAndSelectDOBLessThanOneYearFromCurrentDateOnBookMyselfPage() {
+        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
+        PbNUIApp.appointmentsPage().clickOnWidgets();
+        PbNUIApp.appointmentsPage().createAppointmentURLAndNavigate();
+        PbNUIApp.appointmentBookingPage().clickOnPickLocation();
+        PbNUIApp.appointmentBookingPage().clickOnSelectNewPatient();
+        PbNUIApp.appointmentBookingPage().clickOnEmergencyConsult();
+        PbNUIApp.appointmentBookingPage().clickOnEarliest();
+        PbNUIApp.appointmentBookingPage().fillAppointmentBookingFormForValidatePatientDob();
+        PbNUIApp.appointmentBookingPage().clickOnCheckBox();
+        PbNUIApp.appointmentBookingPage().clickOnNextButton();
+    }
+
+    @Then("I will see a pop up appears asking for the patient's confirmation to proceed to the next page if the age is less than one years.")
+    public void iWillSeeAPopUpAppearsAskingForThePatientSConfirmationToProceedToTheNextPageIfTheAgeIsLessThanOneYears() {
+        PbNUIApp.appointmentBookingPage().verifyDateConfirmationMessage();
+    }
+
+    @When("I click on appointments tab and try to book appointments for patient and enter invalid OTP")
+    public void iClickOnAppointmentsTabAndTryToBookAppointmentsForPatientAndEnterInvalidOTP() {
+        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
+        PbNUIApp.appointmentsPage().clickOnWidgets();
+        PbNUIApp.appointmentsPage().createAppointmentURLAndNavigate();
+        PbNUIApp.appointmentBookingPage().clickOnPickLocation();
+        PbNUIApp.appointmentBookingPage().clickOnSelectExistingPatient();
+        PbNUIApp.appointmentBookingPage().clickOnEmergencyConsult();
+        PbNUIApp.appointmentBookingPage().clickOnEarliest();
+        PbNUIApp.appointmentBookingPage().fillAppointmentBookingForm();
+        PbNUIApp.appointmentBookingPage().clickOnCheckBox();
+        PbNUIApp.appointmentBookingPage().clickOnNextButton();
+        PbNUIApp.appointmentBookingPage().insuranceUnchanged();
+        PbNUIApp.appointmentBookingPage().clickOnNextButton();
+        PbNUIApp.appointmentBookingPage().clickOnUseCellPhone();
+        PbNUIApp.appointmentBookingPage().enterOTP("1234");
+        PbNUIApp.appointmentBookingPage().clickOnVerifyAndSchedule();
+    }
+
+    @Then("I will be able to see error message on entering invalid OTP")
+    public void iWillBeAbleToSeeErrorMessageOnEnteringInvalidOTP() {
+        PbNUIApp.appointmentBookingPage().verifyErrorTextDisplayed();
     }
 }

@@ -27,16 +27,19 @@ public class CollectPaymentModal {
         Browser.clickOnElement(name);
     }
 
-    public void selectPaymentMethod() {
+    public void selectPaymentMethodAsAddNewCard() {
         Browser.waitForPageReady();
         WebElement paymentMethodRadioButton = DriverManager.getInstance().Driver.findElement(By.xpath("//span[text()='Credit / Debit Card']"));
         Browser.waitForElementToBeVisible(paymentMethodRadioButton);
         Browser.waitForElementToBeClickable(paymentMethodRadioButton);
         Browser.clickOnElement(paymentMethodRadioButton);
+        WebElement chargeNewCardButton = DriverManager.getInstance().Driver.findElement(By.xpath("//*[text()='Charge from New Card']"));
+        Browser.scrollToVisibleElement(chargeNewCardButton);
         Browser.waitForElementToBeVisible(By.xpath("//*[text()='Charge from New Card']"));
         WebElement chargeNewCard = DriverManager.getInstance().Driver.findElement(By.xpath("//*[text()='Charge from New Card']"));
         Browser.waitForElementToBeClickable(chargeNewCard);
-        Browser.clickOnElement(chargeNewCard);
+        Browser.waitForElementToBeVisible(chargeNewCard);
+        Browser.clickOnElementUsingJavascript(chargeNewCard);
     }
 
     public void enterCardDetails() {
@@ -132,5 +135,10 @@ public class CollectPaymentModal {
         Browser.waitForElementToBeVisible(By.xpath("//button[@class='btn btn-default' and contains(text(),'Download Receipt')]"));
         WebElement downloadButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='btn btn-default' and contains(text(),'Download Receipt')]"));
         Browser.clickOnElement(downloadButton);
+    }
+
+    public void dismissPaymentConfirmationModal(){
+        WebElement crossIcon = DriverManager.getInstance().Driver.findElement(By.xpath("//*[name()='svg' and @class='MuiSvgIcon-root close-confirmation-window']"));
+        Browser.clickOnElement(crossIcon);
     }
 }
