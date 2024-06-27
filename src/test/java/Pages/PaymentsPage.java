@@ -233,6 +233,7 @@ public class PaymentsPage extends BasePage {
     public void verifyAdyenCardWithPatient() {
         Browser.refreshPage();
         searchPatientInPaymentMethod();
+        Browser.waitForPageReady();
         setSelectPaginationNumber();
         List<WebElement> updatedListOfAdyenCard = DriverManager.getInstance().Driver.findElements(By.xpath("//div[@class='modal-body']//tbody//tr"));
         int updatedTableSize = updatedListOfAdyenCard.size();
