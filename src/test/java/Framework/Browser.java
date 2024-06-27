@@ -230,12 +230,7 @@ public class Browser {
 
     public static void refreshPage() {
         ((WebDriver) DriverManager.getInstance().Driver).navigate().refresh();
-        waitForPageToLoad();
-    }
-
-    public static void waitForPageToLoad() {
-        new WebDriverWait((WebDriver) DriverManager.getInstance().Driver, Duration.ofSeconds(Integer.parseInt(ConfigManager.getInstance().getProperty("Timeout"))))
-                .until(webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
+        waitForPageReady();
     }
 
     public static void selectByVisibleTextFromDropdown(WebElement element , String text){
