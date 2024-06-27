@@ -22,7 +22,7 @@ public class AppointmentsPage extends BasePage {
     public void clickOnWidgets() {
         WebElement widgetsTab = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='appointment-booking-page-tab-Widgets']"));
         Browser.clickOnElement(widgetsTab);
-        WebElement colourScheme = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@style='display: inline-block; margin-right: 40px; padding: 4px;']"));
+        WebElement colourScheme = DriverManager.getInstance().Driver.findElement(By.xpath("//*[text()='Color Scheme:']"));
         Browser.waitForElementToDisplay(colourScheme);
     }
 

@@ -17,11 +17,11 @@ public class AppointmentBookingPage extends BasePage {
     private final List<WebElement> locationFinder = DriverManager.getInstance().Driver.findElements(By.xpath("//*[@id='patient-appointment-booking-page']//div[@class='location-item-name']"));
 
     public void clickOnPickLocation() {
-        Browser.waitForElementToBeVisible(By.xpath("(//div[@class='location-item-name'])[1]"));
+        Browser.waitForElementToBeVisible(By.xpath("//div[@class='location-item-name' and contains(text(),'" + PbNUIApp.userdata().getPracticeName(1)+ "')]"));
         boolean present = false;
         WebElement setLocation = null;
         try {
-            setLocation = DriverManager.getInstance().Driver.findElement(By.xpath("(//div[@class='location-item-name'])[1]"));
+            setLocation = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='location-item-name' and contains(text(),'" + PbNUIApp.userdata().getPracticeName(1)+ "')]"));
             present = true;
         } catch (NoSuchElementException ignored) {
         }
