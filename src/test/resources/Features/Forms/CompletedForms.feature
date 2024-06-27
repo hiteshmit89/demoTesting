@@ -16,7 +16,7 @@ Feature: Forms Feature
     When I will see heading Completed forms
     Then  I click on toggle next to Only show completed forms that have not synced
 
-  @PRAC-T2757 @PUA-4
+  @PRAC-T2757 @PUA-4 @PUA-4
   Scenario: Verify that User is able to click on preview icon
     Given I login to PbN app
     And I click on practice name
