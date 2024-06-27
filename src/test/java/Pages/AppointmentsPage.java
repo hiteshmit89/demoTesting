@@ -303,6 +303,16 @@ public class AppointmentsPage extends BasePage {
         Assert.assertTrue("Provider Time Availability is not selected", providerTimeAvailabilityCheckBox.isSelected());
     }
 
+    public void uncheckOnProviderTimeAvailabilityCheckbox() {
+        Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Provider Time Availability')]/input[@type='checkbox']")));
+        WebElement providerTimeAvailabilityCheckBox = DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Provider Time Availability')]/input[@type='checkbox']"));
+        Browser.scrollToVisibleElement(providerTimeAvailabilityCheckBox);
+        if (providerTimeAvailabilityCheckBox.isSelected()) {
+            Browser.clickOnElement(providerTimeAvailabilityCheckBox);
+        }
+        Assert.assertFalse("Provider Time Availability is selected", providerTimeAvailabilityCheckBox.isSelected());
+    }
+
     public void clickOnBlockedPatientToggleButton() {
         Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//h4[text()='Blocked Patient']")));
         WebElement blockPatientToggle = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='template-toggle-blocked_patient']"));
