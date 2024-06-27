@@ -18,15 +18,17 @@ public class AppointmentsPage extends BasePage {
     }
 
     private WebElement header = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='appointment-booking']//span[text()='Online Appointment Booking']"));
-    private WebElement eUrl = DriverManager.getInstance().Driver.findElement(By.xpath("(//span[contains(text(),'https://www.patientsreach.com/schedule/')])[1]"));
 
     public void clickOnWidgets() {
         WebElement widgetsTab = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='appointment-booking-page-tab-Widgets']"));
         Browser.clickOnElement(widgetsTab);
-        Browser.waitForElementToDisplay(widgetsTab);
+        WebElement colourScheme = DriverManager.getInstance().Driver.findElement(By.xpath("//*[text()='Color Scheme:']"));
+        Browser.waitForElementToDisplay(colourScheme);
     }
 
     public void createAppointmentURLAndNavigate() {
+        Browser.waitForElementToBeVisible(By.xpath("//span[contains(text(),'https://www.patientsreach.com/schedule/qwerty')]"));
+        WebElement eUrl = DriverManager.getInstance().Driver.findElement(By.xpath("(//span[contains(text(),'https://www.patientsreach.com/schedule/')])[1]"));
         String urlText = eUrl.getText();
         String[] arrOfStr = urlText.split("schedule");
         String URL = ConfigManager.getInstance().getProperty("URL");
@@ -301,6 +303,16 @@ public class AppointmentsPage extends BasePage {
         Assert.assertTrue("Provider Time Availability is not selected", providerTimeAvailabilityCheckBox.isSelected());
     }
 
+    public void uncheckOnProviderTimeAvailabilityCheckbox() {
+        Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Provider Time Availability')]/input[@type='checkbox']")));
+        WebElement providerTimeAvailabilityCheckBox = DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Provider Time Availability')]/input[@type='checkbox']"));
+        Browser.scrollToVisibleElement(providerTimeAvailabilityCheckBox);
+        if (providerTimeAvailabilityCheckBox.isSelected()) {
+            Browser.clickOnElement(providerTimeAvailabilityCheckBox);
+        }
+        Assert.assertFalse("Provider Time Availability is selected", providerTimeAvailabilityCheckBox.isSelected());
+    }
+
     public void clickOnBlockedPatientToggleButton() {
         Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//h4[text()='Blocked Patient']")));
         WebElement blockPatientToggle = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='template-toggle-blocked_patient']"));
@@ -368,5 +380,22 @@ public class AppointmentsPage extends BasePage {
         WebElement successMessage = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='react-toast-notifications__toast__content css-1ad3zal']"));
         String successMsg = "Language settings updated";
         Assert.assertEquals("Language settings successfully updated", successMsg, successMessage.getText());
+    }
+
+    public void clickOnResetButton() {
+        Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='btn btn-default']//span")));
+        WebElement resetButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='btn btn-default']//span"));
+        if (resetButton.isDisplayed()) {
+            Browser.clickOnElement(resetButton);
+        }
+        Assert.assertTrue("Reset button is not displayed", resetButton.isDisplayed());
+        Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='btn btn-danger']")));
+        WebElement yesButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='btn btn-danger']"));
+        Browser.clickOnElement(yesButton);
+        Browser.waitForElementToBeVisible(By.xpath("//div[@class='react-toast-notifications__toast__content css-1ad3zal']"));
+        WebElement successMessage = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='react-toast-notifications__toast__content css-1ad3zal']"));
+        String successMsg = "Template reset successful";
+        Assert.assertEquals("Template reset successful", successMsg, successMessage.getText());
+
     }
 }

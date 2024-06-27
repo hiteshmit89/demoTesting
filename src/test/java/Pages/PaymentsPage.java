@@ -10,6 +10,9 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Random;
 
 
@@ -146,10 +149,16 @@ public class PaymentsPage extends BasePage {
         Browser.navigateToNewURL(URL);
     }
 
+    public void ClickOnSortIconForPaymentTableViaDate(){
+        WebElement sortIconPaymentDate = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@class='sortable' and contains(text(),'Payment Date')]"));
+        Browser.clickOnElement(sortIconPaymentDate);
+    }
+
+    public void paymentDetailsInPaymentTable(){
+        DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy ");
+        Date date = new Date();
+        String expectedDate = dateFormat.format(date);
+        WebElement actualDate = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@class='table table-striped table-hover']//tbody//tr[1]//td[10]"));
+        Assert.assertEquals(actualDate.getText(),expectedDate);
+    }
 }
-
-
-
-
-
-

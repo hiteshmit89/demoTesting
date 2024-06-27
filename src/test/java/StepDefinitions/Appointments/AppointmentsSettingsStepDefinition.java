@@ -162,8 +162,6 @@ public class AppointmentsSettingsStepDefinition {
 
     @Then("I will be able to click and disable automatic messages on appointment template page")
     public void iWillBeAbleToClickAndDisableAutomaticMessagesOnAppointmentTemplatePage() {
-        PbNUIApp.appointmentsPage().clickOnBlockedPatientToggleButton();
-        PbNUIApp.appointmentsPage().clickOnConflictedAppointmentToggleButton();
         PbNUIApp.appointmentsPage().clickOnExistingPatientBookedAppointmentToggleButton();
         PbNUIApp.appointmentsPage().clickOnNewPatientBookedAppointmentToggleButton();
     }
@@ -190,5 +188,27 @@ public class AppointmentsSettingsStepDefinition {
     @Then("I will be able to select the language on the practice specific configuration popup on appointment settings page")
     public void iWillBeAbleToSelectTheLanguageOnThePracticeSpecificConfigurationPopupOnAppointmentSettingsPage() {
         PbNUIApp.appointmentsPage().clickOnSpanishLanguageToggleButton();
+    }
+
+    @When("I try to uncheck on the provider time availability checkbox on appointment settings page")
+    public void iTryToUncheckOnTheProviderTimeAvailabilityCheckboxOnAppointmentSettingsPage() {
+        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
+        PbNUIApp.appointmentsPage().clickOnAppointmentSettingTab();
+    }
+
+    @Then("I will be able to uncheck on the provider time availability checkbox on appointment settings page")
+    public void iWillBeAbleToUncheckOnTheProviderTimeAvailabilityCheckboxOnAppointmentSettingsPage() {
+        PbNUIApp.appointmentsPage().uncheckOnProviderTimeAvailabilityCheckbox();
+    }
+
+    @When("I try to click on reset button on appointment template page")
+    public void iTryToClickOnResetButtonOnAppointmentTemplatePage() {
+        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
+        PbNUIApp.appointmentsPage().clickOnAppointmentTemplateTab();
+    }
+
+    @Then("I will be able to click reset button on appointment template")
+    public void iWillBeAbleToClickResetButtonOnAppointmentTemplate() {
+        PbNUIApp.appointmentsPage().clickOnResetButton();
     }
 }
