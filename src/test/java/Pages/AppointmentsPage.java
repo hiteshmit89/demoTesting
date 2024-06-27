@@ -297,6 +297,7 @@ public class AppointmentsPage extends BasePage {
     }
 
     public void clickOnProviderTimeAvailabilityCheckbox() {
+        Browser.waitForPresenceOfElement(By.xpath("//label[contains(text(),'Provider Time Availability')]/input[@type='checkbox']"));
         Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Provider Time Availability')]/input[@type='checkbox']")));
         WebElement providerTimeAvailabilityCheckBox = DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Provider Time Availability')]/input[@type='checkbox']"));
         Browser.scrollToVisibleElement(providerTimeAvailabilityCheckBox);
