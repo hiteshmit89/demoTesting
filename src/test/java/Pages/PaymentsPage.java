@@ -163,6 +163,7 @@ public class PaymentsPage extends BasePage {
         Assert.assertEquals(actualDate.getText(),expectedDate);
     }
 
+
     public void searchPatientInPaymentMethod() {
         Browser.waitForElementToBeVisible(By.xpath("//input[@class='patient-search-box ']"));
         Browser.waitForElementToBeClickable(By.xpath("//input[@class='patient-search-box ']"));

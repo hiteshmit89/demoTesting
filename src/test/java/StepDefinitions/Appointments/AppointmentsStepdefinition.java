@@ -142,6 +142,14 @@ public class AppointmentsStepdefinition {
         PbNUIApp.appHomePage().clickOnPracticeInPracticeInfoTable(PbNUIApp.userdata().getPracticeName(1));
     }
 
+    @Given("I login to PbN app with super user and select the practice")
+    public void iLoginToPbNAppWithSuperUserAndSelectThePractice() {
+        PbNUIApp.loginPage().enterEmail(PbNUIApp.userdata().getUserEmail(3,2));
+        PbNUIApp.loginPage().enterPassword(PbNUIApp.userdata().getPassword(3,2));
+        PbNUIApp.loginPage().clickOnLoginButton();
+        PbNUIApp.appHomePage().clickOnPracticeInPracticeInfoTable(PbNUIApp.userdata().getPracticeName(3));
+    }
+
     @Given("I login to PbN app with user id {int} and select the practice")
     public void iLoginToPbNAppWithUserIdAndSelectThePractice(int userID) {
         PbNUIApp.loginPage().enterEmail(PbNUIApp.userdata().getUserEmail(1, userID));
