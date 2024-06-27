@@ -11,15 +11,12 @@ import org.openqa.selenium.support.ui.Select;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.time.Duration;
-import java.util.Arrays;
 import java.util.function.BooleanSupplier;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.support.ui.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import javax.swing.*;
 
 
 public class Browser {
@@ -233,6 +230,11 @@ public class Browser {
         waitForElementToBeClickable(element);
         Select select = new Select(element);
         select.selectByVisibleText(text);
+    }
+
+    public static void hoverOnElement(WebElement element){
+        Actions action = new Actions((WebDriver) DriverManager.getInstance().Driver);
+        action.moveToElement(element).build().perform();
     }
 
     public static void clickOnElementUsingJavascript(WebElement element) {

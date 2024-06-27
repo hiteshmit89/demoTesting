@@ -7,7 +7,6 @@ import Framework.Util.DriverManager;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-
 import java.util.Random;
 
 public class OnlinePaymentPortalPage extends BasePage {

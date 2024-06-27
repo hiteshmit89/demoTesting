@@ -21,4 +21,6 @@ public class PBNModals {
     }
 
     public static CollectPaymentModal collectPaymentModal(){return new CollectPaymentModal();}
+
+    public static CommCenterModal messageModal(){return new CommCenterModal();}
 }
