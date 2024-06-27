@@ -9,7 +9,7 @@ jobs:
       - image: cimg/openjdk:21.0.2-browsers
     parallelism: 1
     environment:
-      TAGS: "@pbnAll and not @In-Progress and not @QA1Only"
+      TAGS: "@pbnAll and not @In-Progress"
       endpoint: "QA1"
     steps:
       - browser-tools/install-chrome
@@ -38,41 +38,6 @@ jobs:
           path: target/surefire-reports
       - store_artifacts:
           path: target/HtmlReports
-  test-Chrome-QA3:
-    docker:
-      - image: cimg/openjdk:21.0.2-browsers
-    parallelism: 1
-    environment:
-      TAGS: "@pbnAll and not @In-Progress and not @QA1Only"
-      endpoint: "QA3"
-    steps:
-      - browser-tools/install-chrome
-      - browser-tools/install-chromedriver
-      - checkout
-      - run:
-          command: |
-            google-chrome --version
-            chromedriver --version
-            java -jar /usr/local/bin/selenium.jar --version
-      - run:
-          name: Install dependencies
-          command: |
-            mvn install -DskipTests
-      - run:
-          name: Start Selenium Server
-          command: |
-            java -jar /usr/local/bin/selenium.jar &
-            sleep 10 # Wait for Selenium Server to start
-      - run:
-          name: Run tests
-          no_output_timeout: 30m
-          command: |
-            mvn test -T 15C -D"cucumber.filter.tags= ${TAGS}"
-      - store_test_results:
-          path: target/surefire-reports
-      - store_artifacts:
-          path: target/HtmlReports
-
   update_bitbucket:
     docker:
       - image: cimg/openjdk:21.0.2-browsers
@@ -92,5 +57,4 @@ workflows:
   build-deploy:
     jobs:
       - test-Chrome-QA1
-      - test-Chrome-QA3
       - update_bitbucket

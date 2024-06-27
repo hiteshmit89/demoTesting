@@ -37,6 +37,10 @@ public class Browser {
         getFluentWait().until(ExpectedConditions.presenceOfElementLocated(locator));
     }
 
+    public static void slowWaitForPresenceOfElement(By locator) {
+        retry(() -> DriverManager.getInstance().Driver.findElement(locator).isEnabled());
+    }
+
     public static void waitForElementToBeClickable(WebElement element) {
         getFluentWait().until(ExpectedConditions.elementToBeClickable(element));
     }

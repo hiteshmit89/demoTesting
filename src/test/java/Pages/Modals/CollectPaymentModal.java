@@ -136,4 +136,9 @@ public class CollectPaymentModal {
         WebElement downloadButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='btn btn-default' and contains(text(),'Download Receipt')]"));
         Browser.clickOnElement(downloadButton);
     }
+
+    public void dismissPaymentConfirmationModal(){
+        WebElement crossIcon = DriverManager.getInstance().Driver.findElement(By.xpath("//*[name()='svg' and @class='MuiSvgIcon-root close-confirmation-window']"));
+        Browser.clickOnElement(crossIcon);
+    }
 }
