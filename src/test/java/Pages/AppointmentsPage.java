@@ -297,7 +297,6 @@ public class AppointmentsPage extends BasePage {
     }
 
     public void clickOnProviderTimeAvailabilityCheckbox() {
-        Browser.waitForPresenceOfElement(By.xpath("//label[contains(text(),'Provider Time Availability')]/input[@type='checkbox']"));
         Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Provider Time Availability')]/input[@type='checkbox']")));
         WebElement providerTimeAvailabilityCheckBox = DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Provider Time Availability')]/input[@type='checkbox']"));
         Browser.scrollToVisibleElement(providerTimeAvailabilityCheckBox);
@@ -337,7 +336,7 @@ public class AppointmentsPage extends BasePage {
     }
 
     public void clickOnExistingPatientBookedAppointmentToggleButton() {
-        WebElement existingPatientBookedAppointmentToggle = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='template-toggle-existing_patient_booked_appointment']"));
+        WebElement existingPatientBookedAppointmentToggle = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@id='template-toggle-existing_patient_booked_appointment']"));
         Browser.scrollToVisibleElement(existingPatientBookedAppointmentToggle);
         if (existingPatientBookedAppointmentToggle.isSelected()) {
             Browser.clickOnElementUsingJavascript(existingPatientBookedAppointmentToggle);
@@ -346,7 +345,7 @@ public class AppointmentsPage extends BasePage {
     }
 
     public void clickOnNewPatientBookedAppointmentToggleButton() {
-        WebElement newPatientBookedAppointmentToggle = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='template-toggle-new_patient_booked_appointment']"));
+        WebElement newPatientBookedAppointmentToggle = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@id='template-toggle-new_patient_booked_appointment']"));
         Browser.scrollToVisibleElement(newPatientBookedAppointmentToggle);
         if (newPatientBookedAppointmentToggle.isSelected()) {
             Browser.clickOnElementUsingJavascript(newPatientBookedAppointmentToggle);
