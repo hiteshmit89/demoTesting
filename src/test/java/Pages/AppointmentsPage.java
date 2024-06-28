@@ -358,6 +358,7 @@ public class AppointmentsPage extends BasePage {
     }
 
     public void clickOnClusterAppointmentsCheckbox() {
+        Browser.waitForPresenceOfElement(By.xpath("//label[contains(text(),'Cluster Appointments')]/input[@type='checkbox']"));
         Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Cluster Appointments')]/input[@type='checkbox']")));
         WebElement clusterAppointmentsCheckBox = DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Cluster Appointments')]/input[@type='checkbox']"));
         Browser.scrollToVisibleElement(clusterAppointmentsCheckBox);
