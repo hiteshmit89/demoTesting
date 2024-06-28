@@ -125,6 +125,7 @@ public class PatientOverviewModal {
             Browser.enterTextInEditBox(searchForms, formName);
             Browser.waitForPageReady();
             Browser.waitForElementToBeVisible(By.xpath("//td[@class='practice-name-column']/div[@class='checkbox']/label"));
+            Browser.waitForElementToBeClickable(By.xpath("//td[@class='practice-name-column']/div[@class='checkbox']/label"));
             WebElement listOfForms = DriverManager.getInstance().Driver.findElement(By.xpath("//td[@class='practice-name-column']/div[@class='checkbox']/label"));
             Browser.clickOnElementUsingJavascript(listOfForms);
             Browser.clickOnElementUsingJavascript(DriverManager.getInstance().Driver.findElement(By.xpath("//*[text()='Add']")));
