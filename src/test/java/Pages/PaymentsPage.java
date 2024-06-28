@@ -176,9 +176,9 @@ public class PaymentsPage extends BasePage {
     }
 
     public void setSelectPaginationNumber() {
-        Browser.waitForElementPresence(By.xpath("//div[@class='content-section']//div//span[@class='react-bs-table-sizePerPage-dropdown dropdown']"));
-        WebElement pagination = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='content-section']//div//span[@class='react-bs-table-sizePerPage-dropdown dropdown']"));
-        Browser.clickOnElement(pagination);
+        Browser.waitForElementPresence(By.xpath("//div[@class='modal-body']//div[@class='row react-bootstrap-table-pagination']//button[@id='pageDropDown']"));
+        WebElement pagination = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='modal-body']//div[@class='row react-bootstrap-table-pagination']//button[@id='pageDropDown']"));
+        Browser.clickOnElementUsingJavascript(pagination);
         List<WebElement> selectPaginationDropDown = DriverManager.getInstance().Driver.findElements(By.xpath("//div[@class='content-section']//ul[@role='menu']//li//a"));
         for (WebElement element : selectPaginationDropDown) {
             if (element.getText().contains(SelectPaginationNumber)) {
