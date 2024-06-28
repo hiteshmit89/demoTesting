@@ -225,6 +225,11 @@ public class Browser {
         select.selectByIndex(index);
     }
 
+    public static void refreshPage() {
+        ((WebDriver) DriverManager.getInstance().Driver).navigate().refresh();
+        waitForPageReady();
+    }
+
     public static void selectByVisibleTextFromDropdown(WebElement element , String text){
         waitForElementToBeVisible(element);
         waitForElementToBeClickable(element);
