@@ -336,6 +336,8 @@ public class AppointmentsPage extends BasePage {
     }
 
     public void clickOnExistingPatientBookedAppointmentToggleButton() {
+        Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//h4[text()='Blocked Patient']")));
+        Browser.waitForPresenceOfElement(By.xpath("//input[@id='template-toggle-existing_patient_booked_appointment']"));
         WebElement existingPatientBookedAppointmentToggle = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@id='template-toggle-existing_patient_booked_appointment']"));
         Browser.scrollToVisibleElement(existingPatientBookedAppointmentToggle);
         if (existingPatientBookedAppointmentToggle.isSelected()) {
