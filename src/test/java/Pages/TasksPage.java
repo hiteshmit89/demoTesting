@@ -73,7 +73,7 @@ public class TasksPage extends BasePage {
     public void verifyTaskListHeader() {
         WebElement verifyTaskListHeader = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='task-list-header']//span[@class='task-list-title']"));
         if (!verifyTaskListHeader.isDisplayed()) {
-            WebElement closeButton = DriverManager.getInstance().Driver.findElement(By.xpath("(//*[name()='svg'][@role='button'])[1]"));
+            WebElement closeButton = DriverManager.getInstance().Driver.findElement(By.xpath("//*[name()='svg'][@role='button']"));
             Browser.clickOnElement(closeButton);
         }
     }

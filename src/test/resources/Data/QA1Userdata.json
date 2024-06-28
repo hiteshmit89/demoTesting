@@ -72,13 +72,19 @@
       "PatientData": [
         {
           "patient_id": 1,
-          "patient_name": "Ritu O`Brien",
+          "patient_name": "Sally Walker",
           "task_description": "Automation",
           "task_type": "Treatment"
         },
         {
           "patient_id": 2,
           "patient_name": "Ritu Arya",
+          "task_description": "Automation",
+          "task_type": "Treatment"
+        },
+        {
+          "patient_id": 3,
+          "patient_name": "Ritu O`Brien",
           "task_description": "Automation",
           "task_type": "Treatment"
         }

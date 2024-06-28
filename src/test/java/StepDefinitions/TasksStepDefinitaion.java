@@ -3,10 +3,23 @@ package StepDefinitions;
 import Framework.Constants.Constants;
 import Framework.Root.PbNUIApp;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class TasksStepDefinitaion {
+
+    @Given("I Am login to PbN app")
+    public void iAmLoginToPbNApp() {
+        PbNUIApp.loginPage().enterEmail(PbNUIApp.userdata().getUserEmail(1,1));
+        PbNUIApp.loginPage().enterPassword(PbNUIApp.userdata().getPassword(1,1));
+        PbNUIApp.loginPage().clickOnLoginButton();
+    }
+
+    @When("I am clicking on practice name")
+    public void iClickOnPracticeName() {
+        PbNUIApp.appHomePage().clickOnPracticeInPracticeInfoTable(PbNUIApp.userdata().getPracticeName(1));
+    }
 
     @And("I am redirected to the Tasks Page")
     public void iAmRedirectedToTheTasksPage() {
