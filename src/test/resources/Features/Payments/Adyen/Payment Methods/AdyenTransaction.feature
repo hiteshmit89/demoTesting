@@ -28,6 +28,18 @@ Feature: Verify As a user I am able Charge a patient using adyen payment service
     And Verify Successful toast message
     And Verify I am able to download Payment receipt
 
+  @AdyenTransaction @PRAC-T3353 @PUA-82
+  Scenario: Verify adyen card with Patient
+    Given I enter credentials
+    When I click login button
+    And I am able to select practice
+    Then I am redirected to home page
+    When I click on payments from header nav
+    And I Click on Payment method from side nav
+    And I enter the Patient Name in payment methods
+    And I able to see all adyen card present in the table using pagination
+    Then I verify the adyen card with Patient
+
   @AdyenTransaction @PRAC-T3495 @PUA-37 @In-Progress
   Scenario: Verify user is able to charge patient adding a new card
     Given I enter credentials
@@ -56,12 +68,3 @@ Feature: Verify As a user I am able Charge a patient using adyen payment service
     And I click on Payment menu
     And I click on sort icon to sort the transaction via date
     And I Verify the payment details in Payments Table
-
-
-
-
-
-
-
-
-

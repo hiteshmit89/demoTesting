@@ -29,8 +29,8 @@ public class AppointmentScheduleModal {
         try {
             List<WebElement> eventsInFirstColumn = firstColumnEventContainer.findElements(By.xpath("./div"));
             //Events found. Calculate time slots we cannot click on
-            for (WebElement element: eventsInFirstColumn) {
-                occupiedSlots.add(Integer.valueOf(element.getAttribute("title").substring(0,1)));
+            for (WebElement element : eventsInFirstColumn) {
+                occupiedSlots.add(Integer.valueOf(element.getAttribute("title").substring(0, 1)));
             }
             List<WebElement> timeSlotGroupsToday = columns.getFirst().findElements(By.xpath(".//div[@class='rbc-timeslot-group']"));
             Integer currentSlot = firstTimeSlot;
@@ -38,8 +38,7 @@ public class AppointmentScheduleModal {
                 //Check if this is occupied
                 if (occupiedSlots.contains(currentSlot)) {
                     currentSlot++;
-                }
-                else {
+                } else {
                     Browser.doubleClickOnElement(timeSlot);
                     break;
                 }
