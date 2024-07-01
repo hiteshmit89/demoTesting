@@ -75,7 +75,7 @@ public class AppointmentsPage extends BasePage {
     }
 
     public void clickOnSaveButton() {
-        WebElement saveButton = DriverManager.getInstance().Driver.findElement(By.xpath("(//button[text()='Save'])[5]"));
+        WebElement saveButton = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='modal-footer']/button[@class='btn btn-primary']"));
         Browser.scrollToVisibleElement(saveButton);
         Browser.waitForElementToBeClickable(saveButton);
         Browser.clickOnElementUsingJavascript(saveButton);
@@ -198,7 +198,9 @@ public class AppointmentsPage extends BasePage {
     }
 
     public void clickProviderHeader() {
+        Browser.waitForElementToBeVisible(By.xpath("//h3[text()='Providers']"));
         WebElement providerHeader = DriverManager.getInstance().Driver.findElement(By.xpath("//h3[text()='Providers']"));
+        Browser.scrollToVisibleElement(providerHeader);
         Browser.clickOnElement(providerHeader);
     }
 
@@ -228,6 +230,7 @@ public class AppointmentsPage extends BasePage {
     }
 
     public void select15MinCheckbox() {
+        Browser.waitForElementToBeVisible(By.xpath("//span[text()='15 Minutes']"));
         WebElement select15MinCheckbox = DriverManager.getInstance().Driver.findElement(By.xpath("//span[text()='15 Minutes']"));
         Browser.clickOnElement(select15MinCheckbox);
     }
@@ -294,6 +297,7 @@ public class AppointmentsPage extends BasePage {
     }
 
     public void clickOnProviderTimeAvailabilityCheckbox() {
+        Browser.waitForPresenceOfElement(By.xpath("//label[contains(text(),'Provider Time Availability')]/input[@type='checkbox']"));
         Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Provider Time Availability')]/input[@type='checkbox']")));
         WebElement providerTimeAvailabilityCheckBox = DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Provider Time Availability')]/input[@type='checkbox']"));
         Browser.scrollToVisibleElement(providerTimeAvailabilityCheckBox);
@@ -304,6 +308,7 @@ public class AppointmentsPage extends BasePage {
     }
 
     public void uncheckOnProviderTimeAvailabilityCheckbox() {
+        Browser.waitForPresenceOfElement(By.xpath("//label[contains(text(),'Provider Time Availability')]/input[@type='checkbox']"));
         Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Provider Time Availability')]/input[@type='checkbox']")));
         WebElement providerTimeAvailabilityCheckBox = DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Provider Time Availability')]/input[@type='checkbox']"));
         Browser.scrollToVisibleElement(providerTimeAvailabilityCheckBox);
@@ -333,7 +338,9 @@ public class AppointmentsPage extends BasePage {
     }
 
     public void clickOnExistingPatientBookedAppointmentToggleButton() {
-        WebElement existingPatientBookedAppointmentToggle = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='template-toggle-existing_patient_booked_appointment']"));
+        Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//h4[text()='Blocked Patient']")));
+        Browser.waitForPresenceOfElement(By.xpath("//input[@id='template-toggle-existing_patient_booked_appointment']"));
+        WebElement existingPatientBookedAppointmentToggle = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@id='template-toggle-existing_patient_booked_appointment']"));
         Browser.scrollToVisibleElement(existingPatientBookedAppointmentToggle);
         if (existingPatientBookedAppointmentToggle.isSelected()) {
             Browser.clickOnElementUsingJavascript(existingPatientBookedAppointmentToggle);
@@ -342,7 +349,7 @@ public class AppointmentsPage extends BasePage {
     }
 
     public void clickOnNewPatientBookedAppointmentToggleButton() {
-        WebElement newPatientBookedAppointmentToggle = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='template-toggle-new_patient_booked_appointment']"));
+        WebElement newPatientBookedAppointmentToggle = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@id='template-toggle-new_patient_booked_appointment']"));
         Browser.scrollToVisibleElement(newPatientBookedAppointmentToggle);
         if (newPatientBookedAppointmentToggle.isSelected()) {
             Browser.clickOnElementUsingJavascript(newPatientBookedAppointmentToggle);
@@ -351,6 +358,7 @@ public class AppointmentsPage extends BasePage {
     }
 
     public void clickOnClusterAppointmentsCheckbox() {
+        Browser.waitForPresenceOfElement(By.xpath("//label[contains(text(),'Cluster Appointments')]/input[@type='checkbox']"));
         Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Cluster Appointments')]/input[@type='checkbox']")));
         WebElement clusterAppointmentsCheckBox = DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Cluster Appointments')]/input[@type='checkbox']"));
         Browser.scrollToVisibleElement(clusterAppointmentsCheckBox);
