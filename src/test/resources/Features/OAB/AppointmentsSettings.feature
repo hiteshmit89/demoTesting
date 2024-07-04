@@ -96,3 +96,9 @@ Feature: Appointments Settings
     Given I login to PbN app with super user and select the practice
     When I try to click on reset button on appointment template page
     Then I will be able to click reset button on appointment template
+
+  @appointments @PUA-107 @PRAC-T1608
+  Scenario: Verify that the user should be able to view two options 10 Minutes & 15 minutes under the heading Appointment Time Interval on the Appointment Availability column on the appointment settings page
+    Given I login to PbN app and select the practice
+    When I try to navigate to Appointment Availability column on appointment settings page
+    Then I will be able to view two options ten Minutes & fifteen minutes under the heading Appointment Time Interval on the Appointment Availability column on the appointment settings page

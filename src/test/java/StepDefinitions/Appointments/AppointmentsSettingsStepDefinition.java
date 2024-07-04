@@ -211,4 +211,15 @@ public class AppointmentsSettingsStepDefinition {
     public void iWillBeAbleToClickResetButtonOnAppointmentTemplate() {
         PbNUIApp.appointmentsPage().clickOnResetButton();
     }
+
+    @When("I try to navigate to Appointment Availability column on appointment settings page")
+    public void iTryToNavigateToAppointmentAvailabilityColumnOnAppointmentSettingsPage() {
+        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
+        PbNUIApp.appointmentsPage().clickOnAppointmentSettingTab();
+    }
+
+    @Then("I will be able to view two options ten Minutes & fifteen minutes under the heading Appointment Time Interval on the Appointment Availability column on the appointment settings page")
+    public void iWillBeAbleToViewTwoOptionsTenMinutesFifteenMinutesUnderTheHeadingAppointmentTimeIntervalOnTheAppointmentAvailabilityColumnOnTheAppointmentSettingsPage() {
+        PbNUIApp.appointmentsPage().appointmentAvailabilityColumnRadioButtons();
+    }
 }
