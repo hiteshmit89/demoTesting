@@ -211,4 +211,16 @@ public class AppointmentsSettingsStepDefinition {
     public void iWillBeAbleToClickResetButtonOnAppointmentTemplate() {
         PbNUIApp.appointmentsPage().clickOnResetButton();
     }
+
+    @When("I try to check and uncheck the Auto update the PMS with the booked appointments checkbox and Alert and don’t auto sync appointments on appointment settings page")
+    public void iTryToCheckAndUncheckTheAutoUpdateThePMSWithTheBookedAppointmentsCheckboxAndAlertAndDonTAutoSyncAppointmentsOnAppointmentSettingsPage() {
+        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
+        PbNUIApp.appointmentsPage().clickOnAppointmentSettingTab();
+    }
+
+    @Then("I will be able to check and uncheck the Auto update the PMS with the booked appointments checkbox and Alert and don’t auto sync appointments on appointment settings page")
+    public void iWillBeAbleToCheckAndUncheckTheAutoUpdateThePMSWithTheBookedAppointmentsCheckboxAndAlertAndDonTAutoSyncAppointmentsOnAppointmentSettingsPage() {
+        PbNUIApp.appointmentsPage().clickOnAutoUpdatePmsCheckbox();
+        PbNUIApp.appointmentsPage().clickOnAlertAndAutoSyncCheckbox();
+    }
 }
