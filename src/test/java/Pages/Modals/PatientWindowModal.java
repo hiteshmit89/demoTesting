@@ -52,6 +52,8 @@ public class PatientWindowModal {
     }
 
     public void closePatientWindow() {
+        Browser.waitForElementToBeVisible(By.xpath("//button[@class='close-button']"));
+        Browser.waitForElementToBeClickable(By.xpath("//button[@class='close-button']"));
         WebElement closePatientWindow = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='close-button']"));
         Browser.clickOnElement(closePatientWindow);
     }

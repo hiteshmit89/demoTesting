@@ -16,7 +16,7 @@ public class PatientWindowTaskStepDefinition {
 
     @And("I click on patient finder & open Patient Window")
     public void iClickOnPatientFinderOpenPatientWindow() {
-        PbNUIApp.navigator().findAndSelectPatientByExactMatchOf(PbNUIApp.userdata().getPractices().getFirst().getPatientData().getFirst().getPatient_name());
+        PbNUIApp.navigator().findAndSelectPatientByExactMatchOf(PbNUIApp.userdata().getPatientName(1, 2));
     }
 
     @And("I click on task button & opted {string}")

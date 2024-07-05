@@ -24,5 +24,4 @@ public class HomeStepDefinition {
     public void iWillSeeActivityForPractice() {
         PbNUIApp.appHomePage().verifyWelcomeTextDisplayed();
     }
-
 }

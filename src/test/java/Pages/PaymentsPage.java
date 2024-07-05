@@ -1,7 +1,6 @@
 package Pages;
 
 import Framework.Browser;
-import Framework.Constants.Constants;
 import Framework.Root.PbNUIApp;
 import Framework.Util.ConfigManager;
 import Framework.Constants.Constants.PageTitle;
@@ -9,13 +8,10 @@ import Framework.Util.DriverManager;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-
+import java.util.List;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Random;
-
-
 import java.util.Random;
 
 public class PaymentsPage extends BasePage {
@@ -28,13 +24,16 @@ public class PaymentsPage extends BasePage {
     private final WebElement paymentMethodsTab = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='payment-page-tab-Payment Methods']"));
     private final WebElement widgetsTab = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='payment-page-tab-Widgets']"));
 
+    String SelectPaginationNumber = "100";
+    int initialTableSize = 0;
+
     public void clickOnWidgetslink() {
         WebElement widgetsTab = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='payment-page-tab-Widgets']"));
         Browser.waitForElementToBeClickable(widgetsTab);
         Browser.clickOnElement(widgetsTab);
     }
 
-    public void createPaymentURLAndNavigate(){
+    public void createPaymentURLAndNavigate() {
         Browser.waitForElementPresence(By.xpath("(//span[contains(text(),'https://www.patientsreach.com/payment/portal/')])[1]"));
         Browser.waitForElementToBeVisible(By.xpath("(//span[contains(text(),'https://www.patientsreach.com/payment/portal/')])[1]"));
         WebElement eLink = DriverManager.getInstance().Driver.findElement(By.xpath("(//span[contains(text(),'https://www.patientsreach.com/payment/portal/')])[1]"));
@@ -53,6 +52,7 @@ public class PaymentsPage extends BasePage {
     public void clickPaymentsMethodsTab() {
         Browser.clickOnElement(paymentMethodsTab);
     }
+
     public void clickWidgetsTab() {
         Browser.clickOnElement(widgetsTab);
     }
@@ -140,6 +140,7 @@ public class PaymentsPage extends BasePage {
         WebElement saveButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='Save']"));
         Browser.clickOnElement(saveButton);
     }
+
     public void createCustomURLAndNavigate() {
         WebElement eLink = DriverManager.getInstance().Driver.findElement(By.xpath("(//span[contains(text(),'https://www.patientsreach.com/payment/')])[2]"));
         String urlText = eLink.getText();
@@ -160,5 +161,83 @@ public class PaymentsPage extends BasePage {
         String expectedDate = dateFormat.format(date);
         WebElement actualDate = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@class='table table-striped table-hover']//tbody//tr[1]//td[10]"));
         Assert.assertEquals(actualDate.getText(),expectedDate);
+    }
+
+
+    public void searchPatientInPaymentMethod() {
+        Browser.waitForElementToBeVisible(By.xpath("//input[@class='patient-search-box ']"));
+        Browser.waitForElementToBeClickable(By.xpath("//input[@class='patient-search-box ']"));
+        WebElement searchTextBox = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@class='patient-search-box ']"));
+        Browser.enterTextInEditBox(searchTextBox, PbNUIApp.userdata().getPatientName(2, 1));
+        Browser.waitForElementList(By.xpath("//div[@class='patient-row patient-row-enabled  row']"));
+        Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='fade in patient-popover popover bottom']//div[@class='patient-row patient-row-enabled  row']")));
+        WebElement patientName = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='fade in patient-popover popover bottom']//div[@class='patient-row patient-row-enabled  row']"));
+        Browser.clickOnElement(patientName);
+    }
+
+    public void setSelectPaginationNumber() {
+        Browser.waitForElementPresence(By.xpath("//div[@class='modal-body']//div[@class='row react-bootstrap-table-pagination']//button[@id='pageDropDown']"));
+        WebElement pagination = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='modal-body']//div[@class='row react-bootstrap-table-pagination']//button[@id='pageDropDown']"));
+        Browser.clickOnElementUsingJavascript(pagination);
+        List<WebElement> selectPaginationDropDown = DriverManager.getInstance().Driver.findElements(By.xpath("//div[@class='content-section']//ul[@role='menu']//li//a"));
+        for (WebElement element : selectPaginationDropDown) {
+            if (element.getText().contains(SelectPaginationNumber)) {
+                element.click();
+                break;
+            }
+        }
+    }
+
+    public void AddAdyenCardWithPatient()  {
+        List<WebElement> listOfAdyenCard = DriverManager.getInstance().Driver.findElements(By.xpath("//div[@class='modal-body']//tbody//tr"));
+        initialTableSize = listOfAdyenCard.size();
+        WebElement addNewCard = DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='Add a new Card']"));
+        Browser.clickOnElement(addNewCard);
+        Browser.scrollToVisibleElement(DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='Save card']")));
+        Browser.waitForElementToBeVisible(By.xpath("//iframe[@title='Iframe for card number']"));
+        Browser.waitForFrameToLoad(By.xpath("//iframe[@title='Iframe for card number']"));
+        Browser.waitForElementToBeVisible(By.xpath("//input[@data-fieldtype='encryptedCardNumber']"));
+        WebElement cardNumber = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@data-fieldtype='encryptedCardNumber']"));
+        Browser.enterTextInEditBox(cardNumber, PbNUIApp.userdata().getCardNumber(2, "1"));
+        Browser.switchToDefaultContent();
+        enterCardDate();
+        enterCVC();
+        enterPostalCode();
+        clickOnSaveButton();
+        verifyAdyenCardWithPatient();
+    }
+
+    public void enterCardDate() {
+        Browser.waitForFrameToLoad(By.xpath("//iframe[@title='Iframe for expiry date']"));
+        WebElement cardDate = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@data-fieldtype='encryptedExpiryDate']"));
+        Browser.enterTextInEditBox(cardDate, PbNUIApp.userdata().getCardMonth(2, "1"));
+        Browser.switchToDefaultContent();
+    }
+
+    public void enterCVC() {
+        Browser.waitForFrameToLoad(By.xpath("//iframe[@title='Iframe for security code']"));
+        WebElement CVC = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@data-fieldtype='encryptedSecurityCode']"));
+        Browser.enterTextInEditBox(CVC, PbNUIApp.userdata().getCardCVC(2, "1"));
+        Browser.switchToDefaultContent();
+    }
+
+    public void enterPostalCode() {
+        WebElement postalCode = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@name='postalCode']"));
+        Browser.enterTextInEditBox(postalCode, PbNUIApp.userdata().getPostalCode(2, "1"));
+    }
+
+    public void clickOnSaveButton() {
+        WebElement saveButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='Save card']"));
+        Browser.clickOnElement(saveButton);
+    }
+
+    public void verifyAdyenCardWithPatient() {
+        Browser.refreshPage();
+        searchPatientInPaymentMethod();
+        Browser.waitForPageReady();
+        setSelectPaginationNumber();
+        List<WebElement> updatedListOfAdyenCard = DriverManager.getInstance().Driver.findElements(By.xpath("//div[@class='modal-body']//tbody//tr"));
+        int updatedTableSize = updatedListOfAdyenCard.size();
+        Assert.assertEquals("card not Added", initialTableSize + 1, updatedTableSize);
     }
 }
