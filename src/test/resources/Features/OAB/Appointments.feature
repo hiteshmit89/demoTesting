@@ -39,7 +39,7 @@ Feature: Appointments
     When I click on appointments tab and try to book appointment and select DOB less than Eighteen years on insurance page
     Then I will not be able to proceed to the next page if the insurance holder age is not less than Eighteen years.
 
-  @appointments @PRAC-T1064 @In-Progress
+  @appointments @PRAC-T1064 @In-Progress @PRAC-T1614
   Scenario: Verify I can Book the appointments for new patient
     Given I login to PbN app and select the practice
     When I click on appointments tab and try to book appointments for new patient
