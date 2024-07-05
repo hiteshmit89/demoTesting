@@ -27,7 +27,7 @@ public class AppointmentsStepdefinition {
 
     @And("I click on appointment tab and try to book appointment")
     public void iClickOnAppointmentTabAndTryToBookAppointment() {
-        PbNUIApp.appointmentBookingPage().clickOnPickLocation();
+        PbNUIApp.appointmentBookingPage().verifySelectionAndClickOnPickLocation();
         PbNUIApp.appointmentBookingPage().clickOnSelectExistingPatient();
         PbNUIApp.appointmentBookingPage().clickOnEmergencyConsult();
         PbNUIApp.appointmentBookingPage().clickOnEarliest();
@@ -63,7 +63,7 @@ public class AppointmentsStepdefinition {
 
     @And("I click on appointments tab and try to book appointment")
     public void iClickOnAppointmentsTabAndTryToBookAppointment() {
-        PbNUIApp.appointmentBookingPage().clickOnPickLocation();
+        PbNUIApp.appointmentBookingPage().verifySelectionAndClickOnPickLocation();
         PbNUIApp.appointmentBookingPage().clickOnSelectExistingPatient();
         PbNUIApp.appointmentBookingPage().clickOnEmergencyConsult();
         PbNUIApp.appointmentBookingPage().clickOnEarliest();
@@ -90,7 +90,7 @@ public class AppointmentsStepdefinition {
         PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
         PbNUIApp.appointmentsPage().clickOnWidgets();
         PbNUIApp.appointmentsPage().createAppointmentURLAndNavigate();
-        PbNUIApp.appointmentBookingPage().clickOnPickLocation();
+        PbNUIApp.appointmentBookingPage().verifySelectionAndClickOnPickLocation();
         PbNUIApp.appointmentBookingPage().clickOnSelectExistingPatient();
         PbNUIApp.appointmentBookingPage().clickOnEmergencyConsult();
         PbNUIApp.appointmentBookingPage().clickOnEarliest();
@@ -104,7 +104,7 @@ public class AppointmentsStepdefinition {
         PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
         PbNUIApp.appointmentsPage().clickOnWidgets();
         PbNUIApp.appointmentsPage().createAppointmentURLAndNavigate();
-        PbNUIApp.appointmentBookingPage().clickOnPickLocation();
+        PbNUIApp.appointmentBookingPage().verifySelectionAndClickOnPickLocation();
         PbNUIApp.appointmentBookingPage().clickOnSelectExistingPatient();
         PbNUIApp.appointmentBookingPage().clickOnEmergencyConsult();
         PbNUIApp.appointmentBookingPage().clickOnEarliest();
@@ -163,7 +163,7 @@ public class AppointmentsStepdefinition {
         PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
         PbNUIApp.appointmentsPage().clickOnWidgets();
         PbNUIApp.appointmentsPage().createAppointmentURLAndNavigate();
-        PbNUIApp.appointmentBookingPage().clickOnPickLocation();
+        PbNUIApp.appointmentBookingPage().verifySelectionAndClickOnPickLocation();
         PbNUIApp.appointmentBookingPage().clickOnSelectNewPatient();
         PbNUIApp.appointmentBookingPage().clickOnEmergencyConsult();
         PbNUIApp.appointmentBookingPage().clickOnEarliest();
@@ -186,7 +186,7 @@ public class AppointmentsStepdefinition {
         PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
         PbNUIApp.appointmentsPage().clickOnWidgets();
         PbNUIApp.appointmentsPage().createAppointmentURLAndNavigate();
-        PbNUIApp.appointmentBookingPage().clickOnPickLocation();
+        PbNUIApp.appointmentBookingPage().verifySelectionAndClickOnPickLocation();
         PbNUIApp.appointmentBookingPage().clickOnSelectNewPatient();
         PbNUIApp.appointmentBookingPage().clickOnEmergencyConsult();
         PbNUIApp.appointmentBookingPage().clickOnEarliest();
@@ -206,7 +206,7 @@ public class AppointmentsStepdefinition {
         PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
         PbNUIApp.appointmentsPage().clickOnWidgets();
         PbNUIApp.appointmentsPage().createAppointmentURLAndNavigate();
-        PbNUIApp.appointmentBookingPage().clickOnPickLocation();
+        PbNUIApp.appointmentBookingPage().verifySelectionAndClickOnPickLocation();
         PbNUIApp.appointmentBookingPage().clickOnSelectNewPatient();
         PbNUIApp.appointmentBookingPage().clickOnEmergencyConsult();
         PbNUIApp.appointmentBookingPage().clickOnSeeMoreOptions();
@@ -223,7 +223,7 @@ public class AppointmentsStepdefinition {
         PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
         PbNUIApp.appointmentsPage().clickOnWidgets();
         PbNUIApp.appointmentsPage().createAppointmentURLAndNavigate();
-        PbNUIApp.appointmentBookingPage().clickOnPickLocation();
+        PbNUIApp.appointmentBookingPage().verifySelectionAndClickOnPickLocation();
         PbNUIApp.appointmentBookingPage().clickOnSelectNewPatient();
         PbNUIApp.appointmentBookingPage().clickOnEmergencyConsult();
         PbNUIApp.appointmentBookingPage().clickOnEarliest();
@@ -242,7 +242,7 @@ public class AppointmentsStepdefinition {
         PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
         PbNUIApp.appointmentsPage().clickOnWidgets();
         PbNUIApp.appointmentsPage().createAppointmentURLAndNavigate();
-        PbNUIApp.appointmentBookingPage().clickOnPickLocation();
+        PbNUIApp.appointmentBookingPage().verifySelectionAndClickOnPickLocation();
         PbNUIApp.appointmentBookingPage().clickOnSelectExistingPatient();
         PbNUIApp.appointmentBookingPage().clickOnEmergencyConsult();
         PbNUIApp.appointmentBookingPage().clickOnEarliest();
