@@ -109,7 +109,7 @@ Feature: Appointments Settings
     When I try to navigate to Appointment Availability column on appointment settings page
     Then I will be able to verify ten minutes radio button is by default selected when scrolling down to Appointment Availability column on appointment settings page
 
-  @appointments @PUA-108 @PRAC-T1609
+  @appointments @PUA-106 @PRAC-T1607
   Scenario: Verify that user is able to view the Appointment Time Interval option on the Appointment Availability Column in the settings page of the appointment on appointment settings page
     Given I login to PbN app and select the practice
     When I try to navigate to Appointment Availability column on appointment settings page
