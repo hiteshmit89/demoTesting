@@ -102,3 +102,9 @@ Feature: Appointments Settings
     Given I login to PbN app and select the practice
     When I try to check and uncheck the Auto update the PMS with the booked appointments checkbox and Alert and don’t auto sync appointments on appointment settings page
     Then I will be able to check and uncheck the Auto update the PMS with the booked appointments checkbox and Alert and don’t auto sync appointments on appointment settings page
+
+  @appointments @PUA-108 @PRAC-T1609
+  Scenario: Verify that 10 minutes radio button is by default selected when scrolling down to Appointment Availability column on appointment settings page
+    Given I login to PbN app and select the practice
+    When I try to navigate to Appointment Availability column on appointment settings page
+    Then I will be able to verify ten minutes radio button is by default selected when scrolling down to Appointment Availability column on appointment settings page

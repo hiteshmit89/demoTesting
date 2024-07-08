@@ -55,8 +55,8 @@ public class CampaignsPage extends BasePage {
     public void verifyCampaignsStatusItems(String campaignName){
         WebElement statusButton = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='table-responsive']//td[contains(text(),'"+campaignName+"')]/..//button[@id]"));
         Browser.clickOnElement(statusButton);
-        WebElement activeStatus = DriverManager.getInstance().Driver.findElement(By.linkText("Active"));
-        WebElement inActiveStatus = DriverManager.getInstance().Driver.findElement(By.linkText("Inactive"));
+        WebElement activeStatus = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='table-responsive']//td[contains(text(),'"+campaignName+"')]/..//button[@id]/../following-sibling::ul//div[contains(text(),'Active')]"));
+        WebElement inActiveStatus = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='table-responsive']//td[contains(text(),'"+campaignName+"')]/..//button[@id]/../following-sibling::ul//div[contains(text(),'Inactive')]"));
         Assert.assertTrue("Active status is not visible in campaigns page",activeStatus.isDisplayed());
         Assert.assertTrue("Inactive status is not visible in campaigns page",inActiveStatus.isDisplayed());
     }
