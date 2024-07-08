@@ -404,6 +404,13 @@ public class AppointmentsPage extends BasePage {
         WebElement successMessage = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='react-toast-notifications__toast__content css-1ad3zal']"));
         String successMsg = "Template reset successful";
         Assert.assertEquals("Template reset successful", successMsg, successMessage.getText());
+    }
 
+    public void appointmentAvailabilityColumnRadioButton() {
+        Browser.waitForPresenceOfElement(By.xpath("//label[contains(text(),'Provider Time Availability')]/input[@type='checkbox']"));
+        Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Provider Time Availability')]/input[@type='checkbox']")));
+        WebElement appointmentAvailabilityColumnRadioButton = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='radio-container-1']//label//input"));
+        Browser.scrollToVisibleElement(appointmentAvailabilityColumnRadioButton);
+        Assert.assertTrue("Appointment Time Interval Radio Button is not selected", appointmentAvailabilityColumnRadioButton.isSelected());
     }
 }
