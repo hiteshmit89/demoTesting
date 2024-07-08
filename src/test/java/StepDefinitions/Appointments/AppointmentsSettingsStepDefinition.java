@@ -235,12 +235,6 @@ public class AppointmentsSettingsStepDefinition {
         PbNUIApp.appointmentsPage().appointmentAvailabilityColumnRadioButton();
     }
 
-    @When("I try to navigate to Appointment Availability column on appointment settings page")
-    public void iTryToNavigateToAppointmentAvailabilityColumnOnAppointmentSettingsPage() {
-        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
-        PbNUIApp.appointmentsPage().clickOnAppointmentSettingTab();
-    }
-
     @Then("I will be able to verify user is able to view the Appointment Time Interval option on the Appointment Availability Column in the settings page of the appointment on appointment settings page")
     public void iWillBeAbleToVerifyUserIsAbleToViewTheAppointmentTimeIntervalOptionOnTheAppointmentAvailabilityColumnInTheSettingsPageOfTheAppointmentOnAppointmentSettingsPage() {
         PbNUIApp.appointmentsPage().appointmentAvailabilityColumnRadioButtons();
