@@ -211,4 +211,15 @@ public class AppointmentsSettingsStepDefinition {
     public void iWillBeAbleToClickResetButtonOnAppointmentTemplate() {
         PbNUIApp.appointmentsPage().clickOnResetButton();
     }
+
+    @When("I try to navigate to Appointment Availability column on appointment settings page")
+    public void iTryToNavigateToAppointmentAvailabilityColumnOnAppointmentSettingsPage() {
+        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
+        PbNUIApp.appointmentsPage().clickOnAppointmentSettingTab();
+    }
+
+    @Then("I will be able to verify ten minutes radio button is by default selected when scrolling down to Appointment Availability column on appointment settings page")
+    public void iWillBeAbleToVerifyTenMinutesRadioButtonIsByDefaultSelectedWhenScrollingDownToAppointmentAvailabilityColumnOnAppointmentSettingsPage() {
+        PbNUIApp.appointmentsPage().appointmentAvailabilityColumnRadioButton();
+    }
 }
