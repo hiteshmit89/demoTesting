@@ -39,6 +39,8 @@ public class AppointmentsPage extends BasePage {
     public void clickOnAppointmentSettingTab() {
         WebElement appointmentSetting = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='appointment-booking-page-tab-Settings']"));
         Browser.clickOnElement(appointmentSetting);
+        Browser.waitForPresenceOfElement(By.xpath("//label[contains(text(),'Auto update the PMS with the booked appointments')]/input[@type='checkbox']"));
+        Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Auto update the PMS with the booked appointments')]/input[@type='checkbox']")));
     }
 
     public void clickOnAppointmentListTab() {
@@ -406,6 +408,31 @@ public class AppointmentsPage extends BasePage {
         Assert.assertEquals("Template reset successful", successMsg, successMessage.getText());
     }
 
+    public void clickOnAutoUpdatePmsCheckbox() {
+        Browser.waitForPresenceOfElement(By.xpath("//label[contains(text(),'Auto update the PMS with the booked appointments')]/input[@type='checkbox']"));
+        Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Auto update the PMS with the booked appointments')]/input[@type='checkbox']")));
+        WebElement autoUpdatePmsCheckbox = DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Auto update the PMS with the booked appointments')]/input[@type='checkbox']"));
+        if (autoUpdatePmsCheckbox.isSelected()) {
+            Browser.clickOnElement(autoUpdatePmsCheckbox);
+        }
+        Assert.assertFalse("Auto update the PMS with the booked appointments checkbox is selected", autoUpdatePmsCheckbox.isSelected());
+        WebElement autoUpdatePmsText = DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Auto update the PMS with the booked appointments')]"));
+        String verifiedText = "Auto update the PMS with the booked appointments  ";
+        Assert.assertEquals("Auto Update the PMS text verified", verifiedText, autoUpdatePmsText.getText());
+    }
+
+    public void clickOnAlertAndAutoSyncCheckbox() {
+        WebElement alertAndAutoSyncCheckbox = DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Alert and don’t auto sync appointments')]/input[@type='checkbox']"));
+        if (!alertAndAutoSyncCheckbox.isSelected()) {
+            Browser.clickOnElement(alertAndAutoSyncCheckbox);
+        }
+        Assert.assertTrue("Auto update the PMS with the booked appointments checkbox is not selected", alertAndAutoSyncCheckbox.isSelected());
+        WebElement alertAndAutoSyncText = DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Alert and don’t auto sync appointments')]"));
+        String applicationText = alertAndAutoSyncText.getText();
+        String verifiedText = "Alert and don’t auto sync appointments for patients who book as existing patients but we are unable to find a matching patient record. By default, our system will create a new patient in that case. By turning on this feature, our system will allow you to link an existing patient record to the requested appointment. We do not recommend enabling this feature.";
+        Assert.assertEquals("Alert and don’t auto sync appointments", verifiedText, alertAndAutoSyncText.getText());
+    }
+    
     public void appointmentAvailabilityColumnRadioButton() {
         Browser.waitForPresenceOfElement(By.xpath("//label[contains(text(),'Provider Time Availability')]/input[@type='checkbox']"));
         Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Provider Time Availability')]/input[@type='checkbox']")));
