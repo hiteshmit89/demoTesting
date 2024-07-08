@@ -422,7 +422,7 @@ public class AppointmentsPage extends BasePage {
     }
 
     public void clickOnAlertAndAutoSyncCheckbox() {
-       WebElement alertAndAutoSyncCheckbox = DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Alert and don’t auto sync appointments')]/input[@type='checkbox']"));
+        WebElement alertAndAutoSyncCheckbox = DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Alert and don’t auto sync appointments')]/input[@type='checkbox']"));
         if (!alertAndAutoSyncCheckbox.isSelected()) {
             Browser.clickOnElement(alertAndAutoSyncCheckbox);
         }
@@ -431,6 +431,8 @@ public class AppointmentsPage extends BasePage {
         String applicationText = alertAndAutoSyncText.getText();
         String verifiedText = "Alert and don’t auto sync appointments for patients who book as existing patients but we are unable to find a matching patient record. By default, our system will create a new patient in that case. By turning on this feature, our system will allow you to link an existing patient record to the requested appointment. We do not recommend enabling this feature.";
         Assert.assertEquals("Alert and don’t auto sync appointments", verifiedText, alertAndAutoSyncText.getText());
+    }
+    
     public void appointmentAvailabilityColumnRadioButton() {
         Browser.waitForPresenceOfElement(By.xpath("//label[contains(text(),'Provider Time Availability')]/input[@type='checkbox']"));
         Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Provider Time Availability')]/input[@type='checkbox']")));
