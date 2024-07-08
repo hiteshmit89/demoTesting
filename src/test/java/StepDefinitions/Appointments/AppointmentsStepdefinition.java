@@ -260,4 +260,17 @@ public class AppointmentsStepdefinition {
     public void iWillBeAbleToSeeErrorMessageOnEnteringInvalidOTP() {
         PbNUIApp.appointmentBookingPage().verifyErrorTextDisplayed();
     }
+
+    @When("I click on appointments tab and try to book appointments and navigate to new patient and returning patient button on after location page during appointment booking")
+    public void iClickOnAppointmentsTabAndTryToBookAppointmentsAndNavigateToNewPatientAndReturningPatientButtonOnAfterLocationPageDuringAppointmentBooking() {
+        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
+        PbNUIApp.appointmentsPage().clickOnWidgets();
+        PbNUIApp.appointmentsPage().createAppointmentURLAndNavigate();
+        PbNUIApp.appointmentBookingPage().clickOnPickLocation();
+    }
+
+    @Then("I will be able to see new patient and returning patient button on after location page during appointment booking")
+    public void iWillBeAbleToSeeNewPatientAndReturningPatientButtonOnAfterLocationPageDuringAppointmentBooking() {
+        PbNUIApp.appointmentBookingPage().verifySelectExistingPatientButtonAndNewPatientButton();
+    }
 }

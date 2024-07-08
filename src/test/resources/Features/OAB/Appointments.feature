@@ -62,3 +62,9 @@ Feature: Appointments
     Given I login to PbN app and select the practice
     When I click on appointments tab and try to book appointments for patient and enter invalid OTP
     Then I will be able to see error message on entering invalid OTP
+
+  @appointments @PUA-110 @PRAC-T1615
+  Scenario: Verify I can see the new patient and returning patient button on after location page during appointment booking
+    Given I login to PbN app and select the practice
+    When I click on appointments tab and try to book appointments and navigate to new patient and returning patient button on after location page during appointment booking
+    Then I will be able to see new patient and returning patient button on after location page during appointment booking
