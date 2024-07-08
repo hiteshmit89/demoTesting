@@ -266,7 +266,7 @@ public class AppointmentsStepdefinition {
         PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
         PbNUIApp.appointmentsPage().clickOnWidgets();
         PbNUIApp.appointmentsPage().createAppointmentURLAndNavigate();
-        PbNUIApp.appointmentBookingPage().clickOnPickLocation();
+        PbNUIApp.appointmentBookingPage().verifySelectionAndClickOnPickLocation();
     }
 
     @Then("I will be able to see new patient and returning patient button on after location page during appointment booking")
