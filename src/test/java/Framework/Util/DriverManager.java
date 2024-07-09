@@ -134,6 +134,7 @@ public class DriverManager {
     }
 
     public void killSession() {
+        webDriver.close();
         webDriver = null;
         Driver = null;
     }
