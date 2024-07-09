@@ -440,4 +440,18 @@ public class AppointmentsPage extends BasePage {
         Browser.scrollToVisibleElement(appointmentAvailabilityColumnRadioButton);
         Assert.assertTrue("Appointment Time Interval Radio Button is not selected", appointmentAvailabilityColumnRadioButton.isSelected());
     }
+
+    public void verifyProviderEditButton() {
+        Browser.waitForElementToBeVisible(By.xpath("//button[@class='btn btn-sm'and contains(text(),'Edit')]"));
+        WebElement providerEditButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='btn btn-sm'and contains(text(),'Edit')]"));
+        Browser.scrollToVisibleElement(providerEditButton);
+        Assert.assertTrue("Provider Edit Button is not visible", providerEditButton.isDisplayed());
+    }
+
+    public void verifyProviderDeleteButton() {
+        Browser.waitForElementToBeVisible(By.xpath("//div[@class='text-center provider-settings-action']//button[@class='btn btn-sm btn-danger'and contains(text(),'Delete')]"));
+        WebElement providerDeleteButton = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='text-center provider-settings-action']//button[@class='btn btn-sm btn-danger'and contains(text(),'Delete')]"));
+        Browser.scrollToVisibleElement(providerDeleteButton);
+        Assert.assertTrue("Provider Delete Button is not visible", providerDeleteButton.isDisplayed());
+    }
 }
