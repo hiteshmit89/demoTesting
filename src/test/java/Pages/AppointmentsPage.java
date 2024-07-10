@@ -289,8 +289,8 @@ public class AppointmentsPage extends BasePage {
         Browser.waitForTableToFinishShrinking(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tr"));
         List<WebElement> verifyPatientName = DriverManager.getInstance().Driver.findElements(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tr//td//div//span"));
         for (WebElement element : verifyPatientName) {
-            if (PbNUIApp.userdata().getFirstName(1,"5").equals(element.getText()) ) {
-                Assert.assertEquals("Patient Found", PbNUIApp.userdata().getFirstName(1,"5"), element.getText());
+            if (PbNUIApp.userdata().getFirstName(1, "5").equals(element.getText())) {
+                Assert.assertEquals("Patient Found", PbNUIApp.userdata().getFirstName(1, "5"), element.getText());
                 check = true;
                 break;
             }
@@ -439,5 +439,13 @@ public class AppointmentsPage extends BasePage {
         WebElement appointmentAvailabilityColumnRadioButton = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='radio-container-1']//label//input"));
         Browser.scrollToVisibleElement(appointmentAvailabilityColumnRadioButton);
         Assert.assertTrue("Appointment Time Interval Radio Button is not selected", appointmentAvailabilityColumnRadioButton.isSelected());
+    }
+
+    public void appointmentAvailabilityColumnRadioButtons() {
+        Browser.waitForPresenceOfElement(By.xpath("//label[contains(text(),'Provider Time Availability')]/input[@type='checkbox']"));
+        Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Provider Time Availability')]/input[@type='checkbox']")));
+        WebElement appointmentAvailabilityColumn = DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Appointment Time Interval')]"));
+        Browser.scrollToVisibleElement(appointmentAvailabilityColumn);
+        Assert.assertTrue("Appointment Time Interval Column is not displayed", appointmentAvailabilityColumn.isDisplayed());
     }
 }
