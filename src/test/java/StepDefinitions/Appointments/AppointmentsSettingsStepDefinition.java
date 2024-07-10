@@ -234,4 +234,9 @@ public class AppointmentsSettingsStepDefinition {
     public void iWillBeAbleToVerifyTenMinutesRadioButtonIsByDefaultSelectedWhenScrollingDownToAppointmentAvailabilityColumnOnAppointmentSettingsPage() {
         PbNUIApp.appointmentsPage().appointmentAvailabilityColumnRadioButton();
     }
+
+    @Then("I will be able to verify user is able to view the Appointment Time Interval option on the Appointment Availability Column in the settings page of the appointment on appointment settings page")
+    public void iWillBeAbleToVerifyUserIsAbleToViewTheAppointmentTimeIntervalOptionOnTheAppointmentAvailabilityColumnInTheSettingsPageOfTheAppointmentOnAppointmentSettingsPage() {
+        PbNUIApp.appointmentsPage().appointmentAvailabilityColumnRadioButtons();
+    }
 }

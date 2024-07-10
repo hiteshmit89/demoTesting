@@ -249,7 +249,7 @@ public class AppointmentsStepdefinition {
         PbNUIApp.appointmentBookingPage().fillAppointmentBookingForm();
         PbNUIApp.appointmentBookingPage().clickOnCheckBox();
         PbNUIApp.appointmentBookingPage().clickOnNextButton();
-        PbNUIApp.appointmentBookingPage().insuranceUnchanged();
+        PbNUIApp.appointmentBookingPage().clickOnIDoNotHaveInsurance();
         PbNUIApp.appointmentBookingPage().clickOnNextButton();
         PbNUIApp.appointmentBookingPage().clickOnUseCellPhone();
         PbNUIApp.appointmentBookingPage().enterOTP("1234");
