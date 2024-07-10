@@ -449,7 +449,7 @@ public class AppointmentsPage extends BasePage {
         Assert.assertTrue("Appointment Time Interval Column is not displayed", appointmentAvailabilityColumn.isDisplayed());
     }
 
-    public void appointmentAvailabilityColumnRadioButtons() {
+    public void appointmentAvailabilityColumnRadioButtons1() {
         Browser.waitForPresenceOfElement(By.xpath("//label[contains(text(),'Provider Time Availability')]/input[@type='checkbox']"));
         Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Provider Time Availability')]/input[@type='checkbox']")));
         WebElement appointmentAvailabilityColumnRadioButton10Minutes = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='radio-container-1']//label//input"));
