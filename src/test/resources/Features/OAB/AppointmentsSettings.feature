@@ -115,3 +115,8 @@ Feature: Appointments Settings
     When I try to navigate to Appointment Availability column on appointment settings page
     Then I will be able to verify user is able to view the Appointment Time Interval option on the Appointment Availability Column in the settings page of the appointment on appointment settings page
 
+  @appointments @PUA-107 @PRAC-T1608
+  Scenario: Verify that the user should be able to view two options 10 Minutes & 15 minutes under the heading Appointment Time Interval on the Appointment Availability column on the appointment settings page
+    Given I login to PbN app and select the practice
+    When I try to navigate to Appointment Availability column on appointment settings page
+    Then I will be able to view two options ten Minutes & fifteen minutes under the heading Appointment Time Interval on the Appointment Availability column on the appointment settings page
