@@ -109,7 +109,7 @@ Feature: Appointments Settings
     When I try to navigate to Appointment Availability column on appointment settings page
     Then I will be able to verify ten minutes radio button is by default selected when scrolling down to Appointment Availability column on appointment settings page
 
-  @appointments @PUA-123 @PRAC-T1624
+  @appointments @PUA-123 @PRAC-T1624 @PRAC-T1625
   Scenario: Verify I can verify visibility check of provider on appointment setting page
     Given I login to PbN app and select the practice
     When I try to verify visibility check of provider on appointment setting page
