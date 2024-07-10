@@ -62,3 +62,9 @@ Feature: Appointments
     Given I login to PbN app and select the practice
     When I click on appointments tab and try to book appointments for patient and enter invalid OTP
     Then I will be able to see error message on entering invalid OTP
+
+  @appointments @PUA-128 @PRAC-T1628
+  Scenario: Verify I can not see the blocked days and time on provider page during appointment booking
+    Given I login to PbN app and select the practice
+    When I click on appointments tab and try to book appointments and navigate to provider page to verify the blocked days and time
+    Then I will not be able to see the blocked days and time on provider page during appointment booking

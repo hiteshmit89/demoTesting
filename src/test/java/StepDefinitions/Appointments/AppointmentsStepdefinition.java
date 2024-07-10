@@ -260,4 +260,24 @@ public class AppointmentsStepdefinition {
     public void iWillBeAbleToSeeErrorMessageOnEnteringInvalidOTP() {
         PbNUIApp.appointmentBookingPage().verifyErrorTextDisplayed();
     }
+
+    @When("I click on appointments tab and try to book appointments and navigate to provider page to verify the blocked days and time")
+    public void iClickOnAppointmentsTabAndTryToBookAppointmentsAndNavigateToProviderPageToVerifyTheBlockedDaysAndTime() {
+        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
+        PbNUIApp.appointmentsPage().clickOnAppointmentSettingTab();
+        PbNUIApp.appointmentsPage().clickOnProviderEditButton();
+        PbNUIApp.appointmentsPage().verifyMondayBlockOutDay();
+        PbNUIApp.appointmentsPage().clickOnSubmitButton();
+        PbNUIApp.appointmentsPage().clickOnWidgets();
+        PbNUIApp.appointmentsPage().createAppointmentURLAndNavigate();
+        PbNUIApp.appointmentBookingPage().verifySelectionAndClickOnPickLocation();
+        PbNUIApp.appointmentBookingPage().clickOnSelectExistingPatient();
+        PbNUIApp.appointmentBookingPage().clickOnEmergencyConsult();
+        PbNUIApp.appointmentBookingPage().clickOnSeeMoreOptions();
+    }
+
+    @Then("I will not be able to see the blocked days and time on provider page during appointment booking")
+    public void iWillNotBeAbleToSeeTheBlockedDaysAndTimeOnProviderPageDuringAppointmentBooking() {
+        PbNUIApp.appointmentBookingPage().verifyBlockedDayOnAppointmentAvailabilityPage();
+    }
 }

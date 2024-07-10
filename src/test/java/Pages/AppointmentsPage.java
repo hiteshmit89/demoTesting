@@ -440,4 +440,24 @@ public class AppointmentsPage extends BasePage {
         Browser.scrollToVisibleElement(appointmentAvailabilityColumnRadioButton);
         Assert.assertTrue("Appointment Time Interval Radio Button is not selected", appointmentAvailabilityColumnRadioButton.isSelected());
     }
+
+    public void verifyMondayBlockOutDay() {
+        Browser.waitForElementToBeClickable(By.xpath("//label[text()='Blocked Out Times']"));
+        Browser.waitForPresenceOfElement(By.xpath("//input[@id='availability-1']"));
+        WebElement mondayBlockOutDay = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@id='availability-1']"));
+        if (mondayBlockOutDay.isSelected()) {
+            Browser.clickOnElementUsingJavascript(mondayBlockOutDay);
+        }
+    }
+
+    public void clickOnSubmitButton() {
+        WebElement submitButton = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='modal-footer']//button[@class='btn btn-primary']"));
+        Browser.scrollToVisibleElement(submitButton);
+        if (submitButton.isEnabled()) {
+            Browser.clickOnElement(submitButton);
+        } else {
+            WebElement closeButton = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='modal-footer']//button[@class='btn btn-default']"));
+            Browser.clickOnElement(closeButton);
+        }
+    }
 }

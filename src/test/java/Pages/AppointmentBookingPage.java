@@ -264,4 +264,14 @@ public class AppointmentBookingPage extends BasePage {
         WebElement verifyText = DriverManager.getInstance().Driver.findElement(By.xpath("//p[@class='MuiTypography-root MuiTypography-body1']"));
         Assert.assertTrue("Can you please confirm that the patient's DOB is correct?", verifyText.isDisplayed());
     }
+
+    public void verifyBlockedDayOnAppointmentAvailabilityPage() {
+        Browser.waitForElementToBeVisible(By.xpath("//*[@id='patient-appointment-booking-page']/div/div[2]/div[1]/div/div[3]/div/div[1]/div[2]/div/div[2]/button"));
+        Browser.waitForPresenceOfElement(By.xpath("//table[@class='timeslots-table']/tbody/tr[1]/td[7]"));
+        WebElement mondayData = DriverManager.getInstance().Driver.findElement(By.xpath("//table[@class='timeslots-table']/tbody/tr[1]/td[7]"));
+        String textMonday = mondayData.getAttribute("innerHTML");
+       if (textMonday.isEmpty()) {
+           Assert.assertFalse("There is no Blocked Day on Appointment Availability Page", false);
+       }
+    }
 }
