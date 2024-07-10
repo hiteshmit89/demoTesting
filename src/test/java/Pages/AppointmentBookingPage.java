@@ -67,6 +67,20 @@ public class AppointmentBookingPage extends BasePage {
         Browser.clickOnElement(selectSeeMoreOptions);
     }
 
+    public void verifySeeMoreOptions() {
+        Browser.waitForElementToBeVisible(By.xpath("//span[@class='MuiButton-label' and contains(text(),'See more options')]"));
+        WebElement verifySeeMoreOptions = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='MuiButton-label' and contains(text(),'See more options')]"));
+        Browser.scrollToVisibleElement(verifySeeMoreOptions);
+        Assert.assertTrue("See More Options Button is not visible", verifySeeMoreOptions.isDisplayed());
+    }
+
+    public void verifyEarliestOption() {
+        Browser.waitForElementToBeVisible(By.xpath("//span[@class='MuiButton-label' and contains(text(),'Earliest: ')]"));
+        WebElement verifyEarliest = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='MuiButton-label' and contains(text(),'Earliest: ')]"));
+        Browser.scrollToVisibleElement(verifyEarliest);
+        Assert.assertTrue("Earliest Button is not visible", verifyEarliest.isDisplayed());
+    }
+
     public void clickOnRefreshButton() {
         Browser.waitForElementToBeVisible(By.xpath("(//button[@class='MuiButtonBase-root MuiIconButton-root'])[2]"));
         WebElement selectSeeMoreOptions = DriverManager.getInstance().Driver.findElement(By.xpath("(//button[@class='MuiButtonBase-root MuiIconButton-root'])[2]"));

@@ -260,4 +260,20 @@ public class AppointmentsStepdefinition {
     public void iWillBeAbleToSeeErrorMessageOnEnteringInvalidOTP() {
         PbNUIApp.appointmentBookingPage().verifyErrorTextDisplayed();
     }
+
+    @When("I click on appointments tab and try to book appointments and navigate to provider page to see appointment timing")
+    public void iClickOnAppointmentsTabAndTryToBookAppointmentsAndNavigateToProviderPageToSeeAppointmentTiming() {
+        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
+        PbNUIApp.appointmentsPage().clickOnWidgets();
+        PbNUIApp.appointmentsPage().createAppointmentURLAndNavigate();
+        PbNUIApp.appointmentBookingPage().verifySelectionAndClickOnPickLocation();
+        PbNUIApp.appointmentBookingPage().clickOnSelectNewPatient();
+        PbNUIApp.appointmentBookingPage().clickOnEmergencyConsult();
+    }
+
+    @Then("I will be able to see appointment timing for Earliest date and time on provider page during appointment booking")
+    public void iWillBeAbleToSeeAppointmentTimingForEarliestDateAndTimeOnProviderPageDuringAppointmentBooking() {
+        PbNUIApp.appointmentBookingPage().verifyEarliestOption();
+        PbNUIApp.appointmentBookingPage().verifySeeMoreOptions();
+    }
 }

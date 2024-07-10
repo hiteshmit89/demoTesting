@@ -62,3 +62,9 @@ Feature: Appointments
     Given I login to PbN app and select the practice
     When I click on appointments tab and try to book appointments for patient and enter invalid OTP
     Then I will be able to see error message on entering invalid OTP
+
+  @appointments @PUA-124 @PRAC-T1617
+  Scenario: Verify I can see appointment timing for Earliest date and time on provider page during appointment booking
+    Given I login to PbN app and select the practice
+    When I click on appointments tab and try to book appointments and navigate to provider page to see appointment timing
+    Then I will be able to see appointment timing for Earliest date and time on provider page during appointment booking
