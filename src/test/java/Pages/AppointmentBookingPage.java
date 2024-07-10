@@ -274,6 +274,6 @@ public class AppointmentBookingPage extends BasePage {
     public void verifyDateConfirmationMessage() {
         Browser.waitForElementToBeVisible(By.xpath("//p[@class='MuiTypography-root MuiTypography-body1']"));
         WebElement verifyText = DriverManager.getInstance().Driver.findElement(By.xpath("//p[@class='MuiTypography-root MuiTypography-body1']"));
-        Assert.assertTrue("Can you please confirm that the patient's DOB is correct?", verifyText.isDisplayed());
+        Assert.assertTrue("Can you please confirm that the patient's DOB is correct?",  verifyText.isDisplayed());
     }
 }
