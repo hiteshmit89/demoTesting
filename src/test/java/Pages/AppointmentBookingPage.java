@@ -224,6 +224,18 @@ public class AppointmentBookingPage extends BasePage {
         Browser.clickOnElement(useCellPhone);
     }
 
+    public void verifyUseCellPhone() {
+        Browser.waitForElementToBeVisible(By.xpath("//span[@class='MuiButton-label' and contains(text(),'Use Cell Phone')]"));
+        WebElement useCellPhone = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='MuiButton-label' and contains(text(),'Use Cell Phone')]"));
+        Assert.assertTrue("OTP using Cell Phone Page is not visible", useCellPhone.isDisplayed());
+    }
+
+    public void verifyUseEmail() {
+        Browser.waitForElementToBeVisible(By.xpath("//span[@class='MuiButton-label' and contains(text(),'Use Email')]"));
+        WebElement useEmail = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='MuiButton-label' and contains(text(),'Use Email')]"));
+        Assert.assertTrue("OTP using Email Page is not visible", useEmail.isDisplayed());
+    }
+
     public void enterOTP(String OTP) {
         Browser.waitForElementToBeVisible(By.xpath("//input[@placeholder='XXXX']"));
         WebElement varOTP = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@placeholder='XXXX']"));

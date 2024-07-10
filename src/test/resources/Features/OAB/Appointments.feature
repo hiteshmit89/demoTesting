@@ -62,3 +62,9 @@ Feature: Appointments
     Given I login to PbN app and select the practice
     When I click on appointments tab and try to book appointments for patient and enter invalid OTP
     Then I will be able to see error message on entering invalid OTP
+
+  @appointments @PUA-126 @PRAC-T1618
+  Scenario: Verify I can see OTP page during appointment booking
+    Given I login to PbN app and select the practice
+    When I click on appointments tab and try to book appointments and navigate to OTP page
+    Then I will be able to see OTP page during appointment booking
