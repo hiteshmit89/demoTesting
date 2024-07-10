@@ -5,6 +5,8 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.support.ui.Wait;
+
 import static Framework.Constants.Constants.Destination.*;
 
 public class FormsPreviewStepDefinition {
@@ -46,5 +48,38 @@ public class FormsPreviewStepDefinition {
     @Then("I click on Custom drop down on forms Page")
     public void iClickOnCustomDropDownOnFormsPage() {
         PbNUIApp.formsPage().clickCustomDropDown();
+    }
+
+    @And("I will click on the pending forms on the left hand side")
+    public void iWillClickOnThePendingFormsOnTheLeftHandSide() { PbNUIApp.formsPage().clickPendingFormsOnTheLeftHandSide();
+
+    }
+
+    @Then("I will search for a patient")
+    public void iWillSearchForAPatient() {
+        PbNUIApp.formsPage().pendingFormsSearchPatient();
+    }
+
+    @And("I will click on the custom filter")
+    public void iWillClickOnTheCustomFilter() { PbNUIApp.formsPage().clickCustomDropDown();
+    }
+
+
+    @And("I click on the forms dropdown")
+    public void iClickOnTheFormsDropdown() {
+        PbNUIApp.formsPage().clickFormsDropdown();
+    }
+
+    @Then("I select option select all from dropdown")
+    public void iSelectOptionSelectAllFromDropdown() {
+        PbNUIApp.formsPage().formsFilterSelectAll();
+    }
+
+    @And("I click on the send reminder bell icon")
+    public void iClickOnTheSendReminderBellIcon() { PbNUIApp.formsPage().bellIcon();
+    }
+
+    @Then("I click on yes button")
+    public void iClickOnYesButton() { PbNUIApp.formsPage().confirmationYesButton();
     }
 }
