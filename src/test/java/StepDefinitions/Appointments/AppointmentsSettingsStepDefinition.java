@@ -212,6 +212,29 @@ public class AppointmentsSettingsStepDefinition {
         PbNUIApp.appointmentsPage().clickOnResetButton();
     }
 
+    @When("I try to check and uncheck the Auto update the PMS with the booked appointments checkbox and Alert and don’t auto sync appointments on appointment settings page")
+    public void iTryToCheckAndUncheckTheAutoUpdateThePMSWithTheBookedAppointmentsCheckboxAndAlertAndDonTAutoSyncAppointmentsOnAppointmentSettingsPage() {
+        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
+        PbNUIApp.appointmentsPage().clickOnAppointmentSettingTab();
+    }
+
+    @Then("I will be able to check and uncheck the Auto update the PMS with the booked appointments checkbox and Alert and don’t auto sync appointments on appointment settings page")
+    public void iWillBeAbleToCheckAndUncheckTheAutoUpdateThePMSWithTheBookedAppointmentsCheckboxAndAlertAndDonTAutoSyncAppointmentsOnAppointmentSettingsPage() {
+        PbNUIApp.appointmentsPage().clickOnAutoUpdatePmsCheckbox();
+        PbNUIApp.appointmentsPage().clickOnAlertAndAutoSyncCheckbox();
+    }
+
+    @When("I try to navigate to Appointment Availability column on appointment settings page")
+    public void iTryToNavigateToAppointmentAvailabilityColumnOnAppointmentSettingsPage() {
+        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
+        PbNUIApp.appointmentsPage().clickOnAppointmentSettingTab();
+    }
+
+    @Then("I will be able to verify ten minutes radio button is by default selected when scrolling down to Appointment Availability column on appointment settings page")
+    public void iWillBeAbleToVerifyTenMinutesRadioButtonIsByDefaultSelectedWhenScrollingDownToAppointmentAvailabilityColumnOnAppointmentSettingsPage() {
+        PbNUIApp.appointmentsPage().appointmentAvailabilityColumnRadioButton();
+    }
+
     @When("I try to navigate to Appointment Availability column on appointment settings page")
     public void iTryToNavigateToAppointmentAvailabilityColumnOnAppointmentSettingsPage() {
         PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);

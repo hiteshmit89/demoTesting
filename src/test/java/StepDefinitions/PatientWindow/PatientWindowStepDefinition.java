@@ -131,4 +131,14 @@ public class PatientWindowStepDefinition {
     public void iVerifyPatientNoteInTheActivityTab() {
         PBNModals.patientOverviewModal().verifyPatientNoteInActivityTab();
     }
+
+    @When("I search for {string} and open patient window")
+    public void iSearchForAndOpenPatientWindow(String string) {
+        PbNUIApp.navigator().findAndSelectPatientByExactMatchOf(string);
+    }
+
+    @Then("I verify for the SMS number")
+    public void iVerifyForTheSMSNumber() {
+        PBNModals.patientOverviewModal().validateSmsNumberIcon();
+    }
 }

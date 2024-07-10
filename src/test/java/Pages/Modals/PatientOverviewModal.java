@@ -3,10 +3,13 @@ package Pages.Modals;
 import Framework.Browser;
 import Framework.Root.PbNUIApp;
 import Framework.Util.DriverManager;
+import org.junit.Assert;
 import Pages.Navigator;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+
+import java.sql.Driver;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -277,18 +280,18 @@ public class PatientOverviewModal {
         }
     }
 
-    public void clickOnChargeButton() {
-        WebElement chargeButton = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='action-item']//span[contains(text(),'Charge')]"));
-        Browser.clickOnElement(chargeButton);
-    }
-
-    public void clickOnPaymentMethod() {
-        WebElement PaymentMethod = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='charge-pop-window-tabs-id-tab-payment-method']"));
-        Browser.clickOnElement(PaymentMethod);
-    }
-
-    public void clickOnSaveButton() {
-        WebElement saveButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='payment-button btn btn-primary']"));
-        Browser.clickOnElementUsingJavascript(saveButton);
+    public void validateSmsNumberIcon (){
+        Browser.waitForElementToBeVisible(By.xpath("//span[contains(text(),'SMS')]"));
+        Browser.waitForElementToBeClickable(By.xpath("//span[contains(text(),'SMS')]"));
+        WebElement smsIcon = DriverManager.getInstance().Driver.findElement(By.xpath("//span[contains(text(),'SMS')]"));
+        Browser.clickOnElement(smsIcon);
+     //   WebElement smsVerificationIcon = DriverManager.getInstance().Driver.findElement(By.xpath("//div//img[@title='Number is valid.']"));
+        Browser.waitForElementToBeVisible(By.xpath("//div[@class='warning-verified-icon']"));
+        if (DriverManager.getInstance().Driver.findElement(By.xpath("//div//img[@title='Number is valid.']")).isDisplayed()){
+            System.out.println("Number is Valid");
+        }
+        else {
+            System.out.println("Either number is not valid, or its a landline number.");
+        }
     }
 }

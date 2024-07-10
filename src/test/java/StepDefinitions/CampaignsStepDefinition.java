@@ -8,6 +8,13 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 
 public class CampaignsStepDefinition {
+    @Given("I login to PbN app for campaign")
+    public void iLoginToPbNAppForCampaign() {
+        PbNUIApp.loginPage().enterEmail(PbNUIApp.userdata().getUserEmail(4,1));
+        PbNUIApp.loginPage().enterPassword(PbNUIApp.userdata().getPassword(4,1));
+        PbNUIApp.loginPage().clickOnLoginButton();
+    }
+
     @Given("I click on profile dropdown")
     public void iClickOnProfileDropdown() {
         PbNUIApp.practiceHomePage().clickOnUserProfileDropdown();
