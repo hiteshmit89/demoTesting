@@ -235,6 +235,11 @@ public class AppointmentsSettingsStepDefinition {
         PbNUIApp.appointmentsPage().appointmentAvailabilityColumnRadioButton();
     }
 
+    @Then("I will be able to verify user is able to view the Appointment Time Interval option on the Appointment Availability Column in the settings page of the appointment on appointment settings page")
+    public void iWillBeAbleToVerifyUserIsAbleToViewTheAppointmentTimeIntervalOptionOnTheAppointmentAvailabilityColumnInTheSettingsPageOfTheAppointmentOnAppointmentSettingsPage() {
+        PbNUIApp.appointmentsPage().appointmentAvailabilityColumnRadioButtons();
+    }
+
     @Then("I will be able to view two options ten Minutes & fifteen minutes under the heading Appointment Time Interval on the Appointment Availability column on the appointment settings page")
     public void iWillBeAbleToViewTwoOptionsTenMinutesFifteenMinutesUnderTheHeadingAppointmentTimeIntervalOnTheAppointmentAvailabilityColumnOnTheAppointmentSettingsPage() {
         PbNUIApp.appointmentsPage().appointmentAvailabilityColumnRadioButtons();
