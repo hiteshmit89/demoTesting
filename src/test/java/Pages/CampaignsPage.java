@@ -19,16 +19,16 @@ public class CampaignsPage extends BasePage {
     private final WebElement customCampaignsHeading = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@id='Communication']//li/a[contains(text(),'Custom Campaigns')]"));
     private final WebElement emailTemplatesHeading = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@id='Communication']//li/a[contains(text(),'Email Templates')]"));
     private final WebElement smsTemplatesHeading = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@id='Communication']//li/a[contains(text(),'SMS Templates')]"));
-    private final WebElement reviewReplyTemplatesHeading = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@id='Communication']//li/a[contains(text(),'Review Reply Templates')]"));
     private final List<WebElement> patientFollowUpTable = DriverManager.getInstance().Driver.findElements(By.xpath("//*[@id='root']//table"));
 
     public void verifyCampaignsHeadingDisplayedOnCampaignsPage() {
-        Browser.waitForElementToBeVisible(reviewReplyTemplatesHeading);
-        Browser.waitForElementToBeClickable(reviewReplyTemplatesHeading);
         Assert.assertTrue("Follow up Campaigns heading is not visible on campaigns page.", followUpCampaignsHeading.isDisplayed());
         Assert.assertTrue("Custom Campaigns heading is not visible on campaigns page.", customCampaignsHeading.isDisplayed());
         Assert.assertTrue("Email templates heading is not visible on campaigns page.", emailTemplatesHeading.isDisplayed());
         Assert.assertTrue("SMS templates heading is not visible on campaigns page.", smsTemplatesHeading.isDisplayed());
+        Browser.waitForElementToBeVisible(By.xpath("//div[@id='Communication']//li/a[contains(text(),'Review Reply Templates')]"));
+        Browser.waitForElementToBeClickable(By.xpath("//div[@id='Communication']//li/a[contains(text(),'Review Reply Templates')]"));
+        WebElement reviewReplyTemplatesHeading = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@id='Communication']//li/a[contains(text(),'Review Reply Templates')]"));
         Assert.assertTrue("Review reply templates heading is not visible on campaigns page.", reviewReplyTemplatesHeading.isDisplayed());
     }
 
