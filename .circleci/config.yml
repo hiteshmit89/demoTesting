@@ -9,7 +9,7 @@ jobs:
       - image: cimg/openjdk:21.0.2-browsers
     parallelism: 1
     environment:
-      TAGS: "@FormsPreviewFeature and @AppointmentsFeature and @PatientPortal"
+      TAGS: "@FormsPreviewFeature or @AppointmentsFeature or @PatientPortal"
       endpoint: "QA1"
     steps:
       - browser-tools/install-chrome
@@ -43,7 +43,7 @@ jobs:
       - image: cimg/openjdk:21.0.2-browsers
     parallelism: 1
     environment:
-      TAGS: "@PatientWindow and @PatientWindowTask and @AdyenFeature"
+      TAGS: "@PatientWindow or @PatientWindowTask or @AdyenFeature"
       endpoint: "QA1"
     steps:
       - browser-tools/install-chrome
@@ -77,7 +77,7 @@ jobs:
       - image: cimg/openjdk:21.0.2-browsers
     parallelism: 1
     environment:
-      TAGS: "@AdyenTransaction and @CardFailure and @PaymentModal and @PaymentFeature"
+      TAGS: "@AdyenTransaction or @CardFailure or @PaymentModal or @PaymentFeature"
       endpoint: "QA1"
     steps:
       - browser-tools/install-chrome
@@ -111,7 +111,7 @@ jobs:
       - image: cimg/openjdk:21.0.2-browsers
     parallelism: 1
     environment:
-      TAGS: "@AdyenWidgets and @CampaignsFeature and @HomeFeature and @LoginFeature and @RevenueIQ"
+      TAGS: "@AdyenWidgets or @CampaignsFeature or @HomeFeature or @LoginFeature or @RevenueIQ"
       endpoint: "QA1"
     steps:
       - browser-tools/install-chrome
