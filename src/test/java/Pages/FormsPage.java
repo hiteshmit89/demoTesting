@@ -15,7 +15,6 @@ public class FormsPage extends BasePage {
         super(title);
     }
 
-
     public void clickCompletedForms() {
         WebElement completedForms = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@class='form-navigation col-lg-2 col-md-12 col-sm-12 col-xs-12']//div[contains(text(),'Completed Forms')]"));
         Browser.clickOnElement(completedForms);
@@ -27,7 +26,6 @@ public class FormsPage extends BasePage {
     }
 
     public void verifyCompletedFormsHeadingIsVisible() {
-
         WebElement completedFormsTextDisplay = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@class='form-navigation-content col-lg-10 col-md-12 col-sm-12 col-xs-12']//h3[contains(text(),'Completed Forms')]"));
         Browser.waitForElementToDisplay(completedFormsTextDisplay);
     }
@@ -69,7 +67,7 @@ public class FormsPage extends BasePage {
         Browser.waitForPresenceOfElement(By.xpath("//div[@class='custom-table-filter-col custom-table-right-align-filter custom-table-left-align-tab col-lg-9 col-sm-8 col-xs-9']//input[@placeholder='Search by Patient Name']"));
         Browser.waitForElementToBeClickable(By.xpath("//div[@class='custom-table-filter-col custom-table-right-align-filter custom-table-left-align-tab col-lg-9 col-sm-8 col-xs-9']//input[@placeholder='Search by Patient Name']"));
         WebElement pendingFormsSearchPatient = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='custom-table-filter-col custom-table-right-align-filter custom-table-left-align-tab col-lg-9 col-sm-8 col-xs-9']//input[@placeholder='Search by Patient Name']"));
-        Browser.enterTextInEditBox(pendingFormsSearchPatient, PbNUIApp.userdata().getPatientName(3,1));
+        Browser.enterTextInEditBox(pendingFormsSearchPatient, PbNUIApp.userdata().getPatientName(3, 1));
         Browser.waitForElementToDisplay(pendingFormsSearchPatient);
     }
 
@@ -93,7 +91,7 @@ public class FormsPage extends BasePage {
         Browser.clickOnElementUsingJavascript(selectAll);
     }
 
-    public void clickOnBellIcon(){
+    public void clickOnBellIcon() {
         Browser.waitForElementList(By.xpath("//*[@id='pending-form-page-pane-pending_forms']//div//*[@data-icon='bell']"));
         List<WebElement> bellIcons = DriverManager.getInstance().Driver.findElements(By.xpath("//*[@id='pending-form-page-pane-pending_forms']//div//*[@data-icon='bell']"));
         Browser.clickOnElement(bellIcons.getFirst());

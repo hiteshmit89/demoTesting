@@ -1,5 +1,6 @@
 
 package StepDefinitions;
+
 import Framework.Root.PbNUIApp;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
@@ -24,7 +25,7 @@ public class FormsPreviewStepDefinition {
     }
 
     @And("I click on toggle next to Only show completed forms that have not synced")
-    public void iClickOnToggleNextToOnlyShowCompletedFormsThatHaveNotSynced()  {
+    public void iClickOnToggleNextToOnlyShowCompletedFormsThatHaveNotSynced() {
         PbNUIApp.formsPage().clickTextNextToCheckNotSyncedForms();
     }
 
@@ -49,7 +50,8 @@ public class FormsPreviewStepDefinition {
     }
 
     @And("I will click on the pending forms on the left hand side")
-    public void iWillClickOnThePendingFormsOnTheLeftHandSide() { PbNUIApp.formsPage().clickPendingFormsOnTheLeftHandSide();
+    public void iWillClickOnThePendingFormsOnTheLeftHandSide() {
+        PbNUIApp.formsPage().clickPendingFormsOnTheLeftHandSide();
 
     }
 
@@ -59,7 +61,8 @@ public class FormsPreviewStepDefinition {
     }
 
     @And("I will click on the custom filter")
-    public void iWillClickOnTheCustomFilter() { PbNUIApp.formsPage().clickCustomDropDown();
+    public void iWillClickOnTheCustomFilter() {
+        PbNUIApp.formsPage().clickCustomDropDown();
     }
 
     @And("I click on the forms dropdown")
@@ -73,10 +76,12 @@ public class FormsPreviewStepDefinition {
     }
 
     @And("I click on the send reminder bell icon")
-    public void iClickOnTheSendReminderBellIcon() { PbNUIApp.formsPage().clickOnBellIcon();
+    public void iClickOnTheSendReminderBellIcon() {
+        PbNUIApp.formsPage().clickOnBellIcon();
     }
 
     @Then("I click on yes button")
-    public void iClickOnYesButton() { PbNUIApp.formsPage().confirmationYesButton();
+    public void iClickOnYesButton() {
+        PbNUIApp.formsPage().confirmationYesButton();
     }
 }
