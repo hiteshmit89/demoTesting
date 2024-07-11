@@ -1,4 +1,4 @@
-@pbnAll
+@pbnAll @RevenueIQ
 Feature: RevenueIQ Page
 
   @PUA-27
