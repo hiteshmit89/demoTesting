@@ -2,10 +2,8 @@
 package StepDefinitions;
 import Framework.Root.PbNUIApp;
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.support.ui.Wait;
 
 import static Framework.Constants.Constants.Destination.*;
 
@@ -64,7 +62,6 @@ public class FormsPreviewStepDefinition {
     public void iWillClickOnTheCustomFilter() { PbNUIApp.formsPage().clickCustomDropDown();
     }
 
-
     @And("I click on the forms dropdown")
     public void iClickOnTheFormsDropdown() {
         PbNUIApp.formsPage().clickFormsDropdown();
@@ -76,7 +73,7 @@ public class FormsPreviewStepDefinition {
     }
 
     @And("I click on the send reminder bell icon")
-    public void iClickOnTheSendReminderBellIcon() { PbNUIApp.formsPage().bellIcon();
+    public void iClickOnTheSendReminderBellIcon() { PbNUIApp.formsPage().clickOnBellIcon();
     }
 
     @Then("I click on yes button")

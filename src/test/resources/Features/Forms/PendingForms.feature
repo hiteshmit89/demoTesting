@@ -1,13 +1,13 @@
 @PendingFormsFeature @pbnAll
 Feature: Forms Feature
 
-  @PRAC-T4111 @PUA-30
-    Scenario: Verify I can see pending forms table
-    Given I login to PbN app
-    And   I click on practice name
-    When  I click on the forms
-    And   I will click on the pending forms on the left hand side
-    Then  I will search for a patient
+     @PRAC-T4111 @PUA-30
+     Scenario: Verify I can see pending forms table
+     Given I login to PbN app
+     And   I click on practice name
+     When  I click on the forms
+     And   I will click on the pending forms on the left hand side
+     Then  I will search for a patient
 
        @PRAC-T4111 @PUA-30
       Scenario: Verify I click on custom filter
