@@ -97,6 +97,7 @@ public class AppointmentsPage extends BasePage {
     }
 
     public void clickOnEnableCreditCard() {
+        Browser.waitForElementToBeVisible(By.xpath("//h3[text()='Credit Card Setup']"));
         Browser.waitForPresenceOfElement(By.xpath("//input[@id='card-setup-toggle']"));
         WebElement enableCreditCard = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@id='card-setup-toggle']"));
         Browser.waitForElementToBeVisible(enableCreditCard.findElement(By.xpath("./..")));
@@ -107,6 +108,7 @@ public class AppointmentsPage extends BasePage {
     }
 
     public void clickOnDisableCreditCard() {
+        Browser.waitForElementToBeVisible(By.xpath("//h3[text()='Credit Card Setup']"));
         Browser.waitForPresenceOfElement(By.xpath("//input[@id='card-setup-toggle']"));
         WebElement enableCreditCard = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@id='card-setup-toggle']"));
         Browser.waitForElementToBeVisible(enableCreditCard.findElement(By.xpath("./..")));
