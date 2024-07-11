@@ -49,12 +49,12 @@ public class AppointmentsStepdefinition {
         PbNUIApp.appointmentsPage().clickOnSettingSaveButton();
     }
 
-    @When("I click on appointments Setting tab and deactivate insurance settings")
-    public void iClickOnAppointmentsSettingTabAndDeactivateInsuranceSettingsAndTryToBookAppointment() {
+    @When("I click on appointments Setting tab and activate insurance settings")
+    public void iClickOnAppointmentsSettingTabAndActivateInsuranceSettingsAndTryToBookAppointment() {
         PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
         PbNUIApp.appointmentsPage().clickOnAppointmentSettingTab();
         PbNUIApp.appointmentsPage().clickOnSetupInsurance();
-        PbNUIApp.appointmentsPage().clickOnDisableInsurance();
+        PbNUIApp.appointmentsPage().clickOnEnableInsurance();
         PbNUIApp.appointmentsPage().clickOnSaveButton();
         PbNUIApp.appointmentsPage().clickOnSettingSaveButton();
         PbNUIApp.appointmentsPage().clickOnWidgets();
@@ -72,17 +72,9 @@ public class AppointmentsStepdefinition {
         PbNUIApp.appointmentBookingPage().clickOnNextButton();
     }
 
-    @Then("I will not be able to see insurance page on appointment booking page.")
-    public void iWillNotBeAbleToSeeInsurancePageOnAppointmentBookingPage() {
+    @Then("I will be able to see insurance page on appointment booking page.")
+    public void iWillBeAbleToSeeInsurancePageOnAppointmentBookingPage() {
         PbNUIApp.appointmentBookingPage().verifyInsurancePage();
-        Browser.navigateToNewURL(ConfigManager.getInstance().getProperty("URL"));
-        PbNUIApp.appHomePage().clickOnPracticeInPracticeInfoTable(PbNUIApp.userdata().getPracticeName(1));
-        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
-        PbNUIApp.appointmentsPage().clickOnAppointmentSettingTab();
-        PbNUIApp.appointmentsPage().clickOnSetupInsurance();
-        PbNUIApp.appointmentsPage().clickOnEnableInsurance();
-        PbNUIApp.appointmentsPage().clickOnSaveButton();
-        PbNUIApp.appointmentsPage().clickOnSettingSaveButton();
     }
 
     @When("I click on appointments tab and try to book appointments for inactive patient who has insurance")

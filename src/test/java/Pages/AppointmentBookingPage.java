@@ -206,10 +206,9 @@ public class AppointmentBookingPage extends BasePage {
     }
 
     public void verifyInsurancePage() {
-        Browser.waitForElementToBeClickable(By.xpath("//span[@class='MuiButton-label' and contains(text(),'Use Cell Phone')]"));
-        WebElement OtpPage = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='MuiButton-label' and contains(text(),'Use Cell Phone')]"));
-        boolean status = OtpPage.isDisplayed();
-        Assert.assertTrue("Insurance page is displayed on appointment booking page.", OtpPage.isDisplayed());
+        Browser.waitForElementToBeVisible(By.xpath("//div[@class='patient-form-title']"));
+        WebElement insurancePage = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='patient-form-title']"));
+        Assert.assertTrue("Insurance page is not displayed on appointment booking page.", insurancePage.isDisplayed());
     }
 
     public void verifyCreditCardPage() {
