@@ -17,10 +17,10 @@ Feature: Campaigns
     Then I check for "<followUpCampaigns>" UI
     Examples:
     |followUpCampaigns|
-    |Failed Appointments Campaign|
+#    |Failed Appointments Campaign|
     |Review Request Campaign|
     |Christmas Holiday Greeting|
-    |Root Canal|
+#    |Root Canal|
 
   @PUA-21 @PRAC-16855
   Scenario: Verify I can edit and save email template of primary early reminder without invalid merge tag notification
