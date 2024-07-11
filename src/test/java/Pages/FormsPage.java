@@ -42,7 +42,7 @@ public class FormsPage extends BasePage {
 
     public void searchPatient() {
         WebElement searchPatient = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@placeholder ='Search by Patient Name']"));
-        Browser.enterTextInEditBox(searchPatient, "Hannah");
+        Browser.enterTextInEditBox(searchPatient,PbNUIApp.userdata().getPatientName(3,1));
         Browser.waitForElementToDisplay(searchPatient);
     }
 

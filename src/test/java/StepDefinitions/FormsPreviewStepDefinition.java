@@ -52,7 +52,6 @@ public class FormsPreviewStepDefinition {
     @And("I will click on the pending forms on the left hand side")
     public void iWillClickOnThePendingFormsOnTheLeftHandSide() {
         PbNUIApp.formsPage().clickPendingFormsOnTheLeftHandSide();
-
     }
 
     @Then("I will search for a patient")
