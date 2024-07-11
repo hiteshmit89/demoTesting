@@ -9,7 +9,7 @@ jobs:
       - image: cimg/openjdk:21.0.2-browsers
     parallelism: 1
     environment:
-      TAGS: "@FormsPreviewFeature or @AppointmentsFeature or @PatientPortal"
+      TAGS: "@FormsPreviewFeature or @AppointmentsFeature or @PatientPortal and not @In-Progress"
       endpoint: "QA1"
     steps:
       - browser-tools/install-chrome
