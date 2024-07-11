@@ -120,6 +120,7 @@ public class AppointmentsSettingsStepDefinition {
         PbNUIApp.appointmentsPage().clickOnAppointmentListTab();
         PbNUIApp.appointmentsPage().enterStartDate1("01/01/2024");
         PbNUIApp.appointmentsPage().enterStartDate2("01/01/2024");
+        PbNUIApp.appointmentsPage().clickOutsideAppointmentList();
     }
 
     @Then("I will be able to sort columns of Appointment list table on appointment list page")
