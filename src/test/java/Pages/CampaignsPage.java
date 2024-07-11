@@ -24,6 +24,7 @@ public class CampaignsPage extends BasePage {
 
     public void verifyCampaignsHeadingDisplayedOnCampaignsPage() {
         Browser.waitForElementToBeVisible(reviewReplyTemplatesHeading);
+        Browser.waitForElementToBeClickable(reviewReplyTemplatesHeading);
         Assert.assertTrue("Follow up Campaigns heading is not visible on campaigns page.", followUpCampaignsHeading.isDisplayed());
         Assert.assertTrue("Custom Campaigns heading is not visible on campaigns page.", customCampaignsHeading.isDisplayed());
         Assert.assertTrue("Email templates heading is not visible on campaigns page.", emailTemplatesHeading.isDisplayed());
@@ -64,6 +65,7 @@ public class CampaignsPage extends BasePage {
     public void verifyCampaignsEllipsisActionItems(String campaignName) {
         WebElement campaignEllipsisIcon = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='table-responsive']//td[contains(text(),'"+campaignName+"')]/..//button[contains(@class,'ellipsis')]"));
         Browser.clickOnElement(campaignEllipsisIcon);
+        Browser.waitForElementToBeClickable(By.linkText("Create new from default"));
         Browser.waitForElementToBeVisible(By.linkText("Create new from default"));
         WebElement editCampaignAction = DriverManager.getInstance().Driver.findElement(By.linkText("Edit"));
         WebElement createNewCampaignAction = DriverManager.getInstance().Driver.findElement(By.linkText("Create new from default"));
