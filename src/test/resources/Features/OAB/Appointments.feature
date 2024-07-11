@@ -8,6 +8,13 @@ Feature: Appointments
     And I click on appointment tab and try to book appointment
     Then I will be able to see credit card page on appointment booking page.
 
+  @appointments @PUA-31 @PRAC-T1619
+  Scenario: Verify I can not see insurance page on Appointment booking when insurance feature is inactive
+    Given I login to PbN app and select the practice
+    When I click on appointments Setting tab and deactivate insurance settings
+    And I click on appointments tab and try to book appointment
+    Then I will not be able to see insurance page on appointment booking page.
+
   @appointments @PUA-19 @PRAC-T2749
   Scenario: Verify I should not be able to book appointment for patient who has Automation tag
     Given I login to PbN app and select the practice
@@ -25,13 +32,6 @@ Feature: Appointments
     Given I login to PbN app and select the practice
     When I click on schedule on floating chatbox and try to book appointment from scheduler
     Then I will be able to book appointment from scheduler
-
-  @appointments @PUA-31 @PRAC-T1619
-  Scenario: Verify I can not see insurance page on Appointment booking when insurance feature is inactive
-    Given I login to PbN app and select the practice
-    When I click on appointments Setting tab and deactivate insurance settings
-    And I click on appointments tab and try to book appointment
-    Then I will not be able to see insurance page on appointment booking page.
 
   @appointments @PRAC-T1064 @PRAC-T1614 @In-Progress
   Scenario: Verify I can Book the appointments for new patient
