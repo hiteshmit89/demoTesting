@@ -176,6 +176,8 @@ public class AppointmentBookingPage extends BasePage {
             iDoNotHaveInsuranceButton = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='MuiButton-label' and contains(text(),'I do')]"));
             present = true;
         } catch (NoSuchElementException ignored) {
+            WebElement insuranceUnchangedButton = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='MuiButton-label' and contains(text(),'Insurance Unchanged')]"));
+            Browser.clickOnElementUsingJavascript(insuranceUnchangedButton);
         }
         if (present) {
             Browser.clickOnElementUsingJavascript(iDoNotHaveInsuranceButton);
