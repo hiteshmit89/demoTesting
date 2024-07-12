@@ -285,7 +285,7 @@ public class PaymentsPage extends BasePage {
             if (actualPatientName.equals(patientToVerify)) {
                 WebElement dollarIcon = row.findElement(By.xpath(".//div[@class='flex-row flex-vertical-center']//div[@style]"));
                 boolean isDollarIconDisplayed = dollarIcon.isDisplayed();
-                Assert.assertTrue("Dollar icon should be displayed for patient: " + patientToVerify, isDollarIconDisplayed);
+                Assert.assertTrue("Dollar icon should be displayedd for patient: " + patientToVerify, isDollarIconDisplayed);
                 break;
             }
         }
