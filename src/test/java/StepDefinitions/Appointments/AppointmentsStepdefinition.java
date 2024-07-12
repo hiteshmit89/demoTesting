@@ -39,14 +39,6 @@ public class AppointmentsStepdefinition {
     @Then("I will be able to see credit card page on appointment booking page.")
     public void iWillBeAbleToSeeCreditCardPageOnAppointmentBookingPage() {
         PbNUIApp.appointmentBookingPage().verifyCreditCardPage();
-        Browser.navigateToNewURL(ConfigManager.getInstance().getProperty("URL"));
-        PbNUIApp.appHomePage().clickOnPracticeInPracticeInfoTable(PbNUIApp.userdata().getPracticeName(1));
-        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
-        PbNUIApp.appointmentsPage().clickOnAppointmentSettingTab();
-        PbNUIApp.appointmentsPage().clickOnSetupCreditCard();
-        PbNUIApp.appointmentsPage().clickOnDisableCreditCard();
-        PbNUIApp.appointmentsPage().clickOnSaveButton();
-        PbNUIApp.appointmentsPage().clickOnSettingSaveButton();
     }
 
     @When("I click on appointments Setting tab and activate insurance settings")
