@@ -8,7 +8,7 @@ public class PaymentTableStepDefinition {
 
     @And("I Click on Payment from side nav")
     public void iClickOnPaymentFromSideNav() {
-        PbNUIApp.paymentsPage().clickOnPaymentSideNav();
+        PbNUIApp.paymentsPage().clickOnPaymentsInSideNav();
     }
 
     @Then("I able to see labels in the Payment table")

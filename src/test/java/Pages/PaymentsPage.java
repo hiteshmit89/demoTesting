@@ -241,12 +241,6 @@ public class PaymentsPage extends BasePage {
         Assert.assertEquals("card not Added", initialTableSize + 1, updatedTableSize);
     }
 
-    public void clickOnPaymentSideNav() {
-        Browser.waitForElementToBeClickable(By.xpath("//a[@id='payment-page-tab-Payments']")); 
-        WebElement paymentSideNav = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='payment-page-tab-Payments']"));
-        Browser.clickOnElement(paymentSideNav);
-    }
-
     public void verifyPaymentTableLabel() {
         Browser.waitForPageReady();
         WebElement patientNameLabel = DriverManager.getInstance().Driver.findElement(By.xpath("//th[@aria-label='Patient Name sortable' and contains(text(),'Patient Name')]"));
@@ -260,4 +254,11 @@ public class PaymentsPage extends BasePage {
         WebElement surcharge = DriverManager.getInstance().Driver.findElement(By.xpath("//span[text()='Surcharge']"));
         Assert.assertEquals("SURCHARGE", surcharge.getText());
     }
+
+    /*
+    public void clickOnPaymentsInSideNav() {
+        Browser.waitForElementToBeClickable(By.xpath("//a[@id='payment-page-tab-Payments']"));
+        WebElement paymentSideNav = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='payment-page-tab-Payments']"));
+        Browser.clickOnElement(paymentSideNav);
+    }*/
 }
