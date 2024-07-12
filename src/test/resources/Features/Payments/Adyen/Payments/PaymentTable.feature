@@ -1,4 +1,4 @@
-@pbnAll
+@PaymentTable @pbnAll
 Feature: payment details in Payment table
 
   @PRAC-T3947 @PUA-112
