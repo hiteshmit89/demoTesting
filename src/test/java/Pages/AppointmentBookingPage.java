@@ -170,7 +170,6 @@ public class AppointmentBookingPage extends BasePage {
         Browser.clickOnElement(calender);
         WebElement dateCalender = DriverManager.getInstance().Driver.findElement(By.xpath("//p[@class='MuiTypography-root MuiTypography-body2 MuiTypography-colorInherit' and text()='15']"));
         Browser.clickOnElement(dateCalender);
-        
     }
 
     public void clickOnIDoNotHaveInsurance() {
