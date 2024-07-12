@@ -63,6 +63,12 @@ Feature: Appointments
     When I click on appointments tab and try to book appointments for patient and enter invalid OTP
     Then I will be able to see error message on entering invalid OTP
 
+  @appointments @PUA-111 @PRAC-T1616
+  Scenario: Verify I can see the list of Exam type for what Patient like to be seen for during appointment booking
+    Given I login to PbN app and select the practice
+    When I click on appointments tab and try to book appointments and navigate to list of Exam type for what Patient like to be seen for during appointment booking
+    Then I will be able to see list of Exam type for what Patient like to be seen for
+
   @appointments @PUA-128 @PRAC-T1628
   Scenario: Verify I can not see the blocked days and time on provider page during appointment booking
     Given I login to PbN app and select the practice

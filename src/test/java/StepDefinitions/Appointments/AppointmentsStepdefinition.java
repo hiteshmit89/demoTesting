@@ -261,6 +261,20 @@ public class AppointmentsStepdefinition {
         PbNUIApp.appointmentBookingPage().verifyErrorTextDisplayed();
     }
 
+    @When("I click on appointments tab and try to book appointments and navigate to list of Exam type for what Patient like to be seen for during appointment booking")
+    public void iClickOnAppointmentsTabAndTryToBookAppointmentsAndNavigateToListOfExamTypeForWhatPatientLikeToBeSeenForDuringAppointmentBooking() {
+        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
+        PbNUIApp.appointmentsPage().clickOnWidgets();
+        PbNUIApp.appointmentsPage().createAppointmentURLAndNavigate();
+        PbNUIApp.appointmentBookingPage().verifySelectionAndClickOnPickLocation();
+        PbNUIApp.appointmentBookingPage().clickOnSelectNewPatient();
+    }
+
+    @Then("I will be able to see list of Exam type for what Patient like to be seen for")
+    public void iWillBeAbleToSeeListOfExamTypeForWhatPatientLikeToBeSeenFor() {
+        PbNUIApp.appointmentBookingPage().verifyListOfExamTypeForWhatPatientLikeToBeSeenFor();
+    }
+
     @When("I click on appointments tab and try to book appointments and navigate to provider page to verify the blocked days and time")
     public void iClickOnAppointmentsTabAndTryToBookAppointmentsAndNavigateToProviderPageToVerifyTheBlockedDaysAndTime() {
         PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);

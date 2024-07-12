@@ -265,6 +265,15 @@ public class AppointmentBookingPage extends BasePage {
         Assert.assertTrue("Can you please confirm that the patient's DOB is correct?", verifyText.isDisplayed());
     }
 
+    public void verifyListOfExamTypeForWhatPatientLikeToBeSeenFor() {
+        Browser.waitForElementToBeVisible(By.xpath("//div[text()='What would you like to be seen for?']/following-sibling::div//span[@class='MuiButton-label']"));
+        WebElement examTypeButton = DriverManager.getInstance().Driver.findElement(By.xpath("//div[text()='What would you like to be seen for?']/following-sibling::div//span[@class='MuiButton-label']"));
+        Browser.waitForElementToDisplay(examTypeButton);
+        Assert.assertTrue("Exam Type button is displayed", examTypeButton.isDisplayed());
+        WebElement examTypeText = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='panel-header-text' and text()='What would you like to be seen for?']"));
+        Assert.assertTrue("What would you like to be seen for?", examTypeText.isDisplayed());
+    }
+
     public void verifyBlockedDayOnAppointmentAvailabilityPage() {
         Browser.waitForElementToBeVisible(By.xpath("//*[@id='patient-appointment-booking-page']/div/div[2]/div[1]/div/div[3]/div/div[1]/div[2]/div/div[2]/button"));
         Browser.waitForPresenceOfElement(By.xpath("//table[@class='timeslots-table']/tbody/tr[1]/td[7]"));
