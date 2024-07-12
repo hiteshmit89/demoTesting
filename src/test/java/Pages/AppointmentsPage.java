@@ -77,9 +77,10 @@ public class AppointmentsPage extends BasePage {
     }
 
     public void clickOnSaveButton() {
+        Browser.waitForElementToBeVisible(By.xpath("//div[@class='modal-footer']/button[@class='btn btn-primary']"));
+        Browser.waitForElementToBeClickable(By.xpath("//div[@class='modal-footer']/button[@class='btn btn-primary']"));
         WebElement saveButton = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='modal-footer']/button[@class='btn btn-primary']"));
         Browser.scrollToVisibleElement(saveButton);
-        Browser.waitForElementToBeClickable(saveButton);
         Browser.clickOnElementUsingJavascript(saveButton);
     }
 
