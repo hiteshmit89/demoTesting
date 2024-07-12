@@ -264,4 +264,13 @@ public class AppointmentBookingPage extends BasePage {
         WebElement verifyText = DriverManager.getInstance().Driver.findElement(By.xpath("//p[@class='MuiTypography-root MuiTypography-body1']"));
         Assert.assertTrue("Can you please confirm that the patient's DOB is correct?", verifyText.isDisplayed());
     }
+
+    public void verifyListOfExamTypeForWhatPatientLikeToBeSeenFor() {
+        Browser.waitForElementToBeVisible(By.xpath("//div[text()='What would you like to be seen for?']/following-sibling::div//span[@class='MuiButton-label']"));
+        WebElement examTypeButton = DriverManager.getInstance().Driver.findElement(By.xpath("//div[text()='What would you like to be seen for?']/following-sibling::div//span[@class='MuiButton-label']"));
+        Browser.waitForElementToDisplay(examTypeButton);
+        Assert.assertTrue("Exam Type button is displayed", examTypeButton.isDisplayed());
+        WebElement examTypeText = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='panel-header-text' and text()='What would you like to be seen for?']"));
+        Assert.assertTrue("What would you like to be seen for?", examTypeText.isDisplayed());
+    }
 }
