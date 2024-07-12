@@ -255,10 +255,9 @@ public class PaymentsPage extends BasePage {
         Assert.assertEquals("SURCHARGE", surcharge.getText());
     }
 
-    /*
     public void clickOnPaymentsInSideNav() {
         Browser.waitForElementToBeClickable(By.xpath("//a[@id='payment-page-tab-Payments']"));
         WebElement paymentSideNav = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='payment-page-tab-Payments']"));
         Browser.clickOnElement(paymentSideNav);
-    }*/
+    }
 }
