@@ -238,6 +238,7 @@ public class AppointmentsPage extends BasePage {
     }
 
     public void select15MinCheckbox() {
+        Browser.waitForPresenceOfElement(By.xpath("//span[text()='15 Minutes']"));
         Browser.waitForElementToBeVisible(By.xpath("//span[text()='15 Minutes']"));
         WebElement select15MinCheckbox = DriverManager.getInstance().Driver.findElement(By.xpath("//span[text()='15 Minutes']"));
         Browser.scrollToVisibleElement(select15MinCheckbox);

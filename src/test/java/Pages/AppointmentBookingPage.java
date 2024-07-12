@@ -168,7 +168,8 @@ public class AppointmentBookingPage extends BasePage {
         Browser.enterTextInEditBox(birthDate, birthDateData);
         WebElement calender = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='MuiButtonBase-root MuiIconButton-root']"));
         Browser.clickOnElement(calender);
-        Browser.pressEnter();
+        WebElement dateCalender = DriverManager.getInstance().Driver.findElement(By.xpath("//p[@class='MuiTypography-root MuiTypography-body2 MuiTypography-colorInherit' and text()='15']"));
+        Browser.clickOnElement(dateCalender);
     }
 
     public void clickOnIDoNotHaveInsurance() {
