@@ -24,7 +24,7 @@ Feature: Appointments
   Scenario: Verify that I can book an appointment though scheduler
     Given I login to PbN app and select the practice
     When I click on schedule on floating chatbox
-    And I fill add new patient form
+    And I fill add new patient form 
     And I click on create button
     Then I will see success toast notifications
 
