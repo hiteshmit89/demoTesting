@@ -242,6 +242,7 @@ public class PaymentsPage extends BasePage {
     }
 
     public void clickOnPaymentSideNav() {
+        Browser.waitForElementToBeClickable(By.xpath("//a[@id='payment-page-tab-Payments']"));
         WebElement paymentSideNav = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='payment-page-tab-Payments']"));
         Browser.clickOnElement(paymentSideNav);
     }
