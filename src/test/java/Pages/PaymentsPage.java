@@ -260,4 +260,33 @@ public class PaymentsPage extends BasePage {
         WebElement paymentSideNav = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='payment-page-tab-Payments']"));
         Browser.clickOnElement(paymentSideNav);
     }
+
+    public void setSelectPagination(){
+        Browser.scrollToVisibleElement(DriverManager.getInstance().Driver.findElement(By.xpath("//button[@id='pageDropDown']")));
+        WebElement paginationDropDown = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@id='pageDropDown']"));
+        Browser.clickOnElement(paginationDropDown);
+        List<WebElement> selectPaginationDropDown = DriverManager.getInstance().Driver.findElements(By.xpath("//span//ul[@role='menu']//li//a"));
+        for (WebElement element : selectPaginationDropDown) {
+            if (element.getText().contains(SelectPaginationNumber)) {
+                element.click();
+                break;
+            }
+        }
+    }
+
+    public void displayedRefundDollarIcon() {
+        setSelectPagination();
+        List<WebElement> patientTableRows = DriverManager.getInstance().Driver.findElements(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tbody//tr"));
+        String patientToVerify = PbNUIApp.userdata().getPatientName(2,1);
+        for (WebElement row : patientTableRows) {
+            WebElement patientName = row.findElement(By.xpath(".//a"));
+            String actualPatientName = patientName.getText().trim();
+            if (actualPatientName.equals(patientToVerify)) {
+                WebElement dollarIcon = row.findElement(By.xpath(".//div[@class='flex-row flex-vertical-center']//div[@style]"));
+                boolean isDollarIconDisplayed = dollarIcon.isDisplayed();
+                Assert.assertTrue("Dollar icon should be displayed for patient: " + patientToVerify, isDollarIconDisplayed);
+                break;
+            }
+        }
+    }
 }

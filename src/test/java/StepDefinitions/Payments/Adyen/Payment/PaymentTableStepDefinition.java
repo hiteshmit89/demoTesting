@@ -15,5 +15,9 @@ public class PaymentTableStepDefinition {
     public void iAbleToSeeLabelsInThePaymentTable() {
         PbNUIApp.paymentsPage().verifyPaymentTableLabel();
     }
-}
 
+    @Then("I able to see a refund icon with a Dollar sign")
+    public void iAbleToSeeARefundIconWithADollarSign() {
+        PbNUIApp.paymentsPage().displayedRefundDollarIcon();
+    }
+}
