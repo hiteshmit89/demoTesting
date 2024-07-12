@@ -279,6 +279,7 @@ public class PaymentsPage extends BasePage {
         List<WebElement> patientTableRows = DriverManager.getInstance().Driver.findElements(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tbody//tr"));
         String patientToVerify = PbNUIApp.userdata().getPatientName(2,1);
         for (WebElement row : patientTableRows) {
+            Browser.waitForPresenceOfElement(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tbody//tr//a"));
             WebElement patientName = row.findElement(By.xpath(".//a"));
             String actualPatientName = patientName.getText().trim();
             if (actualPatientName.equals(patientToVerify)) {
