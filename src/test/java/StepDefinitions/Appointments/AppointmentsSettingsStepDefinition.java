@@ -3,6 +3,7 @@ package StepDefinitions.Appointments;
 import Framework.Browser;
 import Framework.Constants.Constants;
 import Framework.Root.PbNUIApp;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
