@@ -39,6 +39,8 @@ public class AppointmentsPage extends BasePage {
     public void clickOnAppointmentSettingTab() {
         WebElement appointmentSetting = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='appointment-booking-page-tab-Settings']"));
         Browser.clickOnElement(appointmentSetting);
+        Browser.waitForPresenceOfElement(By.xpath("//label[contains(text(),'Auto update the PMS with the booked appointments')]/input[@type='checkbox']"));
+        Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Auto update the PMS with the booked appointments')]/input[@type='checkbox']")));
     }
 
     public void clickOnAppointmentListTab() {
@@ -75,7 +77,7 @@ public class AppointmentsPage extends BasePage {
     }
 
     public void clickOnSaveButton() {
-        WebElement saveButton = DriverManager.getInstance().Driver.findElement(By.xpath("(//button[text()='Save'])[5]"));
+        WebElement saveButton = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='modal-footer']/button[@class='btn btn-primary']"));
         Browser.scrollToVisibleElement(saveButton);
         Browser.waitForElementToBeClickable(saveButton);
         Browser.clickOnElementUsingJavascript(saveButton);
@@ -198,7 +200,9 @@ public class AppointmentsPage extends BasePage {
     }
 
     public void clickProviderHeader() {
+        Browser.waitForElementToBeVisible(By.xpath("//h3[text()='Providers']"));
         WebElement providerHeader = DriverManager.getInstance().Driver.findElement(By.xpath("//h3[text()='Providers']"));
+        Browser.scrollToVisibleElement(providerHeader);
         Browser.clickOnElement(providerHeader);
     }
 
@@ -228,6 +232,7 @@ public class AppointmentsPage extends BasePage {
     }
 
     public void select15MinCheckbox() {
+        Browser.waitForElementToBeVisible(By.xpath("//span[text()='15 Minutes']"));
         WebElement select15MinCheckbox = DriverManager.getInstance().Driver.findElement(By.xpath("//span[text()='15 Minutes']"));
         Browser.clickOnElement(select15MinCheckbox);
     }
@@ -294,6 +299,7 @@ public class AppointmentsPage extends BasePage {
     }
 
     public void clickOnProviderTimeAvailabilityCheckbox() {
+        Browser.waitForPresenceOfElement(By.xpath("//label[contains(text(),'Provider Time Availability')]/input[@type='checkbox']"));
         Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Provider Time Availability')]/input[@type='checkbox']")));
         WebElement providerTimeAvailabilityCheckBox = DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Provider Time Availability')]/input[@type='checkbox']"));
         Browser.scrollToVisibleElement(providerTimeAvailabilityCheckBox);
@@ -304,6 +310,7 @@ public class AppointmentsPage extends BasePage {
     }
 
     public void uncheckOnProviderTimeAvailabilityCheckbox() {
+        Browser.waitForPresenceOfElement(By.xpath("//label[contains(text(),'Provider Time Availability')]/input[@type='checkbox']"));
         Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Provider Time Availability')]/input[@type='checkbox']")));
         WebElement providerTimeAvailabilityCheckBox = DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Provider Time Availability')]/input[@type='checkbox']"));
         Browser.scrollToVisibleElement(providerTimeAvailabilityCheckBox);
@@ -333,7 +340,9 @@ public class AppointmentsPage extends BasePage {
     }
 
     public void clickOnExistingPatientBookedAppointmentToggleButton() {
-        WebElement existingPatientBookedAppointmentToggle = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='template-toggle-existing_patient_booked_appointment']"));
+        Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//h4[text()='Blocked Patient']")));
+        Browser.waitForPresenceOfElement(By.xpath("//input[@id='template-toggle-existing_patient_booked_appointment']"));
+        WebElement existingPatientBookedAppointmentToggle = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@id='template-toggle-existing_patient_booked_appointment']"));
         Browser.scrollToVisibleElement(existingPatientBookedAppointmentToggle);
         if (existingPatientBookedAppointmentToggle.isSelected()) {
             Browser.clickOnElementUsingJavascript(existingPatientBookedAppointmentToggle);
@@ -342,7 +351,7 @@ public class AppointmentsPage extends BasePage {
     }
 
     public void clickOnNewPatientBookedAppointmentToggleButton() {
-        WebElement newPatientBookedAppointmentToggle = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='template-toggle-new_patient_booked_appointment']"));
+        WebElement newPatientBookedAppointmentToggle = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@id='template-toggle-new_patient_booked_appointment']"));
         Browser.scrollToVisibleElement(newPatientBookedAppointmentToggle);
         if (newPatientBookedAppointmentToggle.isSelected()) {
             Browser.clickOnElementUsingJavascript(newPatientBookedAppointmentToggle);
@@ -351,6 +360,7 @@ public class AppointmentsPage extends BasePage {
     }
 
     public void clickOnClusterAppointmentsCheckbox() {
+        Browser.waitForPresenceOfElement(By.xpath("//label[contains(text(),'Cluster Appointments')]/input[@type='checkbox']"));
         Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Cluster Appointments')]/input[@type='checkbox']")));
         WebElement clusterAppointmentsCheckBox = DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Cluster Appointments')]/input[@type='checkbox']"));
         Browser.scrollToVisibleElement(clusterAppointmentsCheckBox);
@@ -396,6 +406,57 @@ public class AppointmentsPage extends BasePage {
         WebElement successMessage = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='react-toast-notifications__toast__content css-1ad3zal']"));
         String successMsg = "Template reset successful";
         Assert.assertEquals("Template reset successful", successMsg, successMessage.getText());
+    }
 
+    public void clickOnAutoUpdatePmsCheckbox() {
+        Browser.waitForPresenceOfElement(By.xpath("//label[contains(text(),'Auto update the PMS with the booked appointments')]/input[@type='checkbox']"));
+        Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Auto update the PMS with the booked appointments')]/input[@type='checkbox']")));
+        WebElement autoUpdatePmsCheckbox = DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Auto update the PMS with the booked appointments')]/input[@type='checkbox']"));
+        if (autoUpdatePmsCheckbox.isSelected()) {
+            Browser.clickOnElement(autoUpdatePmsCheckbox);
+        }
+        Assert.assertFalse("Auto update the PMS with the booked appointments checkbox is selected", autoUpdatePmsCheckbox.isSelected());
+        WebElement autoUpdatePmsText = DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Auto update the PMS with the booked appointments')]"));
+        String verifiedText = "Auto update the PMS with the booked appointments  ";
+        Assert.assertEquals("Auto Update the PMS text verified", verifiedText, autoUpdatePmsText.getText());
+    }
+
+    public void clickOnAlertAndAutoSyncCheckbox() {
+        WebElement alertAndAutoSyncCheckbox = DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Alert and don’t auto sync appointments')]/input[@type='checkbox']"));
+        if (!alertAndAutoSyncCheckbox.isSelected()) {
+            Browser.clickOnElement(alertAndAutoSyncCheckbox);
+        }
+        Assert.assertTrue("Auto update the PMS with the booked appointments checkbox is not selected", alertAndAutoSyncCheckbox.isSelected());
+        WebElement alertAndAutoSyncText = DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Alert and don’t auto sync appointments')]"));
+        String applicationText = alertAndAutoSyncText.getText();
+        String verifiedText = "Alert and don’t auto sync appointments for patients who book as existing patients but we are unable to find a matching patient record. By default, our system will create a new patient in that case. By turning on this feature, our system will allow you to link an existing patient record to the requested appointment. We do not recommend enabling this feature.";
+        Assert.assertEquals("Alert and don’t auto sync appointments", verifiedText, alertAndAutoSyncText.getText());
+    }
+    
+    public void appointmentAvailabilityColumnRadioButton() {
+        Browser.waitForPresenceOfElement(By.xpath("//label[contains(text(),'Provider Time Availability')]/input[@type='checkbox']"));
+        Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Provider Time Availability')]/input[@type='checkbox']")));
+        WebElement appointmentAvailabilityColumnRadioButton = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='radio-container-1']//label//input"));
+        Browser.scrollToVisibleElement(appointmentAvailabilityColumnRadioButton);
+        Assert.assertTrue("Appointment Time Interval Radio Button is not selected", appointmentAvailabilityColumnRadioButton.isSelected());
+    }
+
+    public void appointmentAvailabilityColumnRadioButtons() {
+        Browser.waitForPresenceOfElement(By.xpath("//label[contains(text(),'Provider Time Availability')]/input[@type='checkbox']"));
+        Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Provider Time Availability')]/input[@type='checkbox']")));
+        WebElement appointmentAvailabilityColumn = DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Appointment Time Interval')]"));
+        Browser.scrollToVisibleElement(appointmentAvailabilityColumn);
+        Assert.assertTrue("Appointment Time Interval Column is not displayed", appointmentAvailabilityColumn.isDisplayed());
+    }
+
+    public void appointmentAvailabilityColumnRadioButtons1() {
+        Browser.waitForPresenceOfElement(By.xpath("//label[contains(text(),'Provider Time Availability')]/input[@type='checkbox']"));
+        Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Provider Time Availability')]/input[@type='checkbox']")));
+        WebElement appointmentAvailabilityColumnRadioButton10Minutes = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='radio-container-1']//label//input"));
+        Browser.scrollToVisibleElement(appointmentAvailabilityColumnRadioButton10Minutes);
+        Assert.assertTrue("Appointment Time Interval 10 minutes Radio Button is not displayed", appointmentAvailabilityColumnRadioButton10Minutes.isDisplayed());
+        WebElement appointmentAvailabilityColumnRadioButton15Minutes = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='radio-container-2']//label//input"));
+        Browser.scrollToVisibleElement(appointmentAvailabilityColumnRadioButton15Minutes);
+        Assert.assertTrue("Appointment Time Interval 15 minutes Radio Button is not displayed", appointmentAvailabilityColumnRadioButton15Minutes.isDisplayed());
     }
 }

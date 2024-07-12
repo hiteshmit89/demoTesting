@@ -211,4 +211,37 @@ public class AppointmentsSettingsStepDefinition {
     public void iWillBeAbleToClickResetButtonOnAppointmentTemplate() {
         PbNUIApp.appointmentsPage().clickOnResetButton();
     }
+
+    @When("I try to check and uncheck the Auto update the PMS with the booked appointments checkbox and Alert and don’t auto sync appointments on appointment settings page")
+    public void iTryToCheckAndUncheckTheAutoUpdateThePMSWithTheBookedAppointmentsCheckboxAndAlertAndDonTAutoSyncAppointmentsOnAppointmentSettingsPage() {
+        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
+        PbNUIApp.appointmentsPage().clickOnAppointmentSettingTab();
+    }
+
+    @Then("I will be able to check and uncheck the Auto update the PMS with the booked appointments checkbox and Alert and don’t auto sync appointments on appointment settings page")
+    public void iWillBeAbleToCheckAndUncheckTheAutoUpdateThePMSWithTheBookedAppointmentsCheckboxAndAlertAndDonTAutoSyncAppointmentsOnAppointmentSettingsPage() {
+        PbNUIApp.appointmentsPage().clickOnAutoUpdatePmsCheckbox();
+        PbNUIApp.appointmentsPage().clickOnAlertAndAutoSyncCheckbox();
+    }
+
+    @When("I try to navigate to Appointment Availability column on appointment settings page")
+    public void iTryToNavigateToAppointmentAvailabilityColumnOnAppointmentSettingsPage() {
+        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
+        PbNUIApp.appointmentsPage().clickOnAppointmentSettingTab();
+    }
+
+    @Then("I will be able to verify ten minutes radio button is by default selected when scrolling down to Appointment Availability column on appointment settings page")
+    public void iWillBeAbleToVerifyTenMinutesRadioButtonIsByDefaultSelectedWhenScrollingDownToAppointmentAvailabilityColumnOnAppointmentSettingsPage() {
+        PbNUIApp.appointmentsPage().appointmentAvailabilityColumnRadioButton();
+    }
+
+    @Then("I will be able to verify user is able to view the Appointment Time Interval option on the Appointment Availability Column in the settings page of the appointment on appointment settings page")
+    public void iWillBeAbleToVerifyUserIsAbleToViewTheAppointmentTimeIntervalOptionOnTheAppointmentAvailabilityColumnInTheSettingsPageOfTheAppointmentOnAppointmentSettingsPage() {
+        PbNUIApp.appointmentsPage().appointmentAvailabilityColumnRadioButtons();
+    }
+
+    @Then("I will be able to view two options ten Minutes & fifteen minutes under the heading Appointment Time Interval on the Appointment Availability column on the appointment settings page")
+    public void iWillBeAbleToViewTwoOptionsTenMinutesFifteenMinutesUnderTheHeadingAppointmentTimeIntervalOnTheAppointmentAvailabilityColumnOnTheAppointmentSettingsPage() {
+        PbNUIApp.appointmentsPage().appointmentAvailabilityColumnRadioButtons1();
+    }
 }

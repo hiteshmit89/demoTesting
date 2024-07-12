@@ -7,6 +7,8 @@ import Framework.Util.DriverManager;
 import org.junit.Assert;
 import org.openqa.selenium.*;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 public class AppointmentBookingPage extends BasePage {
@@ -14,10 +16,13 @@ public class AppointmentBookingPage extends BasePage {
         super(title);
     }
 
-    private final List<WebElement> locationFinder = DriverManager.getInstance().Driver.findElements(By.xpath("//*[@id='patient-appointment-booking-page']//div[@class='location-item-name']"));
-
-    public void clickOnPickLocation() {
+    public void verifySelectionAndClickOnPickLocation() {
+        Browser.waitForPageReady();
         Browser.waitForElementToBeVisible(By.xpath("//div[@class='location-item-name' and contains(text(),'" + PbNUIApp.userdata().getPracticeName(1)+ "')]"));
+        List<WebElement> locationFinder = DriverManager.getInstance().Driver.findElements(By.xpath("//*[@id='patient-appointment-booking-page']//div[@class='location-item-name']"));
+        WebElement parentCheckBox = locationFinder.getFirst().findElement(By.xpath(".//../.."));
+        Assert.assertEquals("First location is not selected on Pick a Location page.", "MuiPaper-root location-item-card card-background-color MuiPaper-elevation1 MuiPaper-rounded", parentCheckBox.getAttribute("class"));
+
         boolean present = false;
         WebElement setLocation = null;
         try {
@@ -73,7 +78,16 @@ public class AppointmentBookingPage extends BasePage {
         enterLastName(PbNUIApp.userdata().getLastName(1, "1"));
         enterPhoneNumber(PbNUIApp.userdata().getPhoneNumber(1, "1"));
         enterEmailID(PbNUIApp.userdata().getEmailId(1, "1"));
-        enterBirthDate(PbNUIApp.userdata().getBirthDate(1, "1"));
+
+        GregorianCalendar gc = new GregorianCalendar();
+        int year = 1970 + (int)Math.round(Math.random() * (2010 - 1975));
+        gc.set(Calendar.YEAR, year);
+        int dayOfYear = 1 + (int)Math.round(Math.random() * (gc.getActualMaximum(Calendar.DAY_OF_YEAR) - 1));
+        gc.set(Calendar.DAY_OF_YEAR, dayOfYear);
+        String month = (gc.get(Calendar.MONTH) + 1) < 10 ? "0" + (gc.get(Calendar.MONTH) + 1) : (gc.get(Calendar.MONTH) + 1) + "";
+        String date = gc.get(Calendar.DAY_OF_MONTH) < 10 ? "0" + gc.get(Calendar.DAY_OF_MONTH) : gc.get(Calendar.DAY_OF_MONTH) + "";
+        String dob = month + "/" + date + "/" + gc.get(Calendar.YEAR);
+        enterBirthDate(dob);
     }
 
     public void fillAppointmentBookingFormForInactivePatient() {
@@ -234,7 +248,8 @@ public class AppointmentBookingPage extends BasePage {
     }
 
     public void verifyTextDisplayedMessage(String message) {
-        WebElement successfulText = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='HomePageRoot']//h1[contains(text(),'Successful')]"));
+        Browser.waitForElementToBeVisible(By.xpath("//div[@class='MuiTypography-root MuiAlertTitle-root MuiTypography-body1 MuiTypography-gutterBottom']"));
+        WebElement successfulText = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='MuiTypography-root MuiAlertTitle-root MuiTypography-body1 MuiTypography-gutterBottom']"));
         Assert.assertTrue("Successful text not displayed on appointment booking page.", successfulText.isDisplayed());
     }
 

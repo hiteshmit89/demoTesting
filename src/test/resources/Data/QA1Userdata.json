@@ -1,4 +1,4 @@
-{
+  {
   "Practices": [
     {
       "practice_id": 1,
@@ -73,6 +73,18 @@
         {
           "patient_id": 1,
           "patient_name": "Sally Walker",
+          "task_description": "Automation",
+          "task_type": "Treatment"
+        },
+        {
+          "patient_id": 2,
+          "patient_name": "Ritu Arya",
+          "task_description": "Automation",
+          "task_type": "Treatment"
+        },
+        {
+          "patient_id": 3,
+          "patient_name": "Ritu O`Brien",
           "task_description": "Automation",
           "task_type": "Treatment"
         }
@@ -237,6 +249,27 @@
           "houseNumber": "14457,st. Louie's Road",
           "postalCode": "95014",
           "city": "California"
+        }
+      ]
+    },
+    {
+      "practice_id": 4,
+      "practice_name": "Roman, Burke and Wagner",
+      "address": 123,
+      "Users": [
+        {
+          "user_id": 1,
+          "user_name": "Deepak Nayal",
+          "password": "1qaz!QAZ",
+          "email": "deepak.nayal+dnd68@practicenumbers.com",
+          "role": "super_admin"
+        },
+        {
+          "user_id": 2,
+          "user_name": "Chris Lau",
+          "password": "ppp###2025",
+          "email": "chris.lau@practicenumbers.com",
+          "role": "super_admin"
         }
       ]
     }
