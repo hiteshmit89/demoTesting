@@ -151,7 +151,7 @@ public class AppointmentsStepdefinition {
     }
 
     @When("I click on appointments tab and try to book appointments for new patient")
-    public void iClickOnAppointmentsAndTryToBookAppointmentsForNewPatient() {
+    public void iClickOnAppointmentsAndTryToBookAppointmentsForNewPatient() throws InterruptedException {
         PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
         PbNUIApp.appointmentsPage().clickOnWidgets();
         PbNUIApp.appointmentsPage().createAppointmentURLAndNavigate();
@@ -161,6 +161,10 @@ public class AppointmentsStepdefinition {
         PbNUIApp.appointmentBookingPage().clickOnEarliest();
         PbNUIApp.appointmentBookingPage().fillAppointmentBookingForm();
         PbNUIApp.appointmentBookingPage().clickOnCheckBox();
+        PbNUIApp.appointmentBookingPage().clickOnNextButton();
+        PbNUIApp.appointmentBookingPage().verifyCreditCardPage();
+        PBNModals.collectPaymentModal().enterCardDetails();
+        Thread.sleep(5000);
         PbNUIApp.appointmentBookingPage().clickOnNextButton();
         PbNUIApp.appointmentBookingPage().clickOnIDoNotHaveInsurance();
         PbNUIApp.appointmentBookingPage().clickOnNextButton();
@@ -174,7 +178,7 @@ public class AppointmentsStepdefinition {
     }
 
     @When("I click on appointments tab and try to book appointment and select DOB less than Eighteen years on insurance page")
-    public void iClickOnAppointmentsTabAndTryToBookAppointmentAndSelectDOBLessThanEighteenYearsOnInsurancePage() {
+    public void iClickOnAppointmentsTabAndTryToBookAppointmentAndSelectDOBLessThanEighteenYearsOnInsurancePage() throws InterruptedException {
         PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
         PbNUIApp.appointmentsPage().clickOnWidgets();
         PbNUIApp.appointmentsPage().createAppointmentURLAndNavigate();
@@ -184,6 +188,10 @@ public class AppointmentsStepdefinition {
         PbNUIApp.appointmentBookingPage().clickOnEarliest();
         PbNUIApp.appointmentBookingPage().fillAppointmentBookingFormForValidateInsuranceDob();
         PbNUIApp.appointmentBookingPage().clickOnCheckBox();
+        PbNUIApp.appointmentBookingPage().clickOnNextButton();
+        PbNUIApp.appointmentBookingPage().verifyCreditCardPage();
+        PBNModals.collectPaymentModal().enterCardDetails();
+        Thread.sleep(5000);
         PbNUIApp.appointmentBookingPage().clickOnNextButton();
         PbNUIApp.appointmentBookingPage().enterBirthDateOnInsurancePage(PbNUIApp.userdata().getBirthDate(1,"3"));
     }
@@ -230,7 +238,7 @@ public class AppointmentsStepdefinition {
     }
 
     @When("I click on appointments tab and try to book appointments for patient and enter invalid OTP")
-    public void iClickOnAppointmentsTabAndTryToBookAppointmentsForPatientAndEnterInvalidOTP() {
+    public void iClickOnAppointmentsTabAndTryToBookAppointmentsForPatientAndEnterInvalidOTP() throws InterruptedException {
         PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
         PbNUIApp.appointmentsPage().clickOnWidgets();
         PbNUIApp.appointmentsPage().createAppointmentURLAndNavigate();
@@ -240,6 +248,10 @@ public class AppointmentsStepdefinition {
         PbNUIApp.appointmentBookingPage().clickOnEarliest();
         PbNUIApp.appointmentBookingPage().fillAppointmentBookingForm();
         PbNUIApp.appointmentBookingPage().clickOnCheckBox();
+        PbNUIApp.appointmentBookingPage().clickOnNextButton();
+        PbNUIApp.appointmentBookingPage().verifyCreditCardPage();
+        PBNModals.collectPaymentModal().enterCardDetails();
+        Thread.sleep(5000);
         PbNUIApp.appointmentBookingPage().clickOnNextButton();
         PbNUIApp.appointmentBookingPage().clickOnIDoNotHaveInsurance();
         PbNUIApp.appointmentBookingPage().clickOnNextButton();

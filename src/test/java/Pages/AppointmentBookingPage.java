@@ -157,6 +157,7 @@ public class AppointmentBookingPage extends BasePage {
     public void clickOnNextButton() {
         Browser.waitForElementToBeVisible(By.xpath("//span[@class='MuiButton-label' and contains(text(),'Next')]"));
         WebElement nextButton = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='MuiButton-label' and contains(text(),'Next')]"));
+        Browser.scrollToVisibleElement(nextButton);
         Browser.clickOnElementUsingJavascript(nextButton);
     }
 
@@ -242,7 +243,7 @@ public class AppointmentBookingPage extends BasePage {
     public void verifyErrorTextDisplayed() {
         Browser.waitForElementToBeVisible(By.xpath("//div[@class='react-toast-notifications__toast__content css-1ad3zal']"));
         WebElement errorMessage = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='react-toast-notifications__toast__content css-1ad3zal']"));
-        String errorMsg = "Error! Could not verify otp.";
+        String errorMsg = "Error! Invalid otp code.";
         Assert.assertEquals("Error toast message displayed", errorMsg, errorMessage.getText());
     }
 
