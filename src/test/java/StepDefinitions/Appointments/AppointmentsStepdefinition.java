@@ -243,7 +243,7 @@ public class AppointmentsStepdefinition {
         PbNUIApp.appointmentBookingPage().clickOnNextButton();
         PbNUIApp.appointmentBookingPage().verifyCreditCardPage();
         PBNModals.collectPaymentModal().enterCardDetails();
-        Thread.sleep(5000);
+        Thread.sleep(4000);
         PbNUIApp.appointmentBookingPage().clickOnNextButton();
         PbNUIApp.appointmentBookingPage().clickOnIDoNotHaveInsurance();
         PbNUIApp.appointmentBookingPage().clickOnNextButton();
