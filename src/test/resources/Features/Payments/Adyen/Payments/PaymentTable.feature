@@ -2,7 +2,7 @@
 Feature: payment details in Payment table
 
   @PRAC-T3947 @PUA-112
-  Scenario: user is able to see label in Payment tables
+  Scenario: user is able to see label in Payment table
     Given I enter credentials
     When I click login button
     And I am able to select practice
