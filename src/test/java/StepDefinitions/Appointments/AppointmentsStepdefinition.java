@@ -118,20 +118,31 @@ public class AppointmentsStepdefinition {
         PbNUIApp.appointmentBookingPage().verifyTextDisplayedMessage("Unable to book Appointment text is not displayed on appointment booking page");
     }
 
-    @When("I click on schedule on floating chatbox and try to book appointment from scheduler")
-    public void iClickOnScheduleOnFloatingChatboxAndTryToBookAppointmentFromScheduler() {
+    @When("I click on schedule on floating chatbox")
+    public void iClickOnScheduleOnFloatingChatbox() {
         PbNUIApp.navigator().ClickOnFloatingButton(Schedule);
         Browser.waitForPageReady();
         PBNModals.appointmentScheduleModal().doubleClickOnAppointmentScheduleCalendarFirstProvider();
+    }
+
+
+    @And("I click on create button")
+    public void iClickOnCreateButton() {
+        PBNModals.createAppointmentModal().clickOnCreateButton();
+    }
+
+    @And("I fill add new patient form")
+    public void iFillAddNewPatientForm() {
+        Browser.waitForPageReady();
         PBNModals.createAppointmentModal().clickOnAddNewPatient();
         PBNModals.createAppointmentModal().fillAppointmentBookingDetails();
         PBNModals.createAppointmentModal().selectProvider();
         PBNModals.createAppointmentModal().appointmentType();
-        PBNModals.createAppointmentModal().clickOnCreateButton();
     }
 
-    @Then("I will be able to book appointment from scheduler")
-    public void iWillBeAbleToBookAppointmentFromScheduler() {
+    @Then("I will see success toast notifications")
+    public void iWillSeeSuccessToastNotifications() {
+        PbNUIApp.appHomePage().verifyNotificationText("Successfully created the appointment");
     }
 
     @Given("I login to PbN app and select the practice")
