@@ -30,8 +30,10 @@ Feature: Appointments
   @PUA-42 @PRAC-T1197
   Scenario: Verify that I can book an appointment though scheduler
     Given I login to PbN app and select the practice
-    When I click on schedule on floating chatbox and try to book appointment from scheduler
-    Then I will be able to book appointment from scheduler
+    When I click on schedule on floating chatbox
+    And I fill add new patient form 
+    And I click on create button
+    Then I will see success toast notifications
 
   @appointments @PRAC-T1064 @PRAC-T1614 @In-Progress
   Scenario: Verify I can Book the appointments for new patient
@@ -62,3 +64,9 @@ Feature: Appointments
     Given I login to PbN app and select the practice
     When I click on appointments tab and try to book appointments for patient and enter invalid OTP
     Then I will be able to see error message on entering invalid OTP
+
+  @appointments @PUA-111 @PRAC-T1616
+  Scenario: Verify I can see the list of Exam type for what Patient like to be seen for during appointment booking
+    Given I login to PbN app and select the practice
+    When I click on appointments tab and try to book appointments and navigate to list of Exam type for what Patient like to be seen for during appointment booking
+    Then I will be able to see list of Exam type for what Patient like to be seen for

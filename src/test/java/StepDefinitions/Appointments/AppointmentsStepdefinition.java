@@ -102,20 +102,31 @@ public class AppointmentsStepdefinition {
         PbNUIApp.appointmentBookingPage().verifyTextDisplayedMessage("Unable to book Appointment text is not displayed on appointment booking page");
     }
 
-    @When("I click on schedule on floating chatbox and try to book appointment from scheduler")
-    public void iClickOnScheduleOnFloatingChatboxAndTryToBookAppointmentFromScheduler() {
+    @When("I click on schedule on floating chatbox")
+    public void iClickOnScheduleOnFloatingChatbox() {
         PbNUIApp.navigator().ClickOnFloatingButton(Schedule);
         Browser.waitForPageReady();
         PBNModals.appointmentScheduleModal().doubleClickOnAppointmentScheduleCalendarFirstProvider();
+    }
+
+
+    @And("I click on create button")
+    public void iClickOnCreateButton() {
+        PBNModals.createAppointmentModal().clickOnCreateButton();
+    }
+
+    @And("I fill add new patient form")
+    public void iFillAddNewPatientForm() {
+        Browser.waitForPageReady();
         PBNModals.createAppointmentModal().clickOnAddNewPatient();
         PBNModals.createAppointmentModal().fillAppointmentBookingDetails();
         PBNModals.createAppointmentModal().selectProvider();
         PBNModals.createAppointmentModal().appointmentType();
-        PBNModals.createAppointmentModal().clickOnCreateButton();
     }
 
-    @Then("I will be able to book appointment from scheduler")
-    public void iWillBeAbleToBookAppointmentFromScheduler() {
+    @Then("I will see success toast notifications")
+    public void iWillSeeSuccessToastNotifications() {
+        PbNUIApp.appHomePage().verifyNotificationText("Successfully created the appointment");
     }
 
     @Given("I login to PbN app and select the practice")
@@ -255,5 +266,19 @@ public class AppointmentsStepdefinition {
     @Then("I will be able to see error message on entering invalid OTP")
     public void iWillBeAbleToSeeErrorMessageOnEnteringInvalidOTP() {
         PbNUIApp.appointmentBookingPage().verifyErrorTextDisplayed();
+    }
+
+    @When("I click on appointments tab and try to book appointments and navigate to list of Exam type for what Patient like to be seen for during appointment booking")
+    public void iClickOnAppointmentsTabAndTryToBookAppointmentsAndNavigateToListOfExamTypeForWhatPatientLikeToBeSeenForDuringAppointmentBooking() {
+        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
+        PbNUIApp.appointmentsPage().clickOnWidgets();
+        PbNUIApp.appointmentsPage().createAppointmentURLAndNavigate();
+        PbNUIApp.appointmentBookingPage().verifySelectionAndClickOnPickLocation();
+        PbNUIApp.appointmentBookingPage().clickOnSelectNewPatient();
+    }
+
+    @Then("I will be able to see list of Exam type for what Patient like to be seen for")
+    public void iWillBeAbleToSeeListOfExamTypeForWhatPatientLikeToBeSeenFor() {
+        PbNUIApp.appointmentBookingPage().verifyListOfExamTypeForWhatPatientLikeToBeSeenFor();
     }
 }
