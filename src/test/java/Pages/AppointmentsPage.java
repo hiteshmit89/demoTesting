@@ -466,6 +466,7 @@ public class AppointmentsPage extends BasePage {
         Browser.scrollToVisibleElement(setupCustomQuestionsButton);
         Browser.clickOnElement(setupCustomQuestionsButton);
     }
+    
     public void clickOnAddNewCustomQuestion() {
         Browser.waitForElementToBeVisible(By.xpath("//button[@class='questions-answer-add-button btn btn-default']"));
         WebElement setupCustomQuestionsAddNewButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='questions-answer-add-button btn btn-default']"));
