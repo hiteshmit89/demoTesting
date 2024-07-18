@@ -275,7 +275,7 @@ public class AppointmentBookingPage extends BasePage {
     }
 
     public void verifyBlockedDayOnAppointmentAvailabilityPage() {
-        Browser.waitForElementToBeVisible(By.xpath("//*[@id='patient-appointment-booking-page']/div/div[2]/div[1]/div/div[3]/div/div[1]/div[2]/div/div[2]/button"));
+        Browser.waitForElementToBeVisible(By.xpath("(//button[@class='MuiButtonBase-root MuiIconButton-root'])[2]"));
         Browser.waitForPresenceOfElement(By.xpath("//table[@class='timeslots-table']/tbody/tr[1]/td[7]"));
         WebElement mondayData = DriverManager.getInstance().Driver.findElement(By.xpath("//table[@class='timeslots-table']/tbody/tr[1]/td[7]"));
         String textMonday = mondayData.getAttribute("innerHTML");
