@@ -22,6 +22,7 @@ public class BasePage {
     }
 
     public void verifyNotificationText(String text) {
+        Browser.waitForElementToBeVisible(By.xpath("//div[@class='react-toast-notifications__toast__content css-1ad3zal']"));
         WebElement notificationsContainer = DriverManager.getInstance().Driver.findElement(By.xpath("/html/body/div[contains(@class,'react-toast-notifications__container ')]"));
         Browser.waitForElementChildren(notificationsContainer, By.xpath(".//div"), 4);
         List<WebElement> notifications = notificationsContainer.findElements(By.xpath(".//div[text()]"));
