@@ -276,12 +276,13 @@ public class PaymentsPage extends BasePage {
 
     public void displayedRefundDollarIcon() {
         setSelectPagination();
+        WebElement container = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@data-testid='wrapper']"));
+        Browser.waitForChildToDisappear(container, By.xpath(".//div[@class='text-center']"));
         List<WebElement> patientTableRows = DriverManager.getInstance().Driver.findElements(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tbody//tr"));
         String patientToVerify = PbNUIApp.userdata().getPatientName(2,1);
         for (WebElement row : patientTableRows) {
             Browser.waitForPresenceOfElement(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tbody//tr//a"));
-            Browser.waitForElementToBeVisible(By.xpath("//div[@class='flex-row flex-vertical-center']//div[@style]"));
-            WebElement patientName = row.findElement(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tbody//tr//a"));
+            WebElement patientName = row.findElement(By.xpath(".//a"));
             String actualPatientName = patientName.getText().trim();
             if (actualPatientName.equals(patientToVerify)) {
                 WebElement dollarIcon = row.findElement(By.xpath("//div[@class='flex-row flex-vertical-center']//div[@style]"));

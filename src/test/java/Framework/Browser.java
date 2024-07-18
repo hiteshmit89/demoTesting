@@ -118,12 +118,8 @@ public class Browser {
     }
 
 
-    public static void waitForElementChildren(WebElement element, By childLocator, int noOfChildrenNeeded) {
-        retry(() -> element.findElements(childLocator).size() > noOfChildrenNeeded);
-    }
-
-    public static void waitForElementChildren1(WebElement parent, By childLocator, int minimumNumberOfChildrenNeeded) {
-        retry(() -> parent.findElements(childLocator).size() > minimumNumberOfChildrenNeeded);
+    public static void waitForElementChildren(WebElement element, By childLocator, int minimumNumberOfChildrenNeeded) {
+        retry(() -> element.findElements(childLocator).size() > minimumNumberOfChildrenNeeded);
     }
 
     public static void waitForChildToDisappear(WebElement parent, By childLocator) {
