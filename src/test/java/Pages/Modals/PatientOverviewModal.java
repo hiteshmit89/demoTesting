@@ -98,16 +98,9 @@ public class PatientOverviewModal {
     }
 
     public void clickOnForms() {
-        Browser.waitForElementToBeVisible(By.xpath("//*[@id='patient-window-tabs-id-tab-form']"));
-        WebElement Forms = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@id='patient-window-tabs-id-tab-form']"));
+        Browser.waitForElementToBeVisible(By.xpath("//span[text()='Forms']"));
+        WebElement Forms = DriverManager.getInstance().Driver.findElement(By.xpath("//span[text()='Forms']"));
         Browser.clickOnElementUsingJavascript(Forms);
-    }
-
-    public void clickOnGeneralConsentFormsButton(String formsName) {
-        Browser.waitForElementToBeVisible(By.xpath("//*[@data-icon='file-medical']/.."));
-        Browser.waitForElementToBeClickable(By.xpath("//*[@data-icon='file-medical']/.."));
-        WebElement generalConsentForms = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@data-icon='file-medical']/.."));
-        Browser.clickOnElement(generalConsentForms);
     }
 
     public void clickOnSearchForms(String formName) {
@@ -157,9 +150,15 @@ public class PatientOverviewModal {
         Browser.clickOnElementUsingJavascript(sendButton);
     }
 
+    public void clickOnFormsTabInOverviewPage(){
+        Browser.waitForElementToBeVisible(By.xpath("//a[@id='patient-window-tabs-id-tab-form']"));
+        Browser.waitForElementToBeClickable(By.xpath("//a[@id='patient-window-tabs-id-tab-form']"));
+        WebElement forms = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='patient-window-tabs-id-tab-form']"));
+        Browser.clickOnElementUsingJavascript(forms);
+    }
+
     public void verifyPendingFormsCheckList(String formName) {
         Browser.waitForElementToBeVisible(By.xpath("//td[text()='" + formName + "']"));
-        Browser.waitForElementToBeClickable(By.xpath("//td[text()='" + formName + "']"));
         WebElement isSelectedFormsPresentInPendingFormList = DriverManager.getInstance().Driver.findElement(By.xpath("//td[text()='" + formName + "']"));
         Assert.assertTrue(isSelectedFormsPresentInPendingFormList.isDisplayed());
     }

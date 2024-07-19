@@ -21,15 +21,18 @@ Feature: Patient Window Feature
 
   @PatientForms @PUA-45 @PRAC-T3451
   Scenario Outline: User can send the Forms to any patient and its will reflect in the Pending Forms List
-    Given I login to PbN app for patient window and select the practice
+    Given I enter credentials
+    When I click login button
+    And I am able to select practice
+    Then I am redirected to home page
     When I click on the patient finder to open Patient Window
     And I click on the Forms Tab
     And I click on the Send General and Consent Form Button "<Forms Type>" in patient window
+    And I click on Forms tab in  Patient Overview page
     Then I Verify check list is getting updated in the Pending Forms Section "<Forms Type>" in patient window
     Examples:
-      | Forms Type            |
-      | Dental Insurance Form |
-      | Patient Information   |
+      | Forms Type              |
+      | Clinical Photo Transfer |
 
   @PatientFormsReminder @PUA-50 @PRAC-T975
   Scenario Outline: User can send the Reminder to the patient
@@ -39,9 +42,8 @@ Feature: Patient Window Feature
     And I click on the Send General and Consent Form Button "<Forms Type>" in patient window
     Then I click on the send reminder bell icon "<Forms Type>" in patient window
     Examples:
-      | Forms Type            |
-      | Dental Insurance Form |
-      | Patient Information   |
+      | Forms Type              |
+      | Clinical Photo Transfer |
 
   @patientFormCancelInvite @PUA-50 @PRAC-T4054
   Scenario Outline: User can cancel form invite from the Pending Forms List
@@ -51,9 +53,8 @@ Feature: Patient Window Feature
     And I click on the Send General and Consent Form Button "<Forms Type>" in patient window
     Then I cancel form Invite from the pending forms list "<Forms Type>" in patient window
     Examples:
-      | Forms Type            |
-      | Dental Insurance Form |
-      | Patient Information   |
+      | Forms Type              |
+      | Clinical Photo Transfer |
 
   @patientFormsManuallySubmitted @PUA-50 @PRAC-T4055
   Scenario Outline: User can manually complete the forms from the Pending Forms List
@@ -64,9 +65,8 @@ Feature: Patient Window Feature
     And I Select the Form and Mark as submitted manually from the Pending Form List "<Forms Type>" in the patient window
     Then I verify check list is getting updated in the Completed Forms Section "<Forms Type>" in the patient window
     Examples:
-      | Forms Type            |
-      | Dental Insurance Form |
-      | Patient Information   |
+      | Forms Type              |
+      | Clinical Photo Transfer |
 
   @optedOutPatientList @PRAC-T2492 @PUA-41
   Scenario: Verify that "Opted Out Patient" section is able to see in the Communication
