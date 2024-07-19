@@ -131,7 +131,7 @@ public class PatientOverviewModal {
     public void checkListOfSelectedForms(String formName) {
         Browser.waitForPageReady();
         List<WebElement> sendInviteTables = DriverManager.getInstance().Driver.findElements(By.xpath("//div[@class='patient-search']/following-sibling::div//table"));
-        Browser.waitForTableSizeToBe(sendInviteTables.getFirst(), sizeOfSelectedForms + 2);
+        Browser.waitForTableSizeToBe(sendInviteTables.getFirst(), sizeOfSelectedForms + 1);
         List<WebElement> listOfSelectedForms = sendInviteTables.getFirst().findElements(By.xpath("./td[@class='practice-name-column']"));
         for (WebElement element : listOfSelectedForms) {
             if (element.getText().contains(formName)) {

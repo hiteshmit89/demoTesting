@@ -36,10 +36,14 @@ Feature: Patient Window Feature
 
   @PatientFormsReminder @PUA-50 @PRAC-T975
   Scenario Outline: User can send the Reminder to the patient
-    Given I login to PbN app for patient window and select the practice
+    Given I enter credentials
+    When I click login button
+    And I am able to select practice
+    Then I am redirected to home page
     When I click on the patient finder to open Patient Window
     And I click on the Forms Tab
     And I click on the Send General and Consent Form Button "<Forms Type>" in patient window
+    And I click on Forms tab in  Patient Overview page
     Then I click on the send reminder bell icon "<Forms Type>" in patient window
     Examples:
       | Forms Type              |
@@ -47,10 +51,14 @@ Feature: Patient Window Feature
 
   @patientFormCancelInvite @PUA-50 @PRAC-T4054
   Scenario Outline: User can cancel form invite from the Pending Forms List
-    Given I login to PbN app for patient window and select the practice
+    Given I enter credentials
+    When I click login button
+    And I am able to select practice
+    Then I am redirected to home page
     When I click on the patient finder to open Patient Window
     And I click on the Forms Tab
     And I click on the Send General and Consent Form Button "<Forms Type>" in patient window
+    And I click on Forms tab in  Patient Overview page
     Then I cancel form Invite from the pending forms list "<Forms Type>" in patient window
     Examples:
       | Forms Type              |
@@ -58,10 +66,14 @@ Feature: Patient Window Feature
 
   @patientFormsManuallySubmitted @PUA-50 @PRAC-T4055
   Scenario Outline: User can manually complete the forms from the Pending Forms List
-    Given I login to PbN app for patient window and select the practice
+    Given I enter credentials
+    When I click login button
+    And I am able to select practice
+    Then I am redirected to home page
     When I click on the patient finder to open Patient Window
     And I click on the Forms Tab
     And I click on the Send General and Consent Form Button "<Forms Type>" in patient window
+    And I click on Forms tab in  Patient Overview page
     And I Select the Form and Mark as submitted manually from the Pending Form List "<Forms Type>" in the patient window
     Then I verify check list is getting updated in the Completed Forms Section "<Forms Type>" in the patient window
     Examples:
