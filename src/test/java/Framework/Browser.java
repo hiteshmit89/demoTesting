@@ -135,7 +135,6 @@ public class Browser {
 
     public static void waitForElementList(By locator) {
         retry(() -> !DriverManager.getInstance().Driver.findElements(locator).isEmpty());
-        System.out.println(DriverManager.getInstance().Driver.findElements(locator).size());
     }
 
     public static void clickOnElement(WebElement element) {
