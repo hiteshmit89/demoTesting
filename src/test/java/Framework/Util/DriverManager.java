@@ -58,6 +58,7 @@ public class DriverManager {
                     Map<String, Object> preference = new HashMap<String, Object>();
                     preference.put("profile.default_content_setting_values.notifications", 1);
                     ChromeOptions options = new ChromeOptions();
+                    options.addArguments("disable-blink-features=AutomationControlled");
                     options.setExperimentalOption("prefs", preference);
                     setDriver(new ChromeDriver(options));
                 }
