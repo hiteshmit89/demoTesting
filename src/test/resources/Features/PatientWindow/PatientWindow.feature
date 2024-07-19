@@ -3,7 +3,10 @@ Feature: Patient Window Feature
 
   @ViewTasks @PUA-7 @PRAC-T3494 @PRAC-T3501
   Scenario Outline: User can create All types of tasks from patient window & ViewTasksList Table Displayed
-    Given I login to PbN app for patient window and select the practice
+    Given I enter credentials
+    When I click login button
+    And I am able to select practice
+    Then I am redirected to home page
     When I click on the patient finder to open Patient Window
     When I create a task "<TaskType>" in patient window
     And I select the View Tasks
@@ -82,7 +85,10 @@ Feature: Patient Window Feature
 
   @optedOutPatientList @PRAC-T2492 @PUA-41
   Scenario: Verify that "Opted Out Patient" section is able to see in the Communication
-    Given I login to PbN app for patient window and select the practice
+    Given I enter credentials
+    When I click login button
+    And I am able to select practice
+    Then I am redirected to home page
     When I click on the patient finder to open Patient Window
     And I click in the Details Tab
     And I verify Email and Text Preferences
@@ -93,7 +99,10 @@ Feature: Patient Window Feature
 
   @patientNote @PUA-62 @PRAC-T948
   Scenario: Create Patient Note
-    Given I login to PbN app for patient window and select the practice
+    Given I enter credentials
+    When I click login button
+    And I am able to select practice
+    Then I am redirected to home page
     When I click on the patient finder to open Patient Window
     And I click on the Patient Note
     And I enter the patient note and click on the Add Note Button
