@@ -2,6 +2,7 @@ package StepDefinitions.Payments.Adyen.Payment;
 
 import Pages.Modals.PBNModals;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
 
 public class PaymentCTAStepDefinition {
 
