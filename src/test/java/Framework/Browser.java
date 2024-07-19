@@ -123,7 +123,14 @@ public class Browser {
     }
 
     public static void waitForChildToDisappear(WebElement parent, By childLocator) {
-        retry(() -> parent.findElements(childLocator).isEmpty());
+        try {
+            if (!parent.findElements(childLocator).isEmpty()) {
+                retry(() -> parent.findElements(childLocator).isEmpty());
+            }
+        } catch (Exception e) {
+            //Do Nothing
+        }
+
     }
 
     public static void waitForElementList(By locator) {
