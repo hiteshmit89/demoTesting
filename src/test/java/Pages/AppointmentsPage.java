@@ -82,6 +82,7 @@ public class AppointmentsPage extends BasePage {
         WebElement saveButton = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='modal-footer']/button[@class='btn btn-primary']"));
         Browser.scrollToVisibleElement(saveButton);
         Browser.clickOnElementUsingJavascript(saveButton);
+        Browser.waitForPageReady();
     }
 
     public void clickOnSettingSaveButton() {
@@ -89,6 +90,14 @@ public class AppointmentsPage extends BasePage {
         Browser.scrollToVisibleElement(saveButton);
         Browser.clickOnElementUsingJavascript(saveButton);
     }
+
+    public void validateToastNotification() {
+        Browser.waitForElementToBeVisible(By.xpath("//div[@class='react-toast-notifications__toast__content css-1ad3zal']"));
+        WebElement successMessage = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='react-toast-notifications__toast__content css-1ad3zal']"));
+        String successMsg = "Successfully updated settings.";
+        Assert.assertEquals("Successfully updated settings.", successMsg, successMessage.getText());
+    }
+
 
     public void clickOnSetupCreditCard() {
         Browser.waitForElementToBeVisible(By.xpath("//button[text()='Setup Credit Card Collection']"));

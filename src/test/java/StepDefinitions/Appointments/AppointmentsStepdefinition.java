@@ -20,7 +20,6 @@ public class AppointmentsStepdefinition {
         PbNUIApp.appointmentsPage().clickOnSetupCreditCard();
         PbNUIApp.appointmentsPage().clickOnEnableCreditCard();
         PbNUIApp.appointmentsPage().clickOnSaveButton();
-        PbNUIApp.appointmentsPage().clickOnSettingSaveButton();
         PbNUIApp.appointmentsPage().clickOnWidgets();
         PbNUIApp.appointmentsPage().createAppointmentURLAndNavigate();
     }
@@ -48,7 +47,6 @@ public class AppointmentsStepdefinition {
         PbNUIApp.appointmentsPage().clickOnSetupInsurance();
         PbNUIApp.appointmentsPage().clickOnEnableInsurance();
         PbNUIApp.appointmentsPage().clickOnSaveButton();
-        PbNUIApp.appointmentsPage().clickOnSettingSaveButton();
         PbNUIApp.appointmentsPage().clickOnWidgets();
         PbNUIApp.appointmentsPage().createAppointmentURLAndNavigate();
     }
