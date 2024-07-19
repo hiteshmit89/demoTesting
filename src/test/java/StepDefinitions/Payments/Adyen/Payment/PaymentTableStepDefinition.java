@@ -21,4 +21,9 @@ public class PaymentTableStepDefinition {
     public void iAbleToSeeARefundIconWithADollarSign() {
         PbNUIApp.paymentsPage().displayedRefundDollarIcon();
     }
+
+    @And("I Click on Payment from side navigation")
+    public void iClickOnPaymentFromSideNavigation() {
+        PbNUIApp.paymentsPage().clickOnPaymentTabInSideNavigation();
+    }
 }

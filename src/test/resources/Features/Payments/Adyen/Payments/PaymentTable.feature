@@ -8,7 +8,7 @@ Feature: payment details in Payment table
     And I am able to select practice
     Then I am redirected to home page
     When I click on payments from header nav
-    And I Click on Payment from side nav
+    And I Click on Payment from side navigation
     Then I able to see labels in the Payment table
 
   @PRAC-T3949 @PUA-113
@@ -18,5 +18,5 @@ Feature: payment details in Payment table
     And I am able to select practice
     Then I am redirected to home page
     When I click on payments from header nav
-    And I Click on Payment from side nav
+    And I Click on Payment from side navigation
     Then I able to see a refund icon with a Dollar sign

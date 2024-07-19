@@ -263,6 +263,12 @@ public class PaymentsPage extends BasePage {
         Browser.clickOnElement(paymentSideNav);
     }
 
+    public void clickOnPaymentTabInSideNavigation() {
+        Browser.waitForElementToBeClickable(By.xpath("//a[@id='payment-page-tab-Payments']"));
+        WebElement paymentSideNav = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='payment-page-tab-Payments']"));
+        Browser.clickOnElement(paymentSideNav);
+    }
+
     public void setSelectPagination() {
         Browser.scrollToVisibleElement(DriverManager.getInstance().Driver.findElement(By.xpath("//button[@id='pageDropDown']")));
         WebElement paginationDropDown = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@id='pageDropDown']"));
