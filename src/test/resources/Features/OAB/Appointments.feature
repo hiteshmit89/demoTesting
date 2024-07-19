@@ -35,7 +35,7 @@ Feature: Appointments
     And I click on create button
     Then I will see success toast notifications
 
-  @appointments @PRAC-T1064 @PRAC-T1614 @In-Progress
+    @appointments @PRAC-T1064 @PRAC-T1614 @In-Progress
   Scenario: Verify I can Book the appointments for new patient
     Given I login to PbN app and select the practice
     When I click on appointments tab and try to book appointments for new patient
