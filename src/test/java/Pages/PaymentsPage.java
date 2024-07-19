@@ -7,6 +7,7 @@ import Framework.Constants.Constants.PageTitle;
 import Framework.Util.DriverManager;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 import java.util.List;
 import java.text.DateFormat;
@@ -65,7 +66,7 @@ public class PaymentsPage extends BasePage {
     }
 
     public void enterCardDetailsOnPaymentModal() {
-        WebElement cardButton =DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='MuiButton-startIcon MuiButton-iconSizeSmall']"));
+        WebElement cardButton = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='MuiButton-startIcon MuiButton-iconSizeSmall']"));
         Browser.clickOnElement(cardButton);
         Browser.waitForFrameToLoad(By.xpath("//iframe[@title='Iframe for card number']"));
         enterCardNumber(PbNUIApp.userdata().getCardNumber(2, "1"));
@@ -134,9 +135,9 @@ public class PaymentsPage extends BasePage {
         Browser.clickOnElement(downloadIcon);
     }
 
-    public void createAndSaveCustomLink(){
+    public void createAndSaveCustomLink() {
         WebElement customTextBox = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@class='payment-link-input-field form-control']"));
-        Browser.enterTextInEditBox(customTextBox,"TestAutomation");
+        Browser.enterTextInEditBox(customTextBox, "TestAutomation");
         WebElement saveButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='Save']"));
         Browser.clickOnElement(saveButton);
     }
@@ -150,17 +151,17 @@ public class PaymentsPage extends BasePage {
         Browser.navigateToNewURL(URL);
     }
 
-    public void ClickOnSortIconForPaymentTableViaDate(){
+    public void ClickOnSortIconForPaymentTableViaDate() {
         WebElement sortIconPaymentDate = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@class='sortable' and contains(text(),'Payment Date')]"));
         Browser.clickOnElement(sortIconPaymentDate);
     }
 
-    public void paymentDetailsInPaymentTable(){
+    public void paymentDetailsInPaymentTable() {
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy ");
         Date date = new Date();
         String expectedDate = dateFormat.format(date);
         WebElement actualDate = DriverManager.getInstance().Driver.findElement(By.xpath("//*[@class='table table-striped table-hover']//tbody//tr[1]//td[10]"));
-        Assert.assertEquals(actualDate.getText(),expectedDate);
+        Assert.assertEquals(actualDate.getText(), expectedDate);
     }
 
 
@@ -188,7 +189,7 @@ public class PaymentsPage extends BasePage {
         }
     }
 
-    public void AddAdyenCardWithPatient()  {
+    public void AddAdyenCardWithPatient() {
         List<WebElement> listOfAdyenCard = DriverManager.getInstance().Driver.findElements(By.xpath("//div[@class='modal-body']//tbody//tr"));
         initialTableSize = listOfAdyenCard.size();
         WebElement addNewCard = DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='Add a new Card']"));
@@ -240,4 +241,64 @@ public class PaymentsPage extends BasePage {
         int updatedTableSize = updatedListOfAdyenCard.size();
         Assert.assertEquals("card not Added", initialTableSize + 1, updatedTableSize);
     }
+
+    public void verifyPaymentTableLabel() {
+        Browser.waitForPageReady();
+        Browser.waitForElementToBeVisible(By.xpath("//div[@class='react-bootstrap-table table-responsive']//table"));
+        WebElement patientNameLabel = DriverManager.getInstance().Driver.findElement(By.xpath("//th[@aria-label='Patient Name sortable' and contains(text(),'Patient Name')]"));
+        Assert.assertEquals("PATIENT NAME", patientNameLabel.getText());
+        WebElement netAmountLabel = DriverManager.getInstance().Driver.findElement(By.xpath("//th[@aria-label='Net sortable' and contains(text(),'Net')]"));
+        Assert.assertEquals("NET", netAmountLabel.getText());
+        WebElement transactionId = DriverManager.getInstance().Driver.findElement(By.xpath("//th[text()='Txn. Id']"));
+        Assert.assertEquals("TXN. ID", transactionId.getText());
+        WebElement paymentDate = DriverManager.getInstance().Driver.findElement(By.xpath("//th[@aria-label='Payment Date sortable' and contains(text(),'Payment Date')]"));
+        Assert.assertEquals("PAYMENT DATE", paymentDate.getText());
+        WebElement surcharge = DriverManager.getInstance().Driver.findElement(By.xpath("//span[text()='Surcharge']"));
+        Assert.assertEquals("SURCHARGE", surcharge.getText());
+    }
+
+    public void clickOnPaymentSideNav() {
+        Browser.waitForElementToBeClickable(By.xpath("//a[@id='payment-page-tab-Payments']"));
+        WebElement paymentSideNav = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='payment-page-tab-Payments']"));
+        Browser.clickOnElement(paymentSideNav);
+    }
+
+    public void clickOnPaymentTabInSideNavigation() {
+        Browser.waitForElementToBeClickable(By.xpath("//a[@id='payment-page-tab-Payments']"));
+        WebElement paymentSideNav = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='payment-page-tab-Payments']"));
+        Browser.clickOnElement(paymentSideNav);
+    }
+
+    public void setSelectPagination() {
+        Browser.scrollToVisibleElement(DriverManager.getInstance().Driver.findElement(By.xpath("//button[@id='pageDropDown']")));
+        WebElement paginationDropDown = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@id='pageDropDown']"));
+        Browser.clickOnElement(paginationDropDown);
+        List<WebElement> selectPaginationDropDown = DriverManager.getInstance().Driver.findElements(By.xpath("//span//ul[@role='menu']//li//a"));
+        for (WebElement element : selectPaginationDropDown) {
+            if (element.getText().contains(SelectPaginationNumber)) {
+                element.click();
+                break;
+            }
+        }
+    }
+
+    public void displayedRefundDollarIcon() {
+        setSelectPagination();
+        WebElement container = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@data-testid='wrapper']"));
+        Browser.waitForChildToDisappear(container, By.xpath("//div[@class='text-center']"));
+        List<WebElement> patientTableRows = DriverManager.getInstance().Driver.findElements(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tbody//tr"));
+        String patientToVerify = PbNUIApp.userdata().getPatientName(2, 1);
+        for (WebElement row : patientTableRows) {
+            Browser.waitForPresenceOfElement(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tbody//tr//a"));
+            WebElement patientName = row.findElement(By.xpath(".//a"));
+            String actualPatientName = patientName.getText().trim();
+            if (actualPatientName.equals(patientToVerify)) {
+                WebElement dollarIcon = row.findElement(By.xpath("//div[@class='flex-row flex-vertical-center']//div[@style]"));
+                boolean isDollarIconDisplayed = dollarIcon.isDisplayed();
+                Assert.assertTrue("Dollar icon should be displayed for patient: " + patientToVerify, isDollarIconDisplayed);
+                break;
+            }
+        }
+    }
 }
+
