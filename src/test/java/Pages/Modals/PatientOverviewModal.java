@@ -4,12 +4,8 @@ import Framework.Browser;
 import Framework.Root.PbNUIApp;
 import Framework.Util.DriverManager;
 import org.junit.Assert;
-import Pages.Navigator;
-import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-
-import java.sql.Driver;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -65,12 +61,12 @@ public class PatientOverviewModal {
 
     public void clickOpenTasksButton() {
         WebElement OpenButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='Open']"));
-        Browser.clickOnElement(OpenButton);
+        Browser.clickOnElementUsingJavascript(OpenButton);
     }
 
     public void clickInProgressTasksButton() {
         WebElement InProgressButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='In progress']"));
-        Browser.clickOnElement(InProgressButton);
+        Browser.clickOnElementUsingJavascript(InProgressButton);
     }
 
     public void validateNoTaskAvailableButtonStatus() {
