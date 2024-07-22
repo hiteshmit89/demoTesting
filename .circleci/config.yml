@@ -43,7 +43,7 @@ jobs:
       - image: cimg/openjdk:21.0.2-browsers
     parallelism: 1
     environment:
-      TAGS: "@PatientWindow or @PatientWindowTask or @AdyenFeature"
+      TAGS: "@PatientWindow or @PatientWindowTask or @AdyenFeature or @PaymentTable"
       endpoint: "QA1"
     steps:
       - browser-tools/install-chrome
