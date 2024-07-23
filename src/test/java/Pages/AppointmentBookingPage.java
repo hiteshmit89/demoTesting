@@ -70,7 +70,7 @@ public class AppointmentBookingPage extends BasePage {
     public void clickOnRefreshButton() {
         Browser.waitForElementToBeVisible(By.xpath("(//button[@class='MuiButtonBase-root MuiIconButton-root'])[2]"));
         WebElement selectSeeMoreOptions = DriverManager.getInstance().Driver.findElement(By.xpath("(//button[@class='MuiButtonBase-root MuiIconButton-root'])[2]"));
-        Browser.clickOnElement(selectSeeMoreOptions);
+        Browser.clickOnElementUsingJavascript(selectSeeMoreOptions);
     }
 
     public void fillAppointmentBookingForm() {
