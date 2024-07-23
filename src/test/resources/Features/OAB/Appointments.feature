@@ -23,8 +23,10 @@ Feature: Appointments
   @PUA-42 @PRAC-T1197
   Scenario: Verify that I can book an appointment though scheduler
     Given I login to PbN app and select the practice
-    When I click on schedule on floating chatbox and try to book appointment from scheduler
-    Then I will be able to book appointment from scheduler
+    When I click on schedule on floating chatbox
+    And I fill add new patient form 
+    And I click on create button
+    Then I will see success toast notifications
 
   @appointments @PUA-31 @PRAC-T1619
   Scenario: Verify I can not see insurance page on Appointment booking when insurance feature is inactive
