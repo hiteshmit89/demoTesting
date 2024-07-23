@@ -142,8 +142,13 @@ public class PatientWindowStepDefinition {
         PbNUIApp.navigator().findAndSelectPatientByExactMatchOf(string);
     }
 
-    @Then("I verify for the SMS number")
+    @Then("I check for the invalid SMS number")
     public void iVerifyForTheSMSNumber() {
-        PBNModals.patientOverviewModal().validateSmsNumberIcon();
+        PBNModals.patientOverviewModal().validateInvalidSmsNumberIcon();
+    }
+
+    @Then("I check for the valid SMS number")
+    public void iCheckForTheValidSMSNumber() {
+        PBNModals.patientOverviewModal().validateValidSmsNumberIcon();
     }
 }
