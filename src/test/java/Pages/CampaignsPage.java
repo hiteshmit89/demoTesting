@@ -120,6 +120,9 @@ public class CampaignsPage extends BasePage {
             Browser.clickOnElement(gridCells.getFirst());
             Browser.waitForElementToBeVisible(By.xpath("//div[@class='table-responsive']//td[contains(text(),'"+campaignName+"')]/..//button[@id]"));
             verifyCampaignsStatusItems(campaignName);
+            WebElement activeStatus = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='table-responsive']//td[contains(text(),'"+campaignName+"')]/..//button[@id]/../following-sibling::ul//div[contains(text(),'Active')]"));
+            Browser.clickOnElement(activeStatus);
+            Browser.waitForElementToBeClickable(By.xpath("//div[@class='table-responsive']//td[contains(text(),'"+campaignName+"')]/..//button[contains(text(),'Active')]"));
         }
         else {
             markCampaignActive(campaignName);
