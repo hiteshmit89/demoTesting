@@ -44,9 +44,6 @@ public class AppointmentsStepdefinition {
     public void iClickOnAppointmentsSettingTabAndActivateInsuranceSettingsAndTryToBookAppointment() {
         PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
         PbNUIApp.appointmentsPage().clickOnAppointmentSettingTab();
-        PbNUIApp.appointmentsPage().clickOnSetupInsurance();
-        PbNUIApp.appointmentsPage().clickOnEnableInsurance();
-        PbNUIApp.appointmentsPage().clickOnSaveButton();
         PbNUIApp.appointmentsPage().clickOnWidgets();
         PbNUIApp.appointmentsPage().createAppointmentURLAndNavigate();
     }
