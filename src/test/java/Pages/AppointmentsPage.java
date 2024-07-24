@@ -133,11 +133,12 @@ public class AppointmentsPage extends BasePage {
         WebElement providerEditButton = DriverManager.getInstance().Driver.findElement(By.xpath("(//button[@class='btn btn-sm'and contains(text(),'Edit')])[1]"));
         Browser.scrollToVisibleElement(providerEditButton);
         Browser.clickOnElementUsingJavascript(providerEditButton);
+        Browser.waitForElementToBeVisible(By.xpath("//div[@class='row']//label[text()='Blocked Out Times']"));
     }
 
     public void verifyBlockOutTimes() {
+        Browser.waitForPresenceOfElement(By.xpath("//input[@id='availability-1']"));
         Browser.waitForElementToBeVisible(By.xpath("//div[@class='row']//label[text()='Blocked Out Times']"));
-        Browser.waitForElementToBeClickable(By.xpath("//div[@class='row']//label[text()='Blocked Out Times']"));
         WebElement blockOutTimes = DriverManager.getInstance().Driver.findElement(By.xpath("//label[text()='Blocked Out Times']"));
         Assert.assertTrue("Verify block-out times is not displayed", blockOutTimes.isDisplayed());
     }
@@ -264,9 +265,10 @@ public class AppointmentsPage extends BasePage {
                 i++;
             } else {
                 WebElement colElement = row.findElement(By.xpath(".//td[7]"));
+                WebElement patientName = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tr[3]//td[7]"));
                 String colName = "Existing";
                 if (Browser.getTextFromElement(colElement).equals(colName)) {
-                    Browser.clickOnElement(colElement);
+                    Browser.clickOnElement(patientName);
                     break;
                 }
             }
@@ -282,9 +284,10 @@ public class AppointmentsPage extends BasePage {
             } else {
                 WebElement colElement = row.findElement(By.xpath(".//td[7]"));
                 WebElement clickColElement = row.findElement(By.xpath(".//td[2]"));
+                WebElement patientName = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tr[2]//td[2]"));
                 String colName = "Existing";
                 if (Browser.getTextFromElement(colElement).equals(colName)) {
-                    Browser.clickOnElement(colElement);
+                    Browser.clickOnElement(patientName);
                     break;
                 }
             }
@@ -294,7 +297,7 @@ public class AppointmentsPage extends BasePage {
     public void clickOnSortTableButton() {
         Browser.waitForElementToBeVisible(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tr[1]/th[3]"));
         WebElement sortProvider = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tr[1]/th[3]"));
-        Browser.clickOnElement(sortProvider);
+        Browser.clickOnElementUsingJavascript(sortProvider);
     }
 
     public void enterPatientNameInSearchBox(String patientName) {
