@@ -264,9 +264,10 @@ public class AppointmentsPage extends BasePage {
                 i++;
             } else {
                 WebElement colElement = row.findElement(By.xpath(".//td[7]"));
+                WebElement patientName = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tr[2]//td[7]"));
                 String colName = "Existing";
                 if (Browser.getTextFromElement(colElement).equals(colName)) {
-                    Browser.clickOnElement(colElement);
+                    Browser.clickOnElement(patientName);
                     break;
                 }
             }
