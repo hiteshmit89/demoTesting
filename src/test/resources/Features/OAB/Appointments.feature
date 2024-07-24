@@ -47,7 +47,7 @@ Feature: Appointments
     When I click on appointments tab and try to book appointments and navigate to provider page
     Then I will be able to see refresh button on provider page during appointment booking
 
-  @appointments @PUA-48 @PRAC-T111 @In-Progress
+  @appointments @PUA-48 @PRAC-T111
   Scenario: Verify DOB in insurance page on Appointment booking
     Given I login to PbN app and select the practice
     When I click on appointments tab and try to book appointment and select DOB less than Eighteen years on insurance page
@@ -59,7 +59,7 @@ Feature: Appointments
     When I click on appointments tab and try to book appointment and select DOB less than one year from current date on book myself page
     Then I will see a pop up appears asking for the patient's confirmation to proceed to the next page if the age is less than one years.
 
-  @appointments @PUA-96 @PRAC-T112 @In-Progress
+  @appointments @PUA-96 @PRAC-T112
   Scenario: Verify I can validate the behavior of invalid OTP during Appointment booking
     Given I login to PbN app and select the practice
     When I click on appointments tab and try to book appointments for patient and enter invalid OTP
