@@ -47,7 +47,9 @@ public class CollectPaymentModal {
         Browser.waitForElementInvisibility(DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='adyen-checkout__spinner adyen-checkout__spinner--large']")));
         Browser.waitForFrameToLoad(By.xpath("//iframe[@title='Iframe for card number']"));
         WebElement cardNumber = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@data-fieldtype='encryptedCardNumber']"));
+        DriverManager.getInstance().startListeningToAPIResponses("test.adyen.com");
         Browser.enterTextInEditBox(cardNumber, PbNUIApp.userdata().getCardNumber(2, "1"));
+        Browser.waitForAPIResponse(200);
         Browser.switchToDefaultContent();
         enterCardDate();
         enterCVC();
