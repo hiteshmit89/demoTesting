@@ -160,21 +160,26 @@ public class PatientOverviewModal {
     }
 
     public void sendReminderBell(String formName) {
-        Browser.waitForElementToBeVisible(By.xpath("//tbody/tr/td[text()='" + formName + "']/../td[5]/div/span[1]"));
-        WebElement sendReminder = DriverManager.getInstance().Driver.findElement(By.xpath("//tbody/tr/td[text()='" + formName + "']/../td[5]/div/span[1]"));
+        WebElement container = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='pending-form-table-container']//div[@data-testid='wrapper']"));
+        Browser.waitForChildToDisappear(container, By.xpath("//div[@class='text-center']"));
+        Browser.waitForElementToBeVisible(By.xpath("//td[text()='" + formName + "']/../td/div/span[1]"));
+        WebElement sendReminder = DriverManager.getInstance().Driver.findElement(By.xpath("//td[text()='" + formName + "']/../td/div/span[1]"));
         Browser.clickOnElementUsingJavascript(sendReminder);
-        Browser.waitForElementToBeClickable(By.xpath("//button[text()='Yes']"));
-        WebElement yesButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='Yes']"));
-        Browser.clickOnElement(yesButton);
+        Browser.waitForElementToBeVisible(By.xpath("//div[@id='confirmation-popover']//button[text()='Yes']"));
+        Browser.waitForElementToBeClickable(By.xpath("//div[@id='confirmation-popover']//button[text()='Yes']"));
+        WebElement yesButton = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@id='confirmation-popover']//button[text()='Yes']"));
+        Browser.clickOnElementUsingJavascript(yesButton);
     }
 
     public void clickOnCancelFormInvite(String formName) {
+        WebElement container = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='pending-form-table-container']//div[@data-testid='wrapper']"));
+        Browser.waitForChildToDisappear(container, By.xpath("//div[@class='text-center']"));
         Browser.waitForElementToBeClickable(By.xpath("//tbody/tr/td[text()='" + formName + "']/../td[5]/div/span[2]"));
         WebElement cancelFormInvite = DriverManager.getInstance().Driver.findElement(By.xpath("//tbody/tr/td[text()='" + formName + "']/../td[5]/div/span[2]"));
         Browser.clickOnElementUsingJavascript(cancelFormInvite);
-        Browser.waitForElementToBeVisible(By.xpath("//button[text()='Yes']"));
-        Browser.waitForElementToBeClickable(By.xpath("//button[text()='Yes']"));
-        WebElement yesButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='Yes']"));
+        Browser.waitForElementToBeVisible(By.xpath("//div[@id='confirmation-popover']//button[text()='Yes']"));
+        Browser.waitForElementToBeClickable(By.xpath("//div[@id='confirmation-popover']//button[text()='Yes']"));
+        WebElement yesButton = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@id='confirmation-popover']//button[text()='Yes']"));
         Browser.clickOnElementUsingJavascript(yesButton);
     }
 
