@@ -5,11 +5,13 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.devtools.DevTools;
 import org.openqa.selenium.devtools.HasDevTools;
+import org.openqa.selenium.devtools.NetworkInterceptor;
 import org.openqa.selenium.devtools.v127.network.Network;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.remote.http.Filter;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
@@ -159,6 +161,22 @@ public class DriverManager {
                 logger.info("response logged: " + response);
             }
         });
+    }
+
+    @SuppressWarnings("resource")
+    public void interceptNetworkRequests(String matcher) {
+        logger.info("listening to API responses for API matching with: " + matcher);
+        NetworkInterceptor networkInterceptor = new NetworkInterceptor(
+                webDriver,
+                (Filter)
+                    next ->
+                        req -> {
+                        if (req.getUri().contains(matcher)) {
+                            response = next.execute(req).getStatus();
+                        }
+                        return next.execute(req);
+                }
+        );
     }
 
 
