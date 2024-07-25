@@ -12,7 +12,8 @@ jobs:
       TAGS: "(@FormsPreviewFeature or @AppointmentsFeature or @PatientPortal) and (not @In-Progress)"
       endpoint: "QA1"
     steps:
-      - browser-tools/install-chrome
+      - browser-tools/install-browser-tools:
+          chrome-version: 127.0.6533.73
       - browser-tools/install-chromedriver
       - checkout
       - run:
@@ -159,7 +160,4 @@ workflows:
   build-deploy:
     jobs:
       - test-Chrome-QA1-1
-      - test-Chrome-QA1-2
-      - test-Chrome-QA1-3
-      - test-Chrome-QA1-4
       - update_bitbucket
