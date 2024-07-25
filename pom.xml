@@ -61,6 +61,12 @@
             <artifactId>selenium-safari-driver</artifactId>
             <version>4.23.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-devtools-v127</artifactId>
+            <version>4.23.0</version>
+        </dependency>
+
     </dependencies>
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
