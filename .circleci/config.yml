@@ -13,7 +13,7 @@ jobs:
       endpoint: "QA1"
     steps:
       - browser-tools/install-browser-tools:
-          chrome-version: 127.0.6533.73
+          chrome-version: 127.0.6533.72-1
           replace-existing-chrome: true
       - browser-tools/install-chromedriver
       - checkout
