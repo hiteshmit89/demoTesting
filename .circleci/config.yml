@@ -13,7 +13,7 @@ jobs:
       endpoint: "QA1"
     steps:
       - browser-tools/install-browser-tools:
-          chrome-version: 127.0.6533.72
+          chrome-version: latest
           replace-existing-chrome: true
       - browser-tools/install-chromedriver
       - checkout
@@ -161,4 +161,7 @@ workflows:
   build-deploy:
     jobs:
       - test-Chrome-QA1-1
+      - test-Chrome-QA1-2
+      - test-Chrome-QA1-3
+      - test-Chrome-QA1-4
       - update_bitbucket

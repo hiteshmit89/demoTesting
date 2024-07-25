@@ -146,7 +146,7 @@
       "CardData": [
         {
           "card_Id": "1",
-          "card_number_Adyen": "3714 4963 5398 431",
+          "card_number_Adyen": "3700 000000 00002",
           "month_date": "0330",
           "cvc": "7373",
           "incorrect_cvc": "73",
