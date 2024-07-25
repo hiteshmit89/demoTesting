@@ -133,7 +133,7 @@ public class CollectPaymentModal {
         Assert.assertEquals(paymentLabel.getText(), "Payment Successful!");
     }
 
-    public void downloadPaymentReciept(){
+    public void downloadPaymentReceipt(){
         Browser.waitForElementToBeVisible(By.xpath("//button[@class='btn btn-default' and contains(text(),'Download Receipt')]"));
         WebElement downloadButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='btn btn-default' and contains(text(),'Download Receipt')]"));
         Browser.clickOnElement(downloadButton);

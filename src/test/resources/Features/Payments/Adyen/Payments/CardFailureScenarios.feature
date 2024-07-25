@@ -1,5 +1,5 @@
 @CardFailure @pbnAll
-Feature: Charge a patient via Card through Payments showing in CTA menu and verify the result in Payments
+Feature: CardFailureFeature
 
     @PRAC-T3511 @PUA-20
     Scenario: Verify when user is trying with Incorrect CVV

@@ -44,7 +44,7 @@ public class AdyenTransactionStepDefinition {
 
     @And("Verify I am able to download Payment receipt")
     public void verifyIAmAbleToDownloadPaymentReceipt() {
-        PBNModals.collectPaymentModal().downloadPaymentReciept();
+        PBNModals.collectPaymentModal().downloadPaymentReceipt();
     }
 
     @And("I click on disable Payment Confirmation Modal")
