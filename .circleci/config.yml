@@ -14,7 +14,7 @@ jobs:
     steps:
       - browser-tools/install-browser-tools:
           chrome-version: 127.0.6533.73
-          replace-existing: true
+          replace-existing-chrome: true
       - browser-tools/install-chromedriver
       - checkout
       - run:
