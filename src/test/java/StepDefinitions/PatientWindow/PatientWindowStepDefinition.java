@@ -78,7 +78,6 @@ public class PatientWindowStepDefinition {
 
     @Then("I Verify check list is getting updated in the Pending Forms Section {string} in patient window")
     public void iVerifyCheckListIsGettingUpdatedInThePendingFormsSection(String formsName) {
-
         PBNModals.patientOverviewModal().verifyPendingFormsCheckList(formsName);
     }
 

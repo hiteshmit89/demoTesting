@@ -50,7 +50,7 @@ Feature: Patient Window Feature
     Then I click on the send reminder bell icon "<Forms Type>" in patient window
     Examples:
       | Forms Type              |
-      | Clinical Photo Transfer |
+      | Patient Information     |
 
   @patientFormCancelInvite @PUA-50 @PRAC-T4054
   Scenario Outline: User can cancel form invite from the Pending Forms List
@@ -65,7 +65,7 @@ Feature: Patient Window Feature
     Then I cancel form Invite from the pending forms list "<Forms Type>" in patient window
     Examples:
       | Forms Type              |
-      | Clinical Photo Transfer |
+      | Patient Information     |
 
   @patientFormsManuallySubmitted @PUA-50 @PRAC-T4055
   Scenario Outline: User can manually complete the forms from the Pending Forms List
@@ -81,7 +81,7 @@ Feature: Patient Window Feature
     Then I verify check list is getting updated in the Completed Forms Section "<Forms Type>" in the patient window
     Examples:
       | Forms Type              |
-      | Clinical Photo Transfer |
+      | Patient Information     |
 
   @optedOutPatientList @PRAC-T2492 @PUA-41
   Scenario: Verify that "Opted Out Patient" section is able to see in the Communication

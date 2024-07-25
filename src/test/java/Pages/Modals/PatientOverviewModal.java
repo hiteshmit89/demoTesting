@@ -100,18 +100,20 @@ public class PatientOverviewModal {
     }
 
     public void clickOnSearchForms(String formName) {
-        List<WebElement> listOfSelectedForms = DriverManager.getInstance().Driver.findElements(By.xpath("//td[@class='practice-name-column']"));
-        sizeOfSelectedForms = listOfSelectedForms.size();
+        WebElement interceptElement1 = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@style='height: 100%; width: 100%; position: absolute; top: 0px; left: 0px; display: flex; background-color: rgba(255, 255, 255, 0.8); z-index: 2000;']"));
+        Browser.waitForElementInvisibility(interceptElement1);
+        List<WebElement> tablesOnModal = DriverManager.getInstance().Driver.findElements(By.xpath("//table[@class='table table-striped table-hover table-bordered']/tbody"));
         boolean flag = false;
-        List<WebElement> elements = DriverManager.getInstance().Driver.findElements(By.xpath("//tbody/tr/td/div/span[text()='" + formName + "']"));
-        if (!elements.isEmpty() && elements.get(0).isDisplayed()) {
+        List<WebElement> elements = tablesOnModal.getFirst().findElements(By.xpath(".//span[text()='" + formName + "']"));
+        if (!elements.isEmpty()) {
+            Browser.waitForElementToBeVisible(elements.getFirst());
             flag = true;
         }
         if (!flag) {
-            WebElement patientForm = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='btn btn-primary' and contains(text(),'Form')]"));
+            WebElement patientFormButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='btn btn-primary' and contains(text(),'Form')]"));
+            Browser.clickOnElement(patientFormButton);
             WebElement interceptElement = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@style='height: 100%; width: 100%; position: absolute; top: 0px; left: 0px; display: flex; background-color: rgba(255, 255, 255, 0.8); z-index: 2000;']"));
             Browser.waitForElementInvisibility(interceptElement);
-            Browser.clickOnElement(patientForm);
             Browser.waitForElementToBeVisible(By.xpath("//input[@id='form-search-text-field']"));
             WebElement searchForms = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@id='form-search-text-field']"));
             Browser.enterTextInEditBox(searchForms, formName);
