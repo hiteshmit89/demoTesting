@@ -108,13 +108,22 @@ Feature: Patient Window Feature
     And I enter the patient note and click on the Add Note Button
     Then I verify patient note in the Activity Tab
 
-
-  @SmsValidation @PUA-67 @PRAC-T3791 @InProgress
-  Scenario Outline: Exclamation mark triangle displayed for invalid SMS numbers
+  @SmsValidation @PUA-67 @PRAC-T3791
+  Scenario Outline: Red color triangle exclamation mark is displayed for invalid SMS numbers
     Given I login to PbN app
     And I click on practice name
     When I search for "<Patient>" and open patient window
-    Then I verify for the SMS number
+    Then I check for the invalid SMS number
+    Examples:
+      | Patient     |
+      | Sally Walker |
+
+  @SmsValidation @PUA-67 @PRAC-T4108
+  Scenario Outline: Green color round check mark displayed for valid numbers
+    Given I login to PbN app
+    And I click on practice name
+    When I search for "<Patient>" and open patient window
+    Then I check for the valid SMS number
     Examples:
       | Patient     |
       | Sally Walker |

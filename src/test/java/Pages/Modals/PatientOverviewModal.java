@@ -21,7 +21,6 @@ public class PatientOverviewModal {
 
     private int sizeOfSelectedForms = 0;
     String note = "Patient Test Note";
-
     public void selectTask(String taskType) {
         WebElement taskButton = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='action-item']//span[contains(text(),'Tasks')]"));
         Browser.clickOnElementUsingJavascript(taskButton);
@@ -277,18 +276,23 @@ public class PatientOverviewModal {
         }
     }
 
-    public void validateSmsNumberIcon (){
+    public void validateInvalidSmsNumberIcon (){
         Browser.waitForElementToBeVisible(By.xpath("//span[contains(text(),'SMS')]"));
         Browser.waitForElementToBeClickable(By.xpath("//span[contains(text(),'SMS')]"));
         WebElement smsIcon = DriverManager.getInstance().Driver.findElement(By.xpath("//span[contains(text(),'SMS')]"));
+        Browser.waitForElementToBeVisible(By.xpath("//input[@placeholder='Press enter to add tag']"));
         Browser.clickOnElement(smsIcon);
-     //   WebElement smsVerificationIcon = DriverManager.getInstance().Driver.findElement(By.xpath("//div//img[@title='Number is valid.']"));
         Browser.waitForElementToBeVisible(By.xpath("//div[@class='warning-verified-icon']"));
-        if (DriverManager.getInstance().Driver.findElement(By.xpath("//div//img[@title='Number is valid.']")).isDisplayed()){
-            System.out.println("Number is Valid");
-        }
-        else {
-            System.out.println("Either number is not valid, or its a landline number.");
-        }
+        DriverManager.getInstance().Driver.findElement(By.xpath("//img[@title='Either number is not valid, or its a landline number.']")).isDisplayed();
+    }
+
+    public void validateValidSmsNumberIcon (){
+        Browser.waitForElementToBeVisible(By.xpath("//span[contains(text(),'SMS')]"));
+        Browser.waitForElementToBeClickable(By.xpath("//span[contains(text(),'SMS')]"));
+        WebElement smsIcon = DriverManager.getInstance().Driver.findElement(By.xpath("//span[contains(text(),'SMS')]"));
+        Browser.waitForElementToBeVisible(By.xpath("//input[@placeholder='Press enter to add tag']"));
+        Browser.clickOnElement(smsIcon);
+        Browser.waitForElementToBeVisible(By.xpath("//div[@class='warning-verified-icon']"));
+        DriverManager.getInstance().Driver.findElement(By.xpath("//img[@title='Number is valid.']")).isDisplayed();
     }
 }
