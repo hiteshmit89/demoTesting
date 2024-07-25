@@ -18,7 +18,6 @@ public class PatientOverviewModal {
     private String getCurrentDate() {
         return (new SimpleDateFormat("MM/dd/yyyy").format(new Date()));
     }
-
     private int sizeOfSelectedForms = 0;
     String note = "Patient Test Note";
     public void selectTask(String taskType) {
@@ -110,7 +109,7 @@ public class PatientOverviewModal {
         }
         if (!flag) {
             WebElement patientFormButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='btn btn-primary' and contains(text(),'Form')]"));
-            Browser.clickOnElement(patientFormButton);
+            Browser.clickOnElementUsingJavascript(patientFormButton);
             WebElement interceptElement = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@style='height: 100%; width: 100%; position: absolute; top: 0px; left: 0px; display: flex; background-color: rgba(255, 255, 255, 0.8); z-index: 2000;']"));
             Browser.waitForElementInvisibility(interceptElement);
             Browser.waitForElementToBeVisible(By.xpath("//input[@id='form-search-text-field']"));
@@ -173,6 +172,7 @@ public class PatientOverviewModal {
         Browser.waitForElementToBeClickable(By.xpath("//tbody/tr/td[text()='" + formName + "']/../td[5]/div/span[2]"));
         WebElement cancelFormInvite = DriverManager.getInstance().Driver.findElement(By.xpath("//tbody/tr/td[text()='" + formName + "']/../td[5]/div/span[2]"));
         Browser.clickOnElementUsingJavascript(cancelFormInvite);
+        Browser.waitForElementToBeVisible(By.xpath("//button[text()='Yes']"));
         Browser.waitForElementToBeClickable(By.xpath("//button[text()='Yes']"));
         WebElement yesButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='Yes']"));
         Browser.clickOnElementUsingJavascript(yesButton);
