@@ -9,6 +9,7 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import java.util.Calendar;
 import java.util.List;
 
 public class AppointmentsPage extends BasePage {
@@ -481,16 +482,15 @@ public class AppointmentsPage extends BasePage {
         Assert.assertTrue("Appointment Time Interval 15 minutes Radio Button is not displayed", appointmentAvailabilityColumnRadioButton15Minutes.isDisplayed());
     }
 
-    public void verifyMondayBlockOutDay() {
+    public void verifyDayBlockOutDay() {
         Browser.waitForElementToBeClickable(By.xpath("//label[text()='Blocked Out Times']"));
         Browser.waitForPresenceOfElement(By.xpath("//input[@id='availability-1']"));
-        WebElement mondayBlockOutDay = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@id='availability-1']"));
-        if (mondayBlockOutDay.isSelected()) {
-            Browser.clickOnElementUsingJavascript(mondayBlockOutDay);
-        }
-        WebElement wednesdayBlockOutDay = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@id='availability-3']"));
-        if (wednesdayBlockOutDay.isSelected()) {
-            Browser.clickOnElementUsingJavascript(wednesdayBlockOutDay);
+        Calendar calendar = Calendar.getInstance();
+        int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+        dayOfWeek = dayOfWeek -1;
+        WebElement selectedDayBlockOutDay = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@id='availability-" +dayOfWeek+ "']"));
+        if (selectedDayBlockOutDay.isSelected()) {
+            Browser.clickOnElementUsingJavascript(selectedDayBlockOutDay);
         }
     }
 

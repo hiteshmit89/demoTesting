@@ -279,7 +279,7 @@ public class AppointmentsStepdefinition {
         PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
         PbNUIApp.appointmentsPage().clickOnAppointmentSettingTab();
         PbNUIApp.appointmentsPage().clickOnProviderEditButton();
-        PbNUIApp.appointmentsPage().verifyMondayBlockOutDay();
+        PbNUIApp.appointmentsPage().verifyDayBlockOutDay();
         PbNUIApp.appointmentsPage().clickOnSubmitButton();
         PbNUIApp.appointmentsPage().clickOnSettingSaveButton();
         PbNUIApp.appointmentsPage().validateToastNotification();

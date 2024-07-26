@@ -282,9 +282,9 @@ public class AppointmentBookingPage extends BasePage {
 
     public void verifyBlockedDayOnAppointmentAvailabilityPage() {
         Browser.waitForElementToBeVisible(By.xpath("(//button[@class='MuiButtonBase-root MuiIconButton-root'])[2]"));
-        Browser.waitForPresenceOfElement(By.xpath("//table[@class='timeslots-table']/tbody/tr[1]/td[7]"));
-        WebElement mondayData = DriverManager.getInstance().Driver.findElement(By.xpath("//table[@class='timeslots-table']/tbody/tr[1]/td[7]"));
-        String textMonday = mondayData.getAttribute("innerHTML");
+        Browser.waitForPresenceOfElement(By.xpath("//table[@class='timeslots-table']/tbody/tr[1]/td[2]"));
+        WebElement dayData = DriverManager.getInstance().Driver.findElement(By.xpath("//table[@class='timeslots-table']/tbody/tr[1]/td[2]"));
+        String textMonday = dayData.getAttribute("innerHTML");
         String verifyText = "";
         Assert.assertEquals("There is no Blocked Day on Appointment Availability Page", verifyText, textMonday);
     }
