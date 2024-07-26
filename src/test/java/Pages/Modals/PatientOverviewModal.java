@@ -283,20 +283,18 @@ public class PatientOverviewModal {
     public void validateInvalidSmsNumberIcon (){
         Browser.waitForElementToBeVisible(By.xpath("//span[contains(text(),'SMS')]"));
         Browser.waitForElementToBeClickable(By.xpath("//span[contains(text(),'SMS')]"));
-        WebElement smsIcon = DriverManager.getInstance().Driver.findElement(By.xpath("//span[contains(text(),'SMS')]"));
-        Browser.waitForElementToBeVisible(By.xpath("//input[@placeholder='Press enter to add tag']"));
+        WebElement smsIcon = DriverManager.getInstance().Driver.findElement(By.xpath("//span[contains(text(),'SMS')]/.."));
         Browser.clickOnElement(smsIcon);
         Browser.waitForElementToBeVisible(By.xpath("//div[@class='warning-verified-icon']"));
-        DriverManager.getInstance().Driver.findElement(By.xpath("//img[@title='Either number is not valid, or its a landline number.']")).isDisplayed();
+        Assert.assertTrue("Image warning verified icon did not display as expected.", DriverManager.getInstance().Driver.findElement(By.xpath("//img[@title='Either number is not valid, or its a landline number.']")).isDisplayed());
     }
 
     public void validateValidSmsNumberIcon (){
         Browser.waitForElementToBeVisible(By.xpath("//span[contains(text(),'SMS')]"));
         Browser.waitForElementToBeClickable(By.xpath("//span[contains(text(),'SMS')]"));
-        WebElement smsIcon = DriverManager.getInstance().Driver.findElement(By.xpath("//span[contains(text(),'SMS')]"));
-        Browser.waitForElementToBeVisible(By.xpath("//input[@placeholder='Press enter to add tag']"));
+        WebElement smsIcon = DriverManager.getInstance().Driver.findElement(By.xpath("//span[contains(text(),'SMS')]/.."));
         Browser.clickOnElement(smsIcon);
         Browser.waitForElementToBeVisible(By.xpath("//div[@class='warning-verified-icon']"));
-        DriverManager.getInstance().Driver.findElement(By.xpath("//img[@title='Number is valid.']")).isDisplayed();
+        Assert.assertTrue("Image number is valid did not display as expected.", DriverManager.getInstance().Driver.findElement(By.xpath("//img[@title='Number is valid.']")).isDisplayed());
     }
 }
