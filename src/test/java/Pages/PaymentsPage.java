@@ -177,6 +177,7 @@ public class PaymentsPage extends BasePage {
     }
 
     public void setSelectPaginationNumber() {
+        Browser.slowWaitForPresenceOfElement(By.xpath("/html/body/div[@role='dialog']"));
         Browser.waitForElementPresence(By.xpath("//div[@class='modal-body']//div[@class='row react-bootstrap-table-pagination']//button[@id='pageDropDown']"));
         WebElement pagination = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='modal-body']//div[@class='row react-bootstrap-table-pagination']//button[@id='pageDropDown']"));
         Browser.clickOnElementUsingJavascript(pagination);
@@ -192,6 +193,7 @@ public class PaymentsPage extends BasePage {
     public void AddAdyenCardWithPatient() {
         List<WebElement> listOfAdyenCard = DriverManager.getInstance().Driver.findElements(By.xpath("//div[@class='modal-body']//tbody//tr"));
         initialTableSize = listOfAdyenCard.size();
+        Browser.waitForPresenceOfElement(By.xpath("//button[text()='Add a new Card']"));
         WebElement addNewCard = DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='Add a new Card']"));
         Browser.clickOnElement(addNewCard);
         Browser.scrollToVisibleElement(DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='Save card']")));
