@@ -1,5 +1,5 @@
 @PaymentModal @pbnAll
-Feature: Charge a patient via Card through Payments showing in CTA menu and verify the result in Payments
+Feature: PaymentCTAFeature
 
   @PRAC-T3664 @PUA-68 @In-Progress
   Scenario: Verify user is able to download the payment receipt for a patient already added cards

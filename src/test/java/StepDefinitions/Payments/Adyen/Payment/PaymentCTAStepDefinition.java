@@ -2,7 +2,6 @@ package StepDefinitions.Payments.Adyen.Payment;
 
 import Pages.Modals.PBNModals;
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.Then;
 
 public class PaymentCTAStepDefinition {
 
@@ -44,7 +43,7 @@ public class PaymentCTAStepDefinition {
 
     @And("I am Able to download the payment receipt")
     public void iAmAbleToDownloadThePaymentReceipt() {
-        PBNModals.collectPaymentModal().downloadPaymentReciept();
+        PBNModals.collectPaymentModal().downloadPaymentReceipt();
     }
 
     @And("I select payment method and enter card details with incorrect cvc and verify incorrect cvv error message")
