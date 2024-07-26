@@ -4,6 +4,9 @@ import Framework.Constants.Constants.PageTitle;
 import Framework.Util.ConfigManager;
 import Framework.Util.DriverManager;
 import org.openqa.selenium.*;
+import org.openqa.selenium.devtools.Event;
+import org.openqa.selenium.devtools.v127.network.Network;
+import org.openqa.selenium.devtools.v127.network.model.ResponseReceived;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
@@ -11,6 +14,7 @@ import org.openqa.selenium.support.ui.Select;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.time.Duration;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.BooleanSupplier;
 
 import org.openqa.selenium.By;
@@ -118,21 +122,23 @@ public class Browser {
     }
 
 
-    public static void waitForElementChildren(WebElement element, By childLocator, int noOfChildrenNeeded) {
-        retry(() -> element.findElements(childLocator).size() > noOfChildrenNeeded);
-    }
-
-    public static void waitForElementChildren1(WebElement parent, By childLocator, int minimumNumberOfChildrenNeeded) {
-        retry(() -> parent.findElements(childLocator).size() > minimumNumberOfChildrenNeeded);
+    public static void waitForElementChildren(WebElement element, By childLocator, int minimumNumberOfChildrenNeeded) {
+        retry(() -> element.findElements(childLocator).size() > minimumNumberOfChildrenNeeded);
     }
 
     public static void waitForChildToDisappear(WebElement parent, By childLocator) {
-        retry(() -> parent.findElements(childLocator).isEmpty());
+        try {
+            if (!parent.findElements(childLocator).isEmpty()) {
+                retry(() -> parent.findElements(childLocator).isEmpty());
+            }
+        } catch (Exception e) {
+            //Do Nothing
+        }
+
     }
 
     public static void waitForElementList(By locator) {
         retry(() -> !DriverManager.getInstance().Driver.findElements(locator).isEmpty());
-        System.out.println(DriverManager.getInstance().Driver.findElements(locator).size());
     }
 
     public static void clickOnElement(WebElement element) {
@@ -245,6 +251,11 @@ public class Browser {
     public static void clickOnElementUsingJavascript(WebElement element) {
         JavascriptExecutor js = (JavascriptExecutor)DriverManager.getInstance().Driver;
         js.executeScript("arguments[0].click();", element);
+    }
+
+    public static void waitForAPIResponse(int response) {
+        retry(() -> DriverManager.getInstance().response == response);
+        DriverManager.getInstance().response = 0;
     }
 
     private static void retry(BooleanSupplier function)

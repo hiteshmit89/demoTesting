@@ -70,7 +70,7 @@ public class AppointmentBookingPage extends BasePage {
     public void clickOnRefreshButton() {
         Browser.waitForElementToBeVisible(By.xpath("(//button[@class='MuiButtonBase-root MuiIconButton-root'])[2]"));
         WebElement selectSeeMoreOptions = DriverManager.getInstance().Driver.findElement(By.xpath("(//button[@class='MuiButtonBase-root MuiIconButton-root'])[2]"));
-        Browser.clickOnElement(selectSeeMoreOptions);
+        Browser.clickOnElementUsingJavascript(selectSeeMoreOptions);
     }
 
     public void fillAppointmentBookingForm() {
@@ -157,6 +157,7 @@ public class AppointmentBookingPage extends BasePage {
     public void clickOnNextButton() {
         Browser.waitForElementToBeVisible(By.xpath("//span[@class='MuiButton-label' and contains(text(),'Next')]"));
         WebElement nextButton = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='MuiButton-label' and contains(text(),'Next')]"));
+        Browser.scrollToVisibleElement(nextButton);
         Browser.clickOnElementUsingJavascript(nextButton);
     }
 
@@ -165,6 +166,10 @@ public class AppointmentBookingPage extends BasePage {
         WebElement birthDate = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@placeholder='MM-DD-YYYY']"));
         Browser.scrollToVisibleElement(birthDate);
         Browser.enterTextInEditBox(birthDate, birthDateData);
+        WebElement calender = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='MuiButtonBase-root MuiIconButton-root']"));
+        Browser.clickOnElement(calender);
+        WebElement dateCalender = DriverManager.getInstance().Driver.findElement(By.xpath("//p[@class='MuiTypography-root MuiTypography-body2 MuiTypography-colorInherit' and text()='15']"));
+        Browser.clickOnElement(dateCalender);
     }
 
     public void clickOnIDoNotHaveInsurance() {
@@ -175,6 +180,8 @@ public class AppointmentBookingPage extends BasePage {
             iDoNotHaveInsuranceButton = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='MuiButton-label' and contains(text(),'I do')]"));
             present = true;
         } catch (NoSuchElementException ignored) {
+            WebElement insuranceUnchangedButton = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='MuiButton-label' and contains(text(),'Insurance Unchanged')]"));
+            Browser.clickOnElementUsingJavascript(insuranceUnchangedButton);
         }
         if (present) {
             Browser.clickOnElementUsingJavascript(iDoNotHaveInsuranceButton);
@@ -206,10 +213,9 @@ public class AppointmentBookingPage extends BasePage {
     }
 
     public void verifyInsurancePage() {
-        Browser.waitForElementToBeClickable(By.xpath("//span[@class='MuiButton-label' and contains(text(),'Use Cell Phone')]"));
-        WebElement OtpPage = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='MuiButton-label' and contains(text(),'Use Cell Phone')]"));
-        boolean status = OtpPage.isDisplayed();
-        Assert.assertTrue("Insurance page is displayed on appointment booking page.", OtpPage.isDisplayed());
+        Browser.waitForElementToBeVisible(By.xpath("//div[@class='patient-form-title']"));
+        WebElement insurancePage = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='patient-form-title']"));
+        Assert.assertTrue("Insurance page is not displayed on appointment booking page.", insurancePage.isDisplayed());
     }
 
     public void verifyCreditCardPage() {
@@ -243,7 +249,7 @@ public class AppointmentBookingPage extends BasePage {
     public void verifyErrorTextDisplayed() {
         Browser.waitForElementToBeVisible(By.xpath("//div[@class='react-toast-notifications__toast__content css-1ad3zal']"));
         WebElement errorMessage = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='react-toast-notifications__toast__content css-1ad3zal']"));
-        String errorMsg = "Error! Could not verify otp.";
+        String errorMsg = "Error! Invalid otp code.";
         Assert.assertEquals("Error toast message displayed", errorMsg, errorMessage.getText());
     }
 

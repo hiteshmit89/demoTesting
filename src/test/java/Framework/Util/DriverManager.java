@@ -3,27 +3,32 @@ package Framework.Util;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.devtools.DevTools;
+import org.openqa.selenium.devtools.HasDevTools;
+import org.openqa.selenium.devtools.NetworkInterceptor;
+import org.openqa.selenium.devtools.v127.network.Network;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.remote.http.Filter;
 import org.openqa.selenium.safari.SafariDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+
+import static Pages.BasePage.logger;
 
 public class DriverManager {
     private WebDriver webDriver = null;
     public SearchContext Driver = null;
     private String originalWindowHandle;
+    public int response;
     private static ThreadLocal<DriverManager> manager = new ThreadLocal<DriverManager>();
 
     private DriverManager() {
@@ -58,6 +63,7 @@ public class DriverManager {
                     Map<String, Object> preference = new HashMap<String, Object>();
                     preference.put("profile.default_content_setting_values.notifications", 1);
                     ChromeOptions options = new ChromeOptions();
+                    options.addArguments("disable-blink-features=AutomationControlled");
                     options.setExperimentalOption("prefs", preference);
                     setDriver(new ChromeDriver(options));
                 }
@@ -141,5 +147,37 @@ public class DriverManager {
     public void remove(){
         manager.remove();
     }
+
+
+    public void startListeningToAPIResponses(String matcher) {
+        logger.info("listening to API responses for API matching with: " + matcher);
+        DevTools devTools = ((HasDevTools) webDriver).getDevTools();
+        devTools.createSession();
+        devTools.send(Network.enable(Optional.empty(),Optional.empty(),
+                Optional.empty()));
+        devTools.addListener(Network.responseReceived(), responseReceived -> {
+            if (responseReceived.getResponse().getUrl().contains(matcher)) {
+                response = responseReceived.getResponse().getStatus();
+                logger.info("response logged: " + response);
+            }
+        });
+    }
+
+    @SuppressWarnings("resource")
+    public void interceptNetworkRequests(String matcher) {
+        logger.info("listening to API responses for API matching with: " + matcher);
+        NetworkInterceptor networkInterceptor = new NetworkInterceptor(
+                webDriver,
+                (Filter)
+                    next ->
+                        req -> {
+                        if (req.getUri().contains(matcher)) {
+                            response = next.execute(req).getStatus();
+                        }
+                        return next.execute(req);
+                }
+        );
+    }
+
 
 }

@@ -77,10 +77,12 @@ public class AppointmentsPage extends BasePage {
     }
 
     public void clickOnSaveButton() {
+        Browser.waitForElementToBeVisible(By.xpath("//div[@class='modal-footer']/button[@class='btn btn-primary']"));
+        Browser.waitForElementToBeClickable(By.xpath("//div[@class='modal-footer']/button[@class='btn btn-primary']"));
         WebElement saveButton = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='modal-footer']/button[@class='btn btn-primary']"));
         Browser.scrollToVisibleElement(saveButton);
-        Browser.waitForElementToBeClickable(saveButton);
         Browser.clickOnElementUsingJavascript(saveButton);
+        Browser.waitForPageReady();
     }
 
     public void clickOnSettingSaveButton() {
@@ -88,6 +90,14 @@ public class AppointmentsPage extends BasePage {
         Browser.scrollToVisibleElement(saveButton);
         Browser.clickOnElementUsingJavascript(saveButton);
     }
+
+    public void validateToastNotification() {
+        Browser.waitForElementToBeVisible(By.xpath("//div[@class='react-toast-notifications__toast__content css-1ad3zal']"));
+        WebElement successMessage = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='react-toast-notifications__toast__content css-1ad3zal']"));
+        String successMsg = "Successfully updated settings.";
+        Assert.assertEquals("Successfully updated settings.", successMsg, successMessage.getText());
+    }
+
 
     public void clickOnSetupCreditCard() {
         Browser.waitForElementToBeVisible(By.xpath("//button[text()='Setup Credit Card Collection']"));
@@ -97,6 +107,8 @@ public class AppointmentsPage extends BasePage {
     }
 
     public void clickOnEnableCreditCard() {
+        Browser.waitForElementToBeVisible(By.xpath("//h3[text()='Credit Card Setup']"));
+        Browser.waitForPresenceOfElement(By.xpath("//input[@id='card-setup-toggle']"));
         WebElement enableCreditCard = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@id='card-setup-toggle']"));
         Browser.waitForElementToBeVisible(enableCreditCard.findElement(By.xpath("./..")));
         Browser.scrollToVisibleElement(enableCreditCard);
@@ -106,6 +118,8 @@ public class AppointmentsPage extends BasePage {
     }
 
     public void clickOnDisableCreditCard() {
+        Browser.waitForElementToBeVisible(By.xpath("//h3[text()='Credit Card Setup']"));
+        Browser.waitForPresenceOfElement(By.xpath("//input[@id='card-setup-toggle']"));
         WebElement enableCreditCard = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@id='card-setup-toggle']"));
         Browser.waitForElementToBeVisible(enableCreditCard.findElement(By.xpath("./..")));
         Browser.scrollToVisibleElement(enableCreditCard);
@@ -119,10 +133,12 @@ public class AppointmentsPage extends BasePage {
         WebElement providerEditButton = DriverManager.getInstance().Driver.findElement(By.xpath("(//button[@class='btn btn-sm'and contains(text(),'Edit')])[1]"));
         Browser.scrollToVisibleElement(providerEditButton);
         Browser.clickOnElementUsingJavascript(providerEditButton);
+        Browser.waitForElementToBeVisible(By.xpath("//div[@class='row']//label[text()='Blocked Out Times']"));
     }
 
     public void verifyBlockOutTimes() {
-        Browser.waitForElementToBeClickable(By.xpath("//label[text()='Blocked Out Times']"));
+        Browser.waitForPresenceOfElement(By.xpath("//input[@id='availability-1']"));
+        Browser.waitForElementToBeVisible(By.xpath("//div[@class='row']//label[text()='Blocked Out Times']"));
         WebElement blockOutTimes = DriverManager.getInstance().Driver.findElement(By.xpath("//label[text()='Blocked Out Times']"));
         Assert.assertTrue("Verify block-out times is not displayed", blockOutTimes.isDisplayed());
     }
@@ -232,9 +248,11 @@ public class AppointmentsPage extends BasePage {
     }
 
     public void select15MinCheckbox() {
+        Browser.waitForPresenceOfElement(By.xpath("//span[text()='15 Minutes']"));
         Browser.waitForElementToBeVisible(By.xpath("//span[text()='15 Minutes']"));
         WebElement select15MinCheckbox = DriverManager.getInstance().Driver.findElement(By.xpath("//span[text()='15 Minutes']"));
-        Browser.clickOnElement(select15MinCheckbox);
+        Browser.scrollToVisibleElement(select15MinCheckbox);
+        Browser.clickOnElementUsingJavascript(select15MinCheckbox);
     }
 
     public void clickOnExistingPatient() {
@@ -247,9 +265,10 @@ public class AppointmentsPage extends BasePage {
                 i++;
             } else {
                 WebElement colElement = row.findElement(By.xpath(".//td[7]"));
+                WebElement patientName = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tr[3]//td[7]"));
                 String colName = "Existing";
                 if (Browser.getTextFromElement(colElement).equals(colName)) {
-                    Browser.clickOnElement(colElement);
+                    Browser.clickOnElement(patientName);
                     break;
                 }
             }
@@ -265,9 +284,10 @@ public class AppointmentsPage extends BasePage {
             } else {
                 WebElement colElement = row.findElement(By.xpath(".//td[7]"));
                 WebElement clickColElement = row.findElement(By.xpath(".//td[2]"));
+                WebElement patientName = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tr[2]//td[2]"));
                 String colName = "Existing";
                 if (Browser.getTextFromElement(colElement).equals(colName)) {
-                    Browser.clickOnElement(colElement);
+                    Browser.clickOnElement(patientName);
                     break;
                 }
             }
@@ -275,8 +295,9 @@ public class AppointmentsPage extends BasePage {
     }
 
     public void clickOnSortTableButton() {
+        Browser.waitForElementToBeVisible(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tr[1]/th[3]"));
         WebElement sortProvider = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tr[1]/th[3]"));
-        Browser.clickOnElement(sortProvider);
+        Browser.clickOnElementUsingJavascript(sortProvider);
     }
 
     public void enterPatientNameInSearchBox(String patientName) {
@@ -304,7 +325,7 @@ public class AppointmentsPage extends BasePage {
         WebElement providerTimeAvailabilityCheckBox = DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Provider Time Availability')]/input[@type='checkbox']"));
         Browser.scrollToVisibleElement(providerTimeAvailabilityCheckBox);
         if (!providerTimeAvailabilityCheckBox.isSelected()) {
-            Browser.clickOnElement(providerTimeAvailabilityCheckBox);
+            Browser.clickOnElementUsingJavascript(providerTimeAvailabilityCheckBox);
         }
         Assert.assertTrue("Provider Time Availability is not selected", providerTimeAvailabilityCheckBox.isSelected());
     }
@@ -365,7 +386,7 @@ public class AppointmentsPage extends BasePage {
         WebElement clusterAppointmentsCheckBox = DriverManager.getInstance().Driver.findElement(By.xpath("//label[contains(text(),'Cluster Appointments')]/input[@type='checkbox']"));
         Browser.scrollToVisibleElement(clusterAppointmentsCheckBox);
         if (!clusterAppointmentsCheckBox.isSelected()) {
-            Browser.clickOnElement(clusterAppointmentsCheckBox);
+            Browser.clickOnElementUsingJavascript(clusterAppointmentsCheckBox);
         }
         Assert.assertTrue("Cluster Appointments checkbox is not selected", clusterAppointmentsCheckBox.isSelected());
     }

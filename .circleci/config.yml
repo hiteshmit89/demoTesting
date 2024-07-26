@@ -9,10 +9,12 @@ jobs:
       - image: cimg/openjdk:21.0.2-browsers
     parallelism: 1
     environment:
-      TAGS: "@FormsPreviewFeature or @AppointmentsFeature or @PatientPortal"
+      TAGS: "(@FormsPreviewFeature or @AppointmentsFeature or @PatientPortal) and (not @In-Progress)"
       endpoint: "QA1"
     steps:
-      - browser-tools/install-chrome
+      - browser-tools/install-browser-tools:
+          chrome-version: latest
+          replace-existing-chrome: true
       - browser-tools/install-chromedriver
       - checkout
       - run:
@@ -43,10 +45,12 @@ jobs:
       - image: cimg/openjdk:21.0.2-browsers
     parallelism: 1
     environment:
-      TAGS: "@PatientWindow or @PatientWindowTask or @AdyenFeature or @PaymentTable"
+      TAGS: "(@PatientWindow or @PatientWindowTask or @AdyenFeature or @PaymentTable) and (not @In-Progress)"
       endpoint: "QA1"
     steps:
-      - browser-tools/install-chrome
+      - browser-tools/install-browser-tools:
+          chrome-version: latest
+          replace-existing-chrome: true
       - browser-tools/install-chromedriver
       - checkout
       - run:
@@ -77,10 +81,12 @@ jobs:
       - image: cimg/openjdk:21.0.2-browsers
     parallelism: 1
     environment:
-      TAGS: "@AdyenTransaction or @CardFailure or @PaymentModal or @PaymentFeature"
+      TAGS: "(@AdyenTransaction or @CardFailure or @PaymentModal or @PaymentFeature) and (not @In-Progress)"
       endpoint: "QA1"
     steps:
-      - browser-tools/install-chrome
+      - browser-tools/install-browser-tools:
+          chrome-version: latest
+          replace-existing-chrome: true
       - browser-tools/install-chromedriver
       - checkout
       - run:
@@ -111,10 +117,12 @@ jobs:
       - image: cimg/openjdk:21.0.2-browsers
     parallelism: 1
     environment:
-      TAGS: "@AdyenWidgets or @CampaignsFeature or @HomeFeature or @LoginFeature or @RevenueIQ"
+      TAGS: "(@AdyenWidgets or @CampaignsFeature or @HomeFeature or @LoginFeature or @RevenueIQ) and (not @In-Progress)"
       endpoint: "QA1"
     steps:
-      - browser-tools/install-chrome
+      - browser-tools/install-browser-tools:
+          chrome-version: latest
+          replace-existing-chrome: true
       - browser-tools/install-chromedriver
       - checkout
       - run:
