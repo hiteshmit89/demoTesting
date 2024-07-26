@@ -1,5 +1,5 @@
 @PaymentModal @pbnAll
-Feature:  When I want to charge or request payment from a patient via Webapp, I want to see a CTA which I can easily so that I do need to take the multiple & different steps
+Feature: ChargeNowFeature
 
   @PRAC-T3718 @PUA-71
   Scenario: Verify user is able to see charge now screen when click on Charge CTA floating button
