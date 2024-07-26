@@ -9,11 +9,7 @@ jobs:
       - image: cimg/openjdk:21.0.2-browsers
     parallelism: 1
     environment:
-<<<<<<< HEAD
-      TAGS: "@FormsPreviewFeature or @AppointmentsFeature or @PatientPortal and not @In-Progress"
-=======
       TAGS: "(@FormsPreviewFeature or @AppointmentsFeature or @PatientPortal) and (not @In-Progress)"
->>>>>>> a3489954fe191b65f2a211fb55a86873f0fc77ca
       endpoint: "QA1"
     steps:
       - browser-tools/install-browser-tools:
@@ -49,11 +45,7 @@ jobs:
       - image: cimg/openjdk:21.0.2-browsers
     parallelism: 1
     environment:
-<<<<<<< HEAD
-      TAGS: "@PatientWindow or @PatientWindowTask or @AdyenFeature or @PaymentTable and not @In-Progress"
-=======
       TAGS: "(@PatientWindow or @PatientWindowTask or @AdyenFeature or @PaymentTable) and (not @In-Progress)"
->>>>>>> a3489954fe191b65f2a211fb55a86873f0fc77ca
       endpoint: "QA1"
     steps:
       - browser-tools/install-browser-tools:
@@ -89,11 +81,7 @@ jobs:
       - image: cimg/openjdk:21.0.2-browsers
     parallelism: 1
     environment:
-<<<<<<< HEAD
-      TAGS: "@AdyenTransaction or @CardFailure or @PaymentModal or @PaymentFeature and not @In-Progress"
-=======
       TAGS: "(@AdyenTransaction or @CardFailure or @PaymentModal or @PaymentFeature) and (not @In-Progress)"
->>>>>>> a3489954fe191b65f2a211fb55a86873f0fc77ca
       endpoint: "QA1"
     steps:
       - browser-tools/install-browser-tools:
@@ -129,11 +117,7 @@ jobs:
       - image: cimg/openjdk:21.0.2-browsers
     parallelism: 1
     environment:
-<<<<<<< HEAD
-      TAGS: "@AdyenWidgets or @CampaignsFeature or @HomeFeature or @LoginFeature or @RevenueIQ and not @In-Progress"
-=======
       TAGS: "(@AdyenWidgets or @CampaignsFeature or @HomeFeature or @LoginFeature or @RevenueIQ) and (not @In-Progress)"
->>>>>>> a3489954fe191b65f2a211fb55a86873f0fc77ca
       endpoint: "QA1"
     steps:
       - browser-tools/install-browser-tools:
