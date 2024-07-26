@@ -281,6 +281,8 @@ public class AppointmentsStepdefinition {
         PbNUIApp.appointmentsPage().clickOnProviderEditButton();
         PbNUIApp.appointmentsPage().verifyMondayBlockOutDay();
         PbNUIApp.appointmentsPage().clickOnSubmitButton();
+        PbNUIApp.appointmentsPage().clickOnSettingSaveButton();
+        PbNUIApp.appointmentsPage().validateToastNotification();
         PbNUIApp.appointmentsPage().clickOnWidgets();
         PbNUIApp.appointmentsPage().createAppointmentURLAndNavigate();
         PbNUIApp.appointmentBookingPage().verifySelectionAndClickOnPickLocation();

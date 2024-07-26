@@ -488,6 +488,10 @@ public class AppointmentsPage extends BasePage {
         if (mondayBlockOutDay.isSelected()) {
             Browser.clickOnElementUsingJavascript(mondayBlockOutDay);
         }
+        WebElement wednesdayBlockOutDay = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@id='availability-3']"));
+        if (wednesdayBlockOutDay.isSelected()) {
+            Browser.clickOnElementUsingJavascript(wednesdayBlockOutDay);
+        }
     }
 
     public void clickOnSubmitButton() {
