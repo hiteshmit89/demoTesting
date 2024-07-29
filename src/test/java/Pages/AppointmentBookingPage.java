@@ -159,7 +159,7 @@ public class AppointmentBookingPage extends BasePage {
         Browser.waitForElementToBeVisible(By.xpath("//span[@class='MuiButton-label' and contains(text(),'Next')]"));
         WebElement nextButton = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='MuiButton-label' and contains(text(),'Next')]"));
         Browser.scrollToVisibleElement(nextButton);
-        Browser.clickOnElementUsingJavascript(nextButton);
+        Browser.clickOnElement(nextButton);
     }
 
     public void enterBirthDateOnInsurancePage(String birthDateData) {

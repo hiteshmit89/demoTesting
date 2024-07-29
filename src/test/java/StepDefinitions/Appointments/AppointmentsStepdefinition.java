@@ -189,7 +189,7 @@ public class AppointmentsStepdefinition {
         PbNUIApp.appointmentBookingPage().verifyCreditCardPage();
         PBNModals.collectPaymentModal().enterCardDetails();
         PbNUIApp.appointmentBookingPage().clickOnNextButton();
-        PbNUIApp.appointmentBookingPage().enterBirthDateOnInsurancePage(PbNUIApp.userdata().getBirthDate(1,"3"));
+        PbNUIApp.appointmentBookingPage().enterBirthDateOnInsurancePage(PbNUIApp.userdata().getBirthDate(1,"4"));
     }
 
     @Then("I will not be able to proceed to the next page if the insurance holder age is not less than Eighteen years.")

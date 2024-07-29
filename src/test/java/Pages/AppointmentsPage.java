@@ -164,8 +164,8 @@ public class AppointmentsPage extends BasePage {
     }
 
     public void verifyAppointmentList() {
-        WebElement appointmentList = DriverManager.getInstance().Driver.findElement(By.xpath("(//tr[@class='pointer'])[1]"));
-        Assert.assertTrue("Appointment List is not displayed", appointmentList.isDisplayed());
+        List <WebElement> appointmentList = DriverManager.getInstance().Driver.findElements(By.xpath("(//tr[@class='pointer'])"));
+        Assert.assertTrue("Appointment List is not displayed", appointmentList.getFirst().isDisplayed());
     }
 
     public void clickOnProviderAdvanceSettingButton() {
@@ -277,6 +277,8 @@ public class AppointmentsPage extends BasePage {
     }
 
     public void clickOnExistingPatientInformation() {
+        WebElement appointmentTable = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='react-bootstrap-table table-responsive']"));
+        Browser.waitForTableToLoad(appointmentTable);
         List<WebElement> rowElements = DriverManager.getInstance().Driver.findElements(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tr"));
         int i = 0;
         for (WebElement row : rowElements) {
