@@ -139,7 +139,7 @@ public class AppointmentsPage extends BasePage {
 
     public void verifyBlockOutTimes() {
         Browser.waitForPresenceOfElement(By.xpath("//input[@id='availability-1']"));
-        Browser.waitForElementToBeVisible(By.xpath("//div[@class='row']//label[text()='Blocked Out Times']"));
+        //Browser.waitForElementToBeVisible(By.xpath("//div[@class='row']//label[text()='Blocked Out Times']"));
         WebElement blockOutTimes = DriverManager.getInstance().Driver.findElement(By.xpath("//label[text()='Blocked Out Times']"));
         Assert.assertTrue("Verify block-out times is not displayed", blockOutTimes.isDisplayed());
     }
