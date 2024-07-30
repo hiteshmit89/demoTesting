@@ -123,6 +123,7 @@ public class AppointmentBookingPage extends BasePage {
     }
 
     public void enterFirstName(String firstNameData) {
+        Browser.waitForElementToBeVisible(By.xpath("//div[@class='patient-form-title']"));
         Browser.waitForElementToBeVisible(By.xpath("//input[@placeholder='Patient First Name']"));
         WebElement firstNameID = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@placeholder='Patient First Name']"));
         Browser.enterTextInEditBox(firstNameID, firstNameData);
@@ -158,7 +159,7 @@ public class AppointmentBookingPage extends BasePage {
         Browser.waitForElementToBeVisible(By.xpath("//span[@class='MuiButton-label' and contains(text(),'Next')]"));
         WebElement nextButton = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='MuiButton-label' and contains(text(),'Next')]"));
         Browser.scrollToVisibleElement(nextButton);
-        Browser.clickOnElementUsingJavascript(nextButton);
+        Browser.clickOnElement(nextButton);
     }
 
     public void enterBirthDateOnInsurancePage(String birthDateData) {
@@ -169,7 +170,7 @@ public class AppointmentBookingPage extends BasePage {
         WebElement calender = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='MuiButtonBase-root MuiIconButton-root']"));
         Browser.clickOnElement(calender);
         WebElement dateCalender = DriverManager.getInstance().Driver.findElement(By.xpath("//p[@class='MuiTypography-root MuiTypography-body2 MuiTypography-colorInherit' and text()='15']"));
-        Browser.clickOnElement(dateCalender);
+        Browser.clickOnElementUsingJavascript(dateCalender);
     }
 
     public void clickOnIDoNotHaveInsurance() {
@@ -278,5 +279,14 @@ public class AppointmentBookingPage extends BasePage {
         Assert.assertTrue("Exam Type button is displayed", examTypeButton.isDisplayed());
         WebElement examTypeText = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='panel-header-text' and text()='What would you like to be seen for?']"));
         Assert.assertTrue("What would you like to be seen for?", examTypeText.isDisplayed());
+    }
+
+    public void verifyBlockedDayOnAppointmentAvailabilityPage() {
+        Browser.waitForElementToBeVisible(By.xpath("(//button[@class='MuiButtonBase-root MuiIconButton-root'])[2]"));
+        Browser.waitForPresenceOfElement(By.xpath("//table[@class='timeslots-table']/tbody/tr[1]/td[2]"));
+        WebElement dayData = DriverManager.getInstance().Driver.findElement(By.xpath("//table[@class='timeslots-table']/tbody/tr[1]/td[2]"));
+        String textMonday = dayData.getAttribute("innerHTML");
+        String verifyText = "";
+        Assert.assertEquals("There is no Blocked Day on Appointment Availability Page", verifyText, textMonday);
     }
 }

@@ -9,6 +9,7 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import java.util.Calendar;
 import java.util.List;
 
 public class AppointmentsPage extends BasePage {
@@ -133,14 +134,13 @@ public class AppointmentsPage extends BasePage {
         WebElement providerEditButton = DriverManager.getInstance().Driver.findElement(By.xpath("(//button[@class='btn btn-sm'and contains(text(),'Edit')])[1]"));
         Browser.scrollToVisibleElement(providerEditButton);
         Browser.clickOnElementUsingJavascript(providerEditButton);
-        Browser.waitForElementToBeVisible(By.xpath("//div[@class='row']//label[text()='Blocked Out Times']"));
+        //Browser.waitForElementToBeVisible(By.xpath("//div[@class='row']//label[text()='Blocked Out Times']"));
     }
 
     public void verifyBlockOutTimes() {
         Browser.waitForPresenceOfElement(By.xpath("//input[@id='availability-1']"));
-        Browser.waitForElementToBeVisible(By.xpath("//div[@class='row']//label[text()='Blocked Out Times']"));
-        WebElement blockOutTimes = DriverManager.getInstance().Driver.findElement(By.xpath("//label[text()='Blocked Out Times']"));
-        Assert.assertTrue("Verify block-out times is not displayed", blockOutTimes.isDisplayed());
+        WebElement blockOutTimes = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@id='availability-1']"));
+        Assert.assertTrue("Verify block-out times is not displayed", blockOutTimes.isEnabled());
     }
 
     public void enterStartDate1(String startDateData) {
@@ -163,8 +163,8 @@ public class AppointmentsPage extends BasePage {
     }
 
     public void verifyAppointmentList() {
-        WebElement appointmentList = DriverManager.getInstance().Driver.findElement(By.xpath("(//tr[@class='pointer'])[1]"));
-        Assert.assertTrue("Appointment List is not displayed", appointmentList.isDisplayed());
+        List <WebElement> appointmentList = DriverManager.getInstance().Driver.findElements(By.xpath("(//tr[@class='pointer'])"));
+        Assert.assertTrue("Appointment List is not displayed", appointmentList.getFirst().isDisplayed());
     }
 
     public void clickOnProviderAdvanceSettingButton() {
@@ -263,35 +263,24 @@ public class AppointmentsPage extends BasePage {
         for (WebElement row : rowElements) {
             if (i == 0) {
                 i++;
-            } else {
-                WebElement colElement = row.findElement(By.xpath(".//td[7]"));
-                WebElement patientName = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tr[3]//td[7]"));
-                String colName = "Existing";
-                if (Browser.getTextFromElement(colElement).equals(colName)) {
-                    Browser.clickOnElement(patientName);
-                    break;
-                }
             }
         }
+        WebElement patientName = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tr[3]//td[7]"));
+        Browser.clickOnElement(patientName);
     }
 
     public void clickOnExistingPatientInformation() {
+        WebElement appointmentTable = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='react-bootstrap-table table-responsive']"));
+        Browser.waitForTableToLoad(appointmentTable);
         List<WebElement> rowElements = DriverManager.getInstance().Driver.findElements(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tr"));
         int i = 0;
         for (WebElement row : rowElements) {
             if (i == 0) {
                 i++;
-            } else {
-                WebElement colElement = row.findElement(By.xpath(".//td[7]"));
-                WebElement clickColElement = row.findElement(By.xpath(".//td[2]"));
-                WebElement patientName = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tr[2]//td[2]"));
-                String colName = "Existing";
-                if (Browser.getTextFromElement(colElement).equals(colName)) {
-                    Browser.clickOnElement(patientName);
-                    break;
-                }
-            }
+            } 
         }
+        WebElement patientName = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tr[2]//td[2]"));
+        Browser.clickOnElementUsingJavascript(patientName);
     }
 
     public void clickOnSortTableButton() {
@@ -479,5 +468,28 @@ public class AppointmentsPage extends BasePage {
         WebElement appointmentAvailabilityColumnRadioButton15Minutes = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='radio-container-2']//label//input"));
         Browser.scrollToVisibleElement(appointmentAvailabilityColumnRadioButton15Minutes);
         Assert.assertTrue("Appointment Time Interval 15 minutes Radio Button is not displayed", appointmentAvailabilityColumnRadioButton15Minutes.isDisplayed());
+    }
+
+    public void verifyDayBlockOutDay() {
+        Browser.waitForElementToBeClickable(By.xpath("//label[text()='Blocked Out Times']"));
+        Browser.waitForPresenceOfElement(By.xpath("//input[@id='availability-1']"));
+        Calendar calendar = Calendar.getInstance();
+        int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+        dayOfWeek = dayOfWeek -1;
+        WebElement selectedDayBlockOutDay = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@id='availability-" +dayOfWeek+ "']"));
+        if (selectedDayBlockOutDay.isSelected()) {
+            Browser.clickOnElementUsingJavascript(selectedDayBlockOutDay);
+        }
+    }
+
+    public void clickOnSubmitButton() {
+        WebElement submitButton = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='modal-footer']//button[@class='btn btn-primary']"));
+        Browser.scrollToVisibleElement(submitButton);
+        if (submitButton.isEnabled()) {
+            Browser.clickOnElement(submitButton);
+        } else {
+            WebElement closeButton = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='modal-footer']//button[@class='btn btn-default']"));
+            Browser.clickOnElement(closeButton);
+        }
     }
 }
