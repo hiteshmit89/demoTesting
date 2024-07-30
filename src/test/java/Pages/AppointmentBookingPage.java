@@ -104,6 +104,12 @@ public class AppointmentBookingPage extends BasePage {
         enterBirthDate(dob);
     }
 
+    public void verifyAppointmentBookingFormPage() {
+        Browser.waitForElementToBeVisible(By.xpath("//div[@class='patient-form-title' and contains(text(),'Please enter your information')]"));
+        WebElement enterYourInformationPage = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='patient-form-title' and contains(text(),'Please enter your information')]"));
+        Assert.assertTrue("Enter Your Information Page is not visible", enterYourInformationPage.isDisplayed());
+    }
+
     public void fillAppointmentBookingFormForInactivePatient() {
         enterFirstName(PbNUIApp.userdata().getFirstName(1, "3"));
         enterLastName(PbNUIApp.userdata().getLastName(1, "3"));
