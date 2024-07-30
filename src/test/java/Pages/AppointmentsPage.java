@@ -263,14 +263,6 @@ public class AppointmentsPage extends BasePage {
         for (WebElement row : rowElements) {
             if (i == 0) {
                 i++;
-            } else {
-               // WebElement colElement = row.findElement(By.xpath(".//td[7]"));
-              //  WebElement patientName = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tr[3]//td[7]"));
-                String colName = "Existing";
-                //if (Browser.getTextFromElement(colElement).equals(colName)) {
-                  //  Browser.clickOnElement(patientName);
-                 //   break;
-                //}
             }
         }
         WebElement patientName = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tr[3]//td[7]"));
@@ -285,15 +277,7 @@ public class AppointmentsPage extends BasePage {
         for (WebElement row : rowElements) {
             if (i == 0) {
                 i++;
-            } else {
-                WebElement colElement = row.findElement(By.xpath(".//td[7]"));
-                WebElement patientName = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tr[2]//td[2]"));
-                String colName = "Existing";
-                //if (Browser.getTextFromElement(colElement).equals(colName)) {
-                    Browser.clickOnElementUsingJavascript(patientName);
-                //    break;
-               // }
-            }
+            } 
         }
         WebElement patientName = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tr[2]//td[2]"));
         Browser.clickOnElementUsingJavascript(patientName);
