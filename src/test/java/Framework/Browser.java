@@ -4,6 +4,9 @@ import Framework.Constants.Constants.PageTitle;
 import Framework.Util.ConfigManager;
 import Framework.Util.DriverManager;
 import org.openqa.selenium.*;
+import org.openqa.selenium.devtools.Event;
+import org.openqa.selenium.devtools.v127.network.Network;
+import org.openqa.selenium.devtools.v127.network.model.ResponseReceived;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
@@ -11,6 +14,7 @@ import org.openqa.selenium.support.ui.Select;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.time.Duration;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.BooleanSupplier;
 
 import org.openqa.selenium.By;
@@ -247,6 +251,11 @@ public class Browser {
     public static void clickOnElementUsingJavascript(WebElement element) {
         JavascriptExecutor js = (JavascriptExecutor)DriverManager.getInstance().Driver;
         js.executeScript("arguments[0].click();", element);
+    }
+
+    public static void waitForAPIResponse(int response) {
+        retry(() -> DriverManager.getInstance().response == response);
+        DriverManager.getInstance().response = 0;
     }
 
     private static void retry(BooleanSupplier function)

@@ -20,7 +20,6 @@ public class AppointmentsStepdefinition {
         PbNUIApp.appointmentsPage().clickOnSetupCreditCard();
         PbNUIApp.appointmentsPage().clickOnEnableCreditCard();
         PbNUIApp.appointmentsPage().clickOnSaveButton();
-        PbNUIApp.appointmentsPage().clickOnSettingSaveButton();
         PbNUIApp.appointmentsPage().clickOnWidgets();
         PbNUIApp.appointmentsPage().createAppointmentURLAndNavigate();
     }
@@ -39,24 +38,12 @@ public class AppointmentsStepdefinition {
     @Then("I will be able to see credit card page on appointment booking page.")
     public void iWillBeAbleToSeeCreditCardPageOnAppointmentBookingPage() {
         PbNUIApp.appointmentBookingPage().verifyCreditCardPage();
-        Browser.navigateToNewURL(ConfigManager.getInstance().getProperty("URL"));
-        PbNUIApp.appHomePage().clickOnPracticeInPracticeInfoTable(PbNUIApp.userdata().getPracticeName(1));
-        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
-        PbNUIApp.appointmentsPage().clickOnAppointmentSettingTab();
-        PbNUIApp.appointmentsPage().clickOnSetupCreditCard();
-        PbNUIApp.appointmentsPage().clickOnDisableCreditCard();
-        PbNUIApp.appointmentsPage().clickOnSaveButton();
-        PbNUIApp.appointmentsPage().clickOnSettingSaveButton();
     }
 
-    @When("I click on appointments Setting tab and deactivate insurance settings")
-    public void iClickOnAppointmentsSettingTabAndDeactivateInsuranceSettingsAndTryToBookAppointment() {
+    @When("I click on appointments Setting tab and activate insurance settings")
+    public void iClickOnAppointmentsSettingTabAndActivateInsuranceSettingsAndTryToBookAppointment() {
         PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
         PbNUIApp.appointmentsPage().clickOnAppointmentSettingTab();
-        PbNUIApp.appointmentsPage().clickOnSetupInsurance();
-        PbNUIApp.appointmentsPage().clickOnDisableInsurance();
-        PbNUIApp.appointmentsPage().clickOnSaveButton();
-        PbNUIApp.appointmentsPage().clickOnSettingSaveButton();
         PbNUIApp.appointmentsPage().clickOnWidgets();
         PbNUIApp.appointmentsPage().createAppointmentURLAndNavigate();
     }
@@ -72,17 +59,9 @@ public class AppointmentsStepdefinition {
         PbNUIApp.appointmentBookingPage().clickOnNextButton();
     }
 
-    @Then("I will not be able to see insurance page on appointment booking page.")
-    public void iWillNotBeAbleToSeeInsurancePageOnAppointmentBookingPage() {
+    @Then("I will be able to see insurance page on appointment booking page.")
+    public void iWillBeAbleToSeeInsurancePageOnAppointmentBookingPage() {
         PbNUIApp.appointmentBookingPage().verifyInsurancePage();
-        Browser.navigateToNewURL(ConfigManager.getInstance().getProperty("URL"));
-        PbNUIApp.appHomePage().clickOnPracticeInPracticeInfoTable(PbNUIApp.userdata().getPracticeName(1));
-        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
-        PbNUIApp.appointmentsPage().clickOnAppointmentSettingTab();
-        PbNUIApp.appointmentsPage().clickOnSetupInsurance();
-        PbNUIApp.appointmentsPage().clickOnEnableInsurance();
-        PbNUIApp.appointmentsPage().clickOnSaveButton();
-        PbNUIApp.appointmentsPage().clickOnSettingSaveButton();
     }
 
     @When("I click on appointments tab and try to book appointments for inactive patient who has insurance")
@@ -181,6 +160,9 @@ public class AppointmentsStepdefinition {
         PbNUIApp.appointmentBookingPage().fillAppointmentBookingForm();
         PbNUIApp.appointmentBookingPage().clickOnCheckBox();
         PbNUIApp.appointmentBookingPage().clickOnNextButton();
+        PbNUIApp.appointmentBookingPage().verifyCreditCardPage();
+        PBNModals.collectPaymentModal().enterCardDetails();
+        PbNUIApp.appointmentBookingPage().clickOnNextButton();
         PbNUIApp.appointmentBookingPage().clickOnIDoNotHaveInsurance();
         PbNUIApp.appointmentBookingPage().clickOnNextButton();
         PbNUIApp.appointmentBookingPage().clickOnUseCellPhone();
@@ -204,7 +186,10 @@ public class AppointmentsStepdefinition {
         PbNUIApp.appointmentBookingPage().fillAppointmentBookingFormForValidateInsuranceDob();
         PbNUIApp.appointmentBookingPage().clickOnCheckBox();
         PbNUIApp.appointmentBookingPage().clickOnNextButton();
-        PbNUIApp.appointmentBookingPage().enterBirthDateOnInsurancePage(PbNUIApp.userdata().getBirthDate(1,"3"));
+        PbNUIApp.appointmentBookingPage().verifyCreditCardPage();
+        PBNModals.collectPaymentModal().enterCardDetails();
+        PbNUIApp.appointmentBookingPage().clickOnNextButton();
+        PbNUIApp.appointmentBookingPage().enterBirthDateOnInsurancePage(PbNUIApp.userdata().getBirthDate(1,"4"));
     }
 
     @Then("I will not be able to proceed to the next page if the insurance holder age is not less than Eighteen years.")
@@ -260,6 +245,9 @@ public class AppointmentsStepdefinition {
         PbNUIApp.appointmentBookingPage().fillAppointmentBookingForm();
         PbNUIApp.appointmentBookingPage().clickOnCheckBox();
         PbNUIApp.appointmentBookingPage().clickOnNextButton();
+        PbNUIApp.appointmentBookingPage().verifyCreditCardPage();
+        PBNModals.collectPaymentModal().enterCardDetails();
+        PbNUIApp.appointmentBookingPage().clickOnNextButton();
         PbNUIApp.appointmentBookingPage().clickOnIDoNotHaveInsurance();
         PbNUIApp.appointmentBookingPage().clickOnNextButton();
         PbNUIApp.appointmentBookingPage().clickOnUseCellPhone();
@@ -284,5 +272,27 @@ public class AppointmentsStepdefinition {
     @Then("I will be able to see list of Exam type for what Patient like to be seen for")
     public void iWillBeAbleToSeeListOfExamTypeForWhatPatientLikeToBeSeenFor() {
         PbNUIApp.appointmentBookingPage().verifyListOfExamTypeForWhatPatientLikeToBeSeenFor();
+    }
+
+    @When("I click on appointments tab and try to book appointments and navigate to provider page to verify the blocked days and time")
+    public void iClickOnAppointmentsTabAndTryToBookAppointmentsAndNavigateToProviderPageToVerifyTheBlockedDaysAndTime() {
+        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
+        PbNUIApp.appointmentsPage().clickOnAppointmentSettingTab();
+        PbNUIApp.appointmentsPage().clickOnProviderEditButton();
+        PbNUIApp.appointmentsPage().verifyDayBlockOutDay();
+        PbNUIApp.appointmentsPage().clickOnSubmitButton();
+        PbNUIApp.appointmentsPage().clickOnSettingSaveButton();
+        PbNUIApp.appointmentsPage().validateToastNotification();
+        PbNUIApp.appointmentsPage().clickOnWidgets();
+        PbNUIApp.appointmentsPage().createAppointmentURLAndNavigate();
+        PbNUIApp.appointmentBookingPage().verifySelectionAndClickOnPickLocation();
+        PbNUIApp.appointmentBookingPage().clickOnSelectExistingPatient();
+        PbNUIApp.appointmentBookingPage().clickOnEmergencyConsult();
+        PbNUIApp.appointmentBookingPage().clickOnSeeMoreOptions();
+    }
+
+    @Then("I will not be able to see the blocked days and time on provider page during appointment booking")
+    public void iWillNotBeAbleToSeeTheBlockedDaysAndTimeOnProviderPageDuringAppointmentBooking() {
+        PbNUIApp.appointmentBookingPage().verifyBlockedDayOnAppointmentAvailabilityPage();
     }
 }
