@@ -2,6 +2,7 @@ package Pages;
 
 import Framework.Browser;
 import Framework.Constants.Constants.PageTitle;
+import Framework.Root.PbNUIApp;
 import Framework.Util.DriverManager;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -35,6 +36,11 @@ public class AppHomePage extends BasePage {
         if (!found) {
             Assert.fail("Unable to find practice: " +practiceName);
         }
+    }
+
+    public void searchPractice() {
+        WebElement searchBox = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@class='form-control input-sm']"));
+        Browser.enterTextInEditBox(searchBox, PbNUIApp.userdata().getPracticeName(1));
     }
 
     public void verifyWelcomeTextDisplayed() {
