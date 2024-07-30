@@ -22,7 +22,6 @@ public class PaymentsPage extends BasePage {
     }
 
     private final WebElement paymentsTab = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='payment-page-tab-Payments']"));
-    private final WebElement paymentMethodsTab = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='payment-page-tab-Payment Methods']"));
     private final WebElement widgetsTab = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='payment-page-tab-Widgets']"));
 
     String SelectPaginationNumber = "100";
@@ -51,6 +50,8 @@ public class PaymentsPage extends BasePage {
     }
 
     public void clickPaymentsMethodsTab() {
+        Browser.waitForPageReady();
+        WebElement paymentMethodsTab = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='payment-page-tab-Payment Methods']"));
         Browser.clickOnElement(paymentMethodsTab);
     }
 
