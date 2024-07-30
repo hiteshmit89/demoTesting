@@ -341,4 +341,29 @@ public class AppointmentsStepdefinition {
     public void iWillBeAbleToSeeNewPatientAndReturningPatientButtonOnAfterLocationPageDuringAppointmentBooking() {
         PbNUIApp.appointmentBookingPage().verifySelectExistingPatientButtonAndNewPatientButton();
     }
+
+    @When("I click on appointments tab and try to book appointments and navigate to OTP page")
+    public void iClickOnAppointmentsTabAndTryToBookAppointmentsAndNavigateToOTPPage() {
+        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
+        PbNUIApp.appointmentsPage().clickOnWidgets();
+        PbNUIApp.appointmentsPage().createAppointmentURLAndNavigate();
+        PbNUIApp.appointmentBookingPage().verifySelectionAndClickOnPickLocation();
+        PbNUIApp.appointmentBookingPage().clickOnSelectNewPatient();
+        PbNUIApp.appointmentBookingPage().clickOnEmergencyConsult();
+        PbNUIApp.appointmentBookingPage().clickOnEarliest();
+        PbNUIApp.appointmentBookingPage().fillAppointmentBookingForm();
+        PbNUIApp.appointmentBookingPage().clickOnCheckBox();
+        PbNUIApp.appointmentBookingPage().clickOnNextButton();
+        PbNUIApp.appointmentBookingPage().verifyCreditCardPage();
+        PBNModals.collectPaymentModal().enterCardDetails();
+        PbNUIApp.appointmentBookingPage().clickOnNextButton();
+        PbNUIApp.appointmentBookingPage().clickOnIDoNotHaveInsurance();
+        PbNUIApp.appointmentBookingPage().clickOnNextButton();
+    }
+
+    @Then("I will be able to see OTP page during appointment booking")
+    public void iWillBeAbleToSeeOTPPageDuringAppointmentBooking() {
+        PbNUIApp.appointmentBookingPage().verifyUseCellPhone();
+        PbNUIApp.appointmentBookingPage().verifyUseEmail();
+    }
 }
