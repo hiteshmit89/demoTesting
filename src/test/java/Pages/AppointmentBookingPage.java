@@ -182,6 +182,13 @@ public class AppointmentBookingPage extends BasePage {
         Browser.clickOnElement(nextButton);
     }
 
+    public void clickOnNextButtonUsingJavaScript() {
+        Browser.waitForElementToBeVisible(By.xpath("//span[@class='MuiButton-label' and contains(text(),'Next')]"));
+        WebElement nextButton = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='MuiButton-label' and contains(text(),'Next')]"));
+        Browser.scrollToVisibleElement(nextButton);
+        Browser.clickOnElementUsingJavascript(nextButton);
+    }
+
     public void enterBirthDateOnInsurancePage(String birthDateData) {
         Browser.waitForElementToBeVisible(By.xpath("//input[@placeholder='MM-DD-YYYY']"));
         WebElement birthDate = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@placeholder='MM-DD-YYYY']"));
@@ -206,7 +213,7 @@ public class AppointmentBookingPage extends BasePage {
         }
         if (present) {
             Browser.clickOnElementUsingJavascript(iDoNotHaveInsuranceButton);
-            clickOnNextButton();
+            clickOnNextButtonUsingJavaScript();
         }
     }
 

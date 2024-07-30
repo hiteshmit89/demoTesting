@@ -165,7 +165,7 @@ public class AppointmentsStepdefinition {
         PBNModals.collectPaymentModal().enterCardDetails();
         PbNUIApp.appointmentBookingPage().clickOnNextButton();
         PbNUIApp.appointmentBookingPage().clickOnIDoNotHaveInsurance();
-        PbNUIApp.appointmentBookingPage().clickOnNextButton();
+        PbNUIApp.appointmentBookingPage().clickOnNextButtonUsingJavaScript();
         PbNUIApp.appointmentBookingPage().clickOnUseCellPhone();
         PbNUIApp.appointmentBookingPage().enterOTP("1234");
     }
@@ -250,7 +250,7 @@ public class AppointmentsStepdefinition {
         PBNModals.collectPaymentModal().enterCardDetails();
         PbNUIApp.appointmentBookingPage().clickOnNextButton();
         PbNUIApp.appointmentBookingPage().clickOnIDoNotHaveInsurance();
-        PbNUIApp.appointmentBookingPage().clickOnNextButton();
+        PbNUIApp.appointmentBookingPage().clickOnNextButtonUsingJavaScript();
         PbNUIApp.appointmentBookingPage().clickOnUseCellPhone();
         PbNUIApp.appointmentBookingPage().enterOTP("1234");
         PbNUIApp.appointmentBookingPage().clickOnVerifyAndSchedule();
@@ -358,7 +358,7 @@ public class AppointmentsStepdefinition {
         PBNModals.collectPaymentModal().enterCardDetails();
         PbNUIApp.appointmentBookingPage().clickOnNextButton();
         PbNUIApp.appointmentBookingPage().clickOnIDoNotHaveInsurance();
-        PbNUIApp.appointmentBookingPage().clickOnNextButton();
+        PbNUIApp.appointmentBookingPage().clickOnNextButtonUsingJavaScript();
     }
 
     @Then("I will be able to see OTP page during appointment booking")
