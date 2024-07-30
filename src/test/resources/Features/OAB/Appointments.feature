@@ -31,7 +31,7 @@ Feature: Appointments
   Scenario: Verify that I can book an appointment though scheduler
     Given I login to PbN app and select the practice
     When I click on schedule on floating chatbox
-    And I fill add new patient form 
+    And I fill add new patient form
     And I click on create button
     Then I will see success toast notifications
 
@@ -76,3 +76,9 @@ Feature: Appointments
     Given I login to PbN app and select the practice
     When I click on appointments tab and try to book appointments and navigate to provider page to verify the blocked days and time
     Then I will not be able to see the blocked days and time on provider page during appointment booking
+
+  @appointments @PUA-124 @PRAC-T1617
+  Scenario: Verify I can see appointment timing for Earliest date and time on provider page during appointment booking
+    Given I login to PbN app and select the practice
+    When I click on appointments tab and try to book appointments and navigate to provider page to see appointment timing
+    Then I will be able to see appointment timing for Earliest date and time on provider page during appointment booking
