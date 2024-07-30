@@ -493,6 +493,33 @@ public class AppointmentsPage extends BasePage {
         }
     }
 
+    public void clickOnSetupCustomQuestion() {
+        Browser.waitForElementToBeVisible(By.xpath("//button[text()='Setup Custom Questions']"));
+        WebElement setupCustomQuestionsButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[text()='Setup Custom Questions']"));
+        Browser.scrollToVisibleElement(setupCustomQuestionsButton);
+        Browser.clickOnElement(setupCustomQuestionsButton);
+    }
+
+    public void clickOnAddNewCustomQuestion() {
+        Browser.waitForElementToBeVisible(By.xpath("//button[@class='questions-answer-add-button btn btn-default']"));
+        WebElement setupCustomQuestionsAddNewButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='questions-answer-add-button btn btn-default']"));
+        Browser.clickOnElement(setupCustomQuestionsAddNewButton);
+    }
+
+    public void enterTheQuestionTitle() {
+        Browser.waitForElementToBeVisible(By.xpath("//input[@placeholder='Custom Question']"));
+        WebElement customQuestionsEditBox = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@placeholder='Custom Question']"));
+        Browser.enterTextInEditBox(customQuestionsEditBox,"Test Automation Question");
+    }
+
+    public void clickOnSave() {
+        WebElement saveButton = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='modal-footer']//button[@class='btn btn-primary']"));
+        Browser.clickOnElement(saveButton);
+        Browser.waitForElementToBeVisible(By.xpath("//div[@class='text-right number-of-custom-questions col-sm-12']//span[text()='question']"));
+        WebElement questionAddedText = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='text-right number-of-custom-questions col-sm-12']//span[text()='question']"));
+        Assert.assertEquals("1 question added", questionAddedText.getText());
+    }
+
     public void verifyProviderEditButton() {
         Browser.waitForElementToBeVisible(By.xpath("//button[@class='btn btn-sm'and contains(text(),'Edit')]"));
         WebElement providerEditButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='btn btn-sm'and contains(text(),'Edit')]"));

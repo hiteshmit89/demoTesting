@@ -121,6 +121,12 @@ Feature: Appointments Settings
     When I try to navigate to Appointment Availability column on appointment settings page
     Then I will be able to view two options ten Minutes & fifteen minutes under the heading Appointment Time Interval on the Appointment Availability column on the appointment settings page
 
+  @appointments @PUA-134 @PRAC-T4125
+  Scenario: Verify that user can add custom question on appointment settings page
+    Given I login to PbN app and select the practice
+    When I try to add custom question on appointment settings page
+    Then I will be able to add custom question on appointment settings page
+
   @appointments @PUA-123 @PRAC-T1624 @PRAC-T1625
   Scenario: Verify I can verify visibility check of provider on appointment setting page
     Given I login to PbN app and select the practice
