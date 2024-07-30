@@ -264,11 +264,11 @@ public class AppointmentsPage extends BasePage {
             if (i == 0) {
                 i++;
             } else {
-                WebElement colElement = row.findElement(By.xpath(".//td[7]"));
-                WebElement patientName = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tr[3]//td[7]"));
+               // WebElement colElement = row.findElement(By.xpath(".//td[7]"));
+              //  WebElement patientName = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tr[3]//td[7]"));
                 String colName = "Existing";
                 //if (Browser.getTextFromElement(colElement).equals(colName)) {
-                    Browser.clickOnElement(patientName);
+                  //  Browser.clickOnElement(patientName);
                  //   break;
                 //}
             }
