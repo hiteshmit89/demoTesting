@@ -288,6 +288,8 @@ public class PaymentsPage extends BasePage {
         setSelectPagination();
         WebElement container = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@data-testid='wrapper']"));
         Browser.waitForChildToDisappear(container, By.xpath("//div[@class='text-center']"));
+        WebElement table = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tbody"));
+        Browser.waitForTableToLoad(table);
         List<WebElement> patientTableRows = DriverManager.getInstance().Driver.findElements(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tbody//tr"));
         String patientToVerify = PbNUIApp.userdata().getPatientName(2, 1);
         for (WebElement row : patientTableRows) {
