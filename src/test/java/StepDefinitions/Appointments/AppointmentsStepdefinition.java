@@ -328,4 +328,17 @@ public class AppointmentsStepdefinition {
     public void iWillBeAbleToSeeEnterYourInformationPageDuringAppointmentBooking() {
         PbNUIApp.appointmentBookingPage().verifyAppointmentBookingFormPage();
     }
+
+    @When("I click on appointments tab and try to book appointments and navigate to new patient and returning patient button on after location page during appointment booking")
+    public void iClickOnAppointmentsTabAndTryToBookAppointmentsAndNavigateToNewPatientAndReturningPatientButtonOnAfterLocationPageDuringAppointmentBooking() {
+        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
+        PbNUIApp.appointmentsPage().clickOnWidgets();
+        PbNUIApp.appointmentsPage().createAppointmentURLAndNavigate();
+        PbNUIApp.appointmentBookingPage().verifySelectionAndClickOnPickLocation();
+    }
+
+    @Then("I will be able to see new patient and returning patient button on after location page during appointment booking")
+    public void iWillBeAbleToSeeNewPatientAndReturningPatientButtonOnAfterLocationPageDuringAppointmentBooking() {
+        PbNUIApp.appointmentBookingPage().verifySelectExistingPatientButtonAndNewPatientButton();
+    }
 }

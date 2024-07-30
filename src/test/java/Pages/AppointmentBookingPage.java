@@ -309,4 +309,14 @@ public class AppointmentBookingPage extends BasePage {
         String verifyText = "";
         Assert.assertEquals("There is no Blocked Day on Appointment Availability Page", verifyText, textMonday);
     }
+
+    public void verifySelectExistingPatientButtonAndNewPatientButton() {
+        Browser.waitForElementToBeVisible(By.xpath("//button/span[text()='Returning Patient']"));
+        WebElement existingPatientButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button/span[text()='Returning Patient']"));
+        Browser.waitForElementToDisplay(existingPatientButton);
+        Assert.assertTrue("Returning Patient button is displayed", existingPatientButton.isDisplayed());
+        WebElement newPatientButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button/span[text()='New Patient']"));
+        Browser.waitForElementToDisplay(newPatientButton);
+        Assert.assertTrue("New Patient button is displayed", newPatientButton.isDisplayed());
+    }
 }
