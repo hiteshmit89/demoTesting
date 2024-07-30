@@ -43,7 +43,7 @@ public class PaymentCTAStepDefinition {
 
     @And("I am Able to download the payment receipt")
     public void iAmAbleToDownloadThePaymentReceipt() {
-        PBNModals.collectPaymentModal().downloadPaymentReciept();
+        PBNModals.collectPaymentModal().downloadPaymentReceipt();
     }
 
     @And("I select payment method and enter card details with incorrect cvc and verify incorrect cvv error message")

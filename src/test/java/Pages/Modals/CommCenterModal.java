@@ -20,7 +20,7 @@ public class CommCenterModal {
 
     public void enterPatientNameInSearchBox() {
         WebElement searchBox = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='hidden-xs']//div[@class='chat-window float-window fade in']//div[@class='panel panel-default popup-container']/div//input[@placeholder='Search']"));
-        Browser.enterTextInEditBox(searchBox, PbNUIApp.userdata().getPatientName(2, 1));
+        Browser.enterTextInEditBox(searchBox, PbNUIApp.userdata().getPatientName(2, 2));
     }
 
     public void clickOnPatientAvatarThreeDots() {
