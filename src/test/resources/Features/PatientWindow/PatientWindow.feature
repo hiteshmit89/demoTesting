@@ -3,7 +3,10 @@ Feature: Patient Window Feature
 
   @ViewTasks @PUA-7 @PRAC-T3494 @PRAC-T3501
   Scenario Outline: User can create All types of tasks from patient window & ViewTasksList Table Displayed
-    Given I login to PbN app for patient window and select the practice
+    Given I enter credentials
+    When I click login button
+    And I am able to select practice
+    Then I am redirected to home page
     When I click on the patient finder to open Patient Window
     When I create a task "<TaskType>" in patient window
     And I select the View Tasks
@@ -21,56 +24,71 @@ Feature: Patient Window Feature
 
   @PatientForms @PUA-45 @PRAC-T3451
   Scenario Outline: User can send the Forms to any patient and its will reflect in the Pending Forms List
-    Given I login to PbN app for patient window and select the practice
+    Given I enter credentials
+    When I click login button
+    And I am able to select practice
+    Then I am redirected to home page
     When I click on the patient finder to open Patient Window
     And I click on the Forms Tab
     And I click on the Send General and Consent Form Button "<Forms Type>" in patient window
+    And I click on Forms tab in  Patient Overview page
     Then I Verify check list is getting updated in the Pending Forms Section "<Forms Type>" in patient window
     Examples:
-      | Forms Type            |
-      | Dental Insurance Form |
-      | Patient Information   |
+      | Forms Type              |
+      | Clinical Photo Transfer |
 
   @PatientFormsReminder @PUA-50 @PRAC-T975
   Scenario Outline: User can send the Reminder to the patient
-    Given I login to PbN app for patient window and select the practice
+    Given I enter credentials
+    When I click login button
+    And I am able to select practice
+    Then I am redirected to home page
     When I click on the patient finder to open Patient Window
     And I click on the Forms Tab
     And I click on the Send General and Consent Form Button "<Forms Type>" in patient window
+    And I click on Forms tab in  Patient Overview page
     Then I click on the send reminder bell icon "<Forms Type>" in patient window
     Examples:
-      | Forms Type            |
-      | Dental Insurance Form |
-      | Patient Information   |
+      | Forms Type              |
+      | Patient Information     |
 
   @patientFormCancelInvite @PUA-50 @PRAC-T4054
   Scenario Outline: User can cancel form invite from the Pending Forms List
-    Given I login to PbN app for patient window and select the practice
+    Given I enter credentials
+    When I click login button
+    And I am able to select practice
+    Then I am redirected to home page
     When I click on the patient finder to open Patient Window
     And I click on the Forms Tab
     And I click on the Send General and Consent Form Button "<Forms Type>" in patient window
+    And I click on Forms tab in  Patient Overview page
     Then I cancel form Invite from the pending forms list "<Forms Type>" in patient window
     Examples:
-      | Forms Type            |
-      | Dental Insurance Form |
-      | Patient Information   |
+      | Forms Type              |
+      | Patient Information     |
 
   @patientFormsManuallySubmitted @PUA-50 @PRAC-T4055
   Scenario Outline: User can manually complete the forms from the Pending Forms List
-    Given I login to PbN app for patient window and select the practice
+    Given I enter credentials
+    When I click login button
+    And I am able to select practice
+    Then I am redirected to home page
     When I click on the patient finder to open Patient Window
     And I click on the Forms Tab
     And I click on the Send General and Consent Form Button "<Forms Type>" in patient window
+    And I click on Forms tab in  Patient Overview page
     And I Select the Form and Mark as submitted manually from the Pending Form List "<Forms Type>" in the patient window
     Then I verify check list is getting updated in the Completed Forms Section "<Forms Type>" in the patient window
     Examples:
-      | Forms Type            |
-      | Dental Insurance Form |
-      | Patient Information   |
+      | Forms Type              |
+      | Patient Information     |
 
   @optedOutPatientList @PRAC-T2492 @PUA-41
   Scenario: Verify that "Opted Out Patient" section is able to see in the Communication
-    Given I login to PbN app for patient window and select the practice
+    Given I enter credentials
+    When I click login button
+    And I am able to select practice
+    Then I am redirected to home page
     When I click on the patient finder to open Patient Window
     And I click in the Details Tab
     And I verify Email and Text Preferences
@@ -81,19 +99,31 @@ Feature: Patient Window Feature
 
   @patientNote @PUA-62 @PRAC-T948
   Scenario: Create Patient Note
-    Given I login to PbN app for patient window and select the practice
+    Given I enter credentials
+    When I click login button
+    And I am able to select practice
+    Then I am redirected to home page
     When I click on the patient finder to open Patient Window
     And I click on the Patient Note
     And I enter the patient note and click on the Add Note Button
     Then I verify patient note in the Activity Tab
 
-
-  @SmsValidation @PUA-67 @PRAC-T3791 @InProgress
-  Scenario Outline: Exclamation mark triangle displayed for invalid SMS numbers
+  @SmsValidation @PUA-67 @PRAC-T3791
+  Scenario Outline: Red color triangle exclamation mark is displayed for invalid SMS numbers
     Given I login to PbN app
     And I click on practice name
     When I search for "<Patient>" and open patient window
-    Then I verify for the SMS number
+    Then I check for the invalid SMS number
+    Examples:
+      | Patient     |
+      | Sally Walker |
+
+  @SmsValidation @PUA-67 @PRAC-T4108
+  Scenario Outline: Green color round check mark displayed for valid numbers
+    Given I login to PbN app
+    And I click on practice name
+    When I search for "<Patient>" and open patient window
+    Then I check for the valid SMS number
     Examples:
       | Patient     |
       | Sally Walker |
