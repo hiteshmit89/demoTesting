@@ -189,7 +189,7 @@ public class AppointmentsStepdefinition {
         PbNUIApp.appointmentBookingPage().verifyCreditCardPage();
         PBNModals.collectPaymentModal().enterCardDetails();
         PbNUIApp.appointmentBookingPage().clickOnNextButton();
-        PbNUIApp.appointmentBookingPage().enterBirthDateOnInsurancePage(PbNUIApp.userdata().getBirthDate(1,"3"));
+        PbNUIApp.appointmentBookingPage().enterBirthDateOnInsurancePage(PbNUIApp.userdata().getBirthDate(1,"4"));
     }
 
     @Then("I will not be able to proceed to the next page if the insurance holder age is not less than Eighteen years.")
@@ -272,5 +272,27 @@ public class AppointmentsStepdefinition {
     @Then("I will be able to see list of Exam type for what Patient like to be seen for")
     public void iWillBeAbleToSeeListOfExamTypeForWhatPatientLikeToBeSeenFor() {
         PbNUIApp.appointmentBookingPage().verifyListOfExamTypeForWhatPatientLikeToBeSeenFor();
+    }
+
+    @When("I click on appointments tab and try to book appointments and navigate to provider page to verify the blocked days and time")
+    public void iClickOnAppointmentsTabAndTryToBookAppointmentsAndNavigateToProviderPageToVerifyTheBlockedDaysAndTime() {
+        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
+        PbNUIApp.appointmentsPage().clickOnAppointmentSettingTab();
+        PbNUIApp.appointmentsPage().clickOnProviderEditButton();
+        PbNUIApp.appointmentsPage().verifyDayBlockOutDay();
+        PbNUIApp.appointmentsPage().clickOnSubmitButton();
+        PbNUIApp.appointmentsPage().clickOnSettingSaveButton();
+        PbNUIApp.appointmentsPage().validateToastNotification();
+        PbNUIApp.appointmentsPage().clickOnWidgets();
+        PbNUIApp.appointmentsPage().createAppointmentURLAndNavigate();
+        PbNUIApp.appointmentBookingPage().verifySelectionAndClickOnPickLocation();
+        PbNUIApp.appointmentBookingPage().clickOnSelectExistingPatient();
+        PbNUIApp.appointmentBookingPage().clickOnEmergencyConsult();
+        PbNUIApp.appointmentBookingPage().clickOnSeeMoreOptions();
+    }
+
+    @Then("I will not be able to see the blocked days and time on provider page during appointment booking")
+    public void iWillNotBeAbleToSeeTheBlockedDaysAndTimeOnProviderPageDuringAppointmentBooking() {
+        PbNUIApp.appointmentBookingPage().verifyBlockedDayOnAppointmentAvailabilityPage();
     }
 }

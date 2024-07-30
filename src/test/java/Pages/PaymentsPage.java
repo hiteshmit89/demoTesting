@@ -22,7 +22,6 @@ public class PaymentsPage extends BasePage {
     }
 
     private final WebElement paymentsTab = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='payment-page-tab-Payments']"));
-    private final WebElement paymentMethodsTab = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='payment-page-tab-Payment Methods']"));
     private final WebElement widgetsTab = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='payment-page-tab-Widgets']"));
 
     String SelectPaginationNumber = "100";
@@ -51,6 +50,8 @@ public class PaymentsPage extends BasePage {
     }
 
     public void clickPaymentsMethodsTab() {
+        Browser.waitForPageReady();
+        WebElement paymentMethodsTab = DriverManager.getInstance().Driver.findElement(By.xpath("//a[@id='payment-page-tab-Payment Methods']"));
         Browser.clickOnElement(paymentMethodsTab);
     }
 
@@ -288,6 +289,8 @@ public class PaymentsPage extends BasePage {
         setSelectPagination();
         WebElement container = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@data-testid='wrapper']"));
         Browser.waitForChildToDisappear(container, By.xpath("//div[@class='text-center']"));
+        WebElement table = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tbody"));
+        Browser.waitForTableToLoad(table);
         List<WebElement> patientTableRows = DriverManager.getInstance().Driver.findElements(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tbody//tr"));
         String patientToVerify = PbNUIApp.userdata().getPatientName(2, 1);
         for (WebElement row : patientTableRows) {
