@@ -77,6 +77,12 @@ Feature: Appointments
     When I click on appointments tab and try to book appointments and navigate to provider page to verify the blocked days and time
     Then I will not be able to see the blocked days and time on provider page during appointment booking
 
+  @appointments @PUA-124 @PRAC-T1617
+  Scenario: Verify I can see appointment timing for Earliest date and time on provider page during appointment booking
+    Given I login to PbN app and select the practice
+    When I click on appointments tab and try to book appointments and navigate to provider page to see appointment timing
+    Then I will be able to see appointment timing for Earliest date and time on provider page during appointment booking
+
   @appointments @PUA-125 @PRAC-T1618
   Scenario: Verify I can see enter your information page during appointment booking
     Given I login to PbN app and select the practice
