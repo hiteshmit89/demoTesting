@@ -19,15 +19,16 @@ public class CampaignsPage extends BasePage {
     private final WebElement customCampaignsHeading = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@id='Communication']//li/a[contains(text(),'Custom Campaigns')]"));
     private final WebElement emailTemplatesHeading = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@id='Communication']//li/a[contains(text(),'Email Templates')]"));
     private final WebElement smsTemplatesHeading = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@id='Communication']//li/a[contains(text(),'SMS Templates')]"));
-    private final WebElement reviewReplyTemplatesHeading = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@id='Communication']//li/a[contains(text(),'Review Reply Templates')]"));
     private final List<WebElement> patientFollowUpTable = DriverManager.getInstance().Driver.findElements(By.xpath("//*[@id='root']//table"));
 
     public void verifyCampaignsHeadingDisplayedOnCampaignsPage() {
-        Browser.waitForElementToBeVisible(reviewReplyTemplatesHeading);
         Assert.assertTrue("Follow up Campaigns heading is not visible on campaigns page.", followUpCampaignsHeading.isDisplayed());
         Assert.assertTrue("Custom Campaigns heading is not visible on campaigns page.", customCampaignsHeading.isDisplayed());
         Assert.assertTrue("Email templates heading is not visible on campaigns page.", emailTemplatesHeading.isDisplayed());
         Assert.assertTrue("SMS templates heading is not visible on campaigns page.", smsTemplatesHeading.isDisplayed());
+        Browser.waitForElementToBeVisible(By.xpath("//div[@id='Communication']//li/a[contains(text(),'Review Reply Templates')]"));
+        Browser.waitForElementToBeClickable(By.xpath("//div[@id='Communication']//li/a[contains(text(),'Review Reply Templates')]"));
+        WebElement reviewReplyTemplatesHeading = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@id='Communication']//li/a[contains(text(),'Review Reply Templates')]"));
         Assert.assertTrue("Review reply templates heading is not visible on campaigns page.", reviewReplyTemplatesHeading.isDisplayed());
     }
 
@@ -64,15 +65,18 @@ public class CampaignsPage extends BasePage {
     public void verifyCampaignsEllipsisActionItems(String campaignName) {
         WebElement campaignEllipsisIcon = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='table-responsive']//td[contains(text(),'"+campaignName+"')]/..//button[contains(@class,'ellipsis')]"));
         Browser.clickOnElement(campaignEllipsisIcon);
-        Browser.waitForElementToBeVisible(By.linkText("Create new from default"));
+        List<WebElement> editOptions = DriverManager.getInstance().Driver.findElements(By.xpath("//div[@class='table-responsive']//td[contains(text(),'Recall Campaign')]/../td[@id]//ul/li"));
+        if (editOptions.size() > 4){
+            Browser.doubleClickOnElement(campaignEllipsisIcon);
+        }
         WebElement editCampaignAction = DriverManager.getInstance().Driver.findElement(By.linkText("Edit"));
-        WebElement createNewCampaignAction = DriverManager.getInstance().Driver.findElement(By.linkText("Create new from default"));
         WebElement duplicateCampaignAction = DriverManager.getInstance().Driver.findElement(By.linkText("Duplicate"));
         WebElement deleteCampaignAction = DriverManager.getInstance().Driver.findElement(By.linkText("Delete"));
         Assert.assertTrue("Edit campaign action item is not visible in campaigns page", editCampaignAction.isDisplayed());
-        Assert.assertTrue("Create new campaign action item is not visible in campaigns page", createNewCampaignAction.isDisplayed());
         Assert.assertTrue("Duplicate campaign action item is not visible in campaigns page", duplicateCampaignAction.isDisplayed());
         Assert.assertTrue("Delete campaign action item is not visible in campaigns page", deleteCampaignAction.isDisplayed());
+        WebElement createNewCampaignAction = DriverManager.getInstance().Driver.findElement(By.linkText("Create new from default"));
+        Assert.assertTrue("Create new campaign action item is not visible in campaigns page", createNewCampaignAction.isDisplayed());
     }
 
     public void clickOnAppointmentRemindersCampaign() {

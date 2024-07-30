@@ -3,6 +3,7 @@ package StepDefinitions.Appointments;
 import Framework.Browser;
 import Framework.Constants.Constants;
 import Framework.Root.PbNUIApp;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
@@ -120,6 +121,7 @@ public class AppointmentsSettingsStepDefinition {
         PbNUIApp.appointmentsPage().clickOnAppointmentListTab();
         PbNUIApp.appointmentsPage().enterStartDate1("01/01/2024");
         PbNUIApp.appointmentsPage().enterStartDate2("01/01/2024");
+        PbNUIApp.appointmentsPage().clickOutsideAppointmentList();
     }
 
     @Then("I will be able to sort columns of Appointment list table on appointment list page")
@@ -233,5 +235,29 @@ public class AppointmentsSettingsStepDefinition {
     @Then("I will be able to verify ten minutes radio button is by default selected when scrolling down to Appointment Availability column on appointment settings page")
     public void iWillBeAbleToVerifyTenMinutesRadioButtonIsByDefaultSelectedWhenScrollingDownToAppointmentAvailabilityColumnOnAppointmentSettingsPage() {
         PbNUIApp.appointmentsPage().appointmentAvailabilityColumnRadioButton();
+    }
+
+    @Then("I will be able to verify user is able to view the Appointment Time Interval option on the Appointment Availability Column in the settings page of the appointment on appointment settings page")
+    public void iWillBeAbleToVerifyUserIsAbleToViewTheAppointmentTimeIntervalOptionOnTheAppointmentAvailabilityColumnInTheSettingsPageOfTheAppointmentOnAppointmentSettingsPage() {
+        PbNUIApp.appointmentsPage().appointmentAvailabilityColumnRadioButtons();
+    }
+
+    @Then("I will be able to view two options ten Minutes & fifteen minutes under the heading Appointment Time Interval on the Appointment Availability column on the appointment settings page")
+    public void iWillBeAbleToViewTwoOptionsTenMinutesFifteenMinutesUnderTheHeadingAppointmentTimeIntervalOnTheAppointmentAvailabilityColumnOnTheAppointmentSettingsPage() {
+        PbNUIApp.appointmentsPage().appointmentAvailabilityColumnRadioButtons1();
+    }
+
+    @When("I try to add custom question on appointment settings page")
+    public void iTryToAddCustomQuestionOnAppointmentSettingsPage() {
+        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
+        PbNUIApp.appointmentsPage().clickOnAppointmentSettingTab();
+        PbNUIApp.appointmentsPage().clickOnSetupCustomQuestion();
+        PbNUIApp.appointmentsPage().clickOnAddNewCustomQuestion();
+        PbNUIApp.appointmentsPage().enterTheQuestionTitle();
+    }
+
+    @Then("I will be able to add custom question on appointment settings page")
+    public void iWillBeAbleToAddCustomQuestionOnAppointmentSettingsPage() {
+        PbNUIApp.appointmentsPage().clickOnSave();
     }
 }
