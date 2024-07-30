@@ -5,7 +5,7 @@ Feature: Appointments Settings
   Scenario: Verify I can see days and block-out times visibility on appointment booking setting page
     Given I login to PbN app and select the practice
     When I click on appointments Setting tab open provider setting
-    Then I will be able to see days and block-out times visibility on appointment boo king setting page
+    Then I will be able to see days and block-out times visibility on appointment booking setting page
 
   @appointments @PUA-27 @PRAC-T1063
   Scenario: Verify I can see appointment list on appointment list page

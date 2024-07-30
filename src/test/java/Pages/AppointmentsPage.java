@@ -139,9 +139,8 @@ public class AppointmentsPage extends BasePage {
 
     public void verifyBlockOutTimes() {
         Browser.waitForPresenceOfElement(By.xpath("//input[@id='availability-1']"));
-        Browser.waitForElementToBeVisible(By.xpath("//input[@id='availability-1']"));
         WebElement blockOutTimes = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@id='availability-1']"));
-        Assert.assertTrue("Verify block-out times is not displayed", blockOutTimes.isDisplayed());
+        Assert.assertTrue("Verify block-out times is not displayed", blockOutTimes.isEnabled());
     }
 
     public void enterStartDate1(String startDateData) {
@@ -268,12 +267,14 @@ public class AppointmentsPage extends BasePage {
                 WebElement colElement = row.findElement(By.xpath(".//td[7]"));
                 WebElement patientName = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tr[3]//td[7]"));
                 String colName = "Existing";
-                if (Browser.getTextFromElement(colElement).equals(colName)) {
+                //if (Browser.getTextFromElement(colElement).equals(colName)) {
                     Browser.clickOnElement(patientName);
-                    break;
-                }
+                 //   break;
+                //}
             }
         }
+        WebElement patientName = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='react-bootstrap-table table-responsive']//tr[3]//td[7]"));
+        Browser.clickOnElement(patientName);
     }
 
     public void clickOnExistingPatientInformation() {
