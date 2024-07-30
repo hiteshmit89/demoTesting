@@ -246,4 +246,18 @@ public class AppointmentsSettingsStepDefinition {
     public void iWillBeAbleToViewTwoOptionsTenMinutesFifteenMinutesUnderTheHeadingAppointmentTimeIntervalOnTheAppointmentAvailabilityColumnOnTheAppointmentSettingsPage() {
         PbNUIApp.appointmentsPage().appointmentAvailabilityColumnRadioButtons1();
     }
+
+    @When("I try to add custom question on appointment settings page")
+    public void iTryToAddCustomQuestionOnAppointmentSettingsPage() {
+        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
+        PbNUIApp.appointmentsPage().clickOnAppointmentSettingTab();
+        PbNUIApp.appointmentsPage().clickOnSetupCustomQuestion();
+        PbNUIApp.appointmentsPage().clickOnAddNewCustomQuestion();
+        PbNUIApp.appointmentsPage().enterTheQuestionTitle();
+    }
+
+    @Then("I will be able to add custom question on appointment settings page")
+    public void iWillBeAbleToAddCustomQuestionOnAppointmentSettingsPage() {
+        PbNUIApp.appointmentsPage().clickOnSave();
+    }
 }
