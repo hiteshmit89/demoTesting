@@ -341,6 +341,9 @@ public class AppointmentsStepdefinition {
         PbNUIApp.appointmentBookingPage().fillAppointmentBookingForm();
         PbNUIApp.appointmentBookingPage().clickOnCheckBox();
         PbNUIApp.appointmentBookingPage().clickOnNextButton();
+        PbNUIApp.appointmentBookingPage().verifyCreditCardPage();
+        PBNModals.collectPaymentModal().enterCardDetails();
+        PbNUIApp.appointmentBookingPage().clickOnNextButton();
         PbNUIApp.appointmentBookingPage().clickOnIDoNotHaveInsurance();
         PbNUIApp.appointmentBookingPage().clickOnNextButton();
     }
