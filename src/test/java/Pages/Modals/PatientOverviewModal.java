@@ -239,7 +239,7 @@ public class PatientOverviewModal {
     public void verifyPatientOptedOutList() {
         Browser.waitForElementToBeVisible(By.xpath("//input[@id='searchLabel']"));
         WebElement searchTextBox = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@id='searchLabel']"));
-        Browser.enterTextInEditBox(searchTextBox, PbNUIApp.userdata().getPatientName(1, 1));
+        Browser.enterTextInEditBox(searchTextBox, PbNUIApp.userdata().getPatientName(2, 1));
         Browser.waitForTableToLoad(DriverManager.getInstance().Driver.findElement(By.xpath("//tbody")));
         List<WebElement> firstName = DriverManager.getInstance().Driver.findElements(By.xpath("//tbody/tr/td[3]"));
         List<WebElement> lastName = DriverManager.getInstance().Driver.findElements(By.xpath("//tbody/tr/td[2]"));
