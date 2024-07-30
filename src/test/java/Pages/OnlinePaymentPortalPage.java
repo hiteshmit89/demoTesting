@@ -87,9 +87,9 @@ public class OnlinePaymentPortalPage extends BasePage {
 
     public void enterCVC(String cardCVC) {
         Browser.waitForFrameToLoad(By.xpath("//iframe[@title='Iframe for security code']"));
-        Browser.waitForElementPresence(By.xpath("//input[@placeholder='3 digits']"));
-        Browser.waitForElementToBeVisible(By.xpath("//input[@placeholder='3 digits']"));
-        WebElement cardCVCID = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@placeholder='3 digits']"));
+        Browser.waitForElementPresence(By.xpath("//input[contains(@placeholder,'digits')]"));
+        Browser.waitForElementToBeVisible(By.xpath("//input[contains(@placeholder,'digits')]"));
+        WebElement cardCVCID = DriverManager.getInstance().Driver.findElement(By.xpath("//input[contains(@placeholder,'digits')]"));
         Browser.enterTextInEditBox(cardCVCID, cardCVC);
         Browser.switchToDefaultContent();
     }
