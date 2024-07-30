@@ -126,3 +126,9 @@ Feature: Appointments Settings
     Given I login to PbN app and select the practice
     When I try to add custom question on appointment settings page
     Then I will be able to add custom question on appointment settings page
+
+  @appointments @PUA-123 @PRAC-T1624 @PRAC-T1625
+  Scenario: Verify I can verify visibility check of provider on appointment setting page
+    Given I login to PbN app and select the practice
+    When I try to verify visibility check of provider on appointment setting page
+    Then I will be able to verify visibility check of provider on appointment setting page with Edit and Delete button

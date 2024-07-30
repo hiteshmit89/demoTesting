@@ -82,6 +82,7 @@ public class AppointmentsPage extends BasePage {
         Browser.waitForElementToBeClickable(By.xpath("//div[@class='modal-footer']/button[@class='btn btn-primary']"));
         WebElement saveButton = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='modal-footer']/button[@class='btn btn-primary']"));
         Browser.scrollToVisibleElement(saveButton);
+        Browser.waitForElementToBeClickable(saveButton);
         Browser.clickOnElementUsingJavascript(saveButton);
         Browser.waitForPageReady();
     }
@@ -517,5 +518,19 @@ public class AppointmentsPage extends BasePage {
         Browser.waitForElementToBeVisible(By.xpath("//div[@class='text-right number-of-custom-questions col-sm-12']//span[text()='question']"));
         WebElement questionAddedText = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='text-right number-of-custom-questions col-sm-12']//span[text()='question']"));
         Assert.assertEquals("1 question added", questionAddedText.getText());
+    }
+
+    public void verifyProviderEditButton() {
+        Browser.waitForElementToBeVisible(By.xpath("//button[@class='btn btn-sm'and contains(text(),'Edit')]"));
+        WebElement providerEditButton = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='btn btn-sm'and contains(text(),'Edit')]"));
+        Browser.scrollToVisibleElement(providerEditButton);
+        Assert.assertTrue("Provider Edit Button is not visible", providerEditButton.isDisplayed());
+    }
+
+    public void verifyProviderDeleteButton() {
+        Browser.waitForElementToBeVisible(By.xpath("//div[@class='text-center provider-settings-action']//button[@class='btn btn-sm btn-danger'and contains(text(),'Delete')]"));
+        WebElement providerDeleteButton = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='text-center provider-settings-action']//button[@class='btn btn-sm btn-danger'and contains(text(),'Delete')]"));
+        Browser.scrollToVisibleElement(providerDeleteButton);
+        Assert.assertTrue("Provider Delete Button is not visible", providerDeleteButton.isDisplayed());
     }
 }

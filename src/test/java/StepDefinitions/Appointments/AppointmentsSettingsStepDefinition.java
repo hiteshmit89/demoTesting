@@ -260,4 +260,16 @@ public class AppointmentsSettingsStepDefinition {
     public void iWillBeAbleToAddCustomQuestionOnAppointmentSettingsPage() {
         PbNUIApp.appointmentsPage().clickOnSave();
     }
+
+    @When("I try to verify visibility check of provider on appointment setting page")
+    public void iTryToVerifyVisibilityCheckOfProviderOnAppointmentSettingPage() {
+        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
+        PbNUIApp.appointmentsPage().clickOnAppointmentSettingTab();
+    }
+
+    @Then("I will be able to verify visibility check of provider on appointment setting page with Edit and Delete button")
+    public void iWillBeAbleToVerifyVisibilityCheckOfProviderOnAppointmentSettingPageWithEditAndDeleteButton() {
+        PbNUIApp.appointmentsPage().verifyProviderEditButton();
+        PbNUIApp.appointmentsPage().verifyProviderDeleteButton();
+    }
 }
