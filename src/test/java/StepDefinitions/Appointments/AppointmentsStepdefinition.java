@@ -117,6 +117,7 @@ public class AppointmentsStepdefinition {
         PBNModals.createAppointmentModal().fillAppointmentBookingDetails();
         PBNModals.createAppointmentModal().selectProvider();
         PBNModals.createAppointmentModal().appointmentType();
+        PBNModals.createAppointmentModal().clickOnCreateButton();
     }
 
     @Then("I will see success toast notifications")
@@ -310,6 +311,22 @@ public class AppointmentsStepdefinition {
     public void iWillBeAbleToSeeAppointmentTimingForEarliestDateAndTimeOnProviderPageDuringAppointmentBooking() {
         PbNUIApp.appointmentBookingPage().verifyEarliestOption();
         PbNUIApp.appointmentBookingPage().verifySeeMoreOptions();
+    }
+
+    @When("I click on appointments tab and try to book appointments and navigate to enter your information page")
+    public void iClickOnAppointmentsTabAndTryToBookAppointmentsAndNavigateToEnterYourInformationPage() {
+        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
+        PbNUIApp.appointmentsPage().clickOnWidgets();
+        PbNUIApp.appointmentsPage().createAppointmentURLAndNavigate();
+        PbNUIApp.appointmentBookingPage().verifySelectionAndClickOnPickLocation();
+        PbNUIApp.appointmentBookingPage().clickOnSelectNewPatient();
+        PbNUIApp.appointmentBookingPage().clickOnEmergencyConsult();
+        PbNUIApp.appointmentBookingPage().clickOnEarliest();
+    }
+
+    @Then("I will be able to see enter your information page during appointment booking")
+    public void iWillBeAbleToSeeEnterYourInformationPageDuringAppointmentBooking() {
+        PbNUIApp.appointmentBookingPage().verifyAppointmentBookingFormPage();
     }
 
     @When("I click on appointments tab and try to book appointments and navigate to new patient and returning patient button on after location page during appointment booking")
