@@ -56,7 +56,7 @@ public class PatientWindowStepDefinition {
 
     @When("I click on the patient finder to open Patient Window")
     public void iClickOnThePatientFinderToOpenPatientWindow() {
-        PbNUIApp.navigator().findAndSelectPatientByExactMatchOf(PbNUIApp.userdata().getPatientName(3,1));
+        PbNUIApp.navigator().findAndSelectPatientByExactMatchOf(PbNUIApp.userdata().getPatientName(2,1));
     }
 
     @And("I click on the Forms Tab")
@@ -66,10 +66,14 @@ public class PatientWindowStepDefinition {
 
     @And("I click on the Send General and Consent Form Button {string} in patient window")
     public void iClickOnTheSendGeneralAndConsentFormButton(String formName) {
-        PBNModals.patientOverviewModal().clickOnGeneralConsentFormsButton(formName);
         PBNModals.patientOverviewModal().clickOnSearchForms(formName);
         PBNModals.patientOverviewModal().checkListOfSelectedForms(formName);
         PBNModals.patientOverviewModal().clickOnFormsSendButton();
+    }
+
+    @And("I click on Forms tab in  Patient Overview page")
+    public void iClickOnFormsTabInPatientOverviewPage() {
+        PBNModals.patientOverviewModal().clickOnFormsTabInOverviewPage();
     }
 
     @Then("I Verify check list is getting updated in the Pending Forms Section {string} in patient window")
@@ -137,8 +141,13 @@ public class PatientWindowStepDefinition {
         PbNUIApp.navigator().findAndSelectPatientByExactMatchOf(string);
     }
 
-    @Then("I verify for the SMS number")
+    @Then("I check for the invalid SMS number")
     public void iVerifyForTheSMSNumber() {
-        PBNModals.patientOverviewModal().validateSmsNumberIcon();
+        PBNModals.patientOverviewModal().validateInvalidSmsNumberIcon();
+    }
+
+    @Then("I check for the valid SMS number")
+    public void iCheckForTheValidSMSNumber() {
+        PBNModals.patientOverviewModal().validateValidSmsNumberIcon();
     }
 }
