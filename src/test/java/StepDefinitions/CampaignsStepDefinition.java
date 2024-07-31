@@ -1,11 +1,14 @@
 package StepDefinitions;
 
+import Framework.Browser;
 import Framework.Constants.Constants;
 import Framework.Root.PbNUIApp;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 
 public class CampaignsStepDefinition {
     @Given("I login to PbN app for campaign")
@@ -45,5 +48,15 @@ public class CampaignsStepDefinition {
     @Then("I will be able to edit and save email template of primary early reminder invalid merge tag notification")
     public void iWillBeAbleToEditAndSaveEmailTemplateOfPrimaryEarlyReminderInvalidMergeTagNotification() {
         PbNUIApp.campaignsPage().verifyErrorToastMessageDisplayed();
+    }
+
+    @And("I activate the {string} campaign")
+    public void iActivateTheCampaign(String campaignName) {
+        PbNUIApp.campaignsPage().activateCampaign(campaignName);
+    }
+
+    @And("I open {string} campaign")
+    public void iOpenCampaign(String campaignName) {
+        PbNUIApp.campaignsPage().openCampaign(campaignName);
     }
 }
