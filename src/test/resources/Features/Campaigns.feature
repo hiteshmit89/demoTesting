@@ -30,3 +30,12 @@ Feature: Campaigns
     When I click on "Campaigns" dropdown option
     And I try to edit and save email template of primary early reminder with invalid merge tag notification
     Then I will be able to edit and save email template of primary early reminder invalid merge tag notification
+
+  @PUA-54 @PRAC-T4334
+  Scenario: : To verify, campaign can be set up and mark as active
+    Given I login to PbN app for campaign
+    And I click on profile dropdown
+    When I click on "Campaigns" dropdown option
+    And I am redirected to the campaigns page
+    And I activate the "Extraction" campaign
+    Then I open "Extraction" campaign

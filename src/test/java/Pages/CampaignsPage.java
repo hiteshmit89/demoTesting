@@ -33,10 +33,15 @@ public class CampaignsPage extends BasePage {
     }
 
     public void verifyFollowUpPageUiFor(String campaignName) {
-        Browser.waitForTableSizeToBe(patientFollowUpTable.getFirst(), 5);
-        Browser.waitForTableSizeToBe(patientFollowUpTable.get(1), 3);
-        Browser.waitForTableSizeToBe(patientFollowUpTable.get(2), 3);
-        Browser.waitForTableSizeToBe(patientFollowUpTable.get(3), 3);
+        switch (campaignName) {
+            case "Cancelled Appointments Campaign", "Failed Appointments Campaign", "Reactivation Campaign", "Preappointment: Next Prophy", "Service Scheduled Campaign", "Preappointments: Perio Maintenance", "Recall Campaign", "Unscheduled Treatment Campaign" ->
+                    Browser.waitForTableSizeToBe(patientFollowUpTable.getFirst(), 5);
+            case "Appointment Reminders Campaign", "Review Request Campaign", "Birthday Wishes" ->
+                    Browser.waitForTableSizeToBe(patientFollowUpTable.get(1), 3);
+            case "Christmas Holiday Greeting", "Custom Holiday Greeting", "New Year Greeting", "Thanksgiving Holiday Greetings" ->
+                    Browser.waitForTableSizeToBe(patientFollowUpTable.get(2), 3);
+            default -> Browser.waitForTableSizeToBe(patientFollowUpTable.get(3), 3);
+        }
         Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='table-responsive']//td[contains(text(),'" + campaignName + "')]")));
         WebElement campaignTitle = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='table-responsive']//td[contains(text(),'" + campaignName + "')]"));
         Browser.scrollToVisibleElement(campaignTitle);
@@ -105,5 +110,46 @@ public class CampaignsPage extends BasePage {
         WebElement errorMessage = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='react-toast-notifications__toast__content css-1ad3zal']"));
         String errorMsg = "Invalid Merge Tag: , {Please confirm your upcoming dental appointment at {{ practice_name }";
         Assert.assertEquals("Invalid Merge Tag Error Message", errorMsg, errorMessage.getText());
+    }
+
+    public void activateCampaign(String campaignName) {
+        switch (campaignName) {
+            case "Cancelled Appointments Campaign", "Failed Appointments Campaign", "Reactivation Campaign", "Preappointment: Next Prophy", "Service Scheduled Campaign", "Preappointments: Perio Maintenance", "Recall Campaign", "Unscheduled Treatment Campaign" ->
+                    Browser.waitForTableSizeToBe(patientFollowUpTable.getFirst(), 5);
+            case "Appointment Reminders Campaign", "Review Request Campaign", "Birthday Wishes" ->
+                    Browser.waitForTableSizeToBe(patientFollowUpTable.get(1), 3);
+            case "Christmas Holiday Greeting", "Custom Holiday Greeting", "New Year Greeting", "Thanksgiving Holiday Greetings" ->
+                    Browser.waitForTableSizeToBe(patientFollowUpTable.get(2), 3);
+            default -> Browser.waitForTableSizeToBe(patientFollowUpTable.get(3), 3);
+        }
+        Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='table-responsive']//td[contains(text(),'" + campaignName + "')]")));
+        WebElement campaignTitle = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='table-responsive']//td[contains(text(),'" + campaignName + "')]"));
+        Browser.scrollToVisibleElement(campaignTitle);
+        List<WebElement> gridCells = campaignTitle.findElements(By.xpath("./following-sibling::td"));
+        if (gridCells.size() == 1) {
+            Browser.clickOnElement(gridCells.getFirst());
+            Browser.waitForElementToBeVisible(By.xpath("//div[@class='table-responsive']//td[contains(text(),'"+campaignName+"')]/..//button[@id]"));
+            verifyCampaignsStatusItems(campaignName);
+            WebElement activeStatus = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='table-responsive']//td[contains(text(),'"+campaignName+"')]/..//button[@id]/../following-sibling::ul//div[contains(text(),'Active')]"));
+            Browser.clickOnElement(activeStatus);
+            Browser.waitForElementToBeClickable(By.xpath("//div[@class='table-responsive']//td[contains(text(),'"+campaignName+"')]/..//button[contains(text(),'Active')]"));
+        }
+        else {
+            markCampaignActive(campaignName);
+        }
+    }
+
+    private void markCampaignActive(String campaignName) {
+        verifyCampaignsStatusItems(campaignName);
+        WebElement activeStatus = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='table-responsive']//td[contains(text(),'"+campaignName+"')]/..//button[@id]/../following-sibling::ul//div[contains(text(),'Active')]"));
+        Browser.clickOnElement(activeStatus);
+        Browser.waitForElementToBeVisible(By.xpath("//div[@class='table-responsive']//td[contains(text(),'"+campaignName+"')]/..//button[contains(text(),'Active')]"));
+        Browser.waitForElementToBeClickable(By.xpath("//div[@class='table-responsive']//td[contains(text(),'"+campaignName+"')]/..//button[contains(text(),'Active')]"));
+    }
+
+    public void openCampaign(String campaignName) {
+        WebElement clickOnCampaignName = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='table-responsive']//td[contains(text(),'"+campaignName+"')]"));
+        Browser.clickOnElement(clickOnCampaignName);
+        Browser.waitForElementToBeVisible(By.xpath("//div[@class='row']/ol/li[@class='active']"));
     }
 }
