@@ -144,7 +144,7 @@ public class AppointmentBookingPage extends BasePage {
 
     public void enterFirstName(String firstNameData) {
         Browser.waitForPresenceOfElement(By.xpath("//div[@class='patient-form-title']"));
-        Browser.waitForElementToBeVisible(By.xpath("//input[@placeholder='Patient First Name']"));
+        //Browser.waitForElementToBeVisible(By.xpath("//input[@placeholder='Patient First Name']"));
         WebElement firstNameID = DriverManager.getInstance().Driver.findElement(By.xpath("//input[@placeholder='Patient First Name']"));
         Browser.enterTextInEditBox(firstNameID, firstNameData);
     }
