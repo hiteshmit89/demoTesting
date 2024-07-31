@@ -182,6 +182,11 @@ public class Browser {
         element.sendKeys(text);
     }
 
+    public static void enterTextInEditBox1(WebElement element, String text) {
+        element.clear();
+        element.sendKeys(text);
+    }
+
     public static void waitForPageReady() {
         DriverManager.getInstance().pageReady();
     }
