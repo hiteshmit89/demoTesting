@@ -33,10 +33,15 @@ public class CampaignsPage extends BasePage {
     }
 
     public void verifyFollowUpPageUiFor(String campaignName) {
-        Browser.waitForTableSizeToBe(patientFollowUpTable.getFirst(), 5);
-        Browser.waitForTableSizeToBe(patientFollowUpTable.get(1), 3);
-        Browser.waitForTableSizeToBe(patientFollowUpTable.get(2), 3);
-        Browser.waitForTableSizeToBe(patientFollowUpTable.get(3), 3);
+        switch (campaignName) {
+            case "Cancelled Appointments Campaign", "Failed Appointments Campaign", "Reactivation Campaign", "Preappointment: Next Prophy", "Service Scheduled Campaign", "Preappointments: Perio Maintenance", "Recall Campaign", "Unscheduled Treatment Campaign" ->
+                    Browser.waitForTableSizeToBe(patientFollowUpTable.getFirst(), 5);
+            case "Appointment Reminders Campaign", "Review Request Campaign", "Birthday Wishes" ->
+                    Browser.waitForTableSizeToBe(patientFollowUpTable.get(1), 3);
+            case "Christmas Holiday Greeting", "Custom Holiday Greeting", "New Year Greeting", "Thanksgiving Holiday Greetings" ->
+                    Browser.waitForTableSizeToBe(patientFollowUpTable.get(2), 3);
+            default -> Browser.waitForTableSizeToBe(patientFollowUpTable.get(3), 3);
+        }
         Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='table-responsive']//td[contains(text(),'" + campaignName + "')]")));
         WebElement campaignTitle = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='table-responsive']//td[contains(text(),'" + campaignName + "')]"));
         Browser.scrollToVisibleElement(campaignTitle);
@@ -108,10 +113,15 @@ public class CampaignsPage extends BasePage {
     }
 
     public void activateCampaign(String campaignName) {
-        Browser.waitForTableSizeToBe(patientFollowUpTable.getFirst(), 5);
-        Browser.waitForTableSizeToBe(patientFollowUpTable.get(1), 3);
-        Browser.waitForTableSizeToBe(patientFollowUpTable.get(2), 3);
-        Browser.waitForTableSizeToBe(patientFollowUpTable.get(3), 3);
+        switch (campaignName) {
+            case "Cancelled Appointments Campaign", "Failed Appointments Campaign", "Reactivation Campaign", "Preappointment: Next Prophy", "Service Scheduled Campaign", "Preappointments: Perio Maintenance", "Recall Campaign", "Unscheduled Treatment Campaign" ->
+                    Browser.waitForTableSizeToBe(patientFollowUpTable.getFirst(), 5);
+            case "Appointment Reminders Campaign", "Review Request Campaign", "Birthday Wishes" ->
+                    Browser.waitForTableSizeToBe(patientFollowUpTable.get(1), 3);
+            case "Christmas Holiday Greeting", "Custom Holiday Greeting", "New Year Greeting", "Thanksgiving Holiday Greetings" ->
+                    Browser.waitForTableSizeToBe(patientFollowUpTable.get(2), 3);
+            default -> Browser.waitForTableSizeToBe(patientFollowUpTable.get(3), 3);
+        }
         Browser.waitForElementToBeVisible(DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='table-responsive']//td[contains(text(),'" + campaignName + "')]")));
         WebElement campaignTitle = DriverManager.getInstance().Driver.findElement(By.xpath("//div[@class='table-responsive']//td[contains(text(),'" + campaignName + "')]"));
         Browser.scrollToVisibleElement(campaignTitle);

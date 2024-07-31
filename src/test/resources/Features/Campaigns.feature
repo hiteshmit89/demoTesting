@@ -37,5 +37,5 @@ Feature: Campaigns
     And I click on profile dropdown
     When I click on "Campaigns" dropdown option
     And I am redirected to the campaigns page
-    And I activate the "Appointment Reminders Campaign" campaign
-    Then I open "Appointment Reminders Campaign" campaign
+    And I activate the "Extraction" campaign
+    Then I open "Extraction" campaign
