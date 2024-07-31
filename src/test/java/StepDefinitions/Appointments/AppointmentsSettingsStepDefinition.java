@@ -121,6 +121,7 @@ public class AppointmentsSettingsStepDefinition {
         PbNUIApp.appointmentsPage().clickOnAppointmentListTab();
         PbNUIApp.appointmentsPage().enterStartDate1("01/01/2024");
         PbNUIApp.appointmentsPage().enterStartDate2("01/01/2024");
+        PbNUIApp.appointmentsPage().clickOutsideAppointmentList();
     }
 
     @Then("I will be able to sort columns of Appointment list table on appointment list page")
@@ -244,5 +245,31 @@ public class AppointmentsSettingsStepDefinition {
     @Then("I will be able to view two options ten Minutes & fifteen minutes under the heading Appointment Time Interval on the Appointment Availability column on the appointment settings page")
     public void iWillBeAbleToViewTwoOptionsTenMinutesFifteenMinutesUnderTheHeadingAppointmentTimeIntervalOnTheAppointmentAvailabilityColumnOnTheAppointmentSettingsPage() {
         PbNUIApp.appointmentsPage().appointmentAvailabilityColumnRadioButtons1();
+    }
+
+    @When("I try to add custom question on appointment settings page")
+    public void iTryToAddCustomQuestionOnAppointmentSettingsPage() {
+        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
+        PbNUIApp.appointmentsPage().clickOnAppointmentSettingTab();
+        PbNUIApp.appointmentsPage().clickOnSetupCustomQuestion();
+        PbNUIApp.appointmentsPage().clickOnAddNewCustomQuestion();
+        PbNUIApp.appointmentsPage().enterTheQuestionTitle();
+    }
+
+    @Then("I will be able to add custom question on appointment settings page")
+    public void iWillBeAbleToAddCustomQuestionOnAppointmentSettingsPage() {
+        PbNUIApp.appointmentsPage().clickOnSave();
+    }
+
+    @When("I try to verify visibility check of provider on appointment setting page")
+    public void iTryToVerifyVisibilityCheckOfProviderOnAppointmentSettingPage() {
+        PbNUIApp.navigator().NavigateTo(Constants.Destination.Appointments);
+        PbNUIApp.appointmentsPage().clickOnAppointmentSettingTab();
+    }
+
+    @Then("I will be able to verify visibility check of provider on appointment setting page with Edit and Delete button")
+    public void iWillBeAbleToVerifyVisibilityCheckOfProviderOnAppointmentSettingPageWithEditAndDeleteButton() {
+        PbNUIApp.appointmentsPage().verifyProviderEditButton();
+        PbNUIApp.appointmentsPage().verifyProviderDeleteButton();
     }
 }

@@ -1,5 +1,5 @@
 @PaymentTable @pbnAll
-Feature: payment details in Payment table
+Feature: PaymentDetailsFeature
 
   @PRAC-T3947 @PUA-112
   Scenario: user is able to see label in Payment table
