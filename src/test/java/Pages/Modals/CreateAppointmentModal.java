@@ -19,6 +19,7 @@ public class CreateAppointmentModal {
     }
 
     public void clickOnAddNewPatient() {
+        Browser.waitForPresenceOfElement(By.xpath("//button[@class='pull-right btn btn-default']"));
         Browser.waitForElementToBeVisible(By.xpath("//button[@class='pull-right btn btn-default']"));
         WebElement addNewPatient = DriverManager.getInstance().Driver.findElement(By.xpath("//button[@class='pull-right btn btn-default']"));
         Browser.clickOnElementUsingJavascript(addNewPatient);

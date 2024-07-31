@@ -117,7 +117,6 @@ public class AppointmentsStepdefinition {
         PBNModals.createAppointmentModal().fillAppointmentBookingDetails();
         PBNModals.createAppointmentModal().selectProvider();
         PBNModals.createAppointmentModal().appointmentType();
-        PBNModals.createAppointmentModal().clickOnCreateButton();
     }
 
     @Then("I will see success toast notifications")
