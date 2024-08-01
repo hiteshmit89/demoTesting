@@ -49,11 +49,12 @@ public class AppointmentsStepdefinition {
     }
 
     @And("I click on appointments tab and try to book appointment")
-    public void iClickOnAppointmentsTabAndTryToBookAppointment() {
+    public void iClickOnAppointmentsTabAndTryToBookAppointment() throws InterruptedException {
         PbNUIApp.appointmentBookingPage().verifySelectionAndClickOnPickLocation();
         PbNUIApp.appointmentBookingPage().clickOnSelectExistingPatient();
         PbNUIApp.appointmentBookingPage().clickOnEmergencyConsult();
         PbNUIApp.appointmentBookingPage().clickOnEarliest();
+        Thread.sleep(5000);
         PbNUIApp.appointmentBookingPage().fillAppointmentBookingForm();
         PbNUIApp.appointmentBookingPage().clickOnCheckBox();
         PbNUIApp.appointmentBookingPage().clickOnNextButton();
