@@ -250,7 +250,6 @@ public class AppointmentsStepdefinition {
         PBNModals.collectPaymentModal().enterCardDetails();
         PbNUIApp.appointmentBookingPage().clickOnNextButton();
         PbNUIApp.appointmentBookingPage().clickOnIDoNotHaveInsurance();
-        //PbNUIApp.appointmentBookingPage().clickOnNextButton();
         PbNUIApp.appointmentBookingPage().clickOnUseCellPhone();
         PbNUIApp.appointmentBookingPage().enterOTP("1234");
         PbNUIApp.appointmentBookingPage().clickOnVerifyAndSchedule();
