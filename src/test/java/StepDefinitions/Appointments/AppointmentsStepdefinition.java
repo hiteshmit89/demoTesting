@@ -49,12 +49,11 @@ public class AppointmentsStepdefinition {
     }
 
     @And("I click on appointments tab and try to book appointment")
-    public void iClickOnAppointmentsTabAndTryToBookAppointment() throws InterruptedException {
+    public void iClickOnAppointmentsTabAndTryToBookAppointment() {
         PbNUIApp.appointmentBookingPage().verifySelectionAndClickOnPickLocation();
         PbNUIApp.appointmentBookingPage().clickOnSelectExistingPatient();
         PbNUIApp.appointmentBookingPage().clickOnEmergencyConsult();
         PbNUIApp.appointmentBookingPage().clickOnEarliest();
-        Thread.sleep(5000);
         PbNUIApp.appointmentBookingPage().fillAppointmentBookingForm();
         PbNUIApp.appointmentBookingPage().clickOnCheckBox();
         PbNUIApp.appointmentBookingPage().clickOnNextButton();
@@ -118,6 +117,7 @@ public class AppointmentsStepdefinition {
         PBNModals.createAppointmentModal().fillAppointmentBookingDetails();
         PBNModals.createAppointmentModal().selectProvider();
         PBNModals.createAppointmentModal().appointmentType();
+        PBNModals.createAppointmentModal().clickOnCreateButton();
     }
 
     @Then("I will see success toast notifications")
@@ -166,7 +166,7 @@ public class AppointmentsStepdefinition {
         PBNModals.collectPaymentModal().enterCardDetails();
         PbNUIApp.appointmentBookingPage().clickOnNextButton();
         PbNUIApp.appointmentBookingPage().clickOnIDoNotHaveInsurance();
-        PbNUIApp.appointmentBookingPage().clickOnNextButtonUsingJavaScript();
+        PbNUIApp.appointmentBookingPage().clickOnNextButton();
         PbNUIApp.appointmentBookingPage().clickOnUseCellPhone();
         PbNUIApp.appointmentBookingPage().enterOTP("1234");
     }
@@ -251,7 +251,7 @@ public class AppointmentsStepdefinition {
         PBNModals.collectPaymentModal().enterCardDetails();
         PbNUIApp.appointmentBookingPage().clickOnNextButton();
         PbNUIApp.appointmentBookingPage().clickOnIDoNotHaveInsurance();
-        PbNUIApp.appointmentBookingPage().clickOnNextButtonUsingJavaScript();
+        //PbNUIApp.appointmentBookingPage().clickOnNextButton();
         PbNUIApp.appointmentBookingPage().clickOnUseCellPhone();
         PbNUIApp.appointmentBookingPage().enterOTP("1234");
         PbNUIApp.appointmentBookingPage().clickOnVerifyAndSchedule();
@@ -359,7 +359,7 @@ public class AppointmentsStepdefinition {
         PBNModals.collectPaymentModal().enterCardDetails();
         PbNUIApp.appointmentBookingPage().clickOnNextButton();
         PbNUIApp.appointmentBookingPage().clickOnIDoNotHaveInsurance();
-        PbNUIApp.appointmentBookingPage().clickOnNextButtonUsingJavaScript();
+        PbNUIApp.appointmentBookingPage().clickOnNextButton();
     }
 
     @Then("I will be able to see OTP page during appointment booking")
