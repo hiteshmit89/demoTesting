@@ -180,7 +180,7 @@ public class AppointmentBookingPage extends BasePage {
         Browser.waitForElementToBeClickable(By.xpath("//span[@class='MuiButton-label' and contains(text(),'Next')]"));
         WebElement nextButton = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='MuiButton-label' and contains(text(),'Next')]"));
         Browser.scrollToVisibleElement(nextButton);
-        Browser.clickOnElement(nextButton);
+        Browser.clickOnElementUsingJavascript(nextButton);
     }
 
     public void clickOnNextButtonUsingJavaScript() {
@@ -214,6 +214,9 @@ public class AppointmentBookingPage extends BasePage {
         }
         if (present) {
             Browser.clickOnElementUsingJavascript(iDoNotHaveInsuranceButton);
+            Browser.waitForPageReady();
+            List<WebElement> buttons = DriverManager.getInstance().Driver.findElements(By.xpath("//*[@id='patient-appointment-booking-page']//button"));
+            Browser.waitForAttributeValue(buttons.getLast(),"class","MuiButtonBase-root MuiButton-root MuiButton-text");
             clickOnNextButtonUsingJavaScript();
         }
     }
