@@ -177,6 +177,7 @@ public class AppointmentBookingPage extends BasePage {
 
     public void clickOnNextButton() {
         Browser.waitForElementToBeVisible(By.xpath("//span[@class='MuiButton-label' and contains(text(),'Next')]"));
+        Browser.waitForElementToBeClickable(By.xpath("//span[@class='MuiButton-label' and contains(text(),'Next')]"));
         WebElement nextButton = DriverManager.getInstance().Driver.findElement(By.xpath("//span[@class='MuiButton-label' and contains(text(),'Next')]"));
         Browser.scrollToVisibleElement(nextButton);
         Browser.clickOnElement(nextButton);
@@ -201,7 +202,7 @@ public class AppointmentBookingPage extends BasePage {
     }
 
     public void clickOnIDoNotHaveInsurance() {
-        Browser.waitForElementToBeVisible(By.xpath("//span[@class='MuiButton-label' and contains(text(),'I do')]"));
+        Browser.waitForElementToBeVisible(By.xpath("//span[@class='MuiButton-label' and contains(text(),'I have')]"));
         boolean present = false;
         WebElement iDoNotHaveInsuranceButton = null;
         try {
